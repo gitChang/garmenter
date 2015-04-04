@@ -1,0 +1,15 @@
+/*
+ *= require bootstrap_and_overrides
+ *= require font-awesome
+ *
+ */
+
+/* 
+ *= require common
+ *= require transitions
+ *
+ *= require_tree ./main
+ *= require_tree ./question
+ *= require_self
+ *
+ */

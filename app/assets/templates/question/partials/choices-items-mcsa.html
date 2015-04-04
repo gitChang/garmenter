@@ -1,0 +1,18 @@
+<div class="alert alert-warning">
+	{{form_cq.errors.answers[0]}}
+</div>
+
+<label>Choices</label>
+<label class="pull-right">Answers?</label>
+
+<ul class="radio-list list-unstyled">
+	<li ng-repeat="letter in collection.selective_letters track by $index">
+		<p class="wrap-input">
+			<span class="choice-label">{{letter}}.</span>
+			<input class="form-control" type="text" ng-model="model.choices[letter]">
+			<span class="pick-answer radio-item">
+				<i class="fa fa-circle-thin fa-lg"></i>
+			</span>
+		</p>
+	</li>
+</ul>

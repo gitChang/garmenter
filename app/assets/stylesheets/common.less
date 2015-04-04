@@ -1,0 +1,19 @@
+@import "twitter/bootstrap/variables";
+
+#main-panel.container, #main-panel.container-fluid {
+	min-width: 967px;
+}
+
+.no-mg { margin: 0; }
+
+.no-pad { padding: 0; }
+
+.noise-bg { background-image: url('bg-noise.png'); }
+
+
+body {
+	//&:extend(.noise-bg);
+	
+  background-color: @gray-darker;
+  overflow-x: hidden; // alternative margin-left-right to 0 causes blurry edge.
+}

@@ -1,0 +1,31 @@
+<div class="wrap-form">
+
+	<h4 class="form-title">
+		<i class="fa fa-puzzle-piece fa-lg"></i>&nbsp;&nbsp;Add Class Code
+	</h4>
+
+	<div class="wrap-controls">
+		<form autocomplete="off">
+			<div class="form-group">
+				
+				<div ng-show="" class="alert alert-warning" style="padding:5px 10px;margin-bottom:10px">{{form_acc.error}}</div>
+				
+				<input name="new_class_code" type="text" class="input-sm form-control" placeholder="example: Eng 101" maxlength="10">
+				
+				<p style="margin-top:10px">
+					<small><b>NOTE:</b> Use create question form to specify which this class code belong.</small>
+				</p>
+
+				<ul id="button-list" class="list-inline hidden" style="margin-top:10px">
+					<li>
+						<button class="add-class-code-button btn btn-success btn-xs">
+							&nbsp;Add Class Code&nbsp;
+						</button>
+					</li>
+				</ul>
+
+			</div><!--.form-group.for-new-class-code-->
+
+		</form>
+	</div><!--.wrap-controls-->
+</div><!-- /.wrap-form -->
