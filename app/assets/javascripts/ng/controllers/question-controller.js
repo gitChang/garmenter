@@ -7,11 +7,11 @@ function QuestionController($scope) {
 	$scope.model = {
 		discipline : null,
 		class_code : null,
-		question : null,
-		qtype : null,
+		question 	 : null,
+		qtype 		 : null,
 		choice_len : null,
-		choices : {},
-		answers : []
+		choices 	 : {},
+		answers 	 : []
 	};
 
 	//---
@@ -49,10 +49,10 @@ function QuestionController($scope) {
 	//---
 
 	$scope.choices_templates = {
-		single_answer : "question/partials/choices-items-mcsa.html",
+		single_answer 	 : "question/partials/choices-items-mcsa.html",
 		multiple_answers : "question/partials/choices-items-mcma.html",
-		fill_blanks : "question/partials/choices-items-fnb.html",
-		true_false : "question/partials/choices-items-tof.html"
+		fill_blanks 		 : "question/partials/choices-items-fnb.html",
+		true_false 			 : "question/partials/choices-items-tof.html"
 	};
 
 	$scope.$watch("model.qtype", function (new_qtype, old_qtype) {
@@ -62,8 +62,14 @@ function QuestionController($scope) {
 
 	//---
 
-	$scope.validation_question_data = function () {
-		...
+	$scope.errors = {
+		discipline : null,
+		class_code : null,
+		question 	 : null,
+		qtype 		 : null,
+		choice_len : null,
+		choices 	 : null,
+		answers 	 : null
 	};
 
 }

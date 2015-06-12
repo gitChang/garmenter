@@ -1,0 +1,17 @@
+.wrap-form
+  h4.form-title
+    i.fa.fa-puzzle-piece.fa-lg
+    | &nbsp;&nbsp;Add Class Code
+  .wrap-controls
+    form autocomplete="off" 
+      .form-group
+        .alert.alert-warning [ng-show="" style="padding:5px 10px;margin-bottom:10px"] {{form_acc.error}} 
+        input.input-sm.form-control [maxlength="10" name="new_class_code" placeholder="i.e. Eng 101" type="text"] 
+        p style="margin-top:10px" 
+          small
+            b NOTE:
+            | &nbsp;Use create question form to specify which this class code belongs.
+        ul#button-list.list-inline.hidden style="margin-top:10px" 
+          li
+            button.add-class-code-button.btn.btn-success.btn-xs
+              | &nbsp;Add Class Code&nbsp;

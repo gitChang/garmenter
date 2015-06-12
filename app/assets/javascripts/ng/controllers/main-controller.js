@@ -16,7 +16,7 @@ App.controller("MainController", function ($rootScope, $location) {
     		$("a[ui-sref='dashboard']").addClass("active");
     		break;
     	case "/mystudents" :
-    		$("a[ui-sref='mystuds']").addClass("active");
+    		$("a[ui-sref='mystudents']").addClass("active");
     		break;
     	case "/create-question" :
     		$("a[ui-sref='create-question']").addClass("active");

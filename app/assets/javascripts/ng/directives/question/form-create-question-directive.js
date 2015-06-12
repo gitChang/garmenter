@@ -241,27 +241,3 @@ App.directive("pickAnswer", function () {
 	};
 });
 
-//---
-
-App.directive("btnSaveQuestion", function () {
-
-	function Link(scope, element) {
-
-		scope.$watchCollection("model.answers", function (answers) {
-
-			if (answers.length)
-				element.removeClass("hidden");
-			else
-				element.addClass("hidden");
-		});
-
-		element.find("button").click(function () {
-			console.log( "model:", JSON.stringify(scope.model) );
-		});
-	}
-
-	return {
-		restrict : "C",
-		link: Link
-	};
-});

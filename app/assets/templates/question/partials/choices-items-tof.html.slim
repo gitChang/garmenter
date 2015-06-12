@@ -1,0 +1,8 @@
+//.alert.alert-warning {{form_cq.errors.answers[0]}}
+label Answer?
+ul.radio-list.list-unstyled
+  li.radio-item [ng-repeat="bool in collection.bools track by $index"]
+    p.pick-answer
+      i.fa.fa-circle-thin.fa-lg
+      | &nbsp;{{bool}}
+
