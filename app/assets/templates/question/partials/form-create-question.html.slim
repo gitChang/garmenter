@@ -42,7 +42,7 @@
               i.fa.fa-circle-thin.fa-lg
               | &nbsp;&nbsp;{{type.text}}
       
-      .form-group-choice-len.form-group
+      .form-group.choice-len
         label Number of Choices
         .dropdown-choice-len.dropdown
           | {{model.choice_len || "Choose"}}
@@ -51,7 +51,7 @@
           ul
             li.dropdown-menue-item-choice-len.dropdown-menue-item [ng-repeat="number in collection.numbers"] {{number}}
       
-      .form-group-choices.form-group
+      .form-group.choices
         .alert.alert-warning [ng-show="errors.choices"] {{errors.choices}} 
         .alert.alert-warning [ng-show="errors.answers"] {{errors.answers}} 
         ng-include src="choices_templates_path" 

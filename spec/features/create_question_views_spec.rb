@@ -145,8 +145,9 @@ RSpec.feature "CreateQuestionViews", type: :feature do
     select_question_type 'Multiple Choice, Single Answer'
     sleep 2
     select_number_of_choices '3'
+    sleep 2
 
-    expect( find( '.form-group-choices ul' ) ).to have_selector( 'li', count: 3 )
+    expect( find( '.choices ul' ) ).to have_selector( 'li', count: 3 )
   end
 
 
@@ -157,6 +158,7 @@ RSpec.feature "CreateQuestionViews", type: :feature do
     select_number_of_choices '3'
     sleep 2
     select_answers 'single_answer'
+    sleep 2
 
     expect(page).to have_content('Save Question')
   end
@@ -176,7 +178,7 @@ RSpec.feature "CreateQuestionViews", type: :feature do
   end
 
 
-  def submit
+  def save_question
     click_button 'Save Question'
   end
 
@@ -203,13 +205,13 @@ RSpec.feature "CreateQuestionViews", type: :feature do
     
     sleep 2
 
-    submit
+    save_question
 
     fill_up_choices 2
 
     sleep 2
 
-    submit
+    save_question
 
     sleep 2
 
