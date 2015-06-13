@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive("saveClassCode", function () {
+App.directive("saveClassCode", function ($timeout, $templateCache, ProcessPromptService) {
 
   function Link(scope, element) {
 
@@ -10,10 +10,26 @@ App.directive("saveClassCode", function () {
       var arr_val = [val];
 
       if (val) {
-        if (scope.collection.class_codes[scope.model.discipline]) 
+        /**
+        * upon submit, indicate the process.
+        * this partial must prepended to target 
+        * DOM element.
+        **/
+        ProcessPromptService.render('.create-question-section');
+
+        /**
+        * Add new class code to collection.
+        **/
+        if (scope.collection.class_codes[scope.model.discipline]) {
           scope.collection.class_codes[scope.model.discipline].push(val);
-        else
+        } else {
           scope.collection.class_codes[scope.model.discipline] = arr_val;
+        }
+
+        /**
+        * indicate done by removing processing prompt
+        **/
+        ProcessPromptService.unrender();
       }
 
       input_new_class_code.focus().val("");

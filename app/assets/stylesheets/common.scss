@@ -1,3 +1,8 @@
+body {
+  background-color: $gray-darker; 
+  overflow-x: hidden; // prevent from blurry edge.
+}
+
 /*
 @extends
 */
@@ -13,12 +18,24 @@
   background-image: url('bg-noise.png'); 
 }
 
-
 #main-panel.container, #main-panel.container-fluid {
   min-width: 967px;
 }
 
-body {
-  background-color: $gray-darker; 
-  overflow-x: hidden; // prevent from blurry edge.
+.process-indicator {
+  position: fixed;
+  z-index: 889;
+  top: 40px;
+  left: 55%;
+  width: 200px;
+  margin-left: -100px;
+
+  .alert {
+    text-align: center;
+    font-size: 115%;
+
+    -webkit-box-shadow : 0px 10px 40px 0px lighten($gray-light, 42%);
+    -moz-box-shadow    : 0px 10px 40px 0px lighten($gray-light, 42%);
+    box-shadow         : 0px 10px 40px 0px lighten($gray-light, 42%);
+  }
 }

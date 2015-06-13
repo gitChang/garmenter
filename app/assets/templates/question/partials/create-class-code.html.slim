@@ -1,16 +1,21 @@
 .wrap-form
+  
   h4.form-title
     i.fa.fa-puzzle-piece.fa-lg
     | &nbsp;&nbsp;Add Class Code
+  
   .wrap-controls
     form#add-class-code autocomplete="off" 
-      .form-group
-        .alert.alert-warning [ng-show="" style="padding:5px 10px;margin-bottom:10px"] 
-        input.input-sm.form-control [maxlength="10" name="new_class_code" placeholder="i.e. Eng 101" type="text"] 
-        p style="margin:10px 0" 
-          small
-            b NOTE:
-            | &nbsp;Use create question form to specify which this class code belongs.
-        
-        button.save-class-code.btn.btn-success.btn-xs
-          | &nbsp;Add Class Code&nbsp;
+
+      fieldset
+  
+        .form-group
+          .alert.alert-warning [ng-show="" style="padding:5px 10px;margin-bottom:10px"] 
+          input.input-sm.form-control [maxlength="10" name="new_class_code" placeholder="i.e. Eng 101" type="text"] 
+          p style="margin:10px 0" 
+            small
+              b NOTE:
+              | &nbsp;Use create question form to specify which this class code belongs.
+          
+          button.save-class-code.btn.btn-success.btn-xs
+            | &nbsp;Add Class Code&nbsp;
