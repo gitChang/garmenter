@@ -85,11 +85,11 @@
     .dropdown-menue {
       position      : absolute;
       top           : 20px;
-      left          : 0;
+      left          : 5px;
       z-index       : 888;
       border        : 1px solid darken($gray-lighter, 4%);
       border-radius : 2px;
-      width         : 100%;
+      width         : 98%;
 
       -webkit-box-shadow : 0px 10px 40px 0px lighten($gray-light, 42%);
       -moz-box-shadow    : 0px 10px 40px 0px lighten($gray-light, 42%);

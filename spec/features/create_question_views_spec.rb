@@ -39,14 +39,14 @@ RSpec.feature "CreateQuestionViews", type: :feature do
 
     sleep 2
 
-    expect(page).to have_css('button.add-class-code-button')
+    expect(page).to have_css('button.save-class-code')
   end
 
 
   def add_new_class_code(discipline, code)
     select_discipline(discipline)
     fill_in('new_class_code', with: code)
-    find('button.add-class-code-button').click
+    click_button 'Add Class Code'
   end
 
 

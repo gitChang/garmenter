@@ -51,7 +51,7 @@ function QuestionController($scope) {
 	$scope.choices_templates = {
 		single_answer 	 : "question/partials/choices-items-mcsa.html",
 		multiple_answers : "question/partials/choices-items-mcma.html",
-		fill_blanks 		 : "question/partials/choices-items-fnb.html",
+		fill_blanks 		 : "question/partials/choices-items-fnb.html" ,
 		true_false 			 : "question/partials/choices-items-tof.html"
 	};
 

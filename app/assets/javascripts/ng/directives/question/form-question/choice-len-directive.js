@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive("formGroupChoiceLen", function () {
+App.directive("choiceLen", function () {
 
   function Link(scope, element) {
 
@@ -20,7 +20,7 @@ App.directive("formGroupChoiceLen", function () {
 
       scope.model.answers = [];
 
-      var fa_icon = angular.element("div.form-group-choices").find("i");
+      var fa_icon = angular.element("div.choices").find("i");
 
       switch (scope.model.qtype) {
         case "single_answer" :
