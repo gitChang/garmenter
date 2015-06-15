@@ -2,10 +2,13 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
-  
   get  '*path' => 'application#index'
 
-
+  resources :questions, defaults: { format: :json } do
+    collection do
+      post :add_new_class_code
+    end
+  end
 
 
 

@@ -8,12 +8,12 @@
     
     form autocomplete="off" 
 
-      fieldset
+      fieldset [ng-disabled="is_processing"]
     
         .form-group
           .alert.alert-warning [ng-show="errors.discipline"] {{errors.discipline}} 
           label Discipline
-          .dropdown-discipline.dropdown
+          .dropdown-discipline.dropdown [ng-disabled="true"]
             | {{model.discipline || "Choose"}}
             i.fa.fa-sort-desc
           .dropdown-menue-discipline.dropdown-menue.hidden

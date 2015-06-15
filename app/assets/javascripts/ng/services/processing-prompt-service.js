@@ -11,11 +11,11 @@ App.service('ProcessPromptService', function($templateCache, $timeout) {
   this.unrender = function() {
     var selector = '.process-indicator';
 
-    setTimeout(function () {
+    $timeout(function () {
       $(selector).addClass('fadeOutUp');
-    }, 2000);
+    }, 1000);
 
-    setTimeout(function () {
+    $timeout(function () {
       $(selector).remove();
     }, 4000);
   };

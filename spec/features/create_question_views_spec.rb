@@ -53,9 +53,12 @@ RSpec.feature "CreateQuestionViews", type: :feature do
   scenario 'when a user added a new class code, it should be in the menu', 
   js: true do
     add_new_class_code 'English', 'Eng 101'
+
+    sleep 3
+    
     find('div.dropdown-class-code').click
 
-    sleep 2
+    sleep 3
     
     expect(page).to have_content('Eng 101')
   end
@@ -70,7 +73,12 @@ RSpec.feature "CreateQuestionViews", type: :feature do
   scenario 'when the user select a class code, the menu should appear.', 
   js: true do
   	select_discipline 'English'
+
+    sleep 2
+
     add_new_class_code 'English', 'Eng 101'
+
+    sleep 3
 
     find('div.dropdown-class-code').click
 
@@ -84,9 +92,12 @@ RSpec.feature "CreateQuestionViews", type: :feature do
   js: true do
     select_discipline 'English'
     add_new_class_code 'English', 'Eng 101'
+
+    sleep 3
+
     select_class_code 'Eng 101'
 
-    sleep 2
+    sleep 3
 
     expect(page).to have_content('Eng 101')
   end
@@ -94,10 +105,16 @@ RSpec.feature "CreateQuestionViews", type: :feature do
 
   scenario 'the user changing discipline.', js: true do
     add_new_class_code 'English', 'Eng 101'
-    sleep 2
+    
+    sleep 3
+    
     select_class_code 'Eng 101'
+    
     sleep 2
+    
     select_discipline 'Physics'
+    
+    sleep 3
 
     expect(page).to have_css('div.dropdown-class-code', text: 'Choose')
   end
@@ -207,13 +224,15 @@ RSpec.feature "CreateQuestionViews", type: :feature do
 
     save_question
 
+    sleep 3
+
     fill_up_choices 2
 
     sleep 2
 
     save_question
 
-    sleep 2
+    sleep 3
 
     expect(page).to_not have_content('Please provide all the choices below.')
   end

@@ -30,5 +30,20 @@ module Hoemwerk
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Skip generating assets things
+    config.generators do |gen|
+      gen.template_engine nil 
+      gen.test_framework  nil 
+      gen.assets          false
+      gen.helper          false
+      gen.stylesheets     false
+    end
+
+    # Show errors logs during env.test
+    if Rails.env == 'test'
+      require 'diagnostic'
+      config.middleware.use(Hoemwerk::DiagnosticMiddleware)
+    end
   end
 end

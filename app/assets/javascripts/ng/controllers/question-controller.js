@@ -2,8 +2,11 @@
 
 App.controller("QuestionController", QuestionController);
 
-function QuestionController($scope) {
+function QuestionController($scope, ProcessPromptService) {
 
+	/**
+	* payload
+	**/
 	$scope.model = {
 		discipline : null,
 		class_code : null,
@@ -14,8 +17,10 @@ function QuestionController($scope) {
 		answers 	 : []
 	};
 
-	//---
-
+	
+	/**
+	* seed data
+	**/
 	$scope.collection = {
 		disciplines 			: ["English", "Mathematics", "Physics"],
 		class_codes 			: {}, 
@@ -25,8 +30,10 @@ function QuestionController($scope) {
 		bools		 					: ["True", "False"] 
 	};
 
-	//---
-
+	
+	/**
+	* types of question
+	**/
 	$scope.question_types = [
 		{
 			name : "single_answer",
@@ -46,8 +53,10 @@ function QuestionController($scope) {
 		}
 	];
 
-	//---
-
+	
+	/**
+	* partial template for each question type
+	**/
 	$scope.choices_templates = {
 		single_answer 	 : "question/partials/choices-items-mcsa.html",
 		multiple_answers : "question/partials/choices-items-mcma.html",
@@ -60,8 +69,10 @@ function QuestionController($scope) {
 			$scope.choices_templates_path = $scope.choices_templates[new_qtype];
 	});
 
-	//---
-
+	
+	/**
+	* error text to display on form alert.
+	**/
 	$scope.errors = {
 		discipline : null,
 		class_code : null,
@@ -71,5 +82,25 @@ function QuestionController($scope) {
 		choices 	 : null,
 		answers 	 : null
 	};
+
+	
+	/**
+	* send signal to show processing prompt.
+	**/
+	$scope.is_processing = false; 
+
+	
+	/**
+  * upon submit, indicate the process.
+  * this partial must prepended to target 
+  * DOM element.
+  **/
+	$scope.$watch('is_processing', function (val) {
+		if (val) {
+      ProcessPromptService.render('.create-question-section');
+		} else {
+			ProcessPromptService.unrender();
+		}
+	});
 
 }

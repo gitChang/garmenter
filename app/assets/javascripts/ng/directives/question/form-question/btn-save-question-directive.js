@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive("btnSaveQuestion", function ($templateCache, ProcessPromptService) {
+App.directive("btnSaveQuestion", function ($http, $templateCache) {
 
   function Link(scope, element) {
 
@@ -75,22 +75,25 @@ App.directive("btnSaveQuestion", function ($templateCache, ProcessPromptService)
     * trigger save question button on the form.
     **/
     element.find("button").bind("click", function () {
-      console.log(validate_question_data());
+
       if (validate_question_data()) {
-        
         /**
-        * upon submit, indicate the process.
-        * this partial must prepended to target 
-        * DOM element.
+        * send flag saving mode.
         **/
-        ProcessPromptService.render('.create-question-section');
-        
-        //..process data here.
+        scope.is_processing = true;
+
+        /**
+        * send the payload
+        **/
+        $http.post(Routes.questions_path(), scope.model)
+        .success(function (res) {
+          console.log("res:", JSON.stringify(res));
+          scope.is_processing = false;
+        })
+        .error(function () {
+          //todo.
+        });
       }
-
-      ProcessPromptService.unrender();
-
-      console.log( "model:", JSON.stringify(scope.model) );
     });
   }
 

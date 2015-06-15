@@ -3,21 +3,6 @@ body {
   overflow-x: hidden; // prevent from blurry edge.
 }
 
-/*
-@extends
-*/
-.no-mg { 
-  margin: 0; 
-}
-
-.no-pad { 
-  padding: 0; 
-}
-
-.noise-bg { 
-  background-image: url('bg-noise.png'); 
-}
-
 #main-panel.container, #main-panel.container-fluid {
   min-width: 967px;
 }
@@ -34,8 +19,6 @@ body {
     text-align: center;
     font-size: 115%;
 
-    -webkit-box-shadow : 0px 10px 40px 0px lighten($gray-light, 42%);
-    -moz-box-shadow    : 0px 10px 40px 0px lighten($gray-light, 42%);
-    box-shadow         : 0px 10px 40px 0px lighten($gray-light, 42%);
+    @extend .drop-shadow;
   }
 }
