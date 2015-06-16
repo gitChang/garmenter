@@ -2,14 +2,18 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
-  get  '*path' => 'application#index'
-
-  resources :questions, defaults: { format: :json } do
-    collection do
-      post :add_new_class_code
-    end
+  # only API response. must declare before *path
+  # to avoid format render problem. try it to
+  # see the problem.
+  scope 'api', defaults: { format: 'json' } do
+    resources :questions, only: [:create]
+    resources :disciplines, only: [:index]
+    resources :class_codes, only: [:create]
   end
 
+  # must be declared after api to prevent 
+  # format render problem.
+  get  '*path' => 'application#index'
 
 
 

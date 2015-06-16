@@ -1,0 +1,30 @@
+
+.panel.panel-default
+  .panel-body
+
+    .row
+      .col-xs-5
+        .dropdown
+          | {{"Choose Discipline"}}
+          i.fa.fa-sort-desc
+          .dropdown-menue.hidden
+
+.panel.panel-default
+  .panel-body
+
+    .row
+      .col-xs-12
+        table.table.table-hover.table-condensed
+          thead
+            th 
+            th Discipline
+            th Question
+            th Q-Type
+            th Date
+          tbody
+            tr [ng-repeat="question in questions"]
+              th {{$index + 1}}
+              td {{question.discipline}}
+              td {{question.question}}
+              td {{question.qtype}}
+              td {{question.date}}

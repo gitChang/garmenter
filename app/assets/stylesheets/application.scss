@@ -1,13 +1,13 @@
 @import "bootstrap-custom";
 @import "bootstrap";
-//@import "bootstrap/theme";
 
 @import "font-awesome";
 @import "animate";
 
 @import "extends-mixins";
-@import "common";
+@import "custom-widget";
 @import "transitions";
 
 @import "main/*";
+@import "shared/*";
 @import "question/*";

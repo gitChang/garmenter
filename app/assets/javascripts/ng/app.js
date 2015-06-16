@@ -1,6 +1,6 @@
 "use strict";
 
-var App = angular.module("Hoemwerk", ["ui.router", "templates"]);
+var App = angular.module("Hoemwerk", ["ngResource", "ui.router", "templates"]);
 	
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -20,7 +20,8 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 		.state("questionnaire", {
 			url: "/questionnaire",
-			templateUrl: "questionnaire/questionnaire.html"
+			templateUrl: "questionnaire/questionnaire.html",
+			controller: "QuestionnaireController",
 		});
 
 	// Default fall back route

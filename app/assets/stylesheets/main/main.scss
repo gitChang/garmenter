@@ -1,0 +1,8 @@
+body {
+  background-color: $gray-darker; 
+  overflow-x: hidden; // prevent from blurry edge.
+}
+
+#main-panel.container, #main-panel.container-fluid {
+  min-width: 967px;
+}

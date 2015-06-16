@@ -2,11 +2,9 @@
 
 App.controller("QuestionController", QuestionController);
 
-function QuestionController($scope, ProcessPromptService) {
+function QuestionController($scope, DisciplinesResource, PromptService) {
 
-	/**
-	* payload
-	**/
+	// payload.
 	$scope.model = {
 		discipline : null,
 		class_code : null,
@@ -18,11 +16,9 @@ function QuestionController($scope, ProcessPromptService) {
 	};
 
 	
-	/**
-	* seed data
-	**/
+	// seed data.
 	$scope.collection = {
-		disciplines 			: ["English", "Mathematics", "Physics"],
+		disciplines 			: DisciplinesResource.query(),
 		class_codes 			: {}, 
 		letters 					: ["A", "B", "C", "D"],
 		selective_letters : [], 
@@ -31,9 +27,7 @@ function QuestionController($scope, ProcessPromptService) {
 	};
 
 	
-	/**
-	* types of question
-	**/
+	// types of question.
 	$scope.question_types = [
 		{
 			name : "single_answer",
@@ -54,9 +48,7 @@ function QuestionController($scope, ProcessPromptService) {
 	];
 
 	
-	/**
-	* partial template for each question type
-	**/
+	// partial template for each question type.
 	$scope.choices_templates = {
 		single_answer 	 : "question/partials/choices-items-mcsa.html",
 		multiple_answers : "question/partials/choices-items-mcma.html",
@@ -70,9 +62,7 @@ function QuestionController($scope, ProcessPromptService) {
 	});
 
 	
-	/**
-	* error text to display on form alert.
-	**/
+	// error text to display on form alert.
 	$scope.errors = {
 		discipline : null,
 		class_code : null,
@@ -84,23 +74,43 @@ function QuestionController($scope, ProcessPromptService) {
 	};
 
 	
-	/**
-	* send signal to show processing prompt.
-	**/
-	$scope.is_processing = false; 
+	// send signal to show processing prompt.
+	$scope.is_processing = null; 
 
 	
-	/**
-  * upon submit, indicate the process.
-  * this partial must prepended to target 
-  * DOM element.
-  **/
+  // upon submit, indicate the process.
+  // this partial must prepended to target 
+  // DOM element.
 	$scope.$watch('is_processing', function (val) {
-		if (val) {
-      ProcessPromptService.render('.create-question-section');
-		} else {
-			ProcessPromptService.unrender();
+		
+		if (val == true) {
+			PromptService.processing();
+		}
+		if (val == false) {
+      PromptService.saved();
 		}
 	});
+
+
+	// reset form and model.
+	$scope.reset_form_model = function () {
+    for (var i of Object.keys($scope.model)) {
+      
+      // set to null when typeof string.
+      if ( angular.isString($scope.model[i]) ) {
+        $scope.model[i] = null;
+        continue;
+      }
+
+      // set to empty array when typeof array.
+      if ( angular.isArray($scope.model[i]) ) {
+        $scope.model[i] = [];
+
+      // else empty object when typeof object.
+      } else {
+        $scope.model[i] = {};
+      }
+    }
+  }
 
 }

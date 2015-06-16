@@ -12,7 +12,15 @@ App.directive("dropdown", function () {
       * disable custom widget when saving.
       **/
       if (scope.is_processing) return;
+
+      /**
+      * reset custom dropdown visibility.
+      **/
+      angular.element(".dropdown-menue").addClass("hidden");
       
+      /**
+      * show selected dropdown.
+      **/
       if (menu_list_len) menu.removeClass("hidden");
     });
   }

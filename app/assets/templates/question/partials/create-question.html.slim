@@ -13,7 +13,7 @@
         .form-group
           .alert.alert-warning [ng-show="errors.discipline"] {{errors.discipline}} 
           label Discipline
-          .dropdown-discipline.dropdown [ng-disabled="true"]
+          .dropdown-discipline.dropdown
             | {{model.discipline || "Choose"}}
             i.fa.fa-sort-desc
           .dropdown-menue-discipline.dropdown-menue.hidden

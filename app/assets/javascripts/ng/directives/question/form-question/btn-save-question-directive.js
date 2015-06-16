@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive("btnSaveQuestion", function ($http, $templateCache) {
+App.directive("btnSaveQuestion", function ($templateCache, ClassCodesResource) {
 
   function Link(scope, element) {
 
@@ -12,10 +12,8 @@ App.directive("btnSaveQuestion", function ($http, $templateCache) {
       }
     });
 
-    /**
-    * inspect the validity of the values entered.
-    * which bound to scope.model object.
-    **/
+    // inspect the validity of the values entered.
+    // which bound to scope.model object.
     var validate_question_data = function () {
 
       if (!scope.model.discipline) {
@@ -71,27 +69,23 @@ App.directive("btnSaveQuestion", function ($http, $templateCache) {
       return no_error;
     }
 
-    /**
-    * trigger save question button on the form.
-    **/
+    // trigger save question button on the form.
     element.find("button").bind("click", function () {
 
       if (validate_question_data()) {
-        /**
-        * send flag saving mode.
-        **/
+        
+        // send flag saving mode.
         scope.is_processing = true;
+        
+        // send the payload
+        ClassCodesResource.save(scope.model)
+        .$promise.then(function (res) {
 
-        /**
-        * send the payload
-        **/
-        $http.post(Routes.questions_path(), scope.model)
-        .success(function (res) {
-          console.log("res:", JSON.stringify(res));
+          // clear values.
+          scope.reset_form_model();
+          
+          // send flag done saving.
           scope.is_processing = false;
-        })
-        .error(function () {
-          //todo.
         });
       }
     });
