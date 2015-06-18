@@ -11,7 +11,9 @@
       fieldset [ng-disabled="is_processing"]
     
         .form-group
-          .alert.alert-warning [ng-show="errors.discipline"] {{errors.discipline}} 
+          .alert.alert-warning [ng-show="errors.discipline"] 
+            i.fa.fa-hand-o-down 
+            | &nbsp;{{errors.discipline}} 
           label Discipline
           .dropdown-discipline.dropdown
             | {{model.discipline || "Choose"}}
@@ -21,7 +23,9 @@
               li.dropdown-menue-item-discipline.dropdown-menue-item [ng-repeat="discipline in collection.disciplines track by $index"] {{discipline}}
         
         .form-group
-          .alert.alert-warning [ng-show="errors.class_code"] {{errors.class_code}} 
+          .alert.alert-warning [ng-show="errors.class_code"] 
+            i.fa.fa-hand-o-down 
+            | &nbsp;{{errors.class_code}} 
           label Class Code
           .dropdown-class-code.dropdown
             | {{model.class_code || "Choose"}}

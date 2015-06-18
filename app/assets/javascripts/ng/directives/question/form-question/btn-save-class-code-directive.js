@@ -1,36 +1,45 @@
 "use strict";
 
-App.directive("saveClassCode", function ($templateCache, ClassCodesResource) {
+App.directive("saveClassCode", function ($rootScope, $templateCache, PromptService, ClassCodesResource) {
 
   function Link(scope, element) {
 
     element.bind("click", function () {
 
-      var input_new_class_code = $("input[name='new_class_code']"),
-          val = input_new_class_code.val().trim();
+      var input_new_class_code = angular.element("input[name='new_class_code']");
+      
+      var val = input_new_class_code.val().trim().toUpperCase();
 
-      if (val) {
+      var payload = { discipline: scope.model.discipline, new_class_code: val };
 
-        // send flag saving mode
-        scope.is_processing = true;
 
-        // add new class code to collection.
-        ClassCodesResource.save({ new_class_code: val })
-        .$promise.then(function (res) {
-          console.log(res);
+      if (val && scope.model.discipline) {
 
+        PromptService.processing();
+
+        ClassCodesResource.save(payload).$promise.then(function (res) {
+          
+          if (res.error) {
+          
+            PromptService.failed();
+            scope.errors.class_code = res.error; 
+          
+            return;
+          }
+          
           if (scope.collection.class_codes[scope.model.discipline]) {
-            // append newly created class code to collection.
-            scope.collection.class_codes[scope.model.discipline].push(res.new_class_code);
+
+            scope.collection.class_codes[scope.model.discipline].push(val);
+          
           } else {
-            // create new collection with newly created class code.
+            
             scope.collection.class_codes[scope.model.discipline] = [res.new_class_code];
           }
 
-          // send flag done saving.
-          scope.is_processing = false;
+          PromptService.saved();
 
-          // clear and focus back to input tag.
+          scope.errors.class_code = null;
+
           input_new_class_code.focus().val("");
         });
       }

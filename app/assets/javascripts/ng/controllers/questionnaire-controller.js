@@ -2,7 +2,7 @@
 
 App.controller("QuestionnaireController", QuestionnaireController);
 
-function QuestionnaireController($scope, ProcessPromptService) {
+function QuestionnaireController($scope) {
 
   $scope.questions = [
     {
@@ -13,6 +13,12 @@ function QuestionnaireController($scope, ProcessPromptService) {
     },
     {
       discipline: "Mathematics",
+      question: "1 + 1 = ?",
+      qtype: "Multiple Choice, Single Answer",
+      date: Date.now()
+    },
+    {
+      discipline: "Physics",
       question: "1 + 1 = ?",
       qtype: "Multiple Choice, Single Answer",
       date: Date.now()

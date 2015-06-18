@@ -1,31 +1,45 @@
 "use strict";
 
 App.service("PromptService", function($templateCache, $timeout) {
+
+  var parent = $("body");
   
-  this.processing = function(parent) {
-    $("body").append(function () {
+  this.processing = function () {
+    parent.append(function () {
       return $templateCache.get('shared/prompt-process-indicator.html');
     });
   };
 
-  this.saved = function() {
-    var block = ".prompt-indicator";
+  this.saved = function () {
+    var block = $(".prompt-indicator");
 
-    $(block).remove();
-
-    $("body").append(function () {
-      return $templateCache.get("shared/prompt-done-indicator.html");
+    block.html(function () {
+      return $templateCache.get("shared/prompt-saved-indicator.html");
     });
 
-    $(block + " " + ".alert").append("saved.");
+    $timeout(function () {
+      block.addClass('fadeOut');
+    }, 4000);
 
     $timeout(function () {
-      $(block).addClass('fadeOut');
-    }, 3000);
+      block.remove();
+    }, 6000);
+  };
+
+  this.failed = function () {
+    var block = $(".prompt-indicator");
+
+    block.html(function () {
+      return $templateCache.get("shared/prompt-failed-indicator.html");
+    });
 
     $timeout(function () {
-      $(block).remove();
-    }, 5000);
+      block.addClass("fadeOut");
+    }, 4000);
+
+    $timeout(function () {
+      block.remove();
+    }, 6000);
   };
 
 });

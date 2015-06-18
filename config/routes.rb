@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   scope 'api', defaults: { format: 'json' } do
     resources :questions, only: [:create]
     resources :disciplines, only: [:index]
-    resources :class_codes, only: [:create]
+    resources :class_codes, only: [:index, :create]
   end
 
   # must be declared after api to prevent 

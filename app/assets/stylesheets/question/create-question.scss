@@ -16,6 +16,22 @@
     cursor : pointer; 
   }
 
+  input[name="new_class_code"] {
+    text-transform: uppercase;
+  }
+  ::-webkit-input-placeholder {
+    text-transform: none;
+  }
+  :-moz-placeholder { 
+    text-transform: none;
+  }
+  ::-moz-placeholder { 
+    text-transform: none;
+  }
+  :-ms-input-placeholder { 
+    text-transform: none;
+  }
+
   hr.v-space { 
     border-color : transparent; 
   }
@@ -26,11 +42,6 @@
     left        : 10px;
     color       : $brand-success;
     font-weight : bold;
-  }
-
-  input { 
-    padding-left  : 30px;
-    padding-right : 30px;
   }
 
   span.pick-answer {

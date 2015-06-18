@@ -6,9 +6,9 @@ App.directive("createClassCodeTemplate", function () {
 
 		scope.$watch("model.discipline", function (discipline) {
 			if (discipline)
-				$("button.save-class-code").removeClass("hidden")
+				angular.element("button.save-class-code").removeClass("hidden")
 			else
-				$("button.save-class-code").addClass("hidden")
+				angular.element("button.save-class-code").addClass("hidden")
 		});
 	}
 

@@ -9,13 +9,18 @@
 
   background-color   : white;
 
-  border-radius           : 2px;
+  border-radius           : $border-radius-base;
   border-top-left-radius  : 0;
   border-top-right-radius : 0;
 }
 
 .wrap-input {
   position : relative;
+  
+  input { 
+    padding-left  : 30px;
+    padding-right : 30px;
+  }
 }
 
 input,

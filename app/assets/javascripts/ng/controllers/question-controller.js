@@ -16,9 +16,11 @@ function QuestionController($scope, DisciplinesResource, PromptService) {
 	};
 
 	
+	var array_disciplines = DisciplinesResource.query();
+
 	// seed data.
 	$scope.collection = {
-		disciplines 			: DisciplinesResource.query(),
+		disciplines 			: array_disciplines,
 		class_codes 			: {}, 
 		letters 					: ["A", "B", "C", "D"],
 		selective_letters : [], 
@@ -72,24 +74,6 @@ function QuestionController($scope, DisciplinesResource, PromptService) {
 		choices 	 : null,
 		answers 	 : null
 	};
-
-	
-	// send signal to show processing prompt.
-	$scope.is_processing = null; 
-
-	
-  // upon submit, indicate the process.
-  // this partial must prepended to target 
-  // DOM element.
-	$scope.$watch('is_processing', function (val) {
-		
-		if (val == true) {
-			PromptService.processing();
-		}
-		if (val == false) {
-      PromptService.saved();
-		}
-	});
 
 
 	// reset form and model.

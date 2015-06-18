@@ -1,6 +1,6 @@
 "use strict";
 
-App.directive("dropdown", function () {
+App.directive("dropdown", function ($rootScope) {
 
   function Link(scope, element) {
     
@@ -11,7 +11,7 @@ App.directive("dropdown", function () {
       /**
       * disable custom widget when saving.
       **/
-      if (scope.is_processing) return;
+      if ($rootScope.is_processing) return;
 
       /**
       * reset custom dropdown visibility.

@@ -11,6 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150617104921) do
+
+  create_table "class_codes", force: :cascade do |t|
+    t.integer  "discipline_id"
+    t.integer  "user_id"
+    t.string   "code",          limit: 8
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "class_codes", ["discipline_id"], name: "index_class_codes_on_discipline_id"
+  add_index "class_codes", ["user_id"], name: "index_class_codes_on_user_id"
+
+  create_table "disciplines", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username",   limit: 30
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
