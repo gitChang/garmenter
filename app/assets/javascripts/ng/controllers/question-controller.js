@@ -2,7 +2,7 @@
 
 App.controller("QuestionController", QuestionController);
 
-function QuestionController($scope, DisciplinesResource, PromptService) {
+function QuestionController($scope, DisciplinesResource, QuestionTypesResource) {
 
 	// payload.
 	$scope.model = {
@@ -10,44 +10,22 @@ function QuestionController($scope, DisciplinesResource, PromptService) {
 		class_code : null,
 		question 	 : null,
 		qtype 		 : null,
-		choice_len : null,
+		choices_len : null,
 		choices 	 : {},
 		answers 	 : []
 	};
 
-	
-	var array_disciplines = DisciplinesResource.query();
 
 	// seed data.
 	$scope.collection = {
-		disciplines 			: array_disciplines,
-		class_codes 			: {}, 
+		disciplines 			: DisciplinesResource.query(), 
+    question_types    : QuestionTypesResource.query(),
+    class_codes       : {},
 		letters 					: ["A", "B", "C", "D"],
 		selective_letters : [], 
 		numbers						: [2, 3, 4],
 		bools		 					: ["True", "False"] 
 	};
-
-	
-	// types of question.
-	$scope.question_types = [
-		{
-			name : "single_answer",
-			text : "Multiple Choice, Single Answer"
-		},
-		{
-			name : "multiple_answers",
-			text : "Multiple Choice, Multiple Answers"
-		},
-		{
-			name : "fill_blanks",
-			text : "Fill in the Blanks"
-		},
-		{
-			name : "true_false",
-			text : "True or False"
-		}
-	];
 
 	
 	// partial template for each question type.
@@ -66,13 +44,13 @@ function QuestionController($scope, DisciplinesResource, PromptService) {
 	
 	// error text to display on form alert.
 	$scope.errors = {
-		discipline : null,
-		class_code : null,
-		question 	 : null,
-		qtype 		 : null,
-		choice_len : null,
-		choices 	 : null,
-		answers 	 : null
+		discipline  : null,
+		class_code  : null,
+		question 	  : null,
+		qtype 		  : null,
+		choices_len : null,
+		choices 	  : null,
+		answers 	  : null
 	};
 
 
@@ -96,5 +74,10 @@ function QuestionController($scope, DisciplinesResource, PromptService) {
       }
     }
   }
+
+
+  $scope.$watchCollection("model", function (m) {
+  	console.log(JSON.stringify(m));
+  });
 
 }

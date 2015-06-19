@@ -75,12 +75,16 @@ App.directive("btnSaveQuestion", function ($rootScope, $templateCache, PromptSer
         
         PromptService.processing();
         
-        QuestionsResource.save(scope.model).$promise.then(function (res) {
-          
-          scope.reset_form_model();
-          
+        QuestionsResource.save(scope.model).$promise
+        .then(function (res) { 
+          scope.reset_form_model(); 
+          PromptService.saved();   
+        },
+        function (err) {
+          alert('ERRRR!');
         });
       }
+
     });
   }
 

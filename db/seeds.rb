@@ -5,3 +5,45 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+# define callbacks
+
+def seed_discipline
+  disciplines = %w(English Mathematics Physics)
+  disciplines.each { |d| Discipline.create!(name: d) }
+
+  puts "===> Seed Discipline Done."
+end
+
+
+def seed_question_types
+  types = [
+    {
+      name: "single_answer",
+      text: "Multiple Choice, Single Answer"
+    },
+    {
+      name: "multiple_answers",
+      text: "Multiple Choice, Multiple Answers"
+    },
+    {
+      name: "fill_blanks",
+      text: "Fill in the Blanks"
+    },
+    {
+      name: "true_false",
+      text: "True or False"
+    }
+  ]
+
+  types.each { |t| QuestionType.create!(short_name: t[:name], long_name: t[:text]) }
+
+  puts "===> Seed Question Types Done."
+end
+
+
+# callbacks
+
+seed_discipline
+seed_question_types

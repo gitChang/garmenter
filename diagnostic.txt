@@ -1,72 +1,105 @@
-ActionView::Template::Error
-File to import not found or unreadable: common.
-Load paths:
-  /Users/Charlie/Sites/Hoemwerk/app/assets/images
-  /Users/Charlie/Sites/Hoemwerk/app/assets/javascripts
-  /Users/Charlie/Sites/Hoemwerk/app/assets/stylesheets
-  /Users/Charlie/Sites/Hoemwerk/app/assets/templates
-  /Users/Charlie/Sites/Hoemwerk/vendor/assets/javascripts
-  /Users/Charlie/Sites/Hoemwerk/vendor/assets/stylesheets
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-rails-4.3.0.0/app/assets/fonts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-rails-4.3.0.0/app/assets/stylesheets
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/angular-rails-templates-0.2.0/vendor/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/angularjs-rails-1.4.0/vendor/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/js-routes-1.0.1/app/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.0.3/vendor/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/fonts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/images
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets
-  (in /Users/Charlie/Sites/Hoemwerk/app/assets/stylesheets/application.scss:9)
-/Users/Charlie/Sites/Hoemwerk/app/assets/stylesheets/application.scss:9
-    /Users/Charlie/Sites/Hoemwerk/app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb__188944554613188132_70206723806460'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
     /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
-ActionView::Template::Error
-File to import not found or unreadable: common.
-Load paths:
-  /Users/Charlie/Sites/Hoemwerk/app/assets/images
-  /Users/Charlie/Sites/Hoemwerk/app/assets/javascripts
-  /Users/Charlie/Sites/Hoemwerk/app/assets/stylesheets
-  /Users/Charlie/Sites/Hoemwerk/app/assets/templates
-  /Users/Charlie/Sites/Hoemwerk/vendor/assets/javascripts
-  /Users/Charlie/Sites/Hoemwerk/vendor/assets/stylesheets
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-rails-4.3.0.0/app/assets/fonts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-rails-4.3.0.0/app/assets/stylesheets
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/angular-rails-templates-0.2.0/vendor/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/angularjs-rails-1.4.0/vendor/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/js-routes-1.0.1/app/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.0.3/vendor/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/fonts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/images
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets
-  (in /Users/Charlie/Sites/Hoemwerk/app/assets/stylesheets/application.scss:9)
-/Users/Charlie/Sites/Hoemwerk/app/assets/stylesheets/application.scss:9
-    /Users/Charlie/Sites/Hoemwerk/app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb__3897486337002035882_70210269408100'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
     /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
-ActionView::Template::Error
-File to import not found or unreadable: common.
-Load paths:
-  /Users/Charlie/Sites/Hoemwerk/app/assets/images
-  /Users/Charlie/Sites/Hoemwerk/app/assets/javascripts
-  /Users/Charlie/Sites/Hoemwerk/app/assets/stylesheets
-  /Users/Charlie/Sites/Hoemwerk/app/assets/templates
-  /Users/Charlie/Sites/Hoemwerk/vendor/assets/javascripts
-  /Users/Charlie/Sites/Hoemwerk/vendor/assets/stylesheets
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-rails-4.3.0.0/app/assets/fonts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-rails-4.3.0.0/app/assets/stylesheets
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/angular-rails-templates-0.2.0/vendor/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/angularjs-rails-1.4.0/vendor/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/js-routes-1.0.1/app/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/jquery-rails-4.0.3/vendor/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/javascripts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/fonts
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/images
-  /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets
-  (in /Users/Charlie/Sites/Hoemwerk/app/assets/stylesheets/application.scss:9)
-/Users/Charlie/Sites/Hoemwerk/app/assets/stylesheets/application.scss:9
-    /Users/Charlie/Sites/Hoemwerk/app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___3585329792723779212_70260406159220'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:31:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:34:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:32:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:33:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:33:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:33:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:33:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:33:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:33:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:33:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
+    /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'
+NoMethodError
+undefined method `class_codes' for nil:NilClass
+/Users/Charlie/Sites/Hoemwerk/app/models/class_code.rb:33:in `fetch_with_discipline'
+    /Users/Charlie/Sites/Hoemwerk/app/controllers/class_codes_controller.rb:5:in `index'
     /Users/Charlie/Sites/Hoemwerk/lib/diagnostic.rb:10:in `call'

@@ -13,3 +13,8 @@ App.factory("QuestionsResource", function ($resource) {
 App.factory("ClassCodesResource", function ($resource) {
   return $resource("/api/class_codes/:id", { id: "@id" });
 });
+
+
+App.factory("QuestionTypesResource", function ($resource) {
+  return $resource("/api/question_types/:id", { id: "@id" });
+});

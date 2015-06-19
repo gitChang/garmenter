@@ -1,15 +1,16 @@
 .prompt-indicator {
   position: fixed;
   z-index: 889;
+
   top: 40px;
   left: 55%;
+  
   width: 200px;
   margin-left: -102px;
 
   .alert {
     padding: 10px 5px;
     text-align: center;
-    font-size: 110%;
 
     @extend .drop-shadow;
 

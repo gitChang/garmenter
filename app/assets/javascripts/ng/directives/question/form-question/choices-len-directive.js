@@ -1,10 +1,10 @@
 'use strict';
 
-App.directive("choiceLen", function () {
+App.directive("choicesLen", function () {
 
   function Link(scope, element) {
 
-    scope.$watch("model.choice_len", function (len) {
+    scope.$watch("model.choices_len", function (len) {
 
       scope.collection.selective_letters = [];
 

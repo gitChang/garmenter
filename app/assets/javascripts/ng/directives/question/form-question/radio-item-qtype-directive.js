@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 App.directive("radioItemQtype", function () {
 
@@ -7,7 +7,7 @@ App.directive("radioItemQtype", function () {
     function get_question_type_name(text) {
       var name;
 
-      angular.forEach(scope.question_types, function (type) {
+      angular.forEach(scope.collection.question_types, function (type) {
         if (type.text === text) name = type.name;
       });
 
@@ -19,7 +19,7 @@ App.directive("radioItemQtype", function () {
         scope.model.choices = {};
         scope.model.answers = [];
 
-        angular.forEach(scope.question_types, function (key) {
+        angular.forEach(scope.collection.question_types, function (key) {
           if (element.text().trim() === key.text) scope.model.qtype = key.name;
         });
 

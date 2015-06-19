@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617104921) do
+ActiveRecord::Schema.define(version: 20150618110528) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "choice_id"
+    t.integer  "question_id"
+    t.string   "answer"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "answers", ["choice_id"], name: "index_answers_on_choice_id"
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id"
+
+  create_table "choices", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.string   "letter"
+    t.text     "value"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "choices", ["question_id"], name: "index_choices_on_question_id"
+  add_index "choices", ["user_id"], name: "index_choices_on_user_id"
 
   create_table "class_codes", force: :cascade do |t|
     t.integer  "discipline_id"
@@ -29,6 +54,29 @@ ActiveRecord::Schema.define(version: 20150617104921) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "question_types", force: :cascade do |t|
+    t.string   "short_name"
+    t.string   "long_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "discipline_id"
+    t.integer  "class_code_id"
+    t.text     "question"
+    t.integer  "question_type_id"
+    t.integer  "choices_len"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "questions", ["class_code_id"], name: "index_questions_on_class_code_id"
+  add_index "questions", ["discipline_id"], name: "index_questions_on_discipline_id"
+  add_index "questions", ["question_type_id"], name: "index_questions_on_question_type_id"
+  add_index "questions", ["user_id"], name: "index_questions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username",   limit: 30

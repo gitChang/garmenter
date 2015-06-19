@@ -3,6 +3,9 @@ class ClassCode < ActiveRecord::Base
   belongs_to :discipline
   belongs_to :user
 
+
+  has_many :questions
+
   
   before_validation :set_discipline
   before_validation :set_user
@@ -25,11 +28,12 @@ class ClassCode < ActiveRecord::Base
     }
 
 
-  def self.fetch_with_discipline(discipline)
+  def self.fetch_with_discipline(param_discipline)
     class_codes = Array.new
-    
-    Discipline.find_by_name(discipline).class_codes.each { |cc| class_codes <<  cc.code }
+    discipline = Discipline.find_by_name(param_discipline)
 
+    discipline.class_codes.each { |cc| class_codes <<  cc.code }
+    
     return class_codes
   end
 

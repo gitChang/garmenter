@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
 
-  # POST /question
+  # POST /api/questions.json
   def create
-    sleep 2
     render json: params.as_json
+    #head :bad_request
   end
 
 end

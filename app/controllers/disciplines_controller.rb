@@ -2,7 +2,7 @@ class DisciplinesController < ApplicationController
 
   # GET /api/disciplines
   def index
-    disciplines = %w(English Mathematics Physics)
+    disciplines = Discipline.get_disciplines
     render json: disciplines
   end
 

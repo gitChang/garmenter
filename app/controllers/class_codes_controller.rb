@@ -3,7 +3,6 @@ class ClassCodesController < ApplicationController
   # GET /api/class_codes/English.json
   def index
     class_codes = ClassCode.fetch_with_discipline(params[:discipline])
-    puts "=======> #{class_codes}"
     render json: class_codes
   end
 
