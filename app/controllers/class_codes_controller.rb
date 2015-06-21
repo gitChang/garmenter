@@ -2,38 +2,25 @@ class ClassCodesController < ApplicationController
 
   # GET /api/class_codes/English.json
   def index
-    class_codes = ClassCode.fetch_with_discipline(params[:discipline])
+    class_codes = ClassCode.fetch_with_discipline(params[:question_discipline])
     render json: class_codes
   end
 
-
   # POST /api/class_codes.json
   def create
-    new_class_code = ClassCode.new(class_code_params)
-    
-    sleep 2
+    new_class_code = ClassCode.new(permitted_params)
 
     if new_class_code.save
       head :ok
     else
-      render json: extract_first_error(new_class_code.errors)
+      render json: get_first_error(new_class_code.errors)
     end
   end
 
-  
   private
 
-  
-    def class_code_params
-      {
-        data_discipline: params[:discipline], 
-        data_user: 'puchu2', 
-        code: params[:new_class_code]    
-      }
+    def permitted_params
+      params.permit(:discipline, :class_code, :question_discipline, :question_class_code)
     end
 
-  
-    def extract_first_error(errors)
-      error = errors.as_json.to_a.last[1].first
-    end
 end

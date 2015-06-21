@@ -1,9 +1,39 @@
 class QuestionsController < ApplicationController
 
+
   # POST /api/questions.json
   def create
-    render json: params.as_json
-    #head :bad_request
+    new_question = Question.new(permitted_params)
+
+    if new_question.save
+      head :ok
+    else
+      render json: get_first_error(new_question.errors)
+    end
   end
 
+  private
+
+    # payload from client.
+    def permitted_params
+      params.permit(
+        :discipline,
+        :class_code,
+        :question,
+        :question_type,
+        :choices_len,
+        :question_discipline,
+        :question_class_code,
+        :question_question_type,
+        :question_question,
+        :question_choices_len,
+        :question_choices => [
+          :A,
+          :B,
+          :C,
+          :D
+        ],
+        :question_answers => []
+      )
+    end
 end

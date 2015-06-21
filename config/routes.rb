@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :disciplines, only: [:index]
     resources :class_codes, only: [:index, :create]
     resources :question_types, only: [:index]
+    resources :choices, only: [:create]
+    resources :answers, only: [:create]
   end
 
   # must be declared after api to prevent 

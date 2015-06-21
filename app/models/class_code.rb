@@ -1,51 +1,44 @@
 class ClassCode < ActiveRecord::Base
-  
+
   belongs_to :discipline
   belongs_to :user
 
 
   has_many :questions
 
-  
-  before_validation :set_discipline
-  before_validation :set_user
+
+  before_validation :set_params_to_attributes
+
+  attr_accessor :question_discipline, :question_class_code
 
 
-  attr_accessor :data_discipline, :data_user
+  validates :discipline,
+            :presence => { message: 'Requires a discipline.' }
 
-  
-  validates :data_discipline,
-    presence: { message: 'Requires a discipline.' }
-
-  validates :discipline, 
-    presence: { message: 'Requires a discipline.' }
-
-  validates :code, 
-    presence: { message: 'Please provide a class code.' },
-    length: { 
-      maximum: 8, 
-      message: 'Exceeds the maximum length of characters.' 
-    }
+  validates :class_code,
+            :presence => { message: 'Please provide a class code.' },
+            :length   => { maximum: 8, message: 'Exceeds the maximum length of characters.' }
 
 
   def self.fetch_with_discipline(param_discipline)
-    class_codes = Array.new
-    discipline = Discipline.find_by_name(param_discipline)
+    arr_class_codes = Array.new
 
-    discipline.class_codes.each { |cc| class_codes <<  cc.code }
-    
-    return class_codes
+    obj_discipline = Discipline.find_by_name(param_discipline)
+
+    obj_discipline.class_codes.each { |cc| arr_class_codes <<  cc.class_code }
+
+    return arr_class_codes
   end
 
 
   private
 
 
-    def set_discipline
-      self.discipline = Discipline.where(name: data_discipline).first
-    end
+    def set_params_to_attributes
+      self.user = User.first
 
-    def set_user
-      self.user = User.where(username: data_user).first
+      self.discipline = Discipline.find_by_discipline(question_discipline)
+
+      self.class_code = question_class_code
     end
 end

@@ -15,14 +15,12 @@ ActiveRecord::Schema.define(version: 20150618110528) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "choice_id"
     t.integer  "question_id"
     t.string   "answer"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "answers", ["choice_id"], name: "index_answers_on_choice_id"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["user_id"], name: "index_answers_on_user_id"
 
@@ -41,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150618110528) do
   create_table "class_codes", force: :cascade do |t|
     t.integer  "discipline_id"
     t.integer  "user_id"
-    t.string   "code",          limit: 8
+    t.string   "class_code",          limit: 8
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
@@ -50,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150618110528) do
   add_index "class_codes", ["user_id"], name: "index_class_codes_on_user_id"
 
   create_table "disciplines", force: :cascade do |t|
-    t.string   "name"
+    t.string   "discipline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

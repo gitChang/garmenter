@@ -11,7 +11,7 @@
 
 def seed_discipline
   disciplines = %w(English Mathematics Physics)
-  disciplines.each { |d| Discipline.create!(name: d) }
+  disciplines.each { |d| Discipline.create(discipline: d) }
 
   puts "===> Seed Discipline Done."
 end
@@ -43,7 +43,14 @@ def seed_question_types
 end
 
 
+def seed_user
+  User.create!(username: 'puchu2')
+  puts "===> Seed User Done."
+end
+
+
 # callbacks
 
 seed_discipline
 seed_question_types
+seed_user
