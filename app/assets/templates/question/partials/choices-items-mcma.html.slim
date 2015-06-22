@@ -1,11 +1,16 @@
-//.alert.alert-warning {{form_cq.errors.answers[0]}}
 label Choices
+
 label.pull-right Answers?
+
 ul.checkbox-list.list-unstyled
-  li [ng-repeat="letter in collection.selective_letters track by $index"] 
+  li [ng-repeat="letter in collection.selective_letters track by $index"]
+
     p.wrap-input
+
       span.choice-label {{letter}} .
-      input.form-control [ng-model="model.choices[letter]" type="text"]
+
+      input.form-control [ng-model="model.question_choices[letter]" type="text"]
+
       span.pick-answer.checkbox-item
         i.fa.fa-square-o.fa-lg
 

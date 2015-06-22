@@ -13,7 +13,8 @@ class ClassCodesController < ApplicationController
     if new_class_code.save
       head :ok
     else
-      render json: get_first_error(new_class_code.errors)
+      puts "===> #{get_first_error(new_class_code.errors)}"
+      render json: get_first_error(new_class_code.errors), status: :not_acceptable
     end
   end
 

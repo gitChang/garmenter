@@ -1,5 +1,9 @@
 class QuestionsController < ApplicationController
 
+  # GET /api/questions.json
+  def index
+    render json: Question.get_all
+  end
 
   # POST /api/questions.json
   def create
@@ -8,7 +12,7 @@ class QuestionsController < ApplicationController
     if new_question.save
       head :ok
     else
-      render json: get_first_error(new_question.errors)
+      render json: get_first_error(new_question.errors), status: :not_acceptable
     end
   end
 

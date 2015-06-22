@@ -4,7 +4,7 @@ App.directive("choicesLen", function () {
 
   function Link(scope, element) {
 
-    scope.$watch("model.choices_len", function (len) {
+    scope.$watch("model.question_choices_len", function (len) {
 
       scope.collection.selective_letters = [];
 
@@ -12,17 +12,17 @@ App.directive("choicesLen", function () {
         scope.collection.selective_letters.push( scope.collection.letters[i] );
       };
 
-      var choices_len = Object.keys(scope.model.choices).length;
+      var choices_len = Object.keys(scope.model.question_choices).length;
 
       for (var i = choices_len - 1; i > len - 1; i--) {
-        delete scope.model.choices[ scope.collection.letters[i] ];
+        delete scope.model.question_choices[ scope.collection.letters[i] ];
       };
 
-      scope.model.answers = [];
+      scope.model.question_answers = [];
 
       var fa_icon = angular.element("div.choices").find("i");
 
-      switch (scope.model.qtype) {
+      switch (scope.model.question_question_type) {
         case "single_answer" :
           fa_icon.attr("class", "fa fa-circle-thin fa-lg");
           break;
@@ -32,7 +32,7 @@ App.directive("choicesLen", function () {
       };
     });
 
-    scope.$watch("model.qtype", function (qtype) {
+    scope.$watch("model.question_question_type", function (qtype) {
       switch (qtype) {
         case "single_answer" :
         case "multiple_answers" :

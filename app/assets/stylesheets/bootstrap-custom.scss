@@ -1,7 +1,13 @@
-$link-color: #5cb85c; // $brand-success
-$text-color: #777; // gray-light
-$font-size-base: 13px;
+@import "bootstrap/variables";
 
-$border-radius-base: 2px !default;
-$border-radius-large: 2px;
-$border-radius-small: 2px;
+$link-color : $brand-success;
+
+$text-color : $gray-light;
+
+$font-size-base : 13px;
+
+$border-radius-base   : 2px !default;
+$border-radius-large  : 2px;
+$border-radius-small  : 2px;
+
+$table-border-color: $brand-success;

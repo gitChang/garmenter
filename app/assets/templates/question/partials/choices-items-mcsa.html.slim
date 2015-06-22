@@ -1,9 +1,15 @@
 label Choices
+
 label.pull-right Answers?
+
 ul.radio-list.list-unstyled
-  li [ng-repeat="letter in collection.selective_letters track by $index"] 
+  li [ng-repeat="letter in collection.selective_letters track by $index"]
+
     p.wrap-input
+
       span.choice-label {{letter}} .
-      input.form-control [id="choice_{{$index}}" ng-model="model.choices[letter]" type="text"]
+
+      input.form-control [id="choice_{{$index}}" ng-model="model.question_choices[letter]" type="text"]
+
       span.pick-answer.radio-item
         i.fa.fa-circle-thin.fa-lg

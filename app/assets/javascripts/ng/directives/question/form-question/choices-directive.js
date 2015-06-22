@@ -4,7 +4,7 @@ App.directive("choices", function () {
 
   function Link(scope, element) {
 
-    scope.$watch("model.qtype", function (qtype) {
+    scope.$watch("model.question_question_type", function (qtype) {
       if (qtype)
           element.removeClass("hidden");
       else

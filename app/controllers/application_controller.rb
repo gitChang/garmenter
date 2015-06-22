@@ -10,7 +10,10 @@ class ApplicationController < ActionController::Base
 
   # shared method
   def get_first_error(errors)
-    Hash['error', errors.as_json.to_a.last[1].first]
+    key = errors.as_json.to_a.last[0].to_s
+    value = errors.as_json.to_a.last[1].first
+
+    Hash[key, value]
   end
 
 end

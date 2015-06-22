@@ -39,6 +39,26 @@ class Question < ActiveRecord::Base
   validate  :answers_param
 
 
+  # controller accessible.
+
+  def self.get_all
+    arr_questions = Array.new
+
+    all.each do |q|
+      h = Hash.new
+
+      h[:id]           = q.id
+      h[:class_code]   = q.class_code.class_code
+      h[:question]     = q.question
+      h[:date_updated] = q.updated_at
+
+      arr_questions << h
+    end
+
+    return arr_questions
+  end
+
+
   private
 
     # before_validation callbacks

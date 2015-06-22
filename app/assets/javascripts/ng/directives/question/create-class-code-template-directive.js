@@ -4,7 +4,7 @@ App.directive("createClassCodeTemplate", function () {
 
 	function Link(scope) {
 
-		scope.$watch("model.discipline", function (discipline) {
+		scope.$watch("model.question_discipline", function (discipline) {
 			if (discipline)
 				angular.element("button.save-class-code").removeClass("hidden")
 			else

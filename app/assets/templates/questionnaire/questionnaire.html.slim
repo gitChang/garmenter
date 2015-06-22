@@ -22,7 +22,7 @@
             th Last Updated
           tbody
             tr [ng-repeat="question in questions"]
-              th {{$index + 1}}
-              td {{question.class_code}}
-              td {{question.question}}
-              td {{question.updated_at}}
+              th {{ question.id }}
+              td {{ question.class_code }}
+              td {{ question.question }}
+              td {{ question.date_updated | date : 'medium' }}

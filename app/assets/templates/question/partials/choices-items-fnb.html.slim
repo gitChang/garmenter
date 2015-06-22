@@ -1,8 +1,10 @@
-//.alert.alert-warning ng-show="form_cq.errors.answers.length" {{form_cq.errors.answers[0]}}
 label Provide the answers below
+
 ul.list-unstyled
-  li [ng-repeat="letter in collection.selective_letters track by $index"] 
+  li [ng-repeat="letter in collection.selective_letters track by $index"]
+
     p.wrap-input
+
       span.choice-label  {{$index + 1}} .
-      input.form-control [ng-model="model.answers[$index]" type="text"]
+      input.form-control [ng-model="model.question_answers[$index]" type="text"]
 

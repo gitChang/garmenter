@@ -23,7 +23,7 @@ class ClassCode < ActiveRecord::Base
   def self.fetch_with_discipline(param_discipline)
     arr_class_codes = Array.new
 
-    obj_discipline = Discipline.find_by_name(param_discipline)
+    obj_discipline = Discipline.find_by_discipline(param_discipline)
 
     obj_discipline.class_codes.each { |cc| arr_class_codes <<  cc.class_code }
 

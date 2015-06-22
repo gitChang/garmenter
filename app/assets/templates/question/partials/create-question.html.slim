@@ -1,83 +1,74 @@
 .wrap-form
-  
+
   h4.form-title
     i.fa.fa-file-text-o.fa-lg
     | &nbsp;&nbsp;Create Question
-  
+
   .wrap-controls
-    
-    form autocomplete="off" 
+
+    form name="form-new-question" autocomplete="off"
 
       fieldset [ng-disabled="is_processing"]
-    
-        .form-group
 
-          .alert.alert-warning [ng-show="errors.discipline"] 
-            i.fa.fa-hand-o-down 
-            | &nbsp;{{errors.discipline}} 
-        
+        .form-group.discipline
+
           label Discipline
-      
+
           .dropdown-discipline.dropdown
-            | {{model.discipline || "Choose"}}
+            | {{model.question_discipline || "-- Choose --"}}
             i.fa.fa-sort-desc
-        
+
           .dropdown-menue-discipline.dropdown-menue.hidden
             ul
+              li.dropdown-menue-item-discipline.dropdown-menue-item -- Choose --
               li.dropdown-menue-item-discipline.dropdown-menue-item [ng-repeat="discipline in collection.disciplines track by $index"] {{discipline}}
-        
-        .form-group
-        
-          .alert.alert-warning [ng-show="errors.class_code"] 
-            i.fa.fa-hand-o-down 
-            | &nbsp;{{errors.class_code}} 
-        
+
+        .form-group.class_code
+
           label Class Code
-        
+
           .dropdown-class-code.dropdown
-            | {{model.class_code || "Choose"}}
+            | {{model.question_class_code || "-- Choose --"}}
             i.fa.fa-sort-desc
-        
+
           .dropdown-menue-class-code.dropdown-menue.hidden
             ul
-              li.dropdown-menue-item-class-code.dropdown-menue-item [ng-repeat="class_code in collection.class_codes[model.discipline] track by $index"] {{class_code}}
-        
+              li.dropdown-menue-item-class-code.dropdown-menue-item -- Choose --
+              li.dropdown-menue-item-class-code.dropdown-menue-item [ng-repeat="class_code in collection.class_codes[model.question_discipline] track by $index"] {{class_code}}
+
         hr.v-space
-        
-        .form-group
-        
-          .alert.alert-warning [ng-show="errors.question"] {{errors.question}} 
-        
+
+        .form-group.question
+
           label Question
-        
-          textarea.form-control [ng-model="model.question" rows="6"] 
-        
+
+          textarea.form-control [ng-model="model.question_question" rows="6"]
+
         .form-group
-        
+
           ul#question-types.radio-list.list-unstyled
-            li.radio-item-qtype.radio-item [ng-repeat="type in collection.question_types track by $index"] 
+            li.radio-item-qtype.radio-item [ng-repeat="type in collection.question_types track by $index"]
               p
                 i.fa.fa-circle-thin.fa-lg
                 | &nbsp;&nbsp;{{type.text}}
-        
+
         .form-group.choices-len
-        
+
           label Number of Choices
-        
+
           .dropdown-choices-len.dropdown
-            | {{model.choices_len || "Choose"}}
+            | {{model.question_choices_len || "-- Choose --"}}
             i.fa.fa-sort-desc
-        
+
           .dropdown-menue-choices-len.dropdown-menue.hidden
             ul
+              li.dropdown-menue-item-choices-len.dropdown-menue-item -- Choose --
               li.dropdown-menue-item-choices-len.dropdown-menue-item [ng-repeat="number in collection.numbers"] {{number}}
-        
+
         .form-group.choices
-        
-          .alert.alert-warning [ng-show="errors.choices"] {{errors.choices}} 
-          .alert.alert-warning [ng-show="errors.answers"] {{errors.answers}} 
-        
-          ng-include src="choices_templates_path" 
-        
+
+          ng-include src="choices_templates_path"
+
         #action-btn.btn-save-question.hidden
+
           button.btn.btn-success.btn-sm &nbsp;Save Question&nbsp;
