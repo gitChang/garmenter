@@ -1,28 +1,34 @@
 
-.panel.panel-default
-  .panel-body
-
-    .row
-      .col-xs-5
+.panel-board-fill
+  .row
+    .col-xs-5
+      .form-group
         .dropdown
-          | {{"Choose Discipline"}}
-          i.fa.fa-sort-desc
+          | {{ "-- Choose Discipline --" }}
+          i.fa.fa-angle-down
           .dropdown-menue.hidden
 
-.panel.panel-default
-  .panel-body
-
-    .row
-      .col-xs-12
-        table.table.table-hover.table-condensed
+.panel-board-fill
+  .row
+    .col-xs-12
+      .form-group
+        table.table.table-hover
           thead
-            th QID
-            th Class Code
-            th Question
-            th Last Updated
+            th.th-num #
+            th.th-cc CLASS CODE
+            th QUESTION
+            th.th-dt LAST MODIFIED
+            th.th-btn
+            th.th-btn
           tbody
             tr [ng-repeat="question in questions"]
-              th {{ question.id }}
+              th {{ question.id + '.' }}
               td {{ question.class_code }}
               td {{ question.question }}
               td {{ question.date_updated | date : 'medium' }}
+              td.text-right
+                button.btn.btn-success.btn-xs
+                  | &nbsp; edit &nbsp;
+              td
+                button.btn.btn-warning.btn-xs
+                  | delete

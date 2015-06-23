@@ -36,22 +36,20 @@ function QuestionController($scope, DisciplinesResource, QuestionTypesResource, 
 		true_false 			 : 'question/partials/choices-items-tof.html'
 	};
 
+
+  // render the proper choices template base on question type.
 	$scope.$watch('model.question_question_type', function (new_qtype, old_qtype) {
 		if (new_qtype !== old_qtype)
 			$scope.choices_templates_path = $scope.choices_templates[new_qtype];
 	});
 
 
-	// error text to display on form alert.
-	$scope.errors = {
-		discipline  : null,
-		class_code  : null,
-		question 	  : null,
-		qtype 		  : null,
-		choices_len : null,
-		choices 	  : null,
-		answers 	  : null
-	};
+  // inspects the validity of discipline selected.
+  $scope.valid_discipline = function () {
+    for (var i of $scope.collection.disciplines)
+      if (i === $scope.model.question_discipline) return true;
+    return false;
+  };
 
 
 	// reset form and model.

@@ -1,23 +1,27 @@
-.wrap-form {
-  -webkit-box-shadow : inset 0px 4px 0px 0px lighten($brand-success, 100%);
-  -moz-box-shadow    : inset 0px 4px 0px 0px lighten($brand-success, 100%);
-  box-shadow         : inset 0px 4px 0px 0px lighten($brand-success, 100%);
-  
+.panel-board {
+  //-webkit-box-shadow : inset 0px 4px 0px 0px lighten($brand-success, 100%);
+  //-moz-box-shadow    : inset 0px 4px 0px 0px lighten($brand-success, 100%);
+  //box-shadow         : inset 0px 4px 0px 0px lighten($brand-success, 100%);
+
   border-left        : 1px solid darken($gray-lighter, 4%);
   border-right       : 1px solid darken($gray-lighter, 4%);
   border-bottom      : 2px solid darken($gray-lighter, 4%);
 
   background-color   : white;
 
-  border-radius           : $border-radius-base;
-  border-top-left-radius  : 0;
-  border-top-right-radius : 0;
+  border-radius      : 0;
+}
+
+.panel-board-fill {
+  @extend .panel-board;
+  border-left: 0;
+  border-right: 0;
 }
 
 .wrap-input {
   position : relative;
-  
-  input { 
+
+  input {
     padding-left  : 30px;
     padding-right : 30px;
   }
@@ -25,12 +29,12 @@
 
 input,
 textarea,
-.dropdown { 
-  @extend .custom-widget; 
-  &:hover, 
-  &:active, 
-  &:focus { 
-    background-color : lighten($gray-lighter, 5%); 
+.dropdown {
+  @extend .custom-widget;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color : lighten($gray-lighter, 5%);
   }
 }
 
@@ -44,7 +48,7 @@ textarea,
 
   .fa {
     position : absolute;
-    top      : 5px;
+    top      : 8px;
     right    : 10px;
     color    : $brand-success;
   }
@@ -70,20 +74,16 @@ textarea,
 
     li {
       padding : 5px 10px;
-      &:hover { 
-        background-color : $gray-lighter; 
+      &:hover {
+        background-color : $gray-lighter;
       }
     }
   }
 }
 
-.fa { 
-  color : $brand-success; 
-}
-  
-.form-group { 
-  margin   : 20px; 
-  position : relative; 
+.form-group {
+  margin   : 20px;
+  position : relative;
 }
 
 .alert {

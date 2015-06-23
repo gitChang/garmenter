@@ -1,13 +1,11 @@
-@import "bootstrap/variables";
-
-$link-color : $brand-success;
-
-$text-color : $gray-light;
-
+$font-family-sans-serif:  "Lucida Grande", "Segoe UI", "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-size-base : 13px;
 
 $border-radius-base   : 2px !default;
 $border-radius-large  : 2px;
 $border-radius-small  : 2px;
 
-$table-border-color: $brand-success;
+$link-color : #5cb85c; // $brand-success
+$text-color : #777; // $gray-light
+
+//$table-border-color: $brand-success;

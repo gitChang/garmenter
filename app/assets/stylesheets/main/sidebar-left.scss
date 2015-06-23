@@ -33,15 +33,15 @@
         .user-meta {
           text-shadow: 0px 1px 1px rgba(0, 0, 0, 1);
 
-          .pic img { 
-            margin-bottom: 10px; 
+          .pic img {
+            margin-bottom: 10px;
             width: 48px;
             height: 48px;
           }
         }
       }
 
-      a[ui-sref] { 
+      a[ui-sref] {
         outline: none;
         text-decoration: none;
         text-shadow: 0px 1px 1px rgba(0, 0, 0, 1);
@@ -55,14 +55,14 @@
         padding-bottom: 9px;
         padding-left: 30px;
 
-        &:hover { 
-          color: $gray-lighter; 
+        &:hover {
+          color: $gray-lighter;
           background-color: darken($gray-darker, 3%);
         }
 
         &.active {
-          color: $brand-success; 
-            
+          color: $brand-success;
+
           -webkit-box-shadow: inset 4px 0px 0px 0px rgba(92,184,92,1);
           -moz-box-shadow: inset 4px 0px 0px 0px rgba(92,184,92,1);
           box-shadow: inset 4px 0px 0px 0px rgba(92,184,92,1);
@@ -70,17 +70,4 @@
       }
     }
   }
-}
-
-
-// Content Panel
-//-------------------------------
-#content-panel {
-  background-color: $gray-lighter;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 30px;
-  padding-left: 20px;
-
-  min-height: 768px;
 }

@@ -1,4 +1,4 @@
-.wrap-form
+.panel-board
 
   h4.form-title
     i.fa.fa-file-text-o.fa-lg
@@ -16,7 +16,7 @@
 
           .dropdown-discipline.dropdown
             | {{model.question_discipline || "-- Choose --"}}
-            i.fa.fa-sort-desc
+            i.fa.fa-angle-down
 
           .dropdown-menue-discipline.dropdown-menue.hidden
             ul
@@ -29,7 +29,7 @@
 
           .dropdown-class-code.dropdown
             | {{model.question_class_code || "-- Choose --"}}
-            i.fa.fa-sort-desc
+            i.fa.fa-angle-down
 
           .dropdown-menue-class-code.dropdown-menue.hidden
             ul
@@ -58,7 +58,7 @@
 
           .dropdown-choices-len.dropdown
             | {{model.question_choices_len || "-- Choose --"}}
-            i.fa.fa-sort-desc
+            i.fa.fa-angle-down
 
           .dropdown-menue-choices-len.dropdown-menue.hidden
             ul

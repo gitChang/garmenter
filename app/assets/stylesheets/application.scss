@@ -4,6 +4,7 @@
 @import "font-awesome";
 @import "animate";
 
+@import "patches";
 @import "extends-mixins";
 @import "custom-widget";
 @import "transitions";
@@ -11,3 +12,4 @@
 @import "main/*";
 @import "shared/*";
 @import "question/*";
+@import "questionnaire/*";

@@ -8,13 +8,10 @@ App.directive("dropdownClassCode", function (ClassCodesResource) {
 
       scope.model.question_class_code = null;
 
-      var valid = (function () {
-        for (var i of scope.collection.disciplines)
-          if (i === discipline) return true;
-        return false;
-      })();
-
-      if (valid) {
+      // fill class code collection only
+      // when the discipline is valid.
+      console.log(scope.valid_discipline());
+      if (scope.valid_discipline()) {
         ClassCodesResource.query({ question_discipline: discipline })
         .$promise.then(function (res) {
           scope.collection.class_codes[scope.model.question_discipline] = res;

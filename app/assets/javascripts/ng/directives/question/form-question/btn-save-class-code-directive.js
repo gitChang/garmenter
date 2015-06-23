@@ -9,16 +9,9 @@ App.directive('saveClassCode', function (PromptService, ClassCodesResource, Erro
       // new class code value.
       var new_class_code = $('input[name=new_class_code]').val().trim().toUpperCase();
 
-      // inspects the validity of discipline selected.
-      var valid_discipline = (function () {
-        for (var i of scope.collection.disciplines)
-          if (i === scope.model.question_discipline) return true;
-        return false;
-      })();
-
       // POST new class code to backend and
       // append to the class code collection.
-      if (new_class_code && valid_discipline) {
+      if (new_class_code && scope.valid_discipline()) {
 
         PromptService.processing();
 
