@@ -1,0 +1,10 @@
+#preview-question-section style="font-size:110%"
+  .row
+    .col-xs-12
+      .form-group style="font-size: 130%"
+        | Question:
+      .form-group
+        p style="white-space:pre-line;" {{ question.question }}
+        hr
+      .form-group
+        ng-include src="choices_templates['single_answer']"

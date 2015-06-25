@@ -1,0 +1,8 @@
+ul.list-unstyled
+  li [ng-repeat="letter in collection.selective_letters track by $index"]
+
+    p.wrap-input
+
+      span.choice-label  {{$index + 1}} .
+      input.form-control [ng-model="question.answers[$index]" type="text"]
+

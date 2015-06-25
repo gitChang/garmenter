@@ -1,19 +1,28 @@
-.table tbody tr td {
-  max-height: 39px;
-}
+#questionnaire-section {
+  .table tbody tr {
+    cursor: pointer;
+  }
 
-.th-num {
-  width: 40px;
-}
+  .th-num {
+    width: 40px;
+  }
 
-.th-cc {
-  width: 130px;
-}
+  .th-cc {
+    width: 130px;
+  }
 
-.th-dt {
-  width: 220px;
-}
+  .td-q {
+    max-width: 698px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-.th-btn {
-  width: 66px;
+  .th-dt {
+    width: 220px;
+  }
+
+  .th-opt {
+    width: 30px;
+  }
 }

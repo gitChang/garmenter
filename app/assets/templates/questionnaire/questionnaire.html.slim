@@ -1,34 +1,27 @@
 
-.panel-board-fill
-  .row
-    .col-xs-5
-      .form-group
-        .dropdown
-          | {{ "-- Choose Discipline --" }}
-          i.fa.fa-angle-down
-          .dropdown-menue.hidden
+#questionnaire-section
+  .panel-board-fill
+    .row
+      .col-xs-5
+        .form-group
+          .dropdown
+            | {{ "-- Choose Discipline --" }}
+            i.fa.fa-angle-down
+            .dropdown-menue.hidden
 
-.panel-board-fill
-  .row
-    .col-xs-12
-      .form-group
-        table.table.table-hover
-          thead
-            th.th-num #
-            th.th-cc CLASS CODE
-            th QUESTION
-            th.th-dt LAST MODIFIED
-            th.th-btn
-            th.th-btn
-          tbody
-            tr [ng-repeat="question in questions"]
-              th {{ question.id + '.' }}
-              td {{ question.class_code }}
-              td {{ question.question }}
-              td {{ question.date_updated | date : 'medium' }}
-              td.text-right
-                button.btn.btn-success.btn-xs
-                  | &nbsp; edit &nbsp;
-              td
-                button.btn.btn-warning.btn-xs
-                  | delete
+  .panel-board-fill [ui-view]
+    .row
+      .col-xs-12
+        .form-group
+          table.table.table-hover#table-list-questions
+            thead
+              th.th-num #
+              th.th-cc CLASS CODE
+              th.th-q QUESTION
+              th.th-dt LAST MODIFIED
+            tbody
+              tr [ng-repeat="question in questions" ui-sref="questionnaire.preview-question"]
+                td {{ question.id + '.' }}
+                td {{ question.class_code }}
+                td.td-q {{ question.question }}
+                td {{ question.date_updated | date : 'mediumDate' }}

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # to avoid format render problem. try it to
   # see the problem.
   scope 'api', defaults: { format: 'json' } do
-    resources :questions, only: [:index, :create]
+    resources :questions, only: [:index, :create, :show]
     resources :disciplines, only: [:index]
     resources :class_codes, only: [:index, :create]
     resources :question_types, only: [:index]

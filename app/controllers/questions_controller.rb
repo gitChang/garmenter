@@ -16,6 +16,17 @@ class QuestionsController < ApplicationController
     end
   end
 
+  # GET /api/question/1.json
+  def show
+    question = Question.get
+
+    if question
+      render json: question
+    else
+      head :not_found
+    end
+  end
+
   private
 
     # payload from client.

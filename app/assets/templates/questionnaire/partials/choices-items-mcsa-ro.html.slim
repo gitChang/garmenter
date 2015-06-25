@@ -1,0 +1,20 @@
+ul.radio-list.list-unstyled
+  li [ng-repeat="choice in question.choices track by $index"]
+
+    p
+      span
+        strong {{ question.letters[$index] + ' . &nbsp;' }}
+      | {{ choice }}
+
+hr
+
+ul.radio-list.list-unstyled
+  li [ng-repeat="answer in question.answers track by $index"]
+
+    p
+      | Answer:
+      br
+      br
+      strong
+        | {{ answer + ' . &nbsp;' + question.choices[answer] }}
+

@@ -1,6 +1,8 @@
 
 //= require jquery
 
+//= require bootstrap-sprockets
+
 //= require js-routes
 
 //= require angular
