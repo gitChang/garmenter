@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
 
   # GET /api/question/1.json
   def show
-    question = Question.get
+    question = Question.get(params[:id])
 
     if question
       render json: question

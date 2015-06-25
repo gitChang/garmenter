@@ -12,9 +12,10 @@ ul.radio-list.list-unstyled
   li [ng-repeat="answer in question.answers track by $index"]
 
     p
-      | Answer:
-      br
-      br
       strong
+        | Answer :
+      br
+      br
+      span.alert.alert-warning
         | {{ answer + ' . &nbsp;' + question.choices[answer] }}
 

@@ -2,9 +2,9 @@
 
 App.controller('PreviewQuestionController', preview_question_controller);
 
-function preview_question_controller ($scope, QuestionsResource) {
+function preview_question_controller ($scope, $stateParams, QuestionsResource) {
 
-  QuestionsResource.get({ id: 1 }).$promise.then(function (res) {
+  QuestionsResource.get({ id: $stateParams.question_id }).$promise.then(function (res) {
 
     // model.
     $scope.question = {

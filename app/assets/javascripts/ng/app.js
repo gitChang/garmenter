@@ -24,7 +24,7 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			controller: 'QuestionnaireController'
 		})
 			.state('questionnaire.preview-question', {
-				url: '/preview-question',
+				url: '/preview-question/:question_id',
 				templateUrl: 'questionnaire/partials/preview-question.html',
 				controller: 'PreviewQuestionController'
 			});

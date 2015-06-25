@@ -57,13 +57,13 @@ class Question < ActiveRecord::Base
     return arr_questions
   end
 
-  def self.get
+  def self.get(param)
     hash_question = Hash.new
     hash_choices   = Hash.new
 
     arr_answers   = Array.new
 
-    question      = Question.find(2)
+    question      = Question.find(param)
 
     hash_question[:question] = question.question
 

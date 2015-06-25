@@ -20,8 +20,8 @@
               th.th-q QUESTION
               th.th-dt LAST MODIFIED
             tbody
-              tr [ng-repeat="question in questions" ui-sref="questionnaire.preview-question"]
-                td {{ question.id + '.' }}
+              tr.tr-question [ng-repeat="question in questions" ui-sref="questionnaire.preview-question({ question_id: question.id })"]
+                td.td-qid {{ question.id + '.' }}
                 td {{ question.class_code }}
                 td.td-q {{ question.question }}
                 td {{ question.date_updated | date : 'mediumDate' }}
