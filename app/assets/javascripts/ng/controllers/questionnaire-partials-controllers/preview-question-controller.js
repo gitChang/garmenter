@@ -9,7 +9,7 @@ function preview_question_controller ($scope, $stateParams, QuestionsResource) {
     // model.
     $scope.question = {
       question : res.question,
-      type     : res.question_type,
+      type     : res.type,
       choices  : res.choices,
       answers  : res.answers,
       letters  : Object.keys(res.choices)

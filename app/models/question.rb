@@ -57,15 +57,15 @@ class Question < ActiveRecord::Base
     return arr_questions
   end
 
+  # call upon show action.
   def self.get(param)
     hash_question = Hash.new
-    hash_choices   = Hash.new
-
+    hash_choices  = Hash.new
     arr_answers   = Array.new
-
     question      = Question.find(param)
 
     hash_question[:question] = question.question
+    hash_question[:type]     = question.question_type.short_name
 
     question.choices.each do |qc|
       hash_choices[qc.letter] = qc.value
