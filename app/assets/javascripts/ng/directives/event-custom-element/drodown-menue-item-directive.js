@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-App.directive("dropdownMenueItem", function () {
+App.directive('dropdownMenueItem', function () {
 
   function Link(scope, element) {
-    
-    element.bind("click", function () {
-      element.parent().parent().addClass("hidden");
+
+    element.bind('click', function () {
+      element.parent().parent().addClass('hidden');
     });
   }
 
   return {
-    restrict: "C",
+    restrict: 'C',
     link: Link
   };
 });

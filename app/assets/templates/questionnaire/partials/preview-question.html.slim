@@ -8,11 +8,11 @@
         .form-group
 
           span style="font-size: 130%"
-            | Question &nbsp;
+            | Question &nbsp&nbsp;
 
           span style="color:#5cb85c;"
-            a href="#" edit
-            | &nbsp;|&nbsp;
+            a ui-sref="questionnaire.edit-question({ question_id: question.id })" edit
+            | &nbsp;&#8226;&nbsp;
             a href="#" delete
 
         hr

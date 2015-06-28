@@ -23,6 +23,7 @@ App.controller('MainController', function ($rootScope, $location, $stateParams) 
     		break;
     	case '/questionnaire' :
         case '/questionnaire/preview-question/' + $stateParams.question_id :
+        case '/questionnaire/edit-question/' + $stateParams.question_id :
     		$('a[ui-sref="questionnaire"]').addClass('active');
     }
 

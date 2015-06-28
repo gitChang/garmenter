@@ -10,7 +10,10 @@ App.directive('radioItem', function () {
 		};
 
 		element.bind('click', function () {
-			element.parents('ul.radio-list').find('i').attr('class', fa_class.uncheck);
+			element.parents('ul.radio-list')
+						 .find('i.fa.fa-dot-circle-o.fa-lg')
+						 .attr('class', fa_class.uncheck);
+
 			element.find('i').attr('class', fa_class.check);
 		});
 	}

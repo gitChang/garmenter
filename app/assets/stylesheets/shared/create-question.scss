@@ -1,4 +1,4 @@
-.create-question-section {
+#create-question-section, #edit-question-section {
 
   .form-title {
     margin        : 0;
@@ -9,9 +9,7 @@
 
   .fa { color : $brand-success; }
 
-  textarea {
-    resize : none;
-  }
+  textarea { resize : none; }
 
   .radio-list li,
   .checkbox-list li {
@@ -34,13 +32,11 @@
     text-transform: none;
   }
 
-  hr.v-space {
-    border-color : transparent;
-  }
+  hr.v-space { border-color : transparent; }
 
   span.choice-label {
     position    : absolute;
-    top         : 7px;
+    top         : 6px;
     left        : 10px;
     color       : $brand-success;
     font-weight : bold;
@@ -52,6 +48,19 @@
     right    : 10px;
     color    : $brand-success;
     cursor   : pointer;
+  }
+
+  span.delete-choice {
+    position: absolute;
+    right   : -60px;
+    top     : 8px;
+
+    a {
+      text-decoration: none;
+      color: lighten($gray-lighter, 5%);
+
+      &:hover { color : $link-color; }
+    }
   }
 
   #action-btn {

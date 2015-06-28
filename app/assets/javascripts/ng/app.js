@@ -27,6 +27,11 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 				url: '/preview-question/:question_id',
 				templateUrl: 'questionnaire/partials/preview-question.html',
 				controller: 'PreviewQuestionController'
+			})
+			.state('questionnaire.edit-question', {
+				url: '/edit-question/:question_id',
+				templateUrl: 'questionnaire/partials/edit-question.html',
+				controller: 'EditQuestionController'
 			});
 
 	// Default fall back route

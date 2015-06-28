@@ -64,8 +64,11 @@ class Question < ActiveRecord::Base
     arr_answers   = Array.new
     question      = Question.find(param)
 
-    hash_question[:question] = question.question
-    hash_question[:type]     = question.question_type.short_name
+    hash_question[:id]         = question.id
+    hash_question[:discipline] = question.discipline.discipline
+    hash_question[:class_code] = question.class_code.class_code
+    hash_question[:question]   = question.question
+    hash_question[:type]       = question.question_type.short_name
 
     question.choices.each do |qc|
       hash_choices[qc.letter] = qc.value

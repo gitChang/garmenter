@@ -1,17 +1,17 @@
 'use strict';
 
-App.directive("dropdownMenueItemDiscipline", function () {
+App.directive('dropdownMenueItemDiscipline', function () {
 
   function Link(scope, element) {
 
-    element.bind("click", function () {
+    element.bind('click', function () {
       scope.model.question_discipline = element.text().trim();
       scope.$apply();
     });
   }
 
   return {
-    restrict : "C",
+    restrict : 'C',
     link : Link
   };
 });

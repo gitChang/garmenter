@@ -4,7 +4,27 @@ App.directive('saveClassCode', function (PromptService, ClassCodesResource, Erro
 
   function Link(scope, element) {
 
-    element.bind('click', function () {
+    // toggle visibility and event.
+    scope.$watch('model.question_discipline', function (qd) {
+
+      if (scope.valid_discipline(qd)) {
+
+        element.removeClass('hidden');
+        element.bind('click', button_handler);
+
+      } else {
+
+        element.addClass('hidden');
+        element.unbind('click');
+      }
+
+    });
+
+    // bind event.
+    element.bind('click', button_handler, false);
+
+    // handler
+    function button_handler () {
 
       // new class code value.
       var new_class_code = $('input[name=new_class_code]').val().trim().toUpperCase();
@@ -49,7 +69,7 @@ App.directive('saveClassCode', function (PromptService, ClassCodesResource, Erro
             error_display.render(res);
           });
       }
-    });
+    }
   }
 
   return {

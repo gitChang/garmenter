@@ -6,15 +6,14 @@ function QuestionController($scope, DisciplinesResource, QuestionTypesResource, 
 
 	// payload.
 	$scope.model = {
-		question_discipline : null,
-		question_class_code : null,
-		question_question 	 : null,
-		question_question_type 		 : null,
-		question_choices_len : null,
-		question_choices 	 : {},
-		question_answers 	 : []
+		question_discipline    : null,
+		question_class_code    : null,
+		question_question 	   : null,
+		question_question_type : null,
+		question_choices_len   : null,
+		question_choices 	     : {},
+		question_answers 	     : []
 	};
-
 
 	// seed data.
 	$scope.collection = {
@@ -23,10 +22,9 @@ function QuestionController($scope, DisciplinesResource, QuestionTypesResource, 
     class_codes       : {},
 		letters 					: ['A', 'B', 'C', 'D'],
 		selective_letters : [],
-		numbers						: [2, 3, 4],
+		numbers						: [3, 4],
 		bools		 					: ['True', 'False']
 	};
-
 
 	// partial template for each question type.
 	$scope.choices_templates = {
@@ -36,13 +34,11 @@ function QuestionController($scope, DisciplinesResource, QuestionTypesResource, 
 		true_false 			 : 'question/partials/choices-items-tof.html'
 	};
 
-
   // render the proper choices template base on question type.
 	$scope.$watch('model.question_question_type', function (new_qtype, old_qtype) {
 		if (new_qtype !== old_qtype)
 			$scope.choices_templates_path = $scope.choices_templates[new_qtype];
 	});
-
 
   // inspects the validity of discipline selected.
   $scope.valid_discipline = function () {
@@ -50,7 +46,6 @@ function QuestionController($scope, DisciplinesResource, QuestionTypesResource, 
       if (i === $scope.model.question_discipline) return true;
     return false;
   };
-
 
 	// reset form and model.
 	$scope.reset_form_model = function () {
@@ -72,7 +67,6 @@ function QuestionController($scope, DisciplinesResource, QuestionTypesResource, 
       }
     }
   }
-
 
   // checking for models.
   $scope.$watchCollection('model', function (m) {

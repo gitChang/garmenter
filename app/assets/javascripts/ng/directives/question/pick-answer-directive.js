@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive("pickAnswer", function () {
+App.directive('pickAnswer', function () {
 
   function Link(scope, element) {
 
@@ -14,17 +14,17 @@ App.directive("pickAnswer", function () {
       return ret;
     }
 
-    element.bind("click", function () {
+    element.bind('click', function () {
 
-      var li_index = element.parents("li").index();
+      var li_index = element.parents('li').index();
       var letter = scope.collection.letters[li_index];
 
       switch (scope.model.question_question_type) {
-        case "single_answer" :
+        case 'single_answer' :
           scope.model.question_answers[0] = letter;
           break;
 
-        case "multiple_answers" :
+        case 'multiple_answers' :
           var idx = get_answer_index(letter);
           if (idx !== null)
             scope.model.question_answers.splice(idx, 1);
@@ -32,17 +32,19 @@ App.directive("pickAnswer", function () {
             scope.model.question_answers.push(letter);
           break;
 
-        case "true_false" :
+        case 'true_false' :
           if (scope.model.question_answers[0] !== scope.collection.bools[li_index])
             scope.model.question_answers[0] = scope.collection.bools[li_index];
           break;
       };
+
       scope.$apply();
+
     });
   }
 
   return {
-    restrict : "C",
+    restrict : 'C',
     link : Link
   };
 });
