@@ -5,10 +5,13 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
   function linker (scope, element) {
 
     function saveOrUpdateInvoice () {
+
       // check if garment entry is for save or update
       if (SharedSvc.currentGarmentBarcodesLen) {
+
         // update or append to invoice garment barcodes.
         SharedSvc.recentInvoiceCollection.forEach( function (item, index, object) {
+
           if (item.invoice_number === SharedSvc.currentInvoiceNumber) {
             // loop thru model and get to push into existing
             // garment barcode collection of the invoice.
@@ -19,7 +22,9 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
             }
           }
         });
+
       } else {
+
         // or just save barcodes.
         SharedSvc.recentInvoiceCollection.push(scope.model);
       }

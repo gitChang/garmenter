@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="436dbd9f-4311-4144-bd68-ac0f18303453" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-4a198a021f93c365194ce8c717f01074.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-4a198a021f93c365194ce8c717f01074.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-b82e6d375ceb5f66f6f7752c78ad4d0f.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-b82e6d375ceb5f66f6f7752c78ad4d0f.css.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-0e3e2e5861d8a42907bc8477830b501b.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-2ea41bbbbaad853241e6b43f16b8715e.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-5cf13ae390992a3e70a6116446596e4b.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-66e9b8686e43ca9d85844471036e572c.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-7ffdf8e97e23984175934667b99122f4.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-153985a0c7f801ae1f4bb2db0764d587.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-8f3b20f062649d70319224ecef9bb8a8.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-997e03dd1547dc0040fca36d94360f4b.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-aa1ce72f9b1024ea8c1c5152df48df79.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-bbbe60dc094513f9df7b09bfcc51622c.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/manifest-bb51cec41a02f777c191c07e3971b2b7.json" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/actionbar-bottom.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/actionbar-bottom.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/garment-barcode-scan-page.html.slim" afterPath="$PROJECT_DIR$/app/assets/templates/garment-barcode-scan-page.html.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/garment-scan-tpls/garment-save-tpl.html.slim" afterPath="$PROJECT_DIR$/app/assets/templates/garment-scan-tpls/garment-save-tpl.html.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/garment-scan-ctrl.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/garment-scan-ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/actionbar-top-tpls/history-invoice-collection-content-tpl.html.slim" afterPath="$PROJECT_DIR$/app/assets/templates/actionbar-top-tpls/history-invoice-collection-content-tpl.html.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/history-invoice-collection-page.html.slim" afterPath="$PROJECT_DIR$/app/assets/templates/history-invoice-collection-page.html.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/invoice-barcode-scan-page.html.slim" afterPath="$PROJECT_DIR$/app/assets/templates/invoice-barcode-scan-page.html.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/actionbar-top-tpls/recent-invoice-collection-content-tpl.html.slim" afterPath="$PROJECT_DIR$/app/assets/templates/actionbar-top-tpls/recent-invoice-collection-content-tpl.html.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/recent-invoice-collection-page.html.slim" afterPath="$PROJECT_DIR$/app/assets/templates/recent-invoice-collection-page.html.slim" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/save-garments-dir.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/save-garments-dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GarmentScannerX.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,8 +51,8 @@
       <file leaf-file-name="save-garments-dir.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/save-garments-dir.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47826087" vertical-offset="572" max-vertical-offset="1540">
-              <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.42512077" vertical-offset="1012" max-vertical-offset="1650">
+              <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -1423,14 +1398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/templates/history-invoice-collection-page.html.slim">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.677419" vertical-offset="849" max-vertical-offset="1276">
-          <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/templates/garment-barcode-scan-page.html.slim">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.1290324" vertical-offset="211" max-vertical-offset="594">
@@ -1447,10 +1414,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/templates/history-invoice-collection-page.html.slim">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.677419" vertical-offset="849" max-vertical-offset="1276">
+          <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/save-garments-dir.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47826087" vertical-offset="572" max-vertical-offset="1540">
-          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.42512077" vertical-offset="1012" max-vertical-offset="1650">
+          <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
           <folding />
         </state>
       </provider>
