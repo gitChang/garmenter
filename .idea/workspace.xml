@@ -2,95 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="436dbd9f-4311-4144-bd68-ac0f18303453" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/main-controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/question-controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/questionnaire-controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/questionnaire-partials-controllers/edit-question-controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/questionnaire-partials-controllers/preview-question-controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/event-custom-element/drodown-menue-item-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/event-custom-element/dropdown-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/event-custom-element/event-checkbox-item-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/event-custom-element/event-radio-item-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/event-custom-element/prompt-indicator-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/main/sidebar-left-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/btn-save-class-code-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/btn-save-question-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/choices-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/choices-len-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/create-class-code-template-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/create-question-template-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/dropdown-menue-item-choices-len-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/dropdown-menue-item-class-code-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/dropdown-menue-item-discipline-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/pick-answer-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/question/radio-item-qtype-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/questionnaire/add-choice-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/questionnaire/row-question-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/shared/dropdown-class-code-directive.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/factories/error-display-factory.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/factories/resource-factory.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/services/collection-service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/services/prompt-service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom-widget.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/extends-mixins.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/main/main.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/main/sidebar-left.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/questionnaire/table-questions.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/shared/create-question.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/shared/prompt-indicator.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/transitions.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/dashboard/dashboard.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/main/sidebar-left.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/mystudents/mystudents.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/question/partials/choices-items-fnb.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/question/partials/choices-items-mcma.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/question/partials/choices-items-mcsa.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/question/partials/choices-items-tof.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/question/partials/create-class-code.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/question/partials/create-question.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/question/question.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/choices-items-fnb-ro.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/choices-items-fnb-w.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/choices-items-mcma-ro.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/choices-items-mcma-w.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/choices-items-mcsa-ro.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/choices-items-mcsa-w.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/choices-items-tof-ro.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/choices-items-tof-w.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/edit-question.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/partials/preview-question.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/questionnaire/questionnaire.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/shared/prompt-failed-indicator.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/shared/prompt-process-indicator.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/templates/shared/prompt-saved-indicator.html.slim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/answers_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/choices_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/class_codes_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/disciplines_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/question_types_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/questions_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/answer.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/choice.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/class_code.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/discipline.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/question.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/question_type.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/development.sqlite3" afterPath="$PROJECT_DIR$/db/development.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/test.sqlite3" afterPath="$PROJECT_DIR$/db/test.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/app.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap-custom.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap-custom.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/application/index.html.slim" afterPath="$PROJECT_DIR$/app/views/application/index.html.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/patches.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/patches.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
     </list>
     <ignored path="GarmentScannerX.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -169,8 +81,8 @@
       <file leaf-file-name="Gemfile" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33584905" vertical-offset="680" max-vertical-offset="1210">
-              <caret line="39" column="14" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.53962266" vertical-offset="44" max-vertical-offset="1232">
+              <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -272,9 +184,9 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/actionbar-top.scss" />
         <option value="$PROJECT_DIR$/app/assets/templates/signup-page.html.slim" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/ng/directives/signup/signup-dir.js" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/garment-barcode-number-dir.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/new-garment-scan-dir.js" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -1069,10 +981,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="792" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943925" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22714682" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22714682" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963988" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1484,8 +1396,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33584905" vertical-offset="680" max-vertical-offset="1210">
-          <caret line="39" column="14" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.53962266" vertical-offset="44" max-vertical-offset="1232">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
           <folding />
         </state>
       </provider>
