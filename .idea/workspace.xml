@@ -2,39 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="436dbd9f-4311-4144-bd68-ac0f18303453" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-201e7e7d984afad1aeb18e04056c9ddd.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-201e7e7d984afad1aeb18e04056c9ddd.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-77fe3d7abe041c6295f4ff1d1851d8ab.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-77fe3d7abe041c6295f4ff1d1851d8ab.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-85243111ee0736a8b5f0aee256960f9b.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-85243111ee0736a8b5f0aee256960f9b.css.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-a21eb3816aedba46d26e7963a0a4c76c.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/application-a21eb3816aedba46d26e7963a0a4c76c.js.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-0e3e2e5861d8a42907bc8477830b501b.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-2ea41bbbbaad853241e6b43f16b8715e.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-5cf13ae390992a3e70a6116446596e4b.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-66e9b8686e43ca9d85844471036e572c.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/bootstrap/glyphicons-halflings-regular-7ffdf8e97e23984175934667b99122f4.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-153985a0c7f801ae1f4bb2db0764d587.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-8f3b20f062649d70319224ecef9bb8a8.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-997e03dd1547dc0040fca36d94360f4b.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-aa1ce72f9b1024ea8c1c5152df48df79.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/font-awesome/fontawesome-webfont-bbbe60dc094513f9df7b09bfcc51622c.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/manifest-4c0674a6947ce6e83d0743f80cf46880.json" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/services/shared-svc.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/services/shared-vars-svc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/recent-invoice-collection/add-garment-dir.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/recent-invoice-collection/add-garment-dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/recent-invoice-collection/delete-garment-dir.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/recent-invoice-collection/delete-garment-dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/recent-invoice-collection/done-dir.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/recent-invoice-collection/done-dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/garment-barcode-number-dir.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/garment-barcode-number-dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/garment-scan-ctrl.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/garment-scan-ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/history-invoice-collection-ctrl.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/history-invoice-collection-ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/invoice-barcode-scan/invoice-barcode-number-dir.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/invoice-barcode-scan/invoice-barcode-number-dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/invoice-scan-ctrl.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/invoice-scan-ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/new-garment-scan-dir.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/new-garment-scan-dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/recent-invoice-collection-ctrl.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/recent-invoice-collection-ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/save-garments-dir.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/save-garments-dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/signup/signup-dir.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ng/directives/signup/signup-dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/signup-page.html.slim" afterPath="$PROJECT_DIR$/app/assets/templates/signup-page.html.slim" />
     </list>
     <ignored path="GarmentScannerX.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,16 +28,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="save-garments-dir.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/save-garments-dir.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.142857" vertical-offset="550" max-vertical-offset="1606">
-              <caret line="33" column="50" selection-start-line="32" selection-start-column="6" selection-end-line="33" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="invoice-barcode-number-dir.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ng/directives/invoice-barcode-scan/invoice-barcode-number-dir.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -80,11 +38,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="invoice-scan-ctrl.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="invoice-scan-ctrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ng/controllers/invoice-scan-ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3188406" vertical-offset="0" max-vertical-offset="462">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="462">
               <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signup-content-tpl.html.slim" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/templates/actionbar-top-tpls/signup-content-tpl.html.slim">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.4193548" vertical-offset="0" max-vertical-offset="176">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signup-page.html.slim" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/assets/templates/signup-page.html.slim">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8851175" vertical-offset="827" max-vertical-offset="1342">
+              <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -95,16 +73,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-3.142857" vertical-offset="110" max-vertical-offset="924">
               <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signup-dir.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ng/directives/signup/signup-dir.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.39285713" vertical-offset="22" max-vertical-offset="660">
-              <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -191,7 +159,6 @@
         <option value="$PROJECT_DIR$/app/assets/templates/actionbar-top-tpls/common-content.html.slim" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/actionbar-top-ctrl.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/actionbar-top.scss" />
-        <option value="$PROJECT_DIR$/app/assets/templates/signup-page.html.slim" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/invoice_barcode_scan.scss" />
         <option value="$PROJECT_DIR$/app/assets/templates/actionbar-top-tpls/recent-invoice-collection-tpl.html.slim" />
@@ -219,6 +186,7 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/ng/services/shared-vars-svc.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/ng/directives/invoice-barcode-scan/invoice-barcode-number-dir.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/ng/controllers/invoice-scan-ctrl.js" />
+        <option value="$PROJECT_DIR$/app/assets/templates/signup-page.html.slim" />
       </list>
     </option>
   </component>
@@ -1232,14 +1200,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/templates/signup-page.html.slim">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.32258" vertical-offset="811" max-vertical-offset="1298">
-          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="44" max-vertical-offset="1232">
@@ -1260,14 +1220,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.677419" vertical-offset="0" max-vertical-offset="308">
           <caret line="8" column="12" selection-start-line="6" selection-start-column="0" selection-end-line="8" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/templates/actionbar-top-tpls/signup-content-tpl.html.slim">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4193548" vertical-offset="0" max-vertical-offset="176">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1474,8 +1426,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ng/controllers/invoice-scan-ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3188406" vertical-offset="0" max-vertical-offset="462">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="462">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/templates/actionbar-top-tpls/signup-content-tpl.html.slim">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.4193548" vertical-offset="0" max-vertical-offset="176">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/templates/signup-page.html.slim">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8851175" vertical-offset="827" max-vertical-offset="1342">
+          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
           <folding />
         </state>
       </provider>
