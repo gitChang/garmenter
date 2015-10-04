@@ -53,8 +53,8 @@
       <file leaf-file-name="save-garments-dir.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/save-garments-dir.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47826087" vertical-offset="1012" max-vertical-offset="1672">
-              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.47826087" vertical-offset="990" max-vertical-offset="1650">
+              <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -1426,8 +1426,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ng/directives/garment-barcode-scan/save-garments-dir.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47826087" vertical-offset="1012" max-vertical-offset="1672">
-          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.47826087" vertical-offset="990" max-vertical-offset="1650">
+          <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
           <folding />
         </state>
       </provider>
