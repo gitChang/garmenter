@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive('newGarmentScanDir', function ($compile, $templateCache, SharedSvc) {
+App.directive('newGarmentScanDir', function ($compile, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
@@ -12,7 +12,7 @@ App.directive('newGarmentScanDir', function ($compile, $templateCache, SharedSvc
       // when currentGarmentBarcodesLen is present,
       // it signals modification for invoice.
       var garmentNumber =
-        SharedSvc.currentGarmentBarcodesLen || Object.keys(scope.model.garment_barcodes).length + 1;
+        SharedVarsSvc.currentGarmentBarcodesLen || Object.keys(scope.model.garment_barcodes).length + 1;
 
       tplCache = tpl.replace('$', garmentNumber);
     }

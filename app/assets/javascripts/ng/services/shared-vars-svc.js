@@ -1,6 +1,6 @@
 'use strict';
 
-App.service('SharedSvc', function () {
+App.service('SharedVarsSvc', function () {
 
   // use in new garment barcode scan
   this.currentInvoiceNumber = null;

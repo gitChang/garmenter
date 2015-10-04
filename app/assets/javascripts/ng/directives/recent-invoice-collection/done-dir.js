@@ -1,17 +1,17 @@
 'use strict';
 
-App.directive('done', function ($state, $templateCache, SharedSvc) {
+App.directive('done', function ($state, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
     function makeHistory () {
-      var cacheCollection = SharedSvc.recentInvoiceCollection;
+      var cacheCollection = SharedVarsSvc.recentInvoiceCollection;
       // put to history
-      SharedSvc.historyInvoiceCollection = cacheCollection;
+      SharedVarsSvc.historyInvoiceCollection = cacheCollection;
 
       // clear the array of recent collection.
       // since the value is on the history already.
-      SharedSvc.recentInvoiceCollection = [];
+      SharedVarsSvc.recentInvoiceCollection = [];
     }
 
     element.on('click', function (event) {

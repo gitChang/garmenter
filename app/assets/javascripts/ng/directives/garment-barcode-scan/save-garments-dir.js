@@ -1,18 +1,19 @@
 'use strict';
 
-App.directive('saveGarments', function ($compile, $templateCache, $state, SharedSvc) {
+App.directive('saveGarments',
+  function ($compile, $templateCache, $state, SharedVarsSvc, SharedFnSvc) {
 
   function linker (scope, element) {
 
     function saveOrUpdateInvoice () {
 
       // check if garment entry is for save or update
-      if (SharedSvc.currentGarmentBarcodesLen) {
+      if (SharedVarsSvc.currentGarmentBarcodesLen) {
 
         // update or append to invoice garment barcodes.
-        SharedSvc.recentInvoiceCollection.forEach( function (item, index, object) {
+        SharedVarsSvc.recentInvoiceCollection.forEach( function (item, index, object) {
 
-          if (item.invoice_number === SharedSvc.currentInvoiceNumber) {
+          if (item.invoice_number === SharedVarsSvc.currentInvoiceNumber) {
             // loop thru model and get to push into existing
             // garment barcode collection of the invoice.
             var len = Object.keys(item.garment_barcodes).length;
@@ -26,13 +27,11 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
       } else {
 
         // or just save barcodes.
-        SharedSvc.recentInvoiceCollection.push(scope.model);
+        SharedVarsSvc.recentInvoiceCollection.push(scope.model);
       }
-    }
 
-    function resetSharedVarsForEditInvoice () {
-      SharedSvc.currentInvoiceNumber = null;
-      SharedSvc.currentGarmentBarcodesLen = null;
+      // clear shared var for editing entries.
+      SharedFnSvc.resetSharedVarsForEditInvoice();
     }
 
     element.on('click', function (event) {
@@ -54,7 +53,6 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
       // put timeout to see templates change
       setTimeout(function () {
         saveOrUpdateInvoice();
-        resetSharedVarsForEditInvoice();
 
         // redirect to invoice scan page for new entry
         $state.go('invoice-barcode-scan-page');

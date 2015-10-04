@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive('deleteGarment', function ($compile, $templateCache, SharedSvc) {
+App.directive('deleteGarment', function ($compile, $templateCache, SharedVarsSvc) {
   function linker (scope, element) {
     // countdown to auto-cancel delete action.
     // defaults to 6s.
@@ -47,7 +47,7 @@ App.directive('deleteGarment', function ($compile, $templateCache, SharedSvc) {
         var garmentNumber = element.attr('data-garment-number').trim();
 
         // delete garment from the invoice
-        SharedSvc.recentInvoiceCollection.forEach(function (item, index, object) {
+        SharedVarsSvc.recentInvoiceCollection.forEach(function (item, index, object) {
           if (item.invoice_number === invoiceNumber) {
             for (var key in item.garment_barcodes) {
               if (item.garment_barcodes[key] === garmentNumber) {

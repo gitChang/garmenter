@@ -49548,7 +49548,18 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 });
 'use strict';
 
-App.service('SharedSvc', function () {
+App.service('SharedFnSvc', function (SharedVarsSvc) {
+
+  this.resetSharedVarsForEditInvoice = function () {
+    SharedVarsSvc.currentInvoiceNumber = null;
+    SharedVarsSvc.currentGarmentBarcodesLen = null;
+  }
+
+})
+;
+'use strict';
+
+App.service('SharedVarsSvc', function () {
 
   // use in new garment barcode scan
   this.currentInvoiceNumber = null;
@@ -49592,7 +49603,7 @@ App.controller('ActionbarTopCtrl', function ($scope, $state, $templateCache) {
 ;
 'use strict';
 
-App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateCache, SharedSvc) {
+App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateCache, SharedVarsSvc) {
 
   $scope.model = {
     invoice_number: null,
@@ -49604,13 +49615,13 @@ App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateC
 
   // invoice number is required,
   // so if not present, goto invoice scan page
-  if (!SharedSvc.currentInvoiceNumber) {
+  if (!SharedVarsSvc.currentInvoiceNumber) {
     $state.go('invoice-barcode-scan-page');
     return;
   }
 
   // get the invoice number on shared service
-  $scope.model.invoice_number = SharedSvc.currentInvoiceNumber.toString();
+  $scope.model.invoice_number = SharedVarsSvc.currentInvoiceNumber.toString();
 
   // create barcode img using the number scanned.
   // display barcode canvas element on page.
@@ -49623,7 +49634,7 @@ App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateC
 
   // update the badge count.
   $scope.$watch('model.garment_barcodes', function (garments) {
-    console.log($scope.model.garment_barcodes);
+    //console.log($scope.model.garment_barcodes);
     // get the normal length
     $scope.garmentScannedLen = Object.keys(garments).length;
     // get the null valued elem and deduce.
@@ -49634,9 +49645,9 @@ App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateC
 });
 'use strict';
 
-App.controller('HistoryInvoiceCollection', function ($scope, SharedSvc) {
+App.controller('HistoryInvoiceCollection', function ($scope, SharedVarsSvc) {
 
-  $scope.invoices = SharedSvc.historyInvoiceCollection;
+  $scope.invoices = SharedVarsSvc.historyInvoiceCollection;
 
   // get the total garments of the invoice
   // and display it to panel footer.
@@ -49646,15 +49657,19 @@ App.controller('HistoryInvoiceCollection', function ($scope, SharedSvc) {
 });
 'use strict';
 
-App.controller('InvoiceScanCtrl', function ($scope, $state, SharedSvc) {
+App.controller('InvoiceScanCtrl',
+  function ($scope, $state, SharedVarsSvc, SharedFnSvc) {
 
   $scope.timeOut = 1000;
 
-  // indicate number of recent invoices
-  $scope.recentInvoiceScannedNumber = SharedSvc.recentInvoiceCollection.length;
+  // clear shared var for editing entries.
+  SharedFnSvc.resetSharedVarsForEditInvoice();
 
   // indicate number of recent invoices
-  $scope.historyInvoiceCollectionLen = SharedSvc.historyInvoiceCollection.length;
+  $scope.recentInvoiceScannedNumber = SharedVarsSvc.recentInvoiceCollection.length;
+
+  // indicate number of recent invoices
+  $scope.historyInvoiceCollectionLen = SharedVarsSvc.historyInvoiceCollection.length;
 });
 'use strict';
 
@@ -49664,9 +49679,9 @@ App.controller('LoginCtrl', function ($scope, $state) {
 ;
 'use strict';
 
-App.controller('RecentInvoiceCollection', function ($scope, SharedSvc) {
+App.controller('RecentInvoiceCollection', function ($scope, SharedVarsSvc) {
   // invoice collection
-  $scope.invoices = SharedSvc.recentInvoiceCollection;
+  $scope.invoices = SharedVarsSvc.recentInvoiceCollection;
 
   // get the total garments of the invoice
   // and display it to panel footer.
@@ -49755,7 +49770,7 @@ App.directive('deleteScannedGarment', function ($compile, $templateCache) {
 });
 'use strict';
 
-App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedSvc) {
+App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
@@ -49792,8 +49807,8 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
       function getNextNumber () {
         var nextNumber;
 
-        if (SharedSvc.currentGarmentBarcodesLen) {
-          nextNumber = (parseInt(SharedSvc.currentGarmentBarcodesLen) - 1) +
+        if (SharedVarsSvc.currentGarmentBarcodesLen) {
+          nextNumber = (parseInt(SharedVarsSvc.currentGarmentBarcodesLen) - 1) +
                        (Object.keys(scope.model.garment_barcodes).length + 1);
         } else {
           nextNumber = Object.keys(scope.model.garment_barcodes).length + 1;
@@ -49869,7 +49884,7 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
 });
 'use strict';
 
-App.directive('newGarmentScanDir', function ($compile, $templateCache, SharedSvc) {
+App.directive('newGarmentScanDir', function ($compile, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
@@ -49881,7 +49896,7 @@ App.directive('newGarmentScanDir', function ($compile, $templateCache, SharedSvc
       // when currentGarmentBarcodesLen is present,
       // it signals modification for invoice.
       var garmentNumber =
-        SharedSvc.currentGarmentBarcodesLen || Object.keys(scope.model.garment_barcodes).length + 1;
+        SharedVarsSvc.currentGarmentBarcodesLen || Object.keys(scope.model.garment_barcodes).length + 1;
 
       tplCache = tpl.replace('$', garmentNumber);
     }
@@ -49909,19 +49924,20 @@ App.directive('newGarmentScanDir', function ($compile, $templateCache, SharedSvc
 });
 'use strict';
 
-App.directive('saveGarments', function ($compile, $templateCache, $state, SharedSvc) {
+App.directive('saveGarments',
+  function ($compile, $templateCache, $state, SharedVarsSvc, SharedFnSvc) {
 
   function linker (scope, element) {
 
     function saveOrUpdateInvoice () {
 
       // check if garment entry is for save or update
-      if (SharedSvc.currentGarmentBarcodesLen) {
+      if (SharedVarsSvc.currentGarmentBarcodesLen) {
 
         // update or append to invoice garment barcodes.
-        SharedSvc.recentInvoiceCollection.forEach( function (item, index, object) {
+        SharedVarsSvc.recentInvoiceCollection.forEach( function (item, index, object) {
 
-          if (item.invoice_number === SharedSvc.currentInvoiceNumber) {
+          if (item.invoice_number === SharedVarsSvc.currentInvoiceNumber) {
             // loop thru model and get to push into existing
             // garment barcode collection of the invoice.
             var len = Object.keys(item.garment_barcodes).length;
@@ -49935,13 +49951,11 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
       } else {
 
         // or just save barcodes.
-        SharedSvc.recentInvoiceCollection.push(scope.model);
+        SharedVarsSvc.recentInvoiceCollection.push(scope.model);
       }
-    }
 
-    function resetSharedVarsForEditInvoice () {
-      SharedSvc.currentInvoiceNumber = null;
-      SharedSvc.currentGarmentBarcodesLen = null;
+      // clear shared var for editing entries.
+      SharedFnSvc.resetSharedVarsForEditInvoice();
     }
 
     element.on('click', function (event) {
@@ -49963,7 +49977,6 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
       // put timeout to see templates change
       setTimeout(function () {
         saveOrUpdateInvoice();
-        resetSharedVarsForEditInvoice();
 
         // redirect to invoice scan page for new entry
         $state.go('invoice-barcode-scan-page');
@@ -49978,7 +49991,8 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
 });
 'use strict';
 
-App.directive('invoiceBarcodeNumber', function ($compile, $templateCache, $state, SharedSvc) {
+App.directive('invoiceBarcodeNumber',
+  function ($compile, $templateCache, $state, SharedVarsSvc, SharedFnSvc) {
 
   function linker (scope, element) {
     // handle input event when using scanner device.
@@ -49995,8 +50009,8 @@ App.directive('invoiceBarcodeNumber', function ($compile, $templateCache, $state
       // lock input textbox
       element.attr('disabled', true);
 
-      // store invoice number to shared variable.
-      SharedSvc.currentInvoiceNumber = element.val().trim();
+      // clear shared var for editing entries.
+      SharedFnSvc.resetSharedVarsForEditInvoice();
 
       // redirect to garment scanning page with timeout.
       setTimeout(function () {
@@ -50015,7 +50029,7 @@ App.directive('invoiceBarcodeNumber', function ($compile, $templateCache, $state
         element.attr('disabled', true);
 
         // store invoice number to shared variable.
-        SharedSvc.currentInvoiceNumber = element.val().trim();
+        SharedVarsSvc.currentInvoiceNumber = element.val().trim();
 
         // redirect to garment scanning page with timeout.
         setTimeout(function () {
@@ -50080,18 +50094,18 @@ App.directive('loginBtn', function ($state, $templateCache) {
 ;
 'use strict';
 
-App.directive('addGarment', function ($state, $templateCache, SharedSvc) {
+App.directive('addGarment', function ($state, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
     function setCurrentInvoiceNumber () {
       var invoiceIdx = parseInt(element.attr('data-idx'));
       var invoiceCollectionLen =
-        Object.keys(SharedSvc.recentInvoiceCollection[invoiceIdx].garment_barcodes).length;
-      var invoiceNumber = SharedSvc.recentInvoiceCollection[invoiceIdx].invoice_number;
+        Object.keys(SharedVarsSvc.recentInvoiceCollection[invoiceIdx].garment_barcodes).length;
+      var invoiceNumber = SharedVarsSvc.recentInvoiceCollection[invoiceIdx].invoice_number;
 
-      SharedSvc.currentInvoiceNumber = invoiceNumber;
-      SharedSvc.currentGarmentBarcodesLen = invoiceCollectionLen + 1; // add 1 for next entry
+      SharedVarsSvc.currentInvoiceNumber = invoiceNumber;
+      SharedVarsSvc.currentGarmentBarcodesLen = invoiceCollectionLen + 1; // add 1 for next entry
     }
 
     element.on('click', function (event) {
@@ -50117,7 +50131,7 @@ App.directive('addGarment', function ($state, $templateCache, SharedSvc) {
 });
 'use strict';
 
-App.directive('deleteGarment', function ($compile, $templateCache, SharedSvc) {
+App.directive('deleteGarment', function ($compile, $templateCache, SharedVarsSvc) {
   function linker (scope, element) {
     // countdown to auto-cancel delete action.
     // defaults to 6s.
@@ -50164,7 +50178,7 @@ App.directive('deleteGarment', function ($compile, $templateCache, SharedSvc) {
         var garmentNumber = element.attr('data-garment-number').trim();
 
         // delete garment from the invoice
-        SharedSvc.recentInvoiceCollection.forEach(function (item, index, object) {
+        SharedVarsSvc.recentInvoiceCollection.forEach(function (item, index, object) {
           if (item.invoice_number === invoiceNumber) {
             for (var key in item.garment_barcodes) {
               if (item.garment_barcodes[key] === garmentNumber) {
@@ -50211,18 +50225,18 @@ App.directive('deleteGarment', function ($compile, $templateCache, SharedSvc) {
 });
 'use strict';
 
-App.directive('done', function ($state, $templateCache, SharedSvc) {
+App.directive('done', function ($state, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
     function makeHistory () {
-      var cacheCollection = SharedSvc.recentInvoiceCollection;
+      var cacheCollection = SharedVarsSvc.recentInvoiceCollection;
       // put to history
-      SharedSvc.historyInvoiceCollection = cacheCollection;
+      SharedVarsSvc.historyInvoiceCollection = cacheCollection;
 
       // clear the array of recent collection.
       // since the value is on the history already.
-      SharedSvc.recentInvoiceCollection = [];
+      SharedVarsSvc.recentInvoiceCollection = [];
     }
 
     element.on('click', function (event) {
@@ -50249,7 +50263,7 @@ App.directive('done', function ($state, $templateCache, SharedSvc) {
 });
 'use strict';
 
-App.directive('signup', function ($state, $templateCache, SharedSvc) {
+App.directive('signup', function ($state, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
     element.on('click', function (event) {

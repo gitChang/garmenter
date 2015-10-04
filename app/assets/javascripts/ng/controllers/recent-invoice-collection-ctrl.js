@@ -1,8 +1,8 @@
 'use strict';
 
-App.controller('RecentInvoiceCollection', function ($scope, SharedSvc) {
+App.controller('RecentInvoiceCollection', function ($scope, SharedVarsSvc) {
   // invoice collection
-  $scope.invoices = SharedSvc.recentInvoiceCollection;
+  $scope.invoices = SharedVarsSvc.recentInvoiceCollection;
 
   // get the total garments of the invoice
   // and display it to panel footer.

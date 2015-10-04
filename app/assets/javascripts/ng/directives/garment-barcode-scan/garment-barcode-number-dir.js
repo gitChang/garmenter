@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedSvc) {
+App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
@@ -37,8 +37,8 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
       function getNextNumber () {
         var nextNumber;
 
-        if (SharedSvc.currentGarmentBarcodesLen) {
-          nextNumber = (parseInt(SharedSvc.currentGarmentBarcodesLen) - 1) +
+        if (SharedVarsSvc.currentGarmentBarcodesLen) {
+          nextNumber = (parseInt(SharedVarsSvc.currentGarmentBarcodesLen) - 1) +
                        (Object.keys(scope.model.garment_barcodes).length + 1);
         } else {
           nextNumber = Object.keys(scope.model.garment_barcodes).length + 1;

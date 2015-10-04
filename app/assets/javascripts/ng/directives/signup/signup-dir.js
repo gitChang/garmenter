@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive('signup', function ($state, $templateCache, SharedSvc) {
+App.directive('signup', function ($state, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
     element.on('click', function (event) {

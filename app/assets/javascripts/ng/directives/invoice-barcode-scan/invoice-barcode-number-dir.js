@@ -1,6 +1,7 @@
 'use strict';
 
-App.directive('invoiceBarcodeNumber', function ($compile, $templateCache, $state, SharedSvc) {
+App.directive('invoiceBarcodeNumber',
+  function ($compile, $templateCache, $state, SharedVarsSvc, SharedFnSvc) {
 
   function linker (scope, element) {
     // handle input event when using scanner device.
@@ -17,8 +18,8 @@ App.directive('invoiceBarcodeNumber', function ($compile, $templateCache, $state
       // lock input textbox
       element.attr('disabled', true);
 
-      // store invoice number to shared variable.
-      SharedSvc.currentInvoiceNumber = element.val().trim();
+      // clear shared var for editing entries.
+      SharedFnSvc.resetSharedVarsForEditInvoice();
 
       // redirect to garment scanning page with timeout.
       setTimeout(function () {
@@ -37,7 +38,7 @@ App.directive('invoiceBarcodeNumber', function ($compile, $templateCache, $state
         element.attr('disabled', true);
 
         // store invoice number to shared variable.
-        SharedSvc.currentInvoiceNumber = element.val().trim();
+        SharedVarsSvc.currentInvoiceNumber = element.val().trim();
 
         // redirect to garment scanning page with timeout.
         setTimeout(function () {

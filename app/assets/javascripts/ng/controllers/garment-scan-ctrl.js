@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateCache, SharedSvc) {
+App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateCache, SharedVarsSvc) {
 
   $scope.model = {
     invoice_number: null,
@@ -12,13 +12,13 @@ App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateC
 
   // invoice number is required,
   // so if not present, goto invoice scan page
-  if (!SharedSvc.currentInvoiceNumber) {
+  if (!SharedVarsSvc.currentInvoiceNumber) {
     $state.go('invoice-barcode-scan-page');
     return;
   }
 
   // get the invoice number on shared service
-  $scope.model.invoice_number = SharedSvc.currentInvoiceNumber.toString();
+  $scope.model.invoice_number = SharedVarsSvc.currentInvoiceNumber.toString();
 
   // create barcode img using the number scanned.
   // display barcode canvas element on page.
@@ -31,7 +31,7 @@ App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateC
 
   // update the badge count.
   $scope.$watch('model.garment_barcodes', function (garments) {
-    console.log($scope.model.garment_barcodes);
+    //console.log($scope.model.garment_barcodes);
     // get the normal length
     $scope.garmentScannedLen = Object.keys(garments).length;
     // get the null valued elem and deduce.

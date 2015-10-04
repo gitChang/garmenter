@@ -1,17 +1,17 @@
 'use strict';
 
-App.directive('addGarment', function ($state, $templateCache, SharedSvc) {
+App.directive('addGarment', function ($state, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
     function setCurrentInvoiceNumber () {
       var invoiceIdx = parseInt(element.attr('data-idx'));
       var invoiceCollectionLen =
-        Object.keys(SharedSvc.recentInvoiceCollection[invoiceIdx].garment_barcodes).length;
-      var invoiceNumber = SharedSvc.recentInvoiceCollection[invoiceIdx].invoice_number;
+        Object.keys(SharedVarsSvc.recentInvoiceCollection[invoiceIdx].garment_barcodes).length;
+      var invoiceNumber = SharedVarsSvc.recentInvoiceCollection[invoiceIdx].invoice_number;
 
-      SharedSvc.currentInvoiceNumber = invoiceNumber;
-      SharedSvc.currentGarmentBarcodesLen = invoiceCollectionLen + 1; // add 1 for next entry
+      SharedVarsSvc.currentInvoiceNumber = invoiceNumber;
+      SharedVarsSvc.currentGarmentBarcodesLen = invoiceCollectionLen + 1; // add 1 for next entry
     }
 
     element.on('click', function (event) {
