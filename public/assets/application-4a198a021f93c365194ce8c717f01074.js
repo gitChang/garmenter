@@ -49382,24 +49382,38 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 }]);
 
 // Angular Rails Template
-// source: app/assets/templates/actionbar-top-tpls/common-content.html.slim
+// source: app/assets/templates/actionbar-top-tpls/common-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/common-content.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-cloud"></i>&nbsp;<b>TUKU Laundry System</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/common-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-cloud"></i>&nbsp;<b>TUKU Laundry System</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
-// source: app/assets/templates/actionbar-top-tpls/login-content.html.slim
+// source: app/assets/templates/actionbar-top-tpls/history-invoice-collection-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/login-content.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-cloud"></i>&nbsp;<b>TUKU Laundry System</b></span>\n</div>')
+  $templateCache.put("actionbar-top-tpls/history-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-history"></i>&nbsp;<b>Collection History</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
-// source: app/assets/templates/actionbar-top-tpls/signup-content.html.slim
+// source: app/assets/templates/actionbar-top-tpls/login-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/signup-content.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Create an Account</b></span>\n</div>')
+  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-cloud"></i>&nbsp;<b>TUKU Laundry System</b></span>\n</div>')
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/actionbar-top-tpls/recent-invoice-collection-content-tpl.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("actionbar-top-tpls/recent-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-edit"></i>&nbsp;<b>Modify Recent Collection</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/actionbar-top-tpls/signup-content-tpl.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("actionbar-top-tpls/signup-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Create an Account</b></span>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49676,26 +49690,37 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
     function (event, toState, toParams, fromState, fromParams) {
       event.preventDefault();
 
-      console.log($state.current.name);
-
       switch ($state.current.name) {
         case 'login-page':
           element.html(function () {
-            return $compile($templateCache.get('actionbar-top-tpls/login-content.html'))(scope);
+            return $compile($templateCache.get('actionbar-top-tpls/login-content-tpl.html'))(scope);
           })
           break;
 
         case 'signup-page':
           element.html(function () {
-            return $compile($templateCache.get('actionbar-top-tpls/signup-content.html'))(scope);
+            return $compile($templateCache.get('actionbar-top-tpls/signup-content-tpl.html'))(scope);
           })
           break;
 
-        default :
+        case 'recent-invoice-collection-page':
           element.html(function () {
-            return $compile($templateCache.get('actionbar-top-tpls/common-content.html'))(scope);
+            return $compile($templateCache.get('actionbar-top-tpls/recent-invoice-collection-content-tpl.html'))(scope);
           })
           break;
+
+        case 'history-invoice-collection-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/history-invoice-collection-content-tpl.html'))(scope);
+          })
+          break;
+
+        default:
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/common-content-tpl.html'))(scope);
+          })
+          break;
+
       }
     })
   }

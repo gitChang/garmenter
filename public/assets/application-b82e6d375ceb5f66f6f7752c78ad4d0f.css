@@ -15163,7 +15163,7 @@ body {
 
 /* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
 #invoice-barcode-scan {
-  margin-top: 100px;
+  margin-top: 80px;
   color: #eeeeee;
   /**@media (min-width: $screen-xs-min) {
     #bottom-toolbar {

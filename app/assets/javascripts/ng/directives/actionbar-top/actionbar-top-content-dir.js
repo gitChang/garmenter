@@ -9,26 +9,37 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
     function (event, toState, toParams, fromState, fromParams) {
       event.preventDefault();
 
-      console.log($state.current.name);
-
       switch ($state.current.name) {
         case 'login-page':
           element.html(function () {
-            return $compile($templateCache.get('actionbar-top-tpls/login-content.html'))(scope);
+            return $compile($templateCache.get('actionbar-top-tpls/login-content-tpl.html'))(scope);
           })
           break;
 
         case 'signup-page':
           element.html(function () {
-            return $compile($templateCache.get('actionbar-top-tpls/signup-content.html'))(scope);
+            return $compile($templateCache.get('actionbar-top-tpls/signup-content-tpl.html'))(scope);
           })
           break;
 
-        default :
+        case 'recent-invoice-collection-page':
           element.html(function () {
-            return $compile($templateCache.get('actionbar-top-tpls/common-content.html'))(scope);
+            return $compile($templateCache.get('actionbar-top-tpls/recent-invoice-collection-content-tpl.html'))(scope);
           })
           break;
+
+        case 'history-invoice-collection-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/history-invoice-collection-content-tpl.html'))(scope);
+          })
+          break;
+
+        default:
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/common-content-tpl.html'))(scope);
+          })
+          break;
+
       }
     })
   }
