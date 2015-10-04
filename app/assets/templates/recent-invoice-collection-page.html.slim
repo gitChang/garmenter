@@ -1,0 +1,59 @@
+.row#recent-invoice-collection
+  .collection-panel
+
+    #accordion.panel-group ng-repeat="invoice in invoices"
+      .panel.panel-default
+
+        #headingOne.panel-heading role="tab"
+          h4.panel-title
+            a [
+              aria-controls="collapseOne"
+              aria-expanded="true"
+              data-parent="#accordion"
+              data-toggle="collapse"
+              href=("{{ '#' + invoice.invoice_number }}")
+              onclick=("return false")
+            ]
+              | Invoice no. {{ invoice.invoice_number }}
+              span.pull-right
+                small Today
+
+        div.panel-collapse.collapse [
+          id=("{{ invoice.invoice_number }}")
+          aria-labelledby="headingOne"
+          role="tabpanel"
+        ]
+          table.table
+            tbody
+              tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index"
+                td.invoice-garment-number {{ garment_barcode }}
+                td.delete-garment-parent
+                  a.delete-garment [
+                    href="#"
+                    data-garment-number=("{{ garment_barcode }}")
+                    data-invoice-number=("{{ invoice.invoice_number }}")
+                  ]
+                    i.fa.fa-trash-o
+
+
+          .panel-footer
+            span
+              span.total-garments {{ getGarmentsTotal($index) }}
+              | &nbsp;
+              | Garments
+            span.pull-right.add-garment-parent
+              a.add-garment href="#" data-idx=("{{ $index }}")
+                i.fa.fa-plus
+
+// actionbar
+#actionbar-bottom
+  ul.nav.navbar-nav
+    li.first
+      a ui-sref="invoice-barcode-scan-page"
+        i.fa.fa-chevron-left
+    li.two
+      a.done href="#"
+        i.fa.fa-check
+
+
+

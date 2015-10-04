@@ -1,0 +1,53 @@
+.row#signup-form
+  #form-panel
+    form
+      h4.text-center.mg-t-x
+        i.fa.fa-building-o
+        | &nbsp;
+        | Company
+      .form-group
+        input type="text" placeholder="company name"
+
+      .form-group
+        input type="text" placeholder="branch Name"
+
+      br
+
+      h4.text-center.mg-t-x
+        i.fa.fa-user
+        | &nbsp;
+        | Contact
+      .form-group
+        input type="text" placeholder="contact person's name"
+
+      .form-group
+        input type="text" placeholder="contact person's mobile"
+
+      .form-group
+        input type="email" placeholder="contact person's email"
+
+      br
+
+      h4.text-center.mg-t-x
+        i.fa.fa-key
+        | &nbsp;
+        | Credentials
+      .form-group
+        input type="text" placeholder="account name"
+
+      .form-group
+        input type="password" placeholder="password"
+
+      .form-group
+        input type="password" placeholder="re-enter password"
+
+// actionbar
+#actionbar-bottom
+  ul.nav.navbar-nav
+    li.first
+      a#or-login ui-sref="login-page"
+        i.fa.fa-chevron-left
+    li.two
+      a.signup
+        i.fa.fa-user-plus
+

@@ -1,0 +1,16 @@
+.row#garment-barcode-scan
+  .barcode-panel
+    .row#invoice-barcode
+      .col-xs-12.text-center
+        canvas#invoice-barcode-pic
+
+    form
+      new-garment-scan-dir
+
+// actionbar
+#actionbar-bottom
+  ul.nav.navbar-nav
+    li.first
+      a ui-sref="invoice-barcode-scan-page"
+        i.fa.fa-chevron-left
+    li.two#save-garment-parent

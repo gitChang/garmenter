@@ -1,0 +1,51 @@
+.row#history-invoice-collection
+  .collection-panel
+
+    .blank-msg ng-hide="invoices.length"
+      h3.text-center
+        i.fa.fa-hand-o-right
+        | &nbsp;
+        | No records of History yet ...
+
+    #accordion.panel-group ng-repeat="invoice in invoices"
+      .panel.panel-default
+
+        #headingOne.panel-heading role="tab"
+          h4.panel-title
+            a [
+              aria-controls="collapseOne"
+              aria-expanded="true"
+              data-parent="#accordion"
+              data-toggle="collapse"
+              href=("{{ '#' + invoice.invoice_number }}")
+              onclick=("return false")
+            ]
+              | Invoice no. {{ invoice.invoice_number }}
+              span.pull-right
+                small Today
+
+        div.panel-collapse.collapse [
+          id=("{{ invoice.invoice_number }}")
+          aria-labelledby="headingOne"
+          role="tabpanel"
+        ]
+          table.table
+            tbody
+              tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index"
+                td.invoice-garment-number {{ garment_barcode }}
+
+          .panel-footer
+            span
+              span.total-garments {{ getGarmentsTotal($index) }}
+              | &nbsp;
+              | Garments
+
+// actionbar
+#actionbar-bottom
+  ul.nav.navbar-nav
+    li.first
+      a ui-sref="invoice-barcode-scan-page"
+        i.fa.fa-chevron-left
+
+
+

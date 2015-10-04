@@ -1,0 +1,12 @@
+#actionbar-top {
+  @extend .navbar, .navbar-default, .navbar-static-top;
+
+  .navbar-right {
+    margin-right: 15px;
+  }
+
+  .logout-user {
+    @extend .btn, .btn-primary, .btn-xs;
+    min-width: 56px;
+  }
+}

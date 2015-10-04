@@ -1,0 +1,44 @@
+#history-invoice-collection {
+  margin-top: 20px;
+  margin-bottom: 90px;
+  font-size: 19px;
+
+  .collection-panel {
+    @extend .col-xs-12;
+    @extend .col-sm-10;
+    @extend .col-sm-offset-1;
+    @extend .col-md-6;
+    @extend .col-md-offset-3;
+
+    .blank-msg {
+      margin-top: 40px;
+      color: $brand-primary;
+    }
+
+    .panel-group {
+      margin-bottom: 15px;
+      max-height: 500px;
+      transition: max-height 1s ease-in-out;
+    }
+
+    .table tr td {
+      color: $gray-dark;
+    }
+    .panel-footer {
+      color: $brand-primary;
+    }
+
+    h4.panel-title {
+      a {
+        display: inline-block;
+        width: 100%;
+        outline: none;
+        text-decoration: none;
+      }
+    }
+
+    .invoice-garment-number {
+      padding-left: 15px;
+    }
+  }
+}

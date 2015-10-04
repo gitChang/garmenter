@@ -1,11 +1,20 @@
-//$font-family-sans-serif:  "Lucida Grande", "Segoe UI", "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$font-size-base : 13px;
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base: 16px;
 
-$border-radius-base   : 2px !default;
-$border-radius-large  : 2px;
-$border-radius-small  : 2px;
+$brand-primary: rgb(75, 200, 222);
 
-$link-color : #5cb85c; // $brand-success
-$text-color : #777; // $gray-light
+$navbar-default-brand-color: #222;
+$navbar-default-bg: lighten(rgb(174, 174, 177),10%);
 
-//$table-border-color: $brand-success;
+$border-radius-base: 2px;
+$border-radius-large: 2px;
+$border-radius-sm: 2px;
+
+$input-border-focus: $brand-primary;
+
+$panel-default-heading-bg: #333;
+$panel-default-text: $brand-primary;
+$panel-default-border: lighten($panel-default-heading-bg, 3%);
+$panel-footer-bg: $panel-default-heading-bg;
+
+$grid-float-breakpoint: 300px;

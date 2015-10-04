@@ -20,24 +20,24 @@ end
 def seed_question_types
   types = [
     {
-      name: "single_answer",
-      text: "Multiple Choice, Single Answer"
+      abbrev: "mcsa",
+      name: "Multiple Choice, Single Answer"
     },
     {
-      name: "multiple_answers",
-      text: "Multiple Choice, Multiple Answers"
+      abbrev: "mcma",
+      name: "Multiple Choice, Multiple Answers"
     },
     {
-      name: "fill_blanks",
-      text: "Fill in the Blanks"
+      abbrev: "fnb",
+      name: "Fill in the Blanks"
     },
     {
-      name: "true_false",
-      text: "True or False"
+      abbrev: "tof",
+      name: "True or False"
     }
   ]
 
-  types.each { |t| QuestionType.create!(short_name: t[:name], long_name: t[:text]) }
+  types.each { |t| QuestionType.create!(abbrev: t[:abbrev], name: t[:name]) }
 
   puts "===> Seed Question Types Done."
 end

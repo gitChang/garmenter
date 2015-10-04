@@ -1,0 +1,71 @@
+#recent-invoice-collection {
+  margin-top: 20px;
+  margin-bottom: 90px;
+  font-size: 19px;
+
+  .collection-panel {
+    @extend .col-xs-12;
+    @extend .col-sm-10;
+    @extend .col-sm-offset-1;
+    @extend .col-md-6;
+    @extend .col-md-offset-3;
+
+    .panel-group {
+      margin-bottom: 15px;
+      max-height: 500px;
+      transition: max-height 1s ease-in-out;
+    }
+
+    .table tr td {
+      color: $gray-dark;
+    }
+    .panel-footer {
+      color: $brand-primary;
+    }
+
+    h4.panel-title {
+      a {
+        display: inline-block;
+        width: 100%;
+        outline: none;
+        text-decoration: none;
+      }
+    }
+
+    .invoice-garment-number {
+      padding-left: 15px;
+    }
+
+    .delete-garment-parent {
+      text-align: right;
+      padding-right: 20px;
+
+      a.delete-garment {
+        padding: 5px;
+        padding-right: 5px;
+        text-decoration: none;
+        color: inherit;
+        font-size: 16px;
+
+        &:hover {
+          border-radius: 20px;
+          background-color: $gray-lighter;
+        }
+
+        i.fa { @extend .fa-lg; }
+      }
+    }
+
+    .add-garment {
+      padding: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+      text-decoration: none;
+      color: inherit;
+      &:hover {
+        border-radius: 20px;
+        background-color: darken($gray-dark, 5%);
+      }
+    }
+  }
+}

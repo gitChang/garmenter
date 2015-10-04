@@ -1,0 +1,43 @@
+#invoice-barcode-scan {
+  margin-top: 100px;
+  color: $gray-lighter;
+
+  .barcode-panel {
+    @extend .col-xs-12;
+    @extend .col-sm-8;
+    @extend .col-sm-offset-2;
+    @extend .col-md-6;
+    @extend .col-md-offset-3;
+
+    .scan-msg { font-family: Courier !important; }
+
+    .invoice-barcode-number {
+      outline: none;
+      font-family: Courier !important;
+      font-size: 38px;
+      width: 90%;
+      color: $brand-primary;
+      background-color: $gray-dark;
+      border: 1px solid $gray-lighter;
+      //border-bottom: 1px solid $gray-lighter;
+      padding: 10px;
+      text-align: center;
+
+      &:disabled {
+        color: $gray-light;
+        border-color: $gray-light;
+      }
+    }
+  }
+
+  // avoid collapse ul list navbar bottom.
+  /**@media (min-width: $screen-xs-min) {
+    #bottom-toolbar {
+      margin: 0 auto;
+      display: table;
+      table-layout: fixed;
+      float:none;
+    }
+  }**/
+
+}

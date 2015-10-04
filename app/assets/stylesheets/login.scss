@@ -1,0 +1,81 @@
+#login-form {
+  margin-top: 100px;
+
+  #form-panel {
+    @extend .col-xs-10;
+    @extend .col-xs-offset-1;
+    @extend .col-sm-8;
+    @extend .col-sm-offset-2;
+    @extend .col-md-4;
+    @extend .col-md-offset-4;
+
+    input {
+      @extend .form-control, .input-lg;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      text-align: center;
+
+      &[type="text"] {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &[type="password"] {
+        border-radius: 0;
+      }
+    }
+
+    button {
+      outline: none !important;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .btn-lg;
+      @extend .btn-block;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+    }
+  }
+}
+
+#or-signup {
+  margin-top: 30px;
+  a {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: $brand-primary;
+    text-decoration: none;
+    &:hover {
+      border-radius: 20px;
+      background-color: darken($gray-darker, 2%);
+    }
+  }
+}
+
+#company-label {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+
+  .label-panel { padding: 20px; }
+  a {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+    color: inherit;
+    &:hover {
+      text-decoration: none;
+      background-color: darken($gray-darker, 2%);
+    }
+  }
+}
+

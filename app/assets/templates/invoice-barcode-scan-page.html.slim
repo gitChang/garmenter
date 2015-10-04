@@ -1,0 +1,25 @@
+.row#invoice-barcode-scan
+  .barcode-panel
+    .col-xs-12.text-center
+      h2.scan-msg Enter Invoice Barcode
+
+    .col-xs-12.text-center
+      input.invoice-barcode-number type="text"
+
+    #spinner.col-xs-12.text-center.hidden
+      h3
+        i.fa.fa-spinner.fa-pulse.fa-lg
+
+// actionbar
+#actionbar-bottom
+  ul.nav.navbar-nav
+    li.first
+      a ui-sref="history-invoice-collection-page"
+        i.fa.fa-history
+        span.badge ng-show="historyInvoiceCollectionLen"
+          | {{ historyInvoiceCollectionLen }}
+    li.two
+      a.recent-collection href="#"
+              i.fa.fa-th
+              span.badge ng-show="recentInvoiceScannedNumber"
+                | {{ recentInvoiceScannedNumber }}
