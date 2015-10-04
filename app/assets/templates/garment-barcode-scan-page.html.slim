@@ -13,4 +13,10 @@
     li.first
       a ui-sref="invoice-barcode-scan-page"
         i.fa.fa-chevron-left
+        | Back
     li.two#save-garment-parent
+      a.save-garments href="#"
+        i.fa.fa-save
+        | Save
+        span.badge ng-show="garmentScannedLen"
+          | {{ garmentScannedLen }}

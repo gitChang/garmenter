@@ -33,6 +33,12 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
     element.on('click', function (event) {
       event.preventDefault();
 
+      // ignore when no items yet
+      if (!Object.keys(scope.model.garment_barcodes).length) {
+        return;
+      }
+
+      // ignore when already processing
       if (element.find('.fa-spinner').length) {
         return;
       }

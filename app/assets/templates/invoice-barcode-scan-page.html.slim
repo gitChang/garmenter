@@ -16,10 +16,13 @@
     li.first
       a ui-sref="history-invoice-collection-page"
         i.fa.fa-history
+        | History
         span.badge ng-show="historyInvoiceCollectionLen"
           | {{ historyInvoiceCollectionLen }}
     li.two
       a.recent-collection href="#"
-              i.fa.fa-th
-              span.badge ng-show="recentInvoiceScannedNumber"
-                | {{ recentInvoiceScannedNumber }}
+        i.fa.fa-th
+        | Collection
+        span.badge ng-show="recentInvoiceScannedNumber"
+          | {{ recentInvoiceScannedNumber }}
+

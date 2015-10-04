@@ -49392,7 +49392,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/history-invoice-collection-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/history-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-history"></i>&nbsp;<b>Collection History</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/history-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Collection History</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
@@ -49406,7 +49406,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/recent-invoice-collection-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/recent-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-edit"></i>&nbsp;<b>Modify Recent Collection</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/recent-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Modify Recent Collection</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
@@ -49427,7 +49427,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/garment-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i></a>\n    </li>\n    <li class="two" id="save-garment-parent"></li>\n  </ul>\n</div>')
+  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two" id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49441,7 +49441,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/garment-scan-tpls/garment-save-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-scan-tpls/garment-save-tpl.html", '<a class="save-garments" href="#"><i class="fa fa-save"></i><span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>')
+  $templateCache.put("garment-scan-tpls/garment-save-tpl.html", "")
 }]);
 
 // Angular Rails Template
@@ -49455,14 +49455,14 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/history-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("history-invoice-collection-page.html", '<div class="row" id="history-invoice-collection">\n  <div class="collection-panel">\n    <div class="blank-msg" ng-hide="invoices.length">\n      <h3 class="text-center">\n        <i class="fa fa-hand-o-right"></i>&nbsp;No records of History yet ...\n      </h3>\n    </div>\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right"><small>Today</small></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;Garments</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("history-invoice-collection-page.html", '<div class="row" id="history-invoice-collection">\n  <div class="collection-panel">\n    <div class="blank-msg" ng-hide="invoices.length">\n      <h3 class="text-center">\n        <i class="fa fa-hand-o-right"></i>&nbsp;No records of History yet ...\n      </h3>\n    </div>\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right"><small>Today</small></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;Garments</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/invoice-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i><span class="badge" ng-show="historyInvoiceCollectionLen">{{ historyInvoiceCollectionLen }}</span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i><span class="badge" ng-show="recentInvoiceScannedNumber">{{ recentInvoiceScannedNumber }}</span></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="historyInvoiceCollectionLen">{{ historyInvoiceCollectionLen }}</span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="recentInvoiceScannedNumber">{{ recentInvoiceScannedNumber }}</span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49476,7 +49476,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/recent-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right"><small>Today</small></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;Garments</span><span class="pull-right add-garment-parent"><a class="add-garment" data-idx="{{ $index }}" href="#"><i class="fa fa-plus"></i></a></span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i></a>\n    </li>\n    <li class="two">\n      <a class="done" href="#"><i class="fa fa-check"></i></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right"><small>Today</small></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;Garments</span><span class="pull-right add-garment-parent"><a class="add-garment" data-idx="{{ $index }}" href="#"><i class="fa fa-plus"></i></a></span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="done" href="#"><i class="fa fa-check"></i>Done</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49619,11 +49619,6 @@ App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateC
     height: 70,
     lineColor: '#eee',
     displayValue: true
-  });
-
-  // put save garment tpl on action bar
-  jQuery('#save-garment-parent').html(function () {
-    return $compile($templateCache.get('garment-scan-tpls/garment-save-tpl.html'))($scope);
   });
 
   // update the badge count.
@@ -49947,6 +49942,12 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
     element.on('click', function (event) {
       event.preventDefault();
 
+      // ignore when no items yet
+      if (!Object.keys(scope.model.garment_barcodes).length) {
+        return;
+      }
+
+      // ignore when already processing
       if (element.find('.fa-spinner').length) {
         return;
       }

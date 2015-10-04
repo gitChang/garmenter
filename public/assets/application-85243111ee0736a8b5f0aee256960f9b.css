@@ -15386,10 +15386,14 @@ body {
 #actionbar-bottom .navbar-nav > li a:hover {
   color: #4bc8de;
 }
-/* line 32, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+/* line 30, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom .navbar-nav > li a i.fa {
+  margin-right: 10px;
+}
+/* line 35, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
 #actionbar-bottom .navbar-nav > li a span.badge {
   background-color: #d9534f;
   position: absolute;
   top: 5px;
-  right: 0;
+  left: 0px;
 }

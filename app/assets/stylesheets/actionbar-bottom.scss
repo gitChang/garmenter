@@ -27,13 +27,16 @@
           color: $brand-primary;
         }
 
-        i.fa { @extend .fa-lg; }
+        i.fa {
+          @extend .fa-lg;
+          margin-right: 10px;
+        }
 
         span.badge {
           background-color: $brand-danger;
           position: absolute;
           top: 5px;
-          right: 0;
+          left: 0px;
         }
       }
     }

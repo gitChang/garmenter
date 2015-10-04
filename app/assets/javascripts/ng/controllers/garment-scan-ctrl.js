@@ -29,11 +29,6 @@ App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateC
     displayValue: true
   });
 
-  // put save garment tpl on action bar
-  jQuery('#save-garment-parent').html(function () {
-    return $compile($templateCache.get('garment-scan-tpls/garment-save-tpl.html'))($scope);
-  });
-
   // update the badge count.
   $scope.$watch('model.garment_barcodes', function (garments) {
     console.log($scope.model.garment_barcodes);
