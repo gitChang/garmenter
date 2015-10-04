@@ -53,6 +53,7 @@ App.directive('saveGarments', function ($compile, $templateCache, $state, Shared
 
       // put timeout to see templates change
       setTimeout(function () {
+
         saveOrUpdateInvoice();
         resetSharedVarsForEditInvoice();
 
