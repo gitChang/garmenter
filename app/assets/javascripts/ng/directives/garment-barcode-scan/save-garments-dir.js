@@ -11,7 +11,6 @@ App.directive('saveGarments',
 
       // if invoice is for editing
       if ( SharedVarsSvc.currentInvoiceIndex !== null ) {
-        alert();
 
         var idx = SharedVarsSvc.currentInvoiceIndex;
 
