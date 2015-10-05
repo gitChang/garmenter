@@ -9,6 +9,7 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
     function (event, toState, toParams, fromState, fromParams) {
       event.preventDefault();
 
+
       switch ($state.current.name) {
         case 'login-page':
           element.html(function () {
@@ -19,6 +20,18 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
         case 'signup-page':
           element.html(function () {
             return $compile($templateCache.get('actionbar-top-tpls/signup-content-tpl.html'))(scope);
+          })
+          break;
+
+        case 'invoice-barcode-scan-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/invoice-scan-content-tpl.html'))(scope);
+          })
+          break;
+
+        case 'garment-barcode-scan-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/garment-scan-content-tpl.html'))(scope);
           })
           break;
 

@@ -14,9 +14,11 @@
               href=("{{ '#' + invoice.invoice_number }}")
               onclick=("return false")
             ]
-              | Invoice no. {{ invoice.invoice_number }}
-              span.pull-right
-                small Today
+              | Invoice No. {{ invoice.invoice_number }}
+              span.pull-right.total-garments
+                | {{ getGarmentsTotal($index) }}
+                | &nbsp;Garments
+
 
         div.panel-collapse.collapse [
           id=("{{ invoice.invoice_number }}")
@@ -37,25 +39,22 @@
 
 
           .panel-footer
-            span
-              span.total-garments {{ getGarmentsTotal($index) }}
-              | &nbsp;
-              | Garments
-            span.pull-right.add-garment-parent
+            span.add-garment-parent
               a.add-garment href="#" data-idx=("{{ $index }}")
                 i.fa.fa-plus
+            small.pull-right Today
+
 
 // actionbar
 #actionbar-bottom
   ul.nav.navbar-nav
     li.first
+      a.done href="#"
+        i.fa.fa-refresh
+        | Sync
+    li.two
       a ui-sref="invoice-barcode-scan-page"
         i.fa.fa-chevron-left
         | Back
-    li.two
-      a.done href="#"
-        i.fa.fa-check
-        | Done
-
 
 

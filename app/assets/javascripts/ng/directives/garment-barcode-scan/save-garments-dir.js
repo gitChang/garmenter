@@ -5,58 +5,72 @@ App.directive('saveGarments',
 
   function linker (scope, element) {
 
-    function saveOrUpdateInvoice () {
+    function saveInvoice () {
 
-      // check if garment entry is for save or update
-      if (SharedVarsSvc.currentGarmentBarcodesLen) {
+      var orderedKeys;
 
-        // update or append to invoice garment barcodes.
-        SharedVarsSvc.recentInvoiceCollection.forEach( function (item, index, object) {
+      // if invoice is for editing
+      if ( SharedVarsSvc.currentInvoiceIndex !== null ) {
+        alert();
 
-          if (item.invoice_number === SharedVarsSvc.currentInvoiceNumber) {
-            // loop thru model and get to push into existing
-            // garment barcode collection of the invoice.
-            var len = Object.keys(item.garment_barcodes).length;
+        var idx = SharedVarsSvc.currentInvoiceIndex;
 
-            for (var key in scope.model.garment_barcodes) {
-              item.garment_barcodes[len + 1] = scope.model.garment_barcodes[key];
-            }
-          }
-        });
+        // get the length of the existing invoice garment barcodes object
+        var len = Object.keys( SharedVarsSvc.recentInvoiceCollection[ idx ].garment_barcodes ).length;
 
+        // reorder the keys. base the starting on existing length garment barcodes object
+        orderedKeys = SharedFnSvc.reOrderKeys( scope.model.garment_barcodes, len + 1 );
+
+        // update || append to existing garment barcodes object
+        for ( var key in orderedKeys ) {
+          SharedVarsSvc.recentInvoiceCollection[ idx ].garment_barcodes[ key ] = orderedKeys[ key ];
+        }
+
+        // put timeout to see templates change
+        setTimeout(function () {
+          // redirect to recent collection page instead
+          $state.go( 'recent-invoice-collection-page' );
+        }, 2000);
+
+      // new entry
       } else {
 
-        // or just save barcodes.
-        SharedVarsSvc.recentInvoiceCollection.push(scope.model);
+        // re-order keys in the object to
+        // to maintain order of the next entry.
+        orderedKeys = SharedFnSvc.reOrderKeys( scope.model.garment_barcodes, null );
+
+        // replace the garment barcodes with newly reordered
+        scope.model.garment_barcodes = orderedKeys;
+
+        // save invoice
+        SharedVarsSvc.recentInvoiceCollection.push( scope.model );
+
+        // put timeout to see templates change
+        setTimeout(function () {
+          // redirect to invoice scan for new entry
+          $state.go( 'invoice-barcode-scan-page' );
+        }, 2000);
       }
 
-      // clear shared var for editing entries.
+
+      // clear edit signal vars
       SharedFnSvc.resetSharedVarsForEditInvoice();
     }
 
+
+    // event click save
     element.on('click', function (event) {
       event.preventDefault();
 
-      // ignore when no items yet
-      if (!Object.keys(scope.model.garment_barcodes).length) {
-        return;
-      }
-
-      // ignore when already processing
-      if (element.find('.fa-spinner').length) {
-        return;
-      }
+      // trapping
+      if (!Object.keys(scope.model.garment_barcodes).length) return;
+      if (element.find('.fa-spinner').length) return;
 
       // show processing
       element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
-      // put timeout to see templates change
-      setTimeout(function () {
-        saveOrUpdateInvoice();
-
-        // redirect to invoice scan page for new entry
-        $state.go('invoice-barcode-scan-page');
-      }, 2000);
+      // save data
+      saveInvoice();
     });
   }
 

@@ -49385,7 +49385,14 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/common-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/common-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-cloud"></i>&nbsp;<b>TUKU Laundry System</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/common-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" src="/images/tuku.png" style="height:25px" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/actionbar-top-tpls/garment-scan-content-tpl.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("actionbar-top-tpls/garment-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
@@ -49396,10 +49403,17 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 }]);
 
 // Angular Rails Template
+// source: app/assets/templates/actionbar-top-tpls/invoice-scan-content-tpl.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("actionbar-top-tpls/invoice-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand">Scan Invoice Barcode</span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+}]);
+
+// Angular Rails Template
 // source: app/assets/templates/actionbar-top-tpls/login-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><i class="fa fa-cloud"></i>&nbsp;<b>TUKU Laundry System</b></span>\n</div>')
+  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" src="/images/tuku.png" style="height:25px" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49427,14 +49441,14 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/garment-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two" id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas><br /><small ng-show="oldEntry">UPDATE QUANTITY</small>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two" id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/garment-scan-tpls/delete-garment-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-scan-tpls/delete-garment-tpl.html", '<span class="pull-right"><a class="delete-scanned-garment" href="#" tabindex="-1"><i class="fa fa-trash"></i></a></span>')
+  $templateCache.put("garment-scan-tpls/delete-garment-tpl.html", "")
 }]);
 
 // Angular Rails Template
@@ -49445,24 +49459,24 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 }]);
 
 // Angular Rails Template
-// source: app/assets/templates/garment-scan-tpls/new-garment-scan.html.slim
+// source: app/assets/templates/garment-scan-tpls/new-garment-scan-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-scan-tpls/new-garment-scan.html", '<div class="row">\n  <div class="col-xs-12 delete-garment-parent">\n    <label>Garment Item No. $</label>\n  </div>\n  <div class="col-xs-12">\n    <input class="garment-barcode-number" type="text" />\n  </div>\n</div>')
+  $templateCache.put("garment-scan-tpls/new-garment-scan-tpl.html", '<div class="row">\n  <div class="col-xs-12 delete-garment-parent">\n    <label>Garment Item No. $</label><span class="pull-right"><a class="delete-scanned-garment hidden" href="#" tabindex="-1"><i class="fa fa-trash"></i></a></span>\n  </div>\n  <div class="col-xs-12">\n    <input class="garment-barcode-number" type="text" />\n  </div>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/history-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("history-invoice-collection-page.html", '<div class="row" id="history-invoice-collection">\n  <div class="collection-panel">\n    <div class="blank-msg" ng-hide="invoices.length">\n      <h3 class="text-center">\n        <i class="fa fa-hand-o-right"></i>&nbsp;No records of History yet ...\n      </h3>\n    </div>\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right"><small>Today</small></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;Garments</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("history-invoice-collection-page.html", '<div class="row" id="history-invoice-collection">\n  <div class="collection-panel">\n    <div class="blank-msg" ng-hide="invoices.length">\n      <h3 class="text-center">\n        <i class="fa fa-hand-o-right"></i>&nbsp;History is Empty...\n      </h3>\n    </div>\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right total-garments">{{ getGarmentsTotal($index) }}&nbsp;Garments</span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <small>Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/invoice-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="historyInvoiceCollectionLen">{{ historyInvoiceCollectionLen }}</span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="recentInvoiceScannedNumber">{{ recentInvoiceScannedNumber }}</span></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="historyInvoiceCollectionLen">{{ historyInvoiceCollectionLen }}</span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="recentInvoiceScannedNumber">{{ recentInvoiceScannedNumber }}</span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49476,7 +49490,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/recent-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right"><small>Today</small></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;Garments</span><span class="pull-right add-garment-parent"><a class="add-garment" data-idx="{{ $index }}" href="#"><i class="fa fa-plus"></i></a></span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="done" href="#"><i class="fa fa-check"></i>Done</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice No. {{ invoice.invoice_number }}<span class="pull-right total-garments">{{ getGarmentsTotal($index) }}&nbsp;Garments</span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span class="add-garment-parent"><a class="add-garment" data-idx="{{ $index }}" href="#"><i class="fa fa-plus"></i></a></span><small class="pull-right">Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="done" href="#"><i class="fa fa-refresh"></i>Sync</a>\n    </li>\n    <li class="two">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49484,6 +49498,13 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
   $templateCache.put("recent-invoice-collection-tpls/confirm-msg-tpl.html", '<span id="confirm-msg">Confirm Delete</span><span>..&nbsp;</span><span class="cancel-timer">6</span>')
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/shared-tpls/duplicate-msg-tpl.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("shared-tpls/duplicate-msg-tpl.html", '<i class="fa fa-exclamation-triangle"></i>&nbsp;Barcode already exists!')
 }]);
 
 // Angular Rails Template
@@ -49548,11 +49569,100 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 });
 'use strict';
 
-App.service('SharedFnSvc', function (SharedVarsSvc) {
+App.service('SharedFnSvc', function ($templateCache, SharedVarsSvc) {
 
   this.resetSharedVarsForEditInvoice = function () {
+    SharedVarsSvc.currentInvoiceIndex = null;
     SharedVarsSvc.currentInvoiceNumber = null;
-    SharedVarsSvc.currentGarmentBarcodesLen = null;
+  }
+
+
+  this.setTargetInvoice = function (invoiceIndex) {
+    SharedVarsSvc.currentInvoiceIndex = invoiceIndex;
+    SharedVarsSvc.currentInvoiceNumber = SharedVarsSvc
+      .recentInvoiceCollection[invoiceIndex]
+      .invoice_number;
+  }
+
+
+  this.findInObjectArray = function (objectArray, value, notifCenter) {
+    var found = false;
+
+    objectArray.forEach(function (item, index, object) {
+      if ( item.invoice_number.toLowerCase() === value.toLowerCase() ) found = true;
+    })
+
+    if ( found ) {
+      if (notifCenter.length) {
+        notifCenter.html(function () {
+          return $templateCache.get('shared-tpls/duplicate-msg-tpl.html');
+        })
+        notifCenter.removeClass('hidden');
+      }
+    }
+
+    return found;
+  }
+
+
+  this.findInObject = function (object, value, notifCenter) {
+    var found = false;
+
+    for (var key in object) {
+      if ( object[key] === value ) found = true;
+    }
+
+    if ( found ) {
+      if (notifCenter.length) {
+        notifCenter.html(function () {
+          return $templateCache.get('shared-tpls/duplicate-msg-tpl.html');
+        })
+        notifCenter.removeClass('hidden');
+      }
+    }
+
+    return found;
+  }
+
+
+  this.getLastKey = function (object) {
+    var lastKey;
+
+    for (var key in object) {
+      lastKey = parseInt( key );
+    }
+    return lastKey || 0;
+  }
+
+
+  this.removeNotification = function ( notifCenter ) {
+    //if ( notifCenter.hasClass('hidden') ) return;
+    notifCenter.html('').addClass('hidden');
+  }
+
+
+  this.reOrderKeys = function ( object, keyStart ) {
+    var tempObject = object;
+    var i = keyStart || 1; // base to one.
+
+    // pass the value of old key to the new key
+    for ( var key in tempObject ) {
+
+      // when the key is already matches
+      // the ordering, proceed to next key
+      if ( key != i) {
+
+        Object.defineProperty( tempObject, i,
+          Object.getOwnPropertyDescriptor( tempObject, key ) );
+
+        // delete old key and value
+        delete tempObject[ key ];
+      }
+
+      i++;
+    }
+
+    return tempObject;
   }
 
 })
@@ -49561,21 +49671,19 @@ App.service('SharedFnSvc', function (SharedVarsSvc) {
 
 App.service('SharedVarsSvc', function () {
 
-  // use in new garment barcode scan
+  // use in new or update invoice
   this.currentInvoiceNumber = null;
+
+  // used as the signal of editing
+  // existing invoice
+  this.currentInvoiceIndex = null;
 
   // holds the number of target garment collection for modification (add)
   this.currentGarmentBarcodesLen = null;
 
   // holds the recent saved invoice scanned
   this.recentInvoiceCollection = [{
-    invoice_number: '3242',
-    garment_barcodes: {
-      1: '234',
-      2: '45676324',
-      3: '4534423',
-      4: '879576'
-    }
+    invoice_number: '0001', garment_barcodes: { 1: '594832', 2: '897654' }
   }];
 
   // holds the history of the last collection
@@ -49583,9 +49691,11 @@ App.service('SharedVarsSvc', function () {
 });
 'use strict';
 
-App.controller('ActionbarTopCtrl', function ($scope, $state, $templateCache) {
+App.controller('ActionbarTopCtrl', function ($scope, $state, $templateCache, SharedVarsSvc) {
 
   // bind event to elements
+
+  $scope.entryTitle = SharedVarsSvc.currentInvoiceNumber;
 
   $scope.logoutUser = function () {
     if (angular.element('.logout-user').find('.fa-spinner').length) return;
@@ -49603,44 +49713,76 @@ App.controller('ActionbarTopCtrl', function ($scope, $state, $templateCache) {
 ;
 'use strict';
 
-App.controller('GarmentScanCtrl', function ($scope, $state, $compile, $templateCache, SharedVarsSvc) {
+App.controller('GarmentScanCtrl',
+  function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
 
   $scope.model = {
-    invoice_number: null,
+    invoice_number: SharedVarsSvc.currentInvoiceNumber || null,
     garment_barcodes: {}
   };
+
 
   // indicates the realtime length og garments
   $scope.garmentScannedLen = 0;
 
+
   // invoice number is required,
   // so if not present, goto invoice scan page
-  if (!SharedVarsSvc.currentInvoiceNumber) {
+  if (!$scope.model.invoice_number) {
     $state.go('invoice-barcode-scan-page');
     return;
   }
 
-  // get the invoice number on shared service
-  $scope.model.invoice_number = SharedVarsSvc.currentInvoiceNumber.toString();
+
+  // indicate invoice number
+  setTimeout(function () {
+    var text = 'Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+    jQuery('.navbar-brand').text( text );
+  }, 500);
+
 
   // create barcode img using the number scanned.
   // display barcode canvas element on page.
   jQuery('#invoice-barcode-pic').JsBarcode($scope.model.invoice_number, {
     width: 2,
-    height: 70,
-    lineColor: '#eee',
-    displayValue: true
+    height: 60,
+    lineColor: '#eee'
   });
+
+
+  // indicate that it is for update
+  $scope.oldEntry = SharedVarsSvc.currentInvoiceIndex !== null;
+
+
+  $scope.newGarmentScanTemplate = function () {
+    // add initial new garment entry tpl.
+    var tpl = $templateCache.get( 'garment-scan-tpls/new-garment-scan-tpl.html' );
+    var lastKey = SharedFnSvc.getLastKey( $scope.model.garment_barcodes );
+
+
+    // assign garment order.
+    tpl = tpl.replace( '$', lastKey + 1 );
+
+    angular.element('new-garment-scan-dir').append(function () {
+      return $compile( tpl )( $scope );
+    })
+
+
+    // scroll to page bottom and
+    // give focus to newly added input text
+    jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, 500);
+    jQuery('input:last').focus();
+  }
+
+
+  // initialize template
+  $scope.newGarmentScanTemplate();
+
 
   // update the badge count.
   $scope.$watch('model.garment_barcodes', function (garments) {
-    //console.log($scope.model.garment_barcodes);
-    // get the normal length
     $scope.garmentScannedLen = Object.keys(garments).length;
-    // get the null valued elem and deduce.
-    for (var key in garments) {
-      if (garments[key] === null) $scope.garmentScannedLen -= 1;
-    }
+    //console.log( JSON.stringify(garments) );
   }, true);
 });
 'use strict';
@@ -49700,6 +49842,7 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
     function (event, toState, toParams, fromState, fromParams) {
       event.preventDefault();
 
+
       switch ($state.current.name) {
         case 'login-page':
           element.html(function () {
@@ -49710,6 +49853,18 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
         case 'signup-page':
           element.html(function () {
             return $compile($templateCache.get('actionbar-top-tpls/signup-content-tpl.html'))(scope);
+          })
+          break;
+
+        case 'invoice-barcode-scan-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/invoice-scan-content-tpl.html'))(scope);
+          })
+          break;
+
+        case 'garment-barcode-scan-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/garment-scan-content-tpl.html'))(scope);
           })
           break;
 
@@ -49746,18 +49901,30 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
 App.directive('deleteScannedGarment', function ($compile, $templateCache) {
 
   function linker (scope, element) {
-    element.on('click', function () {
-      // if only has one garment scanned or none
-      // then do not delete this element
-      if (scope.garmentScannedLen < 1 && element.val().trim() === '') return;
 
-      var elParent = element.closest('.row');
+    element.on('click', function () {
+
+      // trapping
+      if ( scope.garmentScannedLen < 2 && element.val().trim() === '' ) return;
+
+      var elemParent = element.closest('.row');
       var garmentNumber = element.closest('.row').find('.garment-barcode-number').val().trim();
 
-      for (var key in scope.model.garment_barcodes) {
-        if (scope.model.garment_barcodes[key] === garmentNumber) {
+
+      // deleting garment scanned
+      for ( var key in scope.model.garment_barcodes ) {
+
+        if (scope.model.garment_barcodes[key].toLowerCase() === garmentNumber.toLowerCase()) {
           delete scope.model.garment_barcodes[key];
-          elParent.remove();
+          scope.$apply();
+
+          // animate remove element for emphasis
+          elemParent.addClass('animated fadeOut');
+          elemParent.addClass('fadeOut');
+
+          setTimeout(function () {
+            elemParent.remove();
+          }, 1000)
         }
       }
     });
@@ -49770,111 +49937,48 @@ App.directive('deleteScannedGarment', function ($compile, $templateCache) {
 });
 'use strict';
 
-App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedVarsSvc) {
+App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedFnSvc) {
 
   function linker (scope, element) {
 
-    var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan.html');
-    var tplCache = null;
+    element.on('input keyup', function (event) {
 
-    function pushValueToArray () {
-      var garmentNumber = element.val().trim();
-      var unique = true;
-      var garmentsLen = Object.keys(scope.model.garment_barcodes).length;
+      var garmentBarcode = element.val().toUpperCase().trim();
+      var notifCenter = angular.element('#notif-center');
 
-      for (var key in scope.model.garment_barcodes) {
-        if (scope.model.garment_barcodes[key] === garmentNumber) {
-          unique = false;
-          // clear the value
-          element.select();
-        }
-      }
 
-      if (unique) {
-        scope.model.garment_barcodes[garmentsLen + 1] = garmentNumber;
-        scope.$apply();
-      }
+      // trapping
+      if ( event.which !== 13 ) return;
+      if ( SharedFnSvc.findInObject(scope.model.garment_barcodes, garmentBarcode, notifCenter) ) return;
 
-      return unique;
-    }
 
-    function lockThisElement () {
-      element.prop('disabled', true);
-    }
+      // remove warning
+      SharedFnSvc.removeNotification(notifCenter);
 
-    function setGarmentNumberAndModel () {
-      // set a number of new garment entry
-      function getNextNumber () {
-        var nextNumber;
 
-        if (SharedVarsSvc.currentGarmentBarcodesLen) {
-          nextNumber = (parseInt(SharedVarsSvc.currentGarmentBarcodesLen) - 1) +
-                       (Object.keys(scope.model.garment_barcodes).length + 1);
-        } else {
-          nextNumber = Object.keys(scope.model.garment_barcodes).length + 1;
-        }
+      // add new garment barcode to model
+      var lastKey = SharedFnSvc.getLastKey( scope.model.garment_barcodes );
+      scope.model.garment_barcodes[ lastKey + 1 ] = garmentBarcode;
 
-        return nextNumber;
-      }
 
-      // apply item number to garment item.
-      var garmentNumber = getNextNumber();
+      // allow user to delete the garment entry.
+      element.parents('.row').find('.delete-scanned-garment').removeClass('hidden');
 
-      tplCache = tpl.replace('$', garmentNumber);
-    }
 
-    function addDeleteGarmentElement () {
-      var deleteGarmentTpl = $templateCache.get('garment-scan-tpls/delete-garment-tpl.html');
-
-      element.parents('.row').find('.delete-garment-parent:last')
-      .append(function () {
-        return $compile(deleteGarmentTpl)(scope);
-      });
+      // create new template
+      scope.newGarmentScanTemplate();
       scope.$digest();
-    }
 
-    function appendNewElementGarment () {
-      // ignore the garment. it is scanned.
-      if (!pushValueToArray()) return;
-
-      lockThisElement();
-      setGarmentNumberAndModel();
-      addDeleteGarmentElement();
-
-      jQuery('new-garment-scan-dir').append(function () {
-        return $compile(tplCache)(scope);
-      });
 
       // scroll to page bottom and
       // give focus to newly added input text
       jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, 500);
       jQuery('input:last').focus();
-    }
 
-    // using barcode scanner
-    element.on('input', function () {
-      var charSignal = '*';
-      var inputString = jQuery(this).val().replace(/(\r\n|\n|\r)/gm, charSignal);
 
-      if (inputString.indexOf(charSignal) !== -1) {
-        alert('true');
-        return;
-      }
-
-      // don't execute when end char is not present.
-      if (inputString.indexOf(charSignal) === -1) return;
-
-      // create new element garment input
-      appendNewElementGarment();
-    });
-
-    // manually entered barcode number
-    element.on('keyup', function(event) {
-      if (event.which === 13 && element.val().trim() !== '') {
-        // create new element garment input
-        appendNewElementGarment();
-      }
-    });
+      // log
+      console.log( JSON.stringify(scope.model.garment_barcodes) );
+    })
   }
 
   return {
@@ -49884,11 +49988,11 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
 });
 'use strict';
 
-App.directive('newGarmentScanDir', function ($compile, $templateCache, SharedVarsSvc) {
+App.directive('xxnewGarmentScanDir', function ($compile, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
-    var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan.html');
+    var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan-tpl.html');
     var tplCache = null;
 
     function setGarmentNumberAndModel () {
@@ -49929,58 +50033,72 @@ App.directive('saveGarments',
 
   function linker (scope, element) {
 
-    function saveOrUpdateInvoice () {
+    function saveInvoice () {
 
-      // check if garment entry is for save or update
-      if (SharedVarsSvc.currentGarmentBarcodesLen) {
+      var orderedKeys;
 
-        // update or append to invoice garment barcodes.
-        SharedVarsSvc.recentInvoiceCollection.forEach( function (item, index, object) {
+      // if invoice is for editing
+      if ( SharedVarsSvc.currentInvoiceIndex !== null ) {
+        alert();
 
-          if (item.invoice_number === SharedVarsSvc.currentInvoiceNumber) {
-            // loop thru model and get to push into existing
-            // garment barcode collection of the invoice.
-            var len = Object.keys(item.garment_barcodes).length;
+        var idx = SharedVarsSvc.currentInvoiceIndex;
 
-            for (var key in scope.model.garment_barcodes) {
-              item.garment_barcodes[len + 1] = scope.model.garment_barcodes[key];
-            }
-          }
-        });
+        // get the length of the existing invoice garment barcodes object
+        var len = Object.keys( SharedVarsSvc.recentInvoiceCollection[ idx ].garment_barcodes ).length;
 
+        // reorder the keys. base the starting on existing length garment barcodes object
+        orderedKeys = SharedFnSvc.reOrderKeys( scope.model.garment_barcodes, len + 1 );
+
+        // update || append to existing garment barcodes object
+        for ( var key in orderedKeys ) {
+          SharedVarsSvc.recentInvoiceCollection[ idx ].garment_barcodes[ key ] = orderedKeys[ key ];
+        }
+
+        // put timeout to see templates change
+        setTimeout(function () {
+          // redirect to recent collection page instead
+          $state.go( 'recent-invoice-collection-page' );
+        }, 2000);
+
+      // new entry
       } else {
 
-        // or just save barcodes.
-        SharedVarsSvc.recentInvoiceCollection.push(scope.model);
+        // re-order keys in the object to
+        // to maintain order of the next entry.
+        orderedKeys = SharedFnSvc.reOrderKeys( scope.model.garment_barcodes, null );
+
+        // replace the garment barcodes with newly reordered
+        scope.model.garment_barcodes = orderedKeys;
+
+        // save invoice
+        SharedVarsSvc.recentInvoiceCollection.push( scope.model );
+
+        // put timeout to see templates change
+        setTimeout(function () {
+          // redirect to invoice scan for new entry
+          $state.go( 'invoice-barcode-scan-page' );
+        }, 2000);
       }
 
-      // clear shared var for editing entries.
+
+      // clear edit signal vars
       SharedFnSvc.resetSharedVarsForEditInvoice();
     }
 
+
+    // event click save
     element.on('click', function (event) {
       event.preventDefault();
 
-      // ignore when no items yet
-      if (!Object.keys(scope.model.garment_barcodes).length) {
-        return;
-      }
-
-      // ignore when already processing
-      if (element.find('.fa-spinner').length) {
-        return;
-      }
+      // trapping
+      if (!Object.keys(scope.model.garment_barcodes).length) return;
+      if (element.find('.fa-spinner').length) return;
 
       // show processing
       element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
-      // put timeout to see templates change
-      setTimeout(function () {
-        saveOrUpdateInvoice();
-
-        // redirect to invoice scan page for new entry
-        $state.go('invoice-barcode-scan-page');
-      }, 2000);
+      // save data
+      saveInvoice();
     });
   }
 
@@ -49995,47 +50113,36 @@ App.directive('invoiceBarcodeNumber',
   function ($compile, $templateCache, $state, SharedVarsSvc, SharedFnSvc) {
 
   function linker (scope, element) {
-    // handle input event when using scanner device.
-    element.on('input', function () {
-      var charSignal = '*';
-      var inputString = jQuery(this).val().replace(/(\r\n|\n|\r)/gm, charSignal);
 
-      // ignore input when invalid. escape now.
-      if (inputString.indexOf(charSignal) === -1) return;
+    //element.on('input', function () {
+    //  var charSignal = '*';
+    //  var inputString = jQuery(this).val().replace(/(\r\n|\n|\r)/gm, charSignal);
+    //})
 
-      // indicate processing.
+    var notifCenter = angular.element('#notif-center');
+
+    element.on('keyup', function (event) {
+
+      // trapping
+      if ( event.which !== 13 ) return;
+      if ( SharedFnSvc.findInObjectArray( SharedVarsSvc.recentInvoiceCollection, element.val().trim(), notifCenter )) return;
+
+      // remove warning
+      SharedFnSvc.removeNotification(notifCenter);
+
+      // indicate processing
       jQuery('#spinner').toggleClass('hidden');
 
       // lock input textbox
       element.attr('disabled', true);
 
-      // clear shared var for editing entries.
-      SharedFnSvc.resetSharedVarsForEditInvoice();
+      // store invoice number to shared variable.
+      SharedVarsSvc.currentInvoiceNumber = element.val().trim();
 
       // redirect to garment scanning page with timeout.
       setTimeout(function () {
         $state.go('garment-barcode-scan-page');
       }, scope.timeOut);
-
-    });
-
-    // manually entered barcode number
-    element.on('keyup', function (event) {
-      if (event.which === 13) {
-        // indicate processing
-        jQuery('#spinner').toggleClass('hidden');
-
-        // lock input textbox
-        element.attr('disabled', true);
-
-        // store invoice number to shared variable.
-        SharedVarsSvc.currentInvoiceNumber = element.val().trim();
-
-        // redirect to garment scanning page with timeout.
-        setTimeout(function () {
-          $state.go('garment-barcode-scan-page');
-        }, scope.timeOut);
-      }
     });
 
 
@@ -50094,19 +50201,9 @@ App.directive('loginBtn', function ($state, $templateCache) {
 ;
 'use strict';
 
-App.directive('addGarment', function ($state, $templateCache, SharedVarsSvc) {
+App.directive('addGarment', function ($state, $templateCache, SharedFnSvc) {
 
   function linker (scope, element) {
-
-    function setCurrentInvoiceNumber () {
-      var invoiceIdx = parseInt(element.attr('data-idx'));
-      var invoiceCollectionLen =
-        Object.keys(SharedVarsSvc.recentInvoiceCollection[invoiceIdx].garment_barcodes).length;
-      var invoiceNumber = SharedVarsSvc.recentInvoiceCollection[invoiceIdx].invoice_number;
-
-      SharedVarsSvc.currentInvoiceNumber = invoiceNumber;
-      SharedVarsSvc.currentGarmentBarcodesLen = invoiceCollectionLen + 1; // add 1 for next entry
-    }
 
     element.on('click', function (event) {
       event.preventDefault();
@@ -50117,8 +50214,11 @@ App.directive('addGarment', function ($state, $templateCache, SharedVarsSvc) {
       // show processing
       element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
+      // set a target invoice to add garments
+      var invoiceIndex = parseInt(element.attr('data-idx').trim());
+      SharedFnSvc.setTargetInvoice(invoiceIndex);
+
       setTimeout(function () {
-        setCurrentInvoiceNumber();
         $state.go('garment-barcode-scan-page');
       }, 1000)
     });
@@ -50243,16 +50343,16 @@ App.directive('done', function ($state, $templateCache, SharedVarsSvc) {
       event.preventDefault();
 
       // ignore event when processing
-      if (element.find('.fa-spinner').length) return;
+      if (element.find('.fa-spin').length) return;
 
       // show processing
-      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
+      element.find('.fa-refresh').addClass('fa-spin');
 
       makeHistory();
 
       setTimeout(function () {
         $state.go('invoice-barcode-scan-page');
-      }, 2000)
+      }, 3000)
     });
   }
 

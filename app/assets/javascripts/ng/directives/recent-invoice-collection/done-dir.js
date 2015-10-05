@@ -18,16 +18,16 @@ App.directive('done', function ($state, $templateCache, SharedVarsSvc) {
       event.preventDefault();
 
       // ignore event when processing
-      if (element.find('.fa-spinner').length) return;
+      if (element.find('.fa-spin').length) return;
 
       // show processing
-      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
+      element.find('.fa-refresh').addClass('fa-spin');
 
       makeHistory();
 
       setTimeout(function () {
         $state.go('invoice-barcode-scan-page');
-      }, 2000)
+      }, 3000)
     });
   }
 

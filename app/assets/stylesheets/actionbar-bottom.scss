@@ -1,5 +1,7 @@
 #actionbar-bottom {
   @extend .navbar, .navbar-inverse, .navbar-fixed-bottom;
+  @extend .animated, .slideInUp;
+
   .navbar-nav {
     width: 100%;
     text-align: center;

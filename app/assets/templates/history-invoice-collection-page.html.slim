@@ -5,7 +5,7 @@
       h3.text-center
         i.fa.fa-hand-o-right
         | &nbsp;
-        | No records of History yet ...
+        | History is Empty...
 
     #accordion.panel-group ng-repeat="invoice in invoices"
       .panel.panel-default
@@ -21,8 +21,10 @@
               onclick=("return false")
             ]
               | Invoice no. {{ invoice.invoice_number }}
-              span.pull-right
-                small Today
+
+              span.pull-right.total-garments
+                | {{ getGarmentsTotal($index) }}
+                | &nbsp;Garments
 
         div.panel-collapse.collapse [
           id=("{{ invoice.invoice_number }}")
@@ -35,10 +37,7 @@
                 td.invoice-garment-number {{ garment_barcode }}
 
           .panel-footer
-            span
-              span.total-garments {{ getGarmentsTotal($index) }}
-              | &nbsp;
-              | Garments
+            small Today
 
 // actionbar
 #actionbar-bottom

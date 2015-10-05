@@ -1,10 +1,10 @@
 'use strict';
 
-App.directive('newGarmentScanDir', function ($compile, $templateCache, SharedVarsSvc) {
+App.directive('xxnewGarmentScanDir', function ($compile, $templateCache, SharedVarsSvc) {
 
   function linker (scope, element) {
 
-    var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan.html');
+    var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan-tpl.html');
     var tplCache = null;
 
     function setGarmentNumberAndModel () {

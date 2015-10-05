@@ -1,5 +1,9 @@
 #actionbar-top {
-  @extend .navbar, .navbar-default, .navbar-static-top;
+  @extend .navbar, .navbar-default, .navbar-fixed-top, .navbar-static-top;
+
+  .navbar-brand {
+    font-weight: bold;
+  }
 
   .navbar-right {
     margin-right: 15px;

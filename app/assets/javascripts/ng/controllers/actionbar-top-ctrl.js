@@ -1,8 +1,10 @@
 'use strict';
 
-App.controller('ActionbarTopCtrl', function ($scope, $state, $templateCache) {
+App.controller('ActionbarTopCtrl', function ($scope, $state, $templateCache, SharedVarsSvc) {
 
   // bind event to elements
+
+  $scope.entryTitle = SharedVarsSvc.currentInvoiceNumber;
 
   $scope.logoutUser = function () {
     if (angular.element('.logout-user').find('.fa-spinner').length) return;
