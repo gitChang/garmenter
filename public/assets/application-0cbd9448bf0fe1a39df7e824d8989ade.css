@@ -15068,6 +15068,19 @@ body {
   color: #777777;
 }
 
+/* line 7, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
+#notif-center {
+  position: fixed;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  font-size: 16px;
+  text-align: center;
+  color: darkred;
+  background-color: #f0ad4e;
+}
+
 /* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
 #signup-form {
   margin-top: 20px;
@@ -15178,24 +15191,11 @@ body {
     }
   }**/
 }
-/* line 5, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
-#invoice-barcode-scan #notif-center {
-  position: fixed;
-  bottom: 50px;
-  left: 0;
-  width: 100%;
-  padding: 6px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  color: darkred;
-  background-color: #f0ad4e;
-}
-/* line 25, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
+/* line 12, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
 #invoice-barcode-scan .barcode-panel .scan-msg {
   font-family: Courier !important;
 }
-/* line 27, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
+/* line 14, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
 #invoice-barcode-scan .barcode-panel .invoice-barcode-number {
   outline: none;
   font-family: Courier !important;
@@ -15207,7 +15207,7 @@ body {
   padding: 10px;
   text-align: center;
 }
-/* line 39, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
+/* line 26, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
 #invoice-barcode-scan .barcode-panel .invoice-barcode-number:disabled {
   color: #777777;
   border-color: #777777;
@@ -15219,49 +15219,36 @@ body {
   color: #eeeeee;
 }
 /* line 5, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
-.row#garment-barcode-scan #notif-center {
-  position: fixed;
-  bottom: 50px;
-  left: 0;
-  width: 100%;
-  padding: 6px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  color: darkred;
-  background-color: #f0ad4e;
-}
-/* line 18, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel {
   margin-bottom: 90px;
   font-family: Courier;
 }
-/* line 28, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
+/* line 15, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel #invoice-barcode {
   margin-bottom: 30px;
 }
-/* line 32, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
+/* line 19, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel form {
   font-size: 22px;
 }
-/* line 35, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
+/* line 22, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel form .row {
   margin-bottom: 25px;
 }
-/* line 39, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
+/* line 26, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel form label {
   color: #4bc8de;
 }
-/* line 43, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
+/* line 30, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel form a.delete-garment-dir {
   text-decoration: none;
   color: #4bc8de;
 }
-/* line 46, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
+/* line 33, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel form a.delete-garment-dir:hover {
   color: #26b6d0;
 }
-/* line 52, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
+/* line 39, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel form input {
   background-color: transparent;
   border: 0;
@@ -15270,7 +15257,7 @@ body {
   width: 100%;
   outline: none;
 }
-/* line 60, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
+/* line 47, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel form input:disabled {
   color: #ffff00;
   border: none;

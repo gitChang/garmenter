@@ -23,7 +23,12 @@ App.controller('GarmentScanCtrl',
 
   // indicate invoice number
   setTimeout(function () {
-    var text = 'Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+    var text;
+    if ( SharedVarsSvc.currentInvoiceIndex !== null )
+      text = 'UPDATE Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+    else
+      text = 'Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+
     jQuery('.navbar-brand').text( text );
   }, 500);
 
@@ -67,8 +72,9 @@ App.controller('GarmentScanCtrl',
 
 
   // update the badge count.
-  $scope.$watch('model.garment_barcodes', function (garments) {
+  $scope.$watch('model.garment_barcodes',
+  function (garments) {
     $scope.garmentScannedLen = Object.keys(garments).length;
-    //console.log( JSON.stringify(garments) );
   }, true);
+
 });

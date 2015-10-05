@@ -2,19 +2,6 @@
   margin-top: 50px;
   color: $gray-lighter;
 
-  #notif-center {
-    position: fixed;
-    bottom: 50px;
-    left: 0;
-    width: 100%;
-    padding: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    color: darkred;
-    background-color: $brand-warning;
-  }
-
   .barcode-panel {
     @extend .col-xs-12;
     @extend .col-sm-8;

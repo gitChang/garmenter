@@ -3,3 +3,15 @@ body {
   background-color: $gray-darker;
   color: $gray-light;
 }
+
+#notif-center {
+  position: fixed;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  font-size: 16px;
+  text-align: center;
+  color: darkred;
+  background-color: $brand-warning;
+}

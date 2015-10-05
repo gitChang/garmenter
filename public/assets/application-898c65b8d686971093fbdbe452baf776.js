@@ -49406,7 +49406,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/invoice-scan-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/invoice-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand">Scan Invoice Barcode</span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/invoice-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand">New Garment Collection</span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
@@ -49441,7 +49441,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/garment-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas><br /><small ng-show="oldEntry">UPDATE QUANTITY</small>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two" id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two" id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49504,7 +49504,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/shared-tpls/duplicate-msg-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("shared-tpls/duplicate-msg-tpl.html", '<i class="fa fa-exclamation-triangle"></i>&nbsp;Barcode already exists!')
+  $templateCache.put("shared-tpls/duplicate-msg-tpl.html", '<i class="fa fa-hand-o-right"></i>&nbsp;barcode already exists!')
 }]);
 
 // Angular Rails Template
@@ -49736,7 +49736,12 @@ App.controller('GarmentScanCtrl',
 
   // indicate invoice number
   setTimeout(function () {
-    var text = 'Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+    var text;
+    if ( SharedVarsSvc.currentInvoiceIndex !== null )
+      text = 'UPDATE Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+    else
+      text = 'Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+
     jQuery('.navbar-brand').text( text );
   }, 500);
 
@@ -49780,10 +49785,11 @@ App.controller('GarmentScanCtrl',
 
 
   // update the badge count.
-  $scope.$watch('model.garment_barcodes', function (garments) {
+  $scope.$watch('model.garment_barcodes',
+  function (garments) {
     $scope.garmentScannedLen = Object.keys(garments).length;
-    //console.log( JSON.stringify(garments) );
   }, true);
+
 });
 'use strict';
 
@@ -49937,27 +49943,42 @@ App.directive('deleteScannedGarment', function ($compile, $templateCache) {
 });
 'use strict';
 
-App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedFnSvc) {
+App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
 
   function linker (scope, element) {
 
-    element.on('input keyup', function (event) {
+    element.on('keyup', function ( event ) {
 
-      var garmentBarcode = element.val().toUpperCase().trim();
+      var garmentBarcode = element.val().trim();
       var notifCenter = angular.element('#notif-center');
 
 
       // trapping
       if ( event.which !== 13 ) return;
-      if ( SharedFnSvc.findInObject(scope.model.garment_barcodes, garmentBarcode, notifCenter) ) return;
+      if ( SharedVarsSvc.currentInvoiceIndex !== null &&
+        SharedFnSvc.findInObject(
+        SharedVarsSvc.recentInvoiceCollection[
+        SharedVarsSvc
+        .currentInvoiceIndex ]
+        .garment_barcodes,
+        garmentBarcode,
+        notifCenter
+        )) return;
+      if ( SharedFnSvc.findInObject(
+        scope.model.garment_barcodes,
+        garmentBarcode,
+        notifCenter )) return;
 
 
       // remove warning
-      SharedFnSvc.removeNotification(notifCenter);
+      SharedFnSvc.removeNotification( notifCenter );
+
+
+      // generate last key for the next key of the garment object
+      var lastKey = SharedFnSvc.getLastKey( scope.model.garment_barcodes );
 
 
       // add new garment barcode to model
-      var lastKey = SharedFnSvc.getLastKey( scope.model.garment_barcodes );
       scope.model.garment_barcodes[ lastKey + 1 ] = garmentBarcode;
 
 
@@ -49975,9 +49996,6 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
       jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, 500);
       jQuery('input:last').focus();
 
-
-      // log
-      console.log( JSON.stringify(scope.model.garment_barcodes) );
     })
   }
 
@@ -50039,7 +50057,6 @@ App.directive('saveGarments',
 
       // if invoice is for editing
       if ( SharedVarsSvc.currentInvoiceIndex !== null ) {
-        alert();
 
         var idx = SharedVarsSvc.currentInvoiceIndex;
 
