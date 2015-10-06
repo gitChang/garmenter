@@ -49714,12 +49714,22 @@ App.controller('ActionbarTopCtrl', function ($scope, $state, $templateCache, Sha
 'use strict';
 
 App.controller('GarmentScanCtrl',
-  function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
+function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
+
+  var currInvoiceIdx = SharedVarsSvc.currentInvoiceIndex;
+
 
   $scope.model = {
     invoice_number: SharedVarsSvc.currentInvoiceNumber || null,
     garment_barcodes: {}
   };
+
+
+  // holds the ordering
+  // of the gament number
+  // label on the page.
+  $scope.lastKey = 0;
+  $scope.tempLastKey;
 
 
   // indicates the realtime length og garments
@@ -49737,10 +49747,10 @@ App.controller('GarmentScanCtrl',
   // indicate invoice number
   setTimeout(function () {
     var text;
-    if ( SharedVarsSvc.currentInvoiceIndex !== null )
-      text = 'UPDATE Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+    if ( currInvoiceIdx !== null )
+      text = 'UPDATE Invoice No. ' + currInvoiceIdx.toString();
     else
-      text = 'Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+      text = 'Invoice No. ' + $scope.model.invoice_number;
 
     jQuery('.navbar-brand').text( text );
   }, 500);
@@ -49755,23 +49765,19 @@ App.controller('GarmentScanCtrl',
   });
 
 
-  // indicate that it is for update
-  $scope.oldEntry = SharedVarsSvc.currentInvoiceIndex !== null;
-
-
-  $scope.newGarmentScanTemplate = function () {
-    // add initial new garment entry tpl.
+  // create a new tpl for asking new entry
+  // of garment barcode.
+  $scope.newGarmentScanTemplate = function ( key ) {
+    // template
     var tpl = $templateCache.get( 'garment-scan-tpls/new-garment-scan-tpl.html' );
-    var lastKey = SharedFnSvc.getLastKey( $scope.model.garment_barcodes );
 
+    // set the number label of the next garment
+    tpl = tpl.replace( '$', key + 1 );
 
-    // assign garment order.
-    tpl = tpl.replace( '$', lastKey + 1 );
-
+    // add to page
     angular.element('new-garment-scan-dir').append(function () {
       return $compile( tpl )( $scope );
     })
-
 
     // scroll to page bottom and
     // give focus to newly added input text
@@ -49780,13 +49786,33 @@ App.controller('GarmentScanCtrl',
   }
 
 
+  // holds the key of the next
+  // garment barcode to be scanned.
+  var initialKey = null;
+
+
+  if ( currInvoiceIdx === null ) {
+    // meaning this is a new invoice entry
+    // so we have to get base key on the model
+    initialKey = SharedFnSvc.getLastKey( $scope.model.garment_barcodes );
+
+  } else {
+    // this is an update transaction of the existing invoice.
+    initialKey = SharedFnSvc.getLastKey(
+                 SharedVarsSvc.recentInvoiceCollection[ currInvoiceIdx ]
+                 .garment_barcodes
+                 );
+  }
+
+
   // initialize template
-  $scope.newGarmentScanTemplate();
+  $scope.newGarmentScanTemplate( initialKey );
 
 
   // update the badge count.
-  $scope.$watch('model.garment_barcodes',
-  function (garments) {
+  $scope.$watch('model.garment_barcodes', function (garments) {
+    // log
+    console.log( garments );
     $scope.garmentScannedLen = Object.keys(garments).length;
   }, true);
 
@@ -49950,24 +49976,22 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
   function linker (scope, element) {
 
     var notifCenter = angular.element('#notif-center');
+    var currInvoiceIdx = SharedVarsSvc.currentInvoiceIndex;
 
 
     function processGarment () {
       var garmentBarcode = element.val().trim();
 
-      // locked this to prevent adding new tpl
-      element.prop('disabled', true);
-
       // trapping
-      if ( SharedVarsSvc.currentInvoiceIndex !== null &&
+      if ( currInvoiceIdx !== null &&
         SharedFnSvc.findInObject(
         SharedVarsSvc.recentInvoiceCollection[
-        SharedVarsSvc
-        .currentInvoiceIndex ]
+        currInvoiceIdx ]
         .garment_barcodes,
         garmentBarcode,
         notifCenter
         )) return;
+
       if ( SharedFnSvc.findInObject(
         scope.model.garment_barcodes,
         garmentBarcode,
@@ -49978,21 +50002,46 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
       SharedFnSvc.removeNotification( notifCenter );
 
 
-      // generate last key for the next key of the garment object
-      var lastKey = SharedFnSvc.getLastKey( scope.model.garment_barcodes );
+      // locked this to prevent adding new tpl
+      element.prop('disabled', true);
 
 
-      // add new garment barcode to model
-      scope.model.garment_barcodes[ lastKey + 1 ] = garmentBarcode;
+      // assign a value to temp key
+      if ( !scope.tempLastKey ) {
+        // check if it is a new or
+        // an update to invoice.
+        if ( currInvoiceIdx !== null ) {
+          // this is an update to an invoice.
+          // get the last key of the garment barcodes
+          // to be used as a based key for additional
+          // items.
+          scope.lastKey = SharedFnSvc.getLastKey(
+                          SharedVarsSvc.recentInvoiceCollection[
+                          currInvoiceIdx
+                          ].garment_barcodes
+                          );
+          scope.$apply();
+        }
+
+        // pass the base key.
+        scope.tempLastKey = scope.lastKey; scope.$apply();
+      }
+
+      // increment temp key to maintain ordering.
+      scope.tempLastKey += 1; scope.$apply();
+
+
+      // save the garment barcode
+      scope.model.garment_barcodes[ scope.tempLastKey ] = garmentBarcode;
+      scope.$apply();
 
 
       // allow user to delete the garment entry.
       element.parents('.row').find('.delete-scanned-garment').removeClass('hidden');
 
 
-      // create new template
-      scope.newGarmentScanTemplate();
-      scope.$digest();
+      // create new template with a temp key number label.
+      scope.newGarmentScanTemplate( scope.tempLastKey );
 
 
       // scroll to page bottom and
@@ -50002,7 +50051,6 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
     }
 
 
-    // events
 
     element.on('input', function () {
 
@@ -50013,6 +50061,7 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
       if ( inputString.indexOf( charSignal ) === -1 ) return;
       processGarment();
     })
+
 
 
     element.on('keyup', function ( event ) {

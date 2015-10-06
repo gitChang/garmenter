@@ -1,12 +1,22 @@
 'use strict';
 
 App.controller('GarmentScanCtrl',
-  function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
+function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
+
+  var currInvoiceIdx = SharedVarsSvc.currentInvoiceIndex;
+
 
   $scope.model = {
     invoice_number: SharedVarsSvc.currentInvoiceNumber || null,
     garment_barcodes: {}
   };
+
+
+  // holds the ordering
+  // of the gament number
+  // label on the page.
+  $scope.lastKey = 0;
+  $scope.tempLastKey;
 
 
   // indicates the realtime length og garments
@@ -24,10 +34,10 @@ App.controller('GarmentScanCtrl',
   // indicate invoice number
   setTimeout(function () {
     var text;
-    if ( SharedVarsSvc.currentInvoiceIndex !== null )
-      text = 'UPDATE Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+    if ( currInvoiceIdx !== null )
+      text = 'UPDATE Invoice No. ' + currInvoiceIdx.toString();
     else
-      text = 'Invoice No. ' + SharedVarsSvc.currentInvoiceNumber.toString();
+      text = 'Invoice No. ' + $scope.model.invoice_number;
 
     jQuery('.navbar-brand').text( text );
   }, 500);
@@ -42,23 +52,19 @@ App.controller('GarmentScanCtrl',
   });
 
 
-  // indicate that it is for update
-  $scope.oldEntry = SharedVarsSvc.currentInvoiceIndex !== null;
-
-
-  $scope.newGarmentScanTemplate = function () {
-    // add initial new garment entry tpl.
+  // create a new tpl for asking new entry
+  // of garment barcode.
+  $scope.newGarmentScanTemplate = function ( key ) {
+    // template
     var tpl = $templateCache.get( 'garment-scan-tpls/new-garment-scan-tpl.html' );
-    var lastKey = SharedFnSvc.getLastKey( $scope.model.garment_barcodes );
 
+    // set the number label of the next garment
+    tpl = tpl.replace( '$', key + 1 );
 
-    // assign garment order.
-    tpl = tpl.replace( '$', lastKey + 1 );
-
+    // add to page
     angular.element('new-garment-scan-dir').append(function () {
       return $compile( tpl )( $scope );
     })
-
 
     // scroll to page bottom and
     // give focus to newly added input text
@@ -67,13 +73,33 @@ App.controller('GarmentScanCtrl',
   }
 
 
+  // holds the key of the next
+  // garment barcode to be scanned.
+  var initialKey = null;
+
+
+  if ( currInvoiceIdx === null ) {
+    // meaning this is a new invoice entry
+    // so we have to get base key on the model
+    initialKey = SharedFnSvc.getLastKey( $scope.model.garment_barcodes );
+
+  } else {
+    // this is an update transaction of the existing invoice.
+    initialKey = SharedFnSvc.getLastKey(
+                 SharedVarsSvc.recentInvoiceCollection[ currInvoiceIdx ]
+                 .garment_barcodes
+                 );
+  }
+
+
   // initialize template
-  $scope.newGarmentScanTemplate();
+  $scope.newGarmentScanTemplate( initialKey );
 
 
   // update the badge count.
-  $scope.$watch('model.garment_barcodes',
-  function (garments) {
+  $scope.$watch('model.garment_barcodes', function (garments) {
+    // log
+    console.log( garments );
     $scope.garmentScannedLen = Object.keys(garments).length;
   }, true);
 
