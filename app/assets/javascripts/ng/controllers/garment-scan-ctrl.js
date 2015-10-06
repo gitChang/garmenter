@@ -99,7 +99,7 @@ function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) 
   // update the badge count.
   $scope.$watch('model.garment_barcodes', function (garments) {
     // log
-    console.log( garments );
+    // console.log( garments );
     $scope.garmentScannedLen = Object.keys(garments).length;
   }, true);
 
