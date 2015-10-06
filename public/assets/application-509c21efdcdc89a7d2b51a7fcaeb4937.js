@@ -49683,7 +49683,7 @@ App.service('SharedVarsSvc', function () {
 
   // holds the recent saved invoice scanned
   this.recentInvoiceCollection = [{
-    invoice_number: '0001', garment_barcodes: { 1: '594832', 2: '897654' }
+    invoice_number: 'B6843024J5', garment_barcodes: { 1: 'L16BC7890', 2: 'A41234588' }
   }];
 
   // holds the history of the last collection
@@ -49748,9 +49748,9 @@ function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) 
   setTimeout(function () {
     var text;
     if ( currInvoiceIdx !== null )
-      text = 'UPDATE Invoice No. ' + $scope.model.invoice_number;
+      text = 'UPDATE Invoice : ' + $scope.model.invoice_number;
     else
-      text = 'Invoice No. ' + $scope.model.invoice_number;
+      text = 'NEW Invoice : ' + $scope.model.invoice_number;
 
     jQuery('.navbar-brand').text( text );
   }, 500);
@@ -49949,32 +49949,32 @@ App.directive('deleteScannedGarment', function ($compile, $templateCache) {
 
   function linker (scope, element) {
 
-    element.on('click', function () {
-
-      // trapping
-      if ( scope.garmentScannedLen < 2 && element.val().trim() === '' ) return;
-
+    function processDelete () {
       var elemParent = element.closest('.row');
-      var garmentNumber = element.closest('.row').find('.garment-barcode-number').val().trim();
-
+      var garmentNumber = element.closest('.row')
+                          .find('.garment-barcode-number')
+                          .val()
+                          .trim()
+                          .toUpperCase();
 
       // deleting garment scanned
       for ( var key in scope.model.garment_barcodes ) {
 
-        if (scope.model.garment_barcodes[key].toLowerCase() === garmentNumber.toLowerCase()) {
+        if (scope.model.garment_barcodes[key] === garmentNumber) {
           delete scope.model.garment_barcodes[key];
           scope.$apply();
 
           // animate remove element for emphasis
-          elemParent.addClass('animated fadeOut');
+          elemParent.addClass('animated');
           elemParent.addClass('fadeOut');
 
-          setTimeout(function () {
-            elemParent.remove();
-          }, 1000)
+          setTimeout( function () { elemParent.remove(); }, 1000 );
         }
       }
-    });
+    }
+
+
+    element.on('click', function () { processDelete(); });
   }
 
   return {

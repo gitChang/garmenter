@@ -14,7 +14,7 @@ App.service('SharedVarsSvc', function () {
 
   // holds the recent saved invoice scanned
   this.recentInvoiceCollection = [{
-    invoice_number: '0001', garment_barcodes: { 1: '594832', 2: '897654' }
+    invoice_number: 'B6843024J5', garment_barcodes: { 1: 'L16BC7890', 2: 'A41234588' }
   }];
 
   // holds the history of the last collection
