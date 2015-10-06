@@ -1,5 +1,10 @@
 clear
 
+echo 'removing previous compiled assets...'
+rake assets:clobber
+
+clear
+
 echo 'clearing cache...'
 rake tmp:cache:clear
 
