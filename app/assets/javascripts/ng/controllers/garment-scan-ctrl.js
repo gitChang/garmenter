@@ -35,7 +35,7 @@ function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) 
   setTimeout(function () {
     var text;
     if ( currInvoiceIdx !== null )
-      text = 'UPDATE Invoice No. ' + currInvoiceIdx.toString();
+      text = 'UPDATE Invoice No. ' + $scope.model.invoice_number;
     else
       text = 'Invoice No. ' + $scope.model.invoice_number;
 

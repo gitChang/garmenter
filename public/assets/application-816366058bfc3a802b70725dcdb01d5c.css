@@ -15207,8 +15207,9 @@ body {
   border: 1px solid #eeeeee;
   padding: 10px;
   text-align: center;
+  text-transform: uppercase;
 }
-/* line 26, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
+/* line 27, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
 #invoice-barcode-scan .barcode-panel .invoice-barcode-number:disabled {
   color: #777777;
   border-color: #777777;
@@ -15257,8 +15258,9 @@ body {
   padding: 10px;
   width: 100%;
   outline: none;
+  text-transform: uppercase;
 }
-/* line 47, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
+/* line 48, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/garment_barcode_scan.scss */
 .row#garment-barcode-scan .barcode-panel form input:disabled {
   color: #ffff00;
   border: none;

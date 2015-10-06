@@ -49748,7 +49748,7 @@ function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) 
   setTimeout(function () {
     var text;
     if ( currInvoiceIdx !== null )
-      text = 'UPDATE Invoice No. ' + currInvoiceIdx.toString();
+      text = 'UPDATE Invoice No. ' + $scope.model.invoice_number;
     else
       text = 'Invoice No. ' + $scope.model.invoice_number;
 
@@ -49980,7 +49980,7 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
 
 
     function processGarment () {
-      var garmentBarcode = element.val().trim();
+      var garmentBarcode = element.val().trim().toUpperCase();
 
       // trapping
       if ( currInvoiceIdx !== null &&
@@ -50221,7 +50221,7 @@ App.directive('invoiceBarcodeNumber',
       element.attr('disabled', true);
 
       // store invoice number to shared variable.
-      SharedVarsSvc.currentInvoiceNumber = element.val().trim();
+      SharedVarsSvc.currentInvoiceNumber = element.val().trim().toUpperCase();
 
       // redirect to garment scanning page with timeout.
       setTimeout(function () {

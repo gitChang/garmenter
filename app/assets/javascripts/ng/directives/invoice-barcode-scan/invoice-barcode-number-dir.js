@@ -24,7 +24,7 @@ App.directive('invoiceBarcodeNumber',
       element.attr('disabled', true);
 
       // store invoice number to shared variable.
-      SharedVarsSvc.currentInvoiceNumber = element.val().trim();
+      SharedVarsSvc.currentInvoiceNumber = element.val().trim().toUpperCase();
 
       // redirect to garment scanning page with timeout.
       setTimeout(function () {

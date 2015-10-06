@@ -9,7 +9,7 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
 
 
     function processGarment () {
-      var garmentBarcode = element.val().trim();
+      var garmentBarcode = element.val().trim().toUpperCase();
 
       // trapping
       if ( currInvoiceIdx !== null &&
