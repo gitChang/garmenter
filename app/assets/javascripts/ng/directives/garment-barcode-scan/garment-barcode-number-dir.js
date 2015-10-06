@@ -4,14 +4,16 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
 
   function linker (scope, element) {
 
-    element.on('keyup', function ( event ) {
+    var notifCenter = angular.element('#notif-center');
 
+
+    function processGarment () {
       var garmentBarcode = element.val().trim();
-      var notifCenter = angular.element('#notif-center');
 
+      // locked this to prevent adding new tpl
+      element.prop('disabled', true);
 
       // trapping
-      if ( event.which !== 13 ) return;
       if ( SharedVarsSvc.currentInvoiceIndex !== null &&
         SharedFnSvc.findInObject(
         SharedVarsSvc.recentInvoiceCollection[
@@ -52,7 +54,25 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
       // give focus to newly added input text
       jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, 500);
       jQuery('input:last').focus();
+    }
 
+
+    // events
+
+    element.on('input', function () {
+
+      var charSignal = '*';
+      var inputString = element.val().replace(/(\r\n|\n|\r)/gm, charSignal);
+
+      // trapping
+      if ( inputString.indexOf( charSignal ) === -1 ) return;
+      processGarment();
+    })
+
+
+    element.on('keyup', function ( event ) {
+      if ( event.which !== 13 ) return;
+      processGarment();
     })
   }
 

@@ -49385,7 +49385,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/common-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/common-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" src="/images/tuku.png" style="height:25px" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/common-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" src="/images/tuku.png" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
@@ -49413,7 +49413,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/login-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" src="/images/tuku.png" style="height:25px" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>')
+  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" src="/images/tuku.png" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49490,14 +49490,14 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/recent-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice No. {{ invoice.invoice_number }}<span class="pull-right total-garments">{{ getGarmentsTotal($index) }}&nbsp;Garments</span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span class="add-garment-parent"><a class="add-garment" data-idx="{{ $index }}" href="#"><i class="fa fa-plus"></i></a></span><small class="pull-right">Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="done" href="#"><i class="fa fa-refresh"></i>Sync</a>\n    </li>\n    <li class="two">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice No. {{ invoice.invoice_number }}<span class="pull-right total-garments">{{ getGarmentsTotal($index) }}&nbsp;Garments</span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span class="add-garment-parent"><a class="add-garment" data-idx="{{ $index }}" href="#"><i class="fa fa-plus"></i></a></span><small class="pull-right">Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="sync" href="#"></a>\n    </li>\n    <li class="two">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/recent-invoice-collection-tpls/confirm-msg-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("recent-invoice-collection-tpls/confirm-msg-tpl.html", '<span id="confirm-msg">Confirm Delete</span><span>..&nbsp;</span><span class="cancel-timer">6</span>')
+  $templateCache.put("recent-invoice-collection-tpls/confirm-msg-tpl.html", '<span id="confirm-msg">Confirm</span><span>..&nbsp;</span><span class="cancel-timer">6</span>')
 }]);
 
 // Angular Rails Template
@@ -49518,7 +49518,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/signup-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div id="form-panel">\n    <form>\n      <h4 class="text-center mg-t-x">\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input placeholder="branch Name" type="text" />\n      </div>\n      <br />\n      <h4 class="text-center mg-t-x">\n        <i class="fa fa-user"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input placeholder="contact person&#39;s name" type="text" />\n      </div>\n      <div class="form-group">\n        <input placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input placeholder="contact person&#39;s email" type="email" />\n      </div>\n      <br />\n      <h4 class="text-center mg-t-x">\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div id="form-panel">\n    <form>\n      <h4 class="text-center mg-t-x">\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.branch_name" placeholder="branch Name" type="text" />\n      </div>\n      <br />\n      <h4 class="text-center mg-t-x">\n        <i class="fa fa-user"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.contact_person_name" placeholder="contact person&#39;s name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="email" />\n      </div>\n      <br />\n      <h4 class="text-center mg-t-x">\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 'use strict';
@@ -49828,8 +49828,10 @@ App.controller('LoginCtrl', function ($scope, $state) {
 'use strict';
 
 App.controller('RecentInvoiceCollection', function ($scope, SharedVarsSvc) {
+
   // invoice collection
   $scope.invoices = SharedVarsSvc.recentInvoiceCollection;
+
 
   // get the total garments of the invoice
   // and display it to panel footer.
@@ -49947,14 +49949,16 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
 
   function linker (scope, element) {
 
-    element.on('keyup', function ( event ) {
+    var notifCenter = angular.element('#notif-center');
 
+
+    function processGarment () {
       var garmentBarcode = element.val().trim();
-      var notifCenter = angular.element('#notif-center');
 
+      // locked this to prevent adding new tpl
+      element.prop('disabled', true);
 
       // trapping
-      if ( event.which !== 13 ) return;
       if ( SharedVarsSvc.currentInvoiceIndex !== null &&
         SharedFnSvc.findInObject(
         SharedVarsSvc.recentInvoiceCollection[
@@ -49995,7 +49999,25 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
       // give focus to newly added input text
       jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, 500);
       jQuery('input:last').focus();
+    }
 
+
+    // events
+
+    element.on('input', function () {
+
+      var charSignal = '*';
+      var inputString = element.val().replace(/(\r\n|\n|\r)/gm, charSignal);
+
+      // trapping
+      if ( inputString.indexOf( charSignal ) === -1 ) return;
+      processGarment();
+    })
+
+
+    element.on('keyup', function ( event ) {
+      if ( event.which !== 13 ) return;
+      processGarment();
     })
   }
 
@@ -50131,18 +50153,14 @@ App.directive('invoiceBarcodeNumber',
 
   function linker (scope, element) {
 
-    //element.on('input', function () {
-    //  var charSignal = '*';
-    //  var inputString = jQuery(this).val().replace(/(\r\n|\n|\r)/gm, charSignal);
-    //})
-
     var notifCenter = angular.element('#notif-center');
 
-    element.on('keyup', function (event) {
 
-      // trapping
-      if ( event.which !== 13 ) return;
+    function processInvoice () {
       if ( SharedFnSvc.findInObjectArray( SharedVarsSvc.recentInvoiceCollection, element.val().trim(), notifCenter )) return;
+
+      // locked this to prevent another input
+      element.prop('disabled', true);
 
       // remove warning
       SharedFnSvc.removeNotification(notifCenter);
@@ -50160,6 +50178,23 @@ App.directive('invoiceBarcodeNumber',
       setTimeout(function () {
         $state.go('garment-barcode-scan-page');
       }, scope.timeOut);
+    }
+
+
+    element.on('input', function () {
+      var charSignal = '*';
+      var inputString = element.val().replace(/(\r\n|\n|\r)/gm, charSignal);
+
+      // trapping
+      if ( inputString.indexOf( charSignal ) === -1 ) return;
+      processInvoice();
+    })
+
+
+    element.on('keyup', function (event) {
+      // trapping
+      if ( event.which !== 13 ) return;
+      processInvoice();
     });
 
 
@@ -50342,39 +50377,98 @@ App.directive('deleteGarment', function ($compile, $templateCache, SharedVarsSvc
 });
 'use strict';
 
-App.directive('done', function ($state, $templateCache, SharedVarsSvc) {
+App.directive('sync', function ($state, $templateCache, SharedVarsSvc) {
+
+  // pass the scope tpl value
+  // to local, for template object.
+  var tpl = '<i class="fa fa-refresh"></i>Sync';
+
 
   function linker (scope, element) {
 
+    // countdown to auto-cancel delete action.
+    // defaults to 6s.
+    var seconds;
+    var elTimer;
+    var timeoutMyOswego;
+
+
+    function countdown() {
+
+      if (element.find('.fa-spin').length) return;
+
+      seconds = element.find('.cancel-timer').text();
+      seconds = parseInt(seconds, 10);
+
+      if (seconds == 1) {
+        elTimer = element.find('.cancel-timer');
+        // reset html content to default.
+        element.html( tpl );
+        return;
+      }
+
+      seconds--;
+      elTimer = element.find('.cancel-timer');
+      elTimer.html(seconds);
+      timeoutMyOswego = setTimeout(countdown, 1000);
+    }
+
+    // confirm sync action. change it html
+    // to confirm msg
+    function confirmSync () {
+      // replace text with confirm intent
+      element.html($templateCache.get('recent-invoice-collection-tpls/confirm-msg-tpl.html'));
+      // show timer cancel
+      countdown();
+    }
+
+
     function makeHistory () {
       var cacheCollection = SharedVarsSvc.recentInvoiceCollection;
-      // put to history
-      SharedVarsSvc.historyInvoiceCollection = cacheCollection;
 
-      // clear the array of recent collection.
-      // since the value is on the history already.
-      SharedVarsSvc.recentInvoiceCollection = [];
+      // show process syncing
+      element.html( '<i class="fa fa-refresh fa-spin"></i>' );
+
+      // put to history
+      setTimeout (function () {
+        // send to history scope
+        SharedVarsSvc.historyInvoiceCollection = cacheCollection;
+
+        // clear the array of recent collection.
+        // since the value is on the history already.
+        SharedVarsSvc.recentInvoiceCollection = [];
+
+        // redirect to new invoice entry page
+        $state.go('invoice-barcode-scan-page');
+      }, 3000)
     }
+
 
     element.on('click', function (event) {
       event.preventDefault();
 
       // ignore event when processing
-      if (element.find('.fa-spin').length) return;
+      if (element.find('.fa-refresh.fa-spin').length) {
+        return;
+      }
 
-      // show processing
-      element.find('.fa-refresh').addClass('fa-spin');
+      // ask to confirm sync
+      if (element.find('.fa-refresh').length) {
+        confirmSync();
+        return;
+      }
 
-      makeHistory();
-
-      setTimeout(function () {
-        $state.go('invoice-barcode-scan-page');
-      }, 3000)
+      // user confirms sync
+      if (element.find('#confirm-msg').length) {
+        makeHistory();
+        return;
+      }
     });
   }
 
   return {
     restrict: 'C',
+    template: tpl,
     link: linker
   };
 });

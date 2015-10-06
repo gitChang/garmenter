@@ -15367,11 +15367,16 @@ body {
 #actionbar-top .navbar-brand {
   font-weight: bold;
 }
-/* line 8, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+/* line 7, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top .navbar-brand span img {
+  height: 25px !important;
+  padding-bottom: 3px !important;
+}
+/* line 13, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top .navbar-right {
   margin-right: 15px;
 }
-/* line 12, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+/* line 17, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top .logout-user {
   min-width: 56px;
 }

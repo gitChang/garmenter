@@ -3,6 +3,11 @@
 
   .navbar-brand {
     font-weight: bold;
+
+    span img {
+      height: 25px !important;
+      padding-bottom: 3px !important;
+    }
   }
 
   .navbar-right {

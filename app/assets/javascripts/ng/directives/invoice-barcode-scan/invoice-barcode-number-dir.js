@@ -5,18 +5,14 @@ App.directive('invoiceBarcodeNumber',
 
   function linker (scope, element) {
 
-    //element.on('input', function () {
-    //  var charSignal = '*';
-    //  var inputString = jQuery(this).val().replace(/(\r\n|\n|\r)/gm, charSignal);
-    //})
-
     var notifCenter = angular.element('#notif-center');
 
-    element.on('keyup', function (event) {
 
-      // trapping
-      if ( event.which !== 13 ) return;
+    function processInvoice () {
       if ( SharedFnSvc.findInObjectArray( SharedVarsSvc.recentInvoiceCollection, element.val().trim(), notifCenter )) return;
+
+      // locked this to prevent another input
+      element.prop('disabled', true);
 
       // remove warning
       SharedFnSvc.removeNotification(notifCenter);
@@ -34,6 +30,23 @@ App.directive('invoiceBarcodeNumber',
       setTimeout(function () {
         $state.go('garment-barcode-scan-page');
       }, scope.timeOut);
+    }
+
+
+    element.on('input', function () {
+      var charSignal = '*';
+      var inputString = element.val().replace(/(\r\n|\n|\r)/gm, charSignal);
+
+      // trapping
+      if ( inputString.indexOf( charSignal ) === -1 ) return;
+      processInvoice();
+    })
+
+
+    element.on('keyup', function (event) {
+      // trapping
+      if ( event.which !== 13 ) return;
+      processInvoice();
     });
 
 
