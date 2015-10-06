@@ -49469,7 +49469,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/history-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("history-invoice-collection-page.html", '<div class="row" id="history-invoice-collection">\n  <div class="collection-panel">\n    <div class="blank-msg" ng-hide="invoices.length">\n      <h3 class="text-center">\n        <i class="fa fa-hand-o-right"></i>&nbsp;History is Empty...\n      </h3>\n    </div>\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right total-garments">{{ getGarmentsTotal($index) }}&nbsp;Garments</span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <small>Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("history-invoice-collection-page.html", '<div class="row" id="history-invoice-collection">\n  <div class="collection-panel">\n    <div class="blank-msg" ng-hide="invoices.length">\n      <h3 class="text-center">\n        <i class="fa fa-hand-o-right"></i>&nbsp;History is Empty...\n      </h3>\n    </div>\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right total-garments">{{ getGarmentsTotal($index) }}&nbsp;{{ pluralize( getGarmentsTotal($index) )}}</span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <small>Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49823,10 +49823,17 @@ App.controller('HistoryInvoiceCollection', function ($scope, SharedVarsSvc) {
 
   $scope.invoices = SharedVarsSvc.historyInvoiceCollection;
 
+
   // get the total garments of the invoice
   // and display it to panel footer.
   $scope.getGarmentsTotal = function (idx) {
     return Object.keys($scope.invoices[idx].garment_barcodes).length;
+  }
+
+
+  // pluralize the unit of total garments
+  $scope.pluralize = function ( total ) {
+    return total > 1 ? 'Garments' : 'Garment';
   }
 });
 'use strict';
@@ -49857,9 +49864,6 @@ App.controller('RecentInvoiceCollection', function ($scope, SharedVarsSvc) {
 
   // invoice collection
   $scope.invoices = SharedVarsSvc.recentInvoiceCollection;
-
-  // signal for deleting items
-  $scope.deleting = false;
 
 
   // get the total garments of the invoice
@@ -50512,6 +50516,9 @@ App.directive('sync', function ($state, $templateCache, SharedVarsSvc) {
 
     element.on('click', function (event) {
       event.preventDefault();
+
+      // if nothing to sync
+      if ( !jQuery('table tbody tr').length ) return;
 
       // ignore event when processing
       if (element.find('.fa-refresh.fa-spin').length) {

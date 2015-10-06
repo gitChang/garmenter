@@ -24,7 +24,8 @@
 
               span.pull-right.total-garments
                 | {{ getGarmentsTotal($index) }}
-                | &nbsp;Garments
+                | &nbsp;
+                | {{ pluralize( getGarmentsTotal($index) )}}
 
         div.panel-collapse.collapse [
           id=("{{ invoice.invoice_number }}")

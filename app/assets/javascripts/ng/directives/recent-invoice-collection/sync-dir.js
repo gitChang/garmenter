@@ -70,6 +70,9 @@ App.directive('sync', function ($state, $templateCache, SharedVarsSvc) {
     element.on('click', function (event) {
       event.preventDefault();
 
+      // if nothing to sync
+      if ( !jQuery('table tbody tr').length ) return;
+
       // ignore event when processing
       if (element.find('.fa-refresh.fa-spin').length) {
         return;
