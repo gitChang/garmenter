@@ -17,9 +17,7 @@ App.directive('addGarment', function ($state, $templateCache, SharedFnSvc) {
       var invoiceIndex = parseInt(element.attr('data-idx').trim());
       SharedFnSvc.setTargetInvoice(invoiceIndex);
 
-      setTimeout(function () {
-        $state.go('garment-barcode-scan-page');
-      }, 1000)
+      setTimeout( function () { $state.go('garment-barcode-scan-page'); }, 1000);
     });
   }
 
