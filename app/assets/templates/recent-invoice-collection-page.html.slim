@@ -15,9 +15,11 @@
               onclick=("return false")
             ]
               | Invoice No. {{ invoice.invoice_number }}
-              span.pull-right.total-garments
-                | {{ getGarmentsTotal($index) }}
-                | &nbsp;Garments
+              span.qty.pull-right
+                span.total-garments
+                  | {{ getGarmentsTotal($index) }}
+                | &nbsp;
+                span.unit Garments
 
 
         div.panel-collapse.collapse [
@@ -34,6 +36,7 @@
                     href="#"
                     data-garment-number=("{{ garment_barcode }}")
                     data-invoice-number=("{{ invoice.invoice_number }}")
+                    data-idx=("{{ $index }}")
                   ]
                     i.fa.fa-trash-o
 

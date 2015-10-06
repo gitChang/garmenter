@@ -37,14 +37,17 @@ App.directive('deleteGarment', function ($compile, $templateCache, SharedVarsSvc
       countdown();
     }
 
+
     // user click event
     element.on('click', function (event) {
       event.preventDefault();
 
       // user confirms deletion
-      if (element.find('#confirm-msg').length) {
+      if ( element.find('#confirm-msg').length ) {
+
         var invoiceNumber = element.attr('data-invoice-number').trim();
         var garmentNumber = element.attr('data-garment-number').trim();
+        var invoiceIndex = element.attr('data-idx').trim();
 
         // delete garment from the invoice
         SharedVarsSvc.recentInvoiceCollection.forEach(function (item, index, object) {
@@ -59,8 +62,12 @@ App.directive('deleteGarment', function ($compile, $templateCache, SharedVarsSvc
                 // change total on the footer
                 // delete the garment number from array
                 setTimeout(function () {
-                  var elTotalGarments = element.parents('.panel-collapse').find('.total-garments');
-                  elTotalGarments.text( parseInt( elTotalGarments.text() ) - 1 );
+                  var elemParent = element.parents('.panel-default');
+                  var elemTotal = elemParent.find('.total-garments');
+                  var newTotal = parseInt( elemTotal.text() ) - 1;
+                  var elemUnit = elemParent.find('.unit');
+                  elemTotal.text( newTotal );
+                  if ( newTotal < 2 ) elemUnit.text('Garment');
                 }, 1000)
 
                 // delete the garment number from array
