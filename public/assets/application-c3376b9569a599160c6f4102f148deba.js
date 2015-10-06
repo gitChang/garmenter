@@ -49490,7 +49490,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/recent-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice No. {{ invoice.invoice_number }}<span class="qty pull-right"><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;<span class="unit">Garments</span></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-idx="{{ $index }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span class="add-garment-parent"><a class="add-garment" data-idx="{{ $index }}" href="#"><i class="fa fa-plus"></i></a></span><small class="pull-right">Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="sync" href="#"></a>\n    </li>\n    <li class="two">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice No. {{ invoice.invoice_number }}<span class="qty pull-right"><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;<span class="unit">{{ pluralize( getGarmentsTotal($index) ) }}</span></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-idx="{{ $index }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span class="add-garment-parent"><a class="add-garment" data-idx="{{ $index }}" href="#"><i class="fa fa-plus"></i></a></span><small class="pull-right">Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="sync" href="#"></a>\n    </li>\n    <li class="two">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49858,11 +49858,20 @@ App.controller('RecentInvoiceCollection', function ($scope, SharedVarsSvc) {
   // invoice collection
   $scope.invoices = SharedVarsSvc.recentInvoiceCollection;
 
+  // signal for deleting items
+  $scope.deleting = false;
+
 
   // get the total garments of the invoice
   // and display it to panel footer.
-  $scope.getGarmentsTotal = function (idx) {
+  $scope.getGarmentsTotal = function ( idx ) {
     return Object.keys($scope.invoices[idx].garment_barcodes).length;
+  }
+
+
+  // pluralize the unit of total garments
+  $scope.pluralize = function ( total ) {
+    return total > 1 ? 'Garments' : 'Garment';
   }
 });
 'use strict';
@@ -50333,6 +50342,7 @@ App.directive('addGarment', function ($state, $templateCache, SharedFnSvc) {
 'use strict';
 
 App.directive('deleteGarment', function ($compile, $templateCache, SharedVarsSvc) {
+
   function linker (scope, element) {
     // countdown to auto-cancel delete action.
     // defaults to 6s.
@@ -50341,8 +50351,6 @@ App.directive('deleteGarment', function ($compile, $templateCache, SharedVarsSvc
     var timeoutMyOswego;
 
     function countdown() {
-
-      if (element.find('.fa-spinner').length) return;
 
       seconds = element.find('.cancel-timer').text();
       seconds = parseInt(seconds, 10);
@@ -50370,58 +50378,60 @@ App.directive('deleteGarment', function ($compile, $templateCache, SharedVarsSvc
     }
 
 
-    // user click event
+    // delete confirmed
+    function processDelete () {
+      var invoiceNumber = element.attr('data-invoice-number').trim();
+      var garmentNumber = element.attr('data-garment-number').trim();
+      var invoiceIndex = element.attr('data-idx').trim();
+
+      // delete garment from the invoice
+      SharedVarsSvc.recentInvoiceCollection.forEach(function (item, index, object) {
+        if (item.invoice_number === invoiceNumber) {
+
+          for (var key in item.garment_barcodes) {
+            if (item.garment_barcodes[key] === garmentNumber) {
+
+              // delete garment
+              delete item.garment_barcodes[key];
+
+              // animate deletion
+              element.parents('tr').addClass('animated');
+              element.parents('tr').addClass('fadeOut');
+
+              // change total number of garments
+              setTimeout(function () {
+                var elemParent = element.parents('.panel-default');
+                var elemTotal = elemParent.find('.total-garments');
+                var newTotal = parseInt( elemTotal.text() ) - 1;
+                var elemUnit = elemParent.find('.unit');
+                elemTotal.text( newTotal );
+                if ( newTotal < 2 ) elemUnit.text('Garment');
+              }, 1000)
+
+              setTimeout(function () {
+                // delete tr element from table
+                element.closest('tr').remove();
+              }, 1000)
+            }
+          }
+        }
+      })
+    }
+
+
     element.on('click', function (event) {
       event.preventDefault();
 
       // user confirms deletion
       if ( element.find('#confirm-msg').length ) {
-
-        var invoiceNumber = element.attr('data-invoice-number').trim();
-        var garmentNumber = element.attr('data-garment-number').trim();
-        var invoiceIndex = element.attr('data-idx').trim();
-
-        // delete garment from the invoice
-        SharedVarsSvc.recentInvoiceCollection.forEach(function (item, index, object) {
-          if (item.invoice_number === invoiceNumber) {
-            for (var key in item.garment_barcodes) {
-              if (item.garment_barcodes[key] === garmentNumber) {
-
-                // animate deletion
-                element.parents('tr').addClass('animated');
-                element.parents('tr').addClass('fadeOut');
-
-                // change total on the footer
-                // delete the garment number from array
-                setTimeout(function () {
-                  var elemParent = element.parents('.panel-default');
-                  var elemTotal = elemParent.find('.total-garments');
-                  var newTotal = parseInt( elemTotal.text() ) - 1;
-                  var elemUnit = elemParent.find('.unit');
-                  elemTotal.text( newTotal );
-                  if ( newTotal < 2 ) elemUnit.text('Garment');
-                }, 1000)
-
-                // delete the garment number from array
-                setTimeout(function () {
-                  // delete garment
-                  delete item.garment_barcodes[key];
-                }, 1000)
-
-                // delete the row
-                setTimeout(function () {
-                  // delete tr element from table
-                  element.closest('tr').remove();
-                }, 1000)
-              }
-            }
-          }
-        })
+        processDelete();
+        return;
       }
 
       //
       if (element.find('.fa-trash-o').length) {
         confirmDelete();
+        return
       }
     })
   }

@@ -19,7 +19,7 @@
                 span.total-garments
                   | {{ getGarmentsTotal($index) }}
                 | &nbsp;
-                span.unit Garments
+                span.unit {{ pluralize( getGarmentsTotal($index) ) }}
 
 
         div.panel-collapse.collapse [
