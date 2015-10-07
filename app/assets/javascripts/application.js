@@ -14,8 +14,10 @@
 //= require      angular-rails-templates
 //= require_tree ../templates
 
-//= require      ./ng/app
-//= require_tree ./ng/services
+//= require ./ng/app
+//= require ./ng/services/global-data-svc
+//= require ./ng/services/daemon-svc
+//= require ./ng/services/helper-svc
 //= require_tree ./ng/factories
 //= require_tree ./ng/controllers
 //= require_tree ./ng/directives

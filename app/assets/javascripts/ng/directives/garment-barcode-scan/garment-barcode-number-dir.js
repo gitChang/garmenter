@@ -1,68 +1,46 @@
 'use strict';
 
-App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
+App.directive( 'garmentBarcodeNumber',
+function ( $compile, $templateCache, HelperSvc ) {
 
-  function linker (scope, element) {
+  function linker ( scope, element ) {
 
-    var notifCenter = angular.element('#notif-center');
-    var currInvoiceIdx = SharedVarsSvc.currentInvoiceIndex;
+    // inherit
+    var $hs = HelperSvc;
+    // garment number
+    var $garmentNumber;
 
 
     function processGarment () {
-      var garmentBarcode = element.val().trim().toUpperCase();
+      // garment barcode value
+      $garmentNumber = element.val().trim().toUpperCase();
+      // check if not empty
+      if ( !$garmentNumber ) return;
 
-      // trapping
-      if ( currInvoiceIdx !== null &&
-        SharedFnSvc.findInObject(
-        SharedVarsSvc.recentInvoiceCollection[
-        currInvoiceIdx ]
-        .garment_barcodes,
-        garmentBarcode,
-        notifCenter
-        )) return;
+      // check duplicate barcode
+      var duplicated = $hs.findBarcodeDuplicate( $garmentNumber, scope.model.garment_barcodes );
 
-      if ( SharedFnSvc.findInObject(
-        scope.model.garment_barcodes,
-        garmentBarcode,
-        notifCenter )) return;
-
-
-      // remove warning
-      SharedFnSvc.removeNotification( notifCenter );
-
+      if ( duplicated ) {
+        return;
+      }
 
       // locked this to prevent adding new tpl
       element.prop('disabled', true);
 
-
       // assign a value to temp key
-      if ( !scope.tempLastKey ) {
-        // check if it is a new or
-        // an update to invoice.
-        if ( currInvoiceIdx !== null ) {
-          // this is an update to an invoice.
-          // get the last key of the garment barcodes
-          // to be used as a based key for additional
-          // items.
-          scope.lastKey = SharedFnSvc.getLastKey(
-                          SharedVarsSvc.recentInvoiceCollection[
-                          currInvoiceIdx
-                          ].garment_barcodes
-                          );
-          scope.$apply();
-        }
-
-        // pass the base key.
-        scope.tempLastKey = scope.lastKey; scope.$apply();
+      if ( !scope.tempLastOrder ) {
+        // previous size of garments
+        var previousSize = $hs.getSizeGarmentCollection() || 0;
+        // cache the size.
+        scope.tempLastOrder = previousSize; scope.$apply();
       }
 
       // increment temp key to maintain ordering.
-      scope.tempLastKey += 1; scope.$apply();
+      scope.tempLastOrder += 1; scope.$apply();
 
 
-      // save the garment barcode
-      scope.model.garment_barcodes[ scope.tempLastKey ] = garmentBarcode;
-      scope.$apply();
+      // push garment to model
+      scope.pushGarment( $garmentNumber );
 
 
       // allow user to delete the garment entry.
@@ -70,7 +48,7 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
 
 
       // create new template with a temp key number label.
-      scope.newGarmentScanTemplate( scope.tempLastKey );
+      scope.newGarmentScanTemplate( scope.tempLastOrder );
 
 
       // scroll to page bottom and

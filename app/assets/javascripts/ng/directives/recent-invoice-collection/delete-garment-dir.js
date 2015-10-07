@@ -1,9 +1,13 @@
 'use strict';
 
 App.directive('deleteGarment',
-function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
+function ( $compile, $templateCache, HelperSvc ) {
 
   function linker (scope, element) {
+
+    // inherit
+    var $hs = HelperSvc;
+
     // countdown to auto-cancel delete action.
     // defaults to 6s.
     var seconds;
@@ -40,53 +44,33 @@ function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
 
     // delete confirmed
     function processDelete () {
+      // params
       var invoiceNumber = element.attr('data-invoice-number').trim().toUpperCase();
       var garmentNumber = element.attr('data-garment-number').trim().toUpperCase();
-      var invoiceIndex ;
 
       // delete garment from the invoice
-      SharedVarsSvc.recentInvoiceCollection.forEach(function (item, index, object) {
-        if (item.invoice_number === invoiceNumber) {
+      if ( $hs.deleteInvoiceGarment( invoiceNumber, garmentNumber ) ) {
+        // animate deletion
+        element.parents('tr').addClass('animated');
+        element.parents('tr').addClass('fadeOut');
 
-          // save index to temp
-          invoiceIndex = index;
+        // change total number of garments
+        setTimeout(
+        function () {
+          var elemParent = element.parents('.panel-default');
+          var elemTotal = elemParent.find('.total-garments');
+          var newTotal = parseInt( elemTotal.text() ) - 1;
+          var elemUnit = elemParent.find('.unit');
 
-          for (var key in item.garment_barcodes) {
-            if (item.garment_barcodes[key] === garmentNumber) {
-
-              // delete garment
-              delete item.garment_barcodes[key];
-
-              // animate deletion
-              element.parents('tr').addClass('animated');
-              element.parents('tr').addClass('fadeOut');
-
-              // change total number of garments
-              setTimeout(function () {
-
-                var elemParent = element.parents('.panel-default');
-                var elemTotal = elemParent.find('.total-garments');
-                var newTotal = parseInt( elemTotal.text() ) - 1;
-                var elemUnit = elemParent.find('.unit');
-
-                elemTotal.text( newTotal );
-
-                if ( newTotal < 2 ) elemUnit.text('Garment');
-
-                // delete tr element from table
-                element.closest('tr').remove();
-              }, 1000)
-            }
-          }
-        }
-      })
-
-      // reorder the keys everytime garment barcodes is change
-      // to avoid incorrect next garment number.
-      var garmentsObject = SharedVarsSvc
-                           .recentInvoiceCollection[ invoiceIndex ]
-                           .garment_barcodes;
-      SharedVarsSvc.recentInvoiceCollection[ invoiceIndex ].garment_barcodes = SharedFnSvc.reOrderKeys( garmentsObject, null );
+          // update total garments
+          elemTotal.text( newTotal );
+          // singularize unit if less 2
+          if ( newTotal < 2 ) elemUnit.text('Item');
+          // delete tr element from table
+          element.closest('tr').remove();
+        },
+        1000)
+      }
     }
 
 
@@ -99,7 +83,7 @@ function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
         return;
       }
 
-      //
+      // send confirmation
       if (element.find('.fa-trash-o').length) {
         confirmDelete();
         return

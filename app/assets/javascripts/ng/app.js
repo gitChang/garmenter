@@ -43,4 +43,7 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 	// remove hash on the url.
 	$locationProvider.html5Mode(true);
 
-});
+})
+.run( ['DaemonSvc', function ( DaemonSvc ) {
+	// initiate daemon service by injecting on run()
+}]);

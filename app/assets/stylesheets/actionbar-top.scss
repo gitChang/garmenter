@@ -1,13 +1,24 @@
 #actionbar-top {
   @extend .navbar, .navbar-default, .navbar-fixed-top, .navbar-static-top;
 
+  .navbar-header {
+    position: relative;
+  }
+
+  .navbar-brand-extend-pad-left {
+    width: 400px;
+    padding-left: 60px !important;
+  }
+
   .navbar-brand {
     font-weight: bold;
+  }
 
-    span img {
-      height: 25px !important;
-      padding-bottom: 3px !important;
-    }
+  span#logo {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    img { height: 38px !important; }
   }
 
   .navbar-right {

@@ -49406,14 +49406,14 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/invoice-scan-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/invoice-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand">New Garment Collection</span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/invoice-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand">New Invoice</span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/actionbar-top-tpls/login-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" src="/images/tuku.png" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>')
+  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand navbar-brand-extend-pad-left">TUKU Laundry System</span><span id="logo"><img alt="brand" src="/images/tuku.png" /></span>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49462,7 +49462,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/garment-scan-tpls/new-garment-scan-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-scan-tpls/new-garment-scan-tpl.html", '<div class="row">\n  <div class="col-xs-12 delete-garment-parent">\n    <label>Garment Item No. $</label><span class="pull-right"><a class="delete-scanned-garment hidden" href="#" tabindex="-1"><i class="fa fa-trash"></i></a></span>\n  </div>\n  <div class="col-xs-12">\n    <input class="garment-barcode-number" type="text" />\n  </div>\n</div>')
+  $templateCache.put("garment-scan-tpls/new-garment-scan-tpl.html", '<div class="row">\n  <div class="col-xs-12 delete-garment-parent">\n    <label>Item No. $</label><span class="pull-right"><a class="delete-scanned-garment hidden" href="#" tabindex="-1"><i class="fa fa-trash"></i></a></span>\n  </div>\n  <div class="col-xs-12">\n    <input class="garment-barcode-number" type="text" />\n  </div>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49476,7 +49476,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/invoice-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="historyInvoiceCollectionLen">{{ historyInvoiceCollectionLen }}</span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="recentInvoiceScannedNumber">{{ recentInvoiceScannedNumber }}</span></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="sizeHistoryInvoiceCollection">{{ sizeHistoryInvoiceCollection }}</span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="sizeRecentInvoiceCollection">{{ sizeRecentInvoiceCollection }}</span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49490,7 +49490,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/recent-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice No. {{ invoice.invoice_number }}<span class="qty pull-right"><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;<span class="unit">{{ pluralize( getGarmentsTotal($index) ) }}</span></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span class="add-garment-parent"><a class="add-garment" data-idx="{{ $index }}" href="#"><i class="fa fa-plus"></i></a></span><small class="pull-right">Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="sync" href="#"></a>\n    </li>\n    <li class="two">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice No. {{ invoice.invoice_number }}<span class="qty pull-right"><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;<span class="unit">{{ pluralize( getGarmentsTotal($index) ) }}</span></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span class="add-garment-parent"><a class="add-garment" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-plus"></i></a></span><small class="pull-right">Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="sync" href="#"></a>\n    </li>\n    <li class="two">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49504,7 +49504,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/shared-tpls/duplicate-msg-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("shared-tpls/duplicate-msg-tpl.html", '<i class="fa fa-hand-o-right"></i>&nbsp;barcode already exists!')
+  $templateCache.put("shared-tpls/duplicate-msg-tpl.html", '<i class="fa fa-flag"></i>&nbsp;&nbsp;<span class="msg"></span>')
 }]);
 
 // Angular Rails Template
@@ -49566,147 +49566,304 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 	// remove hash on the url.
 	$locationProvider.html5Mode(true);
 
-});
-'use strict';
-
-App.service('SharedFnSvc', function ($templateCache, SharedVarsSvc) {
-
-  this.resetSharedVarsForEditInvoice = function () {
-    SharedVarsSvc.currentInvoiceIndex = null;
-    SharedVarsSvc.currentInvoiceNumber = null;
-  }
-
-
-  this.setTargetInvoice = function (invoiceIndex) {
-    SharedVarsSvc.currentInvoiceIndex = invoiceIndex;
-    SharedVarsSvc.currentInvoiceNumber = SharedVarsSvc
-      .recentInvoiceCollection[invoiceIndex]
-      .invoice_number;
-  }
-
-
-  this.findInObjectArray = function (objectArray, value, notifCenter) {
-    var found = false;
-
-    objectArray.forEach(function (item, index, object) {
-      if ( item.invoice_number.toLowerCase() === value.toLowerCase() ) found = true;
-    })
-
-    if ( found ) {
-      if (notifCenter.length) {
-        notifCenter.html(function () {
-          return $templateCache.get('shared-tpls/duplicate-msg-tpl.html');
-        })
-        notifCenter.removeClass('hidden');
-      }
-    }
-
-    return found;
-  }
-
-
-  this.findInObject = function (object, value, notifCenter) {
-    var found = false;
-
-    for (var key in object) {
-      if ( object[key] === value ) found = true;
-    }
-
-    if ( found ) {
-      if (notifCenter.length) {
-        notifCenter.html(function () {
-          return $templateCache.get('shared-tpls/duplicate-msg-tpl.html');
-        })
-        notifCenter.removeClass('hidden');
-      }
-    }
-
-    return found;
-  }
-
-
-  this.getLastKey = function (object) {
-    var lastKey;
-
-    for (var key in object) {
-      lastKey = parseInt( key );
-    }
-    return lastKey || 0;
-  }
-
-
-  this.removeNotification = function ( notifCenter ) {
-    //if ( notifCenter.hasClass('hidden') ) return;
-    notifCenter.html('').addClass('hidden');
-  }
-
-
-  this.reOrderKeys = function ( object, keyStart ) {
-    var tempObject = object;
-    var i = keyStart || 1; // base to one.
-
-    // pass the value of old key to the new key
-    for ( var key in tempObject ) {
-
-      // when the key is already matches
-      // the ordering, proceed to next key
-      if ( key != i) {
-
-        Object.defineProperty( tempObject, i,
-          Object.getOwnPropertyDescriptor( tempObject, key ) );
-
-        // delete old key and value
-        delete tempObject[ key ];
-      }
-
-      i++;
-    }
-
-    return tempObject;
-  }
-
 })
-;
+.run( ['DaemonSvc', function ( DaemonSvc ) {
+	// initiate daemon service by injecting on run()
+}]);
 'use strict';
 
-App.service('SharedVarsSvc', function () {
+App.service('GlobalDataSvc', function () {
 
   // use in new or update invoice
   this.currentInvoiceNumber = null;
 
-  // used as the signal of editing
-  // existing invoice
-  this.currentInvoiceIndex = null;
-
-  // holds the number of target garment collection for modification (add)
-  this.currentGarmentBarcodesLen = null;
 
   // holds the recent saved invoice scanned
   this.recentInvoiceCollection = [{
-    invoice_number: 'B6843024J5', garment_barcodes: { 1: 'L16BC7890', 2: 'A41234588' }
+    invoice_number: 'B6843024J5',
+    garment_barcodes: [ 'L16BC7890', 'A41234588' ]
   }];
+
 
   // holds the history of the last collection
   this.historyInvoiceCollection = [];
 });
 'use strict';
 
-App.controller('ActionbarTopCtrl', function ($scope, $state, $templateCache, SharedVarsSvc) {
+App.service('DaemonSvc', function ( $rootScope, $state, HelperSvc ) {
 
-  // bind event to elements
+  // ???
+  $rootScope.$on('$stateChangeSuccess', function () {
+    // inherit
+    var $hs = HelperSvc;
 
-  $scope.entryTitle = SharedVarsSvc.currentInvoiceNumber;
+    // clear global invoice var
+    switch ( $state.current.name ) {
+      case 'invoice-barcode-scan-page':
+      case 'recent-invoice-collection-page':
+        $hs.clearInvoiceNumber();
+        break;
+    }
+
+    // log invoice collections
+    console.log( 'state: ', $state.current.name );
+    console.log( 'invoice: ', $hs.getInvoiceNumber() );
+    console.log( 'coll: ', JSON.stringify( $hs.getRecentInvoiceCollection() ) );
+    console.log( 'hist: ', JSON.stringify( $hs.getHistoryInvoiceCollection() ) );
+
+  })
+
+})
+;
+'use strict';
+
+App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
+
+  // this
+  var self = this;
+
+
+  this.setInvoiceNumber = function ( number ) {
+    // set invoice
+    GlobalDataSvc.currentInvoiceNumber = number.toUpperCase();
+  }
+
+
+  this.clearInvoiceNumber = function () {
+    // clear invoice
+    GlobalDataSvc.currentInvoiceNumber = null;
+  }
+
+
+  this.getInvoiceNumber = function () {
+    return GlobalDataSvc.currentInvoiceNumber;
+  }
+
+
+  this.getRecentInvoiceCollection = function () {
+    return GlobalDataSvc.recentInvoiceCollection;
+  }
+
+
+  this.getHistoryInvoiceCollection = function () {
+    return GlobalDataSvc.historyInvoiceCollection;
+  }
+
+
+  this.getSizeRecentInvoiceCollection = function () {
+    return GlobalDataSvc.recentInvoiceCollection.length;
+  }
+
+
+  this.getSizeHistoryInvoiceCollection = function () {
+    return GlobalDataSvc.historyInvoiceCollection.length;
+  }
+
+
+  this.getSizeGarmentCollection = function () {
+    var size;
+
+    GlobalDataSvc.recentInvoiceCollection
+    .forEach( function ( item, index, object ) {
+      // compare
+      if ( item.invoice_number === GlobalDataSvc.currentInvoiceNumber )
+        size = item.garment_barcodes.length;
+    })
+
+    return size;
+  }
+
+
+  this.setHistory = function () {
+    // pass the recent invoice collection to history
+    GlobalDataSvc.historyInvoiceCollection = GlobalDataSvc.recentInvoiceCollection;
+    // and clear the value.
+    GlobalDataSvc.recentInvoiceCollection  = [];
+
+    return true;
+  }
+
+
+  this.deleteInvoiceGarment = function ( invoiceNumber, garmentNumber ) {
+    // signal
+    var affirm = false;
+
+    // loop thru invoice
+    GlobalDataSvc.recentInvoiceCollection
+    .forEach( function ( invoice, nindex, nobject ) {
+      // compare invoice
+      if ( invoice.invoice_number === invoiceNumber.toUpperCase() ) {
+        // loop thru garments
+        invoice.garment_barcodes
+        .forEach( function ( garment, gindex, gobject ) {
+          // compare garment
+          if ( garment === garmentNumber.toUpperCase() ) {
+            gobject.splice( gindex, 1 );
+            affirm = true;
+          }
+        })
+      }
+    })
+
+    return affirm;
+  }
+
+
+  this.findInvoiceRecentCollection = function () {
+    // signal
+    var found = false;
+
+    // loop thru recent invoice collection and
+    // find invoice number
+    GlobalDataSvc.recentInvoiceCollection
+    .forEach( function ( invoice, index, object ) {
+      if ( invoice.invoice_number === self.getInvoiceNumber() )
+        found = true;
+    })
+
+    // log
+    console.log('invoice ', self.getInvoiceNumber(), ' is in collection ', found );
+
+    return found;
+  }
+
+
+  this.saveInvoice = function ( object ) {
+    // signal either saved or updated
+    var update = false;
+
+    // verify if update
+    if ( self.findInvoiceRecentCollection() ) {
+      // then perform update
+      if ( self.updateGarmentCollection( object.garment_barcodes ) )
+        update = true;
+
+    } else {
+      // this is new invoice
+      // push to recent collection invoice
+      if ( self.addGarmentCollection( object ) )
+        update = false
+    }
+
+    return update;
+  }
+
+
+  this.addGarmentCollection = function ( object ) {
+    // save invoice to collection
+    GlobalDataSvc.recentInvoiceCollection.push( object );
+    return true;
+  }
+
+
+  this.updateGarmentCollection = function ( array ) {
+    // loop thru and find existing invoice
+    GlobalDataSvc.recentInvoiceCollection.forEach( function ( invoice, nindex, nobject ) {
+      // compare
+      if ( invoice.invoice_number === self.getInvoiceNumber() ) {
+        // get each and push
+        array.forEach( function ( garment, gindex, gobject ) {
+          invoice.garment_barcodes.push( garment );
+        })
+      }
+    })
+
+    return true;
+  }
+
+
+  this.notify = function ( msg ) {
+    var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
+    var notifyCenter = jQuery( '#notif-center' )
+                       .html( $templateCache.get( tplPath ));
+
+    // place msg and display warning
+    notifyCenter.find( '.msg' ).text( msg );
+    notifyCenter.removeClass( 'hidden' );
+  }
+
+
+  this.removeNotify = function () {
+    var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
+    var notifyCenter = jQuery( '#notif-center' )
+                       .html( $templateCache.get( tplPath ));
+
+    // hide and remove warning
+    notifyCenter.addClass( 'hidden' );
+    notifyCenter.find( '.msg' ).text( '' );
+  }
+
+
+  this.findBarcodeDuplicate = function ( number, arrayLocal ) {
+    // signal
+    var found = false;
+
+    // compare unsaved current invoice number first
+    if ( number === GlobalDataSvc.currentInvoiceNumber ) found = true;
+
+    // array local is the array from the ctrl, inspect it also.
+    arrayLocal.forEach( function (item, index, object ) {
+      if ( item === number ) found = true;
+    })
+
+    // loop thru and find duplicate
+    GlobalDataSvc.recentInvoiceCollection
+    .forEach( function ( invoice, nindex, nobject ) {
+      // compare to invoices
+      if ( invoice.invoice_number === number.toUpperCase() ) found = true;
+      // compare to garments
+      invoice.garment_barcodes.forEach( function ( garment, gindex, gobject ) {
+        if ( garment === number.toUpperCase() ) found = true;
+      })
+    })
+
+    // notify user
+    if ( found ) this.notify( 'barcode already exists!' );
+    else this.removeNotify();
+
+    // log
+    console.log( 'duplicate barcode ', found );
+
+    return found;
+  }
+
+
+  this.scannerSpecialCharFound = function ( number ) {
+    var charSignal = '*';
+    var tempNumber = number.replace(/(\r\n|\n|\r)/gm, charSignal);
+
+    // check char
+    if ( tempNumber.indexOf( charSignal ) === -1 ) return false;
+
+    // default true
+    return true;
+  }
+
+})
+;
+'use strict';
+
+App.controller('ActionbarTopCtrl',
+function ( $scope, $state, $templateCache, HelperSvc ) {
+
+  var $hs = HelperSvc;
+
+  $scope.entryTitle = $hs.getInvoiceNumber();
+
 
   $scope.logoutUser = function () {
+
     if (angular.element('.logout-user').find('.fa-spinner').length) return;
 
-    angular.element('.logout-user').html(function () {
-        return $templateCache.get('shared-tpls/processing-tpl.html');
-      })
+    angular.element('.logout-user').html( function () {
+      return $templateCache.get('shared-tpls/processing-tpl.html');
+    })
 
-     setTimeout(function () {
-        $state.go('login-page');
-      }, 2000)
+    setTimeout(
+    function () {
+      $state.go('login-page');
+    },
+    2000)
   }
 
 })
@@ -49714,51 +49871,55 @@ App.controller('ActionbarTopCtrl', function ($scope, $state, $templateCache, Sha
 'use strict';
 
 App.controller('GarmentScanCtrl',
-function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
+function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
-  var currInvoiceIdx = SharedVarsSvc.currentInvoiceIndex;
+  // inherit
+  var $hs = HelperSvc;
 
-
+  // model object
   $scope.model = {
-    invoice_number: SharedVarsSvc.currentInvoiceNumber || null,
-    garment_barcodes: {}
+    invoice_number: $hs.getInvoiceNumber(),
+    garment_barcodes: []
   };
 
 
-  // holds the ordering
-  // of the gament number
-  // label on the page.
-  $scope.lastKey = 0;
-  $scope.tempLastKey;
+  // invoice number is required,
+  // so if not present, goto invoice scan page
+  if ( !$scope.model.invoice_number ) {
+    $state.go('invoice-barcode-scan-page');
+    return;
+  }
 
 
   // indicates the realtime length og garments
   $scope.garmentScannedLen = 0;
 
 
-  // invoice number is required,
-  // so if not present, goto invoice scan page
-  if (!$scope.model.invoice_number) {
-    $state.go('invoice-barcode-scan-page');
-    return;
-  }
-
-
   // indicate invoice number
-  setTimeout(function () {
+  setTimeout(
+  function () {
+    // label to top bar
     var text;
-    if ( currInvoiceIdx !== null )
+
+    if ( $hs.findInvoiceRecentCollection() )
       text = 'UPDATE Invoice : ' + $scope.model.invoice_number;
-    else
-      text = 'NEW Invoice : ' + $scope.model.invoice_number;
+    else text = 'NEW Invoice : ' + $scope.model.invoice_number;
 
     jQuery('.navbar-brand').text( text );
-  }, 500);
+  },
+  500);
+
+
+  // holds the ordering
+  // of the gament number
+  // label on the page.
+  $scope.tempLastOrder;
 
 
   // create barcode img using the number scanned.
   // display barcode canvas element on page.
-  jQuery('#invoice-barcode-pic').JsBarcode($scope.model.invoice_number, {
+  jQuery( '#invoice-barcode-pic' )
+  .JsBarcode( $scope.model.invoice_number, {
     width: 2,
     height: 60,
     lineColor: '#eee'
@@ -49767,12 +49928,12 @@ function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) 
 
   // create a new tpl for asking new entry
   // of garment barcode.
-  $scope.newGarmentScanTemplate = function ( key ) {
+  $scope.newGarmentScanTemplate = function ( prevOrder ) {
     // template
     var tpl = $templateCache.get( 'garment-scan-tpls/new-garment-scan-tpl.html' );
 
     // set the number label of the next garment
-    tpl = tpl.replace( '$', key + 1 );
+    tpl = tpl.replace( '$', prevOrder + 1 );
 
     // add to page
     angular.element('new-garment-scan-dir').append(function () {
@@ -49786,43 +49947,54 @@ function ($scope, $state, $compile, $templateCache, SharedVarsSvc, SharedFnSvc) 
   }
 
 
-  // holds the key of the next
+  // holds the number order of the next
   // garment barcode to be scanned.
-  var initialKey = null;
+  var initialOrder = null;
 
 
-  if ( currInvoiceIdx === null ) {
-    // meaning this is a new invoice entry
-    // so we have to get base key on the model
-    initialKey = SharedFnSvc.getLastKey( $scope.model.garment_barcodes );
+  if ( $hs.getSizeGarmentCollection() ) {
+    // this is an update transaction of the existing invoice.
+    initialOrder = $hs.getSizeGarmentCollection();
 
   } else {
-    // this is an update transaction of the existing invoice.
-    initialKey = SharedFnSvc.getLastKey(
-                 SharedVarsSvc.recentInvoiceCollection[ currInvoiceIdx ]
-                 .garment_barcodes
-                 );
+    // meaning this is a new invoice entry
+    // so we have to get size on the model
+    initialOrder = $scope.model.garment_barcodes.length;
   }
 
 
   // initialize template
-  $scope.newGarmentScanTemplate( initialKey );
+  $scope.newGarmentScanTemplate( initialOrder );
+
+
+  // save function garment
+  $scope.pushGarment = function ( number, order ) {
+    // append
+    $scope.model.garment_barcodes.push( number );
+    $scope.$apply();
+
+    //log
+    console.log( 'garment number ', number, ' pushed.')
+  }
 
 
   // update the badge count.
-  $scope.$watch('model.garment_barcodes', function (garments) {
+  $scope.$watch( 'model', function ( model ) {
     // log
-    // console.log( garments );
-    $scope.garmentScannedLen = Object.keys(garments).length;
+    console.log( 'model', JSON.stringify( model ) );
+    $scope.garmentScannedLen = model.garment_barcodes.length;
   }, true);
 
 });
 'use strict';
 
-App.controller('HistoryInvoiceCollection', function ($scope, SharedVarsSvc) {
+App.controller('HistoryInvoiceCollection', function ( $scope, HelperSvc ) {
 
-  $scope.invoices = SharedVarsSvc.historyInvoiceCollection;
+  // inherit
+  var $hs = HelperSvc;
 
+  // invoice collection
+  $scope.invoices = $hs.getHistoryInvoiceCollection();
 
   // get the total garments of the invoice
   // and display it to panel footer.
@@ -49830,27 +50002,22 @@ App.controller('HistoryInvoiceCollection', function ($scope, SharedVarsSvc) {
     return Object.keys($scope.invoices[idx].garment_barcodes).length;
   }
 
-
   // pluralize the unit of total garments
   $scope.pluralize = function ( total ) {
-    return total > 1 ? 'Garments' : 'Garment';
+    return total > 1 ? 'Items' : 'Item';
   }
 });
 'use strict';
 
-App.controller('InvoiceScanCtrl',
-  function ($scope, $state, SharedVarsSvc, SharedFnSvc) {
+App.controller( 'InvoiceScanCtrl', function ( $scope, $state, HelperSvc ) {
 
-  $scope.timeOut = 1000;
-
-  // clear shared var for editing entries.
-  SharedFnSvc.resetSharedVarsForEditInvoice();
+  var $hs = HelperSvc;
 
   // indicate number of recent invoices
-  $scope.recentInvoiceScannedNumber = SharedVarsSvc.recentInvoiceCollection.length;
+  $scope.sizeRecentInvoiceCollection = $hs.getSizeRecentInvoiceCollection();
 
   // indicate number of recent invoices
-  $scope.historyInvoiceCollectionLen = SharedVarsSvc.historyInvoiceCollection.length;
+  $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
 });
 'use strict';
 
@@ -49860,22 +50027,23 @@ App.controller('LoginCtrl', function ($scope, $state) {
 ;
 'use strict';
 
-App.controller('RecentInvoiceCollection', function ($scope, SharedVarsSvc) {
+App.controller('RecentInvoiceCollection', function ( $scope, HelperSvc ) {
+
+  // inherit
+  var $hs = HelperSvc;
 
   // invoice collection
-  $scope.invoices = SharedVarsSvc.recentInvoiceCollection;
-
+  $scope.invoices = $hs.getRecentInvoiceCollection();
 
   // get the total garments of the invoice
   // and display it to panel footer.
   $scope.getGarmentsTotal = function ( idx ) {
-    return Object.keys($scope.invoices[idx].garment_barcodes).length;
+    return $scope.invoices[ idx ].garment_barcodes.length;
   }
-
 
   // pluralize the unit of total garments
   $scope.pluralize = function ( total ) {
-    return total > 1 ? 'Garments' : 'Garment';
+    return total > 1 ? 'Items' : 'Item';
   }
 });
 'use strict';
@@ -49945,32 +50113,33 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
 ;
 'use strict';
 
-App.directive('deleteScannedGarment', function ($compile, $templateCache) {
+App.directive('deleteScannedGarment',
+function ( $compile, $templateCache, HelperSvc ) {
 
   function linker (scope, element) {
 
     function processDelete () {
-      var elemParent = element.closest('.row');
-      var garmentNumber = element.closest('.row')
-                          .find('.garment-barcode-number')
+
+      var $elemParent = element.closest('.row');
+      var $garmentNumber = $elemParent.find('.garment-barcode-number')
                           .val()
                           .trim()
                           .toUpperCase();
 
       // deleting garment scanned
-      for ( var key in scope.model.garment_barcodes ) {
-
-        if (scope.model.garment_barcodes[key] === garmentNumber) {
-          delete scope.model.garment_barcodes[key];
+      scope.model.garment_barcodes.forEach( function ( item, index, object ) {
+        // compare
+        if ( item === $garmentNumber ) {
+          object.splice( index, 1 );
           scope.$apply();
 
           // animate remove element for emphasis
-          elemParent.addClass('animated');
-          elemParent.addClass('fadeOut');
+          $elemParent.addClass('animated');
+          $elemParent.addClass('fadeOut');
 
-          setTimeout( function () { elemParent.remove(); }, 1000 );
+          setTimeout( function () { $elemParent.remove(); }, 1000 );
         }
-      }
+      })
     }
 
 
@@ -49984,69 +50153,47 @@ App.directive('deleteScannedGarment', function ($compile, $templateCache) {
 });
 'use strict';
 
-App.directive('garmentBarcodeNumber', function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
+App.directive( 'garmentBarcodeNumber',
+function ( $compile, $templateCache, HelperSvc ) {
 
-  function linker (scope, element) {
+  function linker ( scope, element ) {
 
-    var notifCenter = angular.element('#notif-center');
-    var currInvoiceIdx = SharedVarsSvc.currentInvoiceIndex;
+    // inherit
+    var $hs = HelperSvc;
+    // garment number
+    var $garmentNumber;
 
 
     function processGarment () {
-      var garmentBarcode = element.val().trim().toUpperCase();
+      // garment barcode value
+      $garmentNumber = element.val().trim().toUpperCase();
+      // check if not empty
+      if ( !$garmentNumber ) return;
 
-      // trapping
-      if ( currInvoiceIdx !== null &&
-        SharedFnSvc.findInObject(
-        SharedVarsSvc.recentInvoiceCollection[
-        currInvoiceIdx ]
-        .garment_barcodes,
-        garmentBarcode,
-        notifCenter
-        )) return;
+      // check duplicate barcode
+      var duplicated = $hs.findBarcodeDuplicate( $garmentNumber, scope.model.garment_barcodes );
 
-      if ( SharedFnSvc.findInObject(
-        scope.model.garment_barcodes,
-        garmentBarcode,
-        notifCenter )) return;
-
-
-      // remove warning
-      SharedFnSvc.removeNotification( notifCenter );
-
+      if ( duplicated ) {
+        return;
+      }
 
       // locked this to prevent adding new tpl
       element.prop('disabled', true);
 
-
       // assign a value to temp key
-      if ( !scope.tempLastKey ) {
-        // check if it is a new or
-        // an update to invoice.
-        if ( currInvoiceIdx !== null ) {
-          // this is an update to an invoice.
-          // get the last key of the garment barcodes
-          // to be used as a based key for additional
-          // items.
-          scope.lastKey = SharedFnSvc.getLastKey(
-                          SharedVarsSvc.recentInvoiceCollection[
-                          currInvoiceIdx
-                          ].garment_barcodes
-                          );
-          scope.$apply();
-        }
-
-        // pass the base key.
-        scope.tempLastKey = scope.lastKey; scope.$apply();
+      if ( !scope.tempLastOrder ) {
+        // previous size of garments
+        var previousSize = $hs.getSizeGarmentCollection() || 0;
+        // cache the size.
+        scope.tempLastOrder = previousSize; scope.$apply();
       }
 
       // increment temp key to maintain ordering.
-      scope.tempLastKey += 1; scope.$apply();
+      scope.tempLastOrder += 1; scope.$apply();
 
 
-      // save the garment barcode
-      scope.model.garment_barcodes[ scope.tempLastKey ] = garmentBarcode;
-      scope.$apply();
+      // push garment to model
+      scope.pushGarment( $garmentNumber );
 
 
       // allow user to delete the garment entry.
@@ -50054,7 +50201,7 @@ App.directive('garmentBarcodeNumber', function ($compile, $templateCache, Shared
 
 
       // create new template with a temp key number label.
-      scope.newGarmentScanTemplate( scope.tempLastKey );
+      scope.newGarmentScanTemplate( scope.tempLastOrder );
 
 
       // scroll to page bottom and
@@ -50130,60 +50277,38 @@ App.directive('xxnewGarmentScanDir', function ($compile, $templateCache, SharedV
 });
 'use strict';
 
-App.directive('saveGarments',
-  function ($compile, $templateCache, $state, SharedVarsSvc, SharedFnSvc) {
+App.directive( 'saveGarments',
+function ( $compile, $templateCache, $state, HelperSvc ) {
 
-  function linker (scope, element) {
+  function linker ( scope, element ) {
 
-    function saveInvoice () {
+    // inherit
+    var $hs = HelperSvc;
 
-      var orderedKeys;
 
-      // if invoice is for editing
-      if ( SharedVarsSvc.currentInvoiceIndex !== null ) {
+    function processSave () {
+      // show processing
+      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
-        var idx = SharedVarsSvc.currentInvoiceIndex;
+      // signal either saved or upated
+      var update = $hs.saveInvoice( scope.model );
 
-        // get the length of the existing invoice garment barcodes object
-        var len = Object.keys( SharedVarsSvc.recentInvoiceCollection[ idx ].garment_barcodes ).length;
-
-        // reorder the keys. base the starting on existing length garment barcodes object
-        orderedKeys = SharedFnSvc.reOrderKeys( scope.model.garment_barcodes, len + 1 );
-
-        // update || append to existing garment barcodes object
-        for ( var key in orderedKeys ) {
-          SharedVarsSvc.recentInvoiceCollection[ idx ].garment_barcodes[ key ] = orderedKeys[ key ];
-        }
-
-        // put timeout to see templates change
-        setTimeout(function () {
-          // redirect to recent collection page instead
+      if ( update ) {
+        // see invoice in recent for changes
+        setTimeout(
+        function () {
           $state.go( 'recent-invoice-collection-page' );
-        }, 2000);
+        },
+        2000);
 
-      // new entry
       } else {
-
-        // re-order keys in the object to
-        // to maintain order of the next entry.
-        orderedKeys = SharedFnSvc.reOrderKeys( scope.model.garment_barcodes, null );
-
-        // replace the garment barcodes with newly reordered
-        scope.model.garment_barcodes = orderedKeys;
-
-        // save invoice
-        SharedVarsSvc.recentInvoiceCollection.push( scope.model );
-
-        // put timeout to see templates change
-        setTimeout(function () {
-          // redirect to invoice scan for new entry
+        // ready to accept new invoice again
+        setTimeout(
+        function () {
           $state.go( 'invoice-barcode-scan-page' );
-        }, 2000);
+        },
+        2000);
       }
-
-
-      // clear edit signal vars
-      SharedFnSvc.resetSharedVarsForEditInvoice();
     }
 
 
@@ -50191,15 +50316,13 @@ App.directive('saveGarments',
     element.on('click', function (event) {
       event.preventDefault();
 
-      // trapping
-      if (!Object.keys(scope.model.garment_barcodes).length) return;
-      if (element.find('.fa-spinner').length) return;
+      // check if garment barcodes not empty
+      if ( !scope.model.garment_barcodes.length ) return;
+      // ignore when already saving
+      if ( element.find('.fa-spinner').length ) return;
 
-      // show processing
-      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
-
-      // save data
-      saveInvoice();
+      // save invoice
+      processSave();
     });
   }
 
@@ -50210,51 +50333,51 @@ App.directive('saveGarments',
 });
 'use strict';
 
-App.directive('invoiceBarcodeNumber',
-  function ($compile, $templateCache, $state, SharedVarsSvc, SharedFnSvc) {
+App.directive( 'invoiceBarcodeNumber',
+function ( $compile, $templateCache, $state, HelperSvc ) {
 
   function linker (scope, element) {
 
-    var notifCenter = angular.element('#notif-center');
+    var $hs = HelperSvc;
+    var $invoiceNumber;
 
 
     function processInvoice () {
-      if ( SharedFnSvc.findInObjectArray( SharedVarsSvc.recentInvoiceCollection, element.val().trim(), notifCenter )) return;
+      // invoice barcode value
+      var $invoiceNumber = element.val().trim().toUpperCase();
+      // when empty value
+      if ( $invoiceNumber === '' ) return;
+      // check duplicate
+      if ( $hs.findBarcodeDuplicate( $invoiceNumber, [] ) ) return;
 
       // locked this to prevent another input
       element.prop('disabled', true);
 
-      // remove warning
-      SharedFnSvc.removeNotification(notifCenter);
-
       // indicate processing
-      jQuery('#spinner').toggleClass('hidden');
+      jQuery('#spinner').removeClass('hidden');
 
-      // lock input textbox
-      element.attr('disabled', true);
-
-      // store invoice number to shared variable.
-      SharedVarsSvc.currentInvoiceNumber = element.val().trim().toUpperCase();
+      // set current invoice number
+      $hs.setInvoiceNumber( $invoiceNumber );
 
       // redirect to garment scanning page with timeout.
-      setTimeout(function () {
-        $state.go('garment-barcode-scan-page');
-      }, scope.timeOut);
+      setTimeout( function () {
+      $state.go('garment-barcode-scan-page');
+      },
+      2000);
     }
 
 
+    // user action
     element.on('input', function () {
-      var charSignal = '*';
-      var inputString = element.val().replace(/(\r\n|\n|\r)/gm, charSignal);
-
-      // trapping
-      if ( inputString.indexOf( charSignal ) === -1 ) return;
-      processInvoice();
+      // when special char not found
+      //if ( !$hs.scannerSpecialCharFound( $invoiceNumber ) ) return;
+      //processInvoice();
+      //alert();
     })
 
 
     element.on('keyup', function (event) {
-      // trapping
+      // when not entery key
       if ( event.which !== 13 ) return;
       processInvoice();
     });
@@ -50272,11 +50395,12 @@ App.directive('invoiceBarcodeNumber',
 App.directive('recentCollection', function ($compile, $templateCache, $state) {
 
   function linker (scope, element) {
+
     element.on('click', function (event) {
       event.preventDefault();
 
       // do not proceed when no scanned garments.
-      if (!scope.recentInvoiceScannedNumber) return;
+      if ( !scope.sizeRecentInvoiceCollection ) return;
 
       $state.go('recent-invoice-collection-page');
     })
@@ -50315,9 +50439,14 @@ App.directive('loginBtn', function ($state, $templateCache) {
 ;
 'use strict';
 
-App.directive('addGarment', function ($state, $templateCache, SharedFnSvc) {
+App.directive('addGarment',
+function ( $state, $templateCache, HelperSvc ) {
 
-  function linker (scope, element) {
+  function linker ( scope, element ) {
+
+    // inherit
+    var $hs = HelperSvc;
+
 
     element.on('click', function (event) {
       event.preventDefault();
@@ -50328,10 +50457,14 @@ App.directive('addGarment', function ($state, $templateCache, SharedFnSvc) {
       // show processing
       element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
-      // set a target invoice to add garments
-      var invoiceIndex = parseInt(element.attr('data-idx').trim());
-      SharedFnSvc.setTargetInvoice(invoiceIndex);
+      // set current invoice to update
+      var invoiceNumber = element.attr('data-invoice-number')
+                          .trim()
+                          .toUpperCase();
 
+      // set an invoice to update
+      $hs.setInvoiceNumber( invoiceNumber );
+      // redirect
       setTimeout( function () { $state.go('garment-barcode-scan-page'); }, 1000);
     });
   }
@@ -50344,9 +50477,13 @@ App.directive('addGarment', function ($state, $templateCache, SharedFnSvc) {
 'use strict';
 
 App.directive('deleteGarment',
-function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
+function ( $compile, $templateCache, HelperSvc ) {
 
   function linker (scope, element) {
+
+    // inherit
+    var $hs = HelperSvc;
+
     // countdown to auto-cancel delete action.
     // defaults to 6s.
     var seconds;
@@ -50383,53 +50520,33 @@ function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
 
     // delete confirmed
     function processDelete () {
+      // params
       var invoiceNumber = element.attr('data-invoice-number').trim().toUpperCase();
       var garmentNumber = element.attr('data-garment-number').trim().toUpperCase();
-      var invoiceIndex ;
 
       // delete garment from the invoice
-      SharedVarsSvc.recentInvoiceCollection.forEach(function (item, index, object) {
-        if (item.invoice_number === invoiceNumber) {
+      if ( $hs.deleteInvoiceGarment( invoiceNumber, garmentNumber ) ) {
+        // animate deletion
+        element.parents('tr').addClass('animated');
+        element.parents('tr').addClass('fadeOut');
 
-          // save index to temp
-          invoiceIndex = index;
+        // change total number of garments
+        setTimeout(
+        function () {
+          var elemParent = element.parents('.panel-default');
+          var elemTotal = elemParent.find('.total-garments');
+          var newTotal = parseInt( elemTotal.text() ) - 1;
+          var elemUnit = elemParent.find('.unit');
 
-          for (var key in item.garment_barcodes) {
-            if (item.garment_barcodes[key] === garmentNumber) {
-
-              // delete garment
-              delete item.garment_barcodes[key];
-
-              // animate deletion
-              element.parents('tr').addClass('animated');
-              element.parents('tr').addClass('fadeOut');
-
-              // change total number of garments
-              setTimeout(function () {
-
-                var elemParent = element.parents('.panel-default');
-                var elemTotal = elemParent.find('.total-garments');
-                var newTotal = parseInt( elemTotal.text() ) - 1;
-                var elemUnit = elemParent.find('.unit');
-
-                elemTotal.text( newTotal );
-
-                if ( newTotal < 2 ) elemUnit.text('Garment');
-
-                // delete tr element from table
-                element.closest('tr').remove();
-              }, 1000)
-            }
-          }
-        }
-      })
-
-      // reorder the keys everytime garment barcodes is change
-      // to avoid incorrect next garment number.
-      var garmentsObject = SharedVarsSvc
-                           .recentInvoiceCollection[ invoiceIndex ]
-                           .garment_barcodes;
-      SharedVarsSvc.recentInvoiceCollection[ invoiceIndex ].garment_barcodes = SharedFnSvc.reOrderKeys( garmentsObject, null );
+          // update total garments
+          elemTotal.text( newTotal );
+          // singularize unit if less 2
+          if ( newTotal < 2 ) elemUnit.text('Item');
+          // delete tr element from table
+          element.closest('tr').remove();
+        },
+        1000)
+      }
     }
 
 
@@ -50442,7 +50559,7 @@ function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
         return;
       }
 
-      //
+      // send confirmation
       if (element.find('.fa-trash-o').length) {
         confirmDelete();
         return
@@ -50457,7 +50574,7 @@ function ($compile, $templateCache, SharedVarsSvc, SharedFnSvc) {
 });
 'use strict';
 
-App.directive('sync', function ($state, $templateCache, SharedVarsSvc) {
+App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
 
   // pass the scope tpl value
   // to local, for template object.
@@ -50465,6 +50582,9 @@ App.directive('sync', function ($state, $templateCache, SharedVarsSvc) {
 
 
   function linker (scope, element) {
+
+    // inherit
+    var $hs = HelperSvc;
 
     // countdown to auto-cancel delete action.
     // defaults to 6s.
@@ -50504,23 +50624,18 @@ App.directive('sync', function ($state, $templateCache, SharedVarsSvc) {
 
 
     function makeHistory () {
-      var cacheCollection = SharedVarsSvc.recentInvoiceCollection;
-
       // show process syncing
       element.html( '<i class="fa fa-refresh fa-spin"></i>' );
 
-      // put to history
-      setTimeout (function () {
-        // send to history scope
-        SharedVarsSvc.historyInvoiceCollection = cacheCollection;
-
-        // clear the array of recent collection.
-        // since the value is on the history already.
-        SharedVarsSvc.recentInvoiceCollection = [];
-
-        // redirect to new invoice entry page
-        $state.go('invoice-barcode-scan-page');
-      }, 3000)
+      // try to create history
+      if ( $hs.setHistory() ) {
+        setTimeout (
+        function () {
+          // redirect to new invoice entry page
+          $state.go('invoice-barcode-scan-page');
+        },
+        3000)
+      }
     }
 
 
@@ -50580,6 +50695,8 @@ App.directive('signup', function ($state, $templateCache, SharedVarsSvc) {
     link: linker
   };
 });
+
+
 
 
 

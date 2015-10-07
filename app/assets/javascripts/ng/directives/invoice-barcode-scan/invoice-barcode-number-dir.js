@@ -1,50 +1,50 @@
 'use strict';
 
-App.directive('invoiceBarcodeNumber',
-  function ($compile, $templateCache, $state, SharedVarsSvc, SharedFnSvc) {
+App.directive( 'invoiceBarcodeNumber',
+function ( $compile, $templateCache, $state, HelperSvc ) {
 
   function linker (scope, element) {
 
-    var notifCenter = angular.element('#notif-center');
+    var $hs = HelperSvc;
+    var $invoiceNumber;
 
 
     function processInvoice () {
-      if ( SharedFnSvc.findInObjectArray( SharedVarsSvc.recentInvoiceCollection, element.val().trim(), notifCenter )) return;
+      // invoice barcode value
+      var $invoiceNumber = element.val().trim().toUpperCase();
+      // when empty value
+      if ( $invoiceNumber === '' ) return;
+      // check duplicate
+      if ( $hs.findBarcodeDuplicate( $invoiceNumber, [] ) ) return;
 
       // locked this to prevent another input
       element.prop('disabled', true);
 
-      // remove warning
-      SharedFnSvc.removeNotification(notifCenter);
-
       // indicate processing
-      jQuery('#spinner').toggleClass('hidden');
+      jQuery('#spinner').removeClass('hidden');
 
-      // lock input textbox
-      element.attr('disabled', true);
-
-      // store invoice number to shared variable.
-      SharedVarsSvc.currentInvoiceNumber = element.val().trim().toUpperCase();
+      // set current invoice number
+      $hs.setInvoiceNumber( $invoiceNumber );
 
       // redirect to garment scanning page with timeout.
-      setTimeout(function () {
-        $state.go('garment-barcode-scan-page');
-      }, scope.timeOut);
+      setTimeout( function () {
+      $state.go('garment-barcode-scan-page');
+      },
+      2000);
     }
 
 
+    // user action
     element.on('input', function () {
-      var charSignal = '*';
-      var inputString = element.val().replace(/(\r\n|\n|\r)/gm, charSignal);
-
-      // trapping
-      if ( inputString.indexOf( charSignal ) === -1 ) return;
-      processInvoice();
+      // when special char not found
+      //if ( !$hs.scannerSpecialCharFound( $invoiceNumber ) ) return;
+      //processInvoice();
+      //alert();
     })
 
 
     element.on('keyup', function (event) {
-      // trapping
+      // when not entery key
       if ( event.which !== 13 ) return;
       processInvoice();
     });

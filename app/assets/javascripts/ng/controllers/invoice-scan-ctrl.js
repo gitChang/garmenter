@@ -1,16 +1,12 @@
 'use strict';
 
-App.controller('InvoiceScanCtrl',
-  function ($scope, $state, SharedVarsSvc, SharedFnSvc) {
+App.controller( 'InvoiceScanCtrl', function ( $scope, $state, HelperSvc ) {
 
-  $scope.timeOut = 1000;
-
-  // clear shared var for editing entries.
-  SharedFnSvc.resetSharedVarsForEditInvoice();
+  var $hs = HelperSvc;
 
   // indicate number of recent invoices
-  $scope.recentInvoiceScannedNumber = SharedVarsSvc.recentInvoiceCollection.length;
+  $scope.sizeRecentInvoiceCollection = $hs.getSizeRecentInvoiceCollection();
 
   // indicate number of recent invoices
-  $scope.historyInvoiceCollectionLen = SharedVarsSvc.historyInvoiceCollection.length;
+  $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
 });

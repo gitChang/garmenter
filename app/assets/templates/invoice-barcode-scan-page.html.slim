@@ -19,12 +19,12 @@
       a ui-sref="history-invoice-collection-page"
         i.fa.fa-history
         | History
-        span.badge ng-show="historyInvoiceCollectionLen"
-          | {{ historyInvoiceCollectionLen }}
+        span.badge ng-show="sizeHistoryInvoiceCollection"
+          | {{ sizeHistoryInvoiceCollection }}
     li.two
       a.recent-collection href="#"
         i.fa.fa-th
         | Collection
-        span.badge ng-show="recentInvoiceScannedNumber"
-          | {{ recentInvoiceScannedNumber }}
+        span.badge ng-show="sizeRecentInvoiceCollection"
+          | {{ sizeRecentInvoiceCollection }}
 

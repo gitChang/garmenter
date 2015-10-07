@@ -15078,8 +15078,8 @@ body {
   padding: 6px;
   font-size: 16px;
   text-align: center;
-  color: darkred;
-  background-color: #f0ad4e;
+  color: #f0ad4e;
+  background-color: #000;
 }
 
 /* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
@@ -15367,19 +15367,33 @@ body {
 }
 
 /* line 4, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top .navbar-header {
+  position: relative;
+}
+/* line 8, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top .navbar-brand-extend-pad-left {
+  width: 400px;
+  padding-left: 60px !important;
+}
+/* line 13, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top .navbar-brand {
   font-weight: bold;
 }
-/* line 7, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
-#actionbar-top .navbar-brand span img {
-  height: 25px !important;
-  padding-bottom: 3px !important;
+/* line 17, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top span#logo {
+  position: absolute;
+  top: 6px;
+  left: 0;
 }
-/* line 13, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+/* line 21, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top span#logo img {
+  height: 38px !important;
+}
+/* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top .navbar-right {
   margin-right: 15px;
 }
-/* line 17, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+/* line 28, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top .logout-user {
   min-width: 56px;
 }

@@ -1,8 +1,13 @@
 'use strict';
 
-App.directive('addGarment', function ($state, $templateCache, SharedFnSvc) {
+App.directive('addGarment',
+function ( $state, $templateCache, HelperSvc ) {
 
-  function linker (scope, element) {
+  function linker ( scope, element ) {
+
+    // inherit
+    var $hs = HelperSvc;
+
 
     element.on('click', function (event) {
       event.preventDefault();
@@ -13,10 +18,14 @@ App.directive('addGarment', function ($state, $templateCache, SharedFnSvc) {
       // show processing
       element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
-      // set a target invoice to add garments
-      var invoiceIndex = parseInt(element.attr('data-idx').trim());
-      SharedFnSvc.setTargetInvoice(invoiceIndex);
+      // set current invoice to update
+      var invoiceNumber = element.attr('data-invoice-number')
+                          .trim()
+                          .toUpperCase();
 
+      // set an invoice to update
+      $hs.setInvoiceNumber( invoiceNumber );
+      // redirect
       setTimeout( function () { $state.go('garment-barcode-scan-page'); }, 1000);
     });
   }

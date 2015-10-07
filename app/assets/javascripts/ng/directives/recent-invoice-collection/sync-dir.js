@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive('sync', function ($state, $templateCache, SharedVarsSvc) {
+App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
 
   // pass the scope tpl value
   // to local, for template object.
@@ -8,6 +8,9 @@ App.directive('sync', function ($state, $templateCache, SharedVarsSvc) {
 
 
   function linker (scope, element) {
+
+    // inherit
+    var $hs = HelperSvc;
 
     // countdown to auto-cancel delete action.
     // defaults to 6s.
@@ -47,23 +50,18 @@ App.directive('sync', function ($state, $templateCache, SharedVarsSvc) {
 
 
     function makeHistory () {
-      var cacheCollection = SharedVarsSvc.recentInvoiceCollection;
-
       // show process syncing
       element.html( '<i class="fa fa-refresh fa-spin"></i>' );
 
-      // put to history
-      setTimeout (function () {
-        // send to history scope
-        SharedVarsSvc.historyInvoiceCollection = cacheCollection;
-
-        // clear the array of recent collection.
-        // since the value is on the history already.
-        SharedVarsSvc.recentInvoiceCollection = [];
-
-        // redirect to new invoice entry page
-        $state.go('invoice-barcode-scan-page');
-      }, 3000)
+      // try to create history
+      if ( $hs.setHistory() ) {
+        setTimeout (
+        function () {
+          // redirect to new invoice entry page
+          $state.go('invoice-barcode-scan-page');
+        },
+        3000)
+      }
     }
 
 
