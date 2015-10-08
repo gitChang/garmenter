@@ -6,14 +6,14 @@
         | &nbsp;
         | Company
       .form-group
-        input.acct-data [
+        input [
           ng-model="model.company_name"
           type="text"
           placeholder="company name"
         ]
 
       .form-group
-        input.acct-data [
+        input [
           ng-model="model.branch_name"
           type="text"
           placeholder="branch name"
@@ -25,13 +25,25 @@
         | &nbsp;
         | Contact
       .form-group
-        input.acct-data ng-model="model.contact_person_name" type="text" placeholder="contact person's name"
+        input [
+          ng-model="model.contact_person_name"
+          type="text"
+          placeholder="contact person's name"
+        ]
 
       .form-group
-        input.acct-data ng-model="model.contact_person_mobile" type="text" placeholder="contact person's mobile"
+        input [
+          ng-model="model.contact_person_mobile"
+          type="text"
+          placeholder="contact person's mobile"
+        ]
 
       .form-group
-        input.acct-data ng-model="model.contact_person_email" type="email" placeholder="contact person's email"
+        input [
+          ng-model="model.contact_person_email"
+          type="email"
+          placeholder="contact person's email"
+        ]
 
 
       h4
@@ -39,13 +51,25 @@
         | &nbsp;
         | Credentials
       .form-group
-        input.acct-data ng-model="model.account_name" type="text" placeholder="account name"
+        input [
+          ng-model="model.account_name"
+          type="text"
+          placeholder="account name"
+        ]
 
       .form-group
-        input.acct-data ng-model="model.password" type="password" placeholder="password"
+        input [
+          ng-model="model.password"
+          type="password"
+          placeholder="password"
+        ]
 
       .form-group
-        input.acct-data ng-model="model.confirm_password" type="password" placeholder="re-enter password"
+        input [
+          ng-model="model.confirm_password"
+          type="password"
+          placeholder="re-enter password"
+        ]
 
 // actionbar
 #actionbar-bottom

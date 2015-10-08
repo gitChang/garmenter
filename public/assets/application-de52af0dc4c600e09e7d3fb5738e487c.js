@@ -49518,7 +49518,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/signup-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div id="form-panel">\n    <form>\n      <h4>\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.branch_name" placeholder="branch name" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-phone"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_name" placeholder="contact person&#39;s name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="email" />\n      </div>\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div id="form-panel">\n    <form>\n      <h4>\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.branch_name" placeholder="branch name" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-phone"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.contact_person_name" placeholder="contact person&#39;s name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="email" />\n      </div>\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49950,8 +49950,10 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
     // scroll to page bottom and
     // give focus to newly added input text
-    jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, 500);
-    jQuery('input:last').focus();
+    jQuery( 'html, body' ).animate({
+      scrollTop: jQuery( document ).height()
+    }, 500);
+    jQuery( 'input:last' ).focus();
   }
 
 
@@ -50056,7 +50058,7 @@ App.controller('RecentInvoiceCollection', function ( $scope, HelperSvc ) {
 });
 'use strict';
 
-App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
+App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache, $compile ) {
 
   // model
   $scope.model = {
@@ -50069,6 +50071,18 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
     password: null,
     confirm_password: null
   };
+
+
+  // apply class .acct-data to all <input>
+  $scope.assignAcctDataClass = function () {
+    // = input.acct-data
+    jQuery( 'input' ).addClass( 'acct-data' );
+    // recompile for directives to function
+    $compile( jQuery('#signup-form') )( $scope );
+    // report
+    console.log( 'applied class acct-data.' )
+  }
+
 
   // invalid field pointer
   $scope.pointInvalid = function ( err ) {
@@ -50100,6 +50114,9 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
     },
     1000)
   }
+
+  // place acct-data class
+  setTimeout( function () { $scope.assignAcctDataClass(); }, 500 )
 
   // focus to first <input>
   setTimeout( function () { jQuery('input:first').focus(); }, 500 )
@@ -50758,6 +50775,7 @@ App.directive('acctData', function ($state, $templateCache) {
       }
 
     });
+
   }
 
   return {

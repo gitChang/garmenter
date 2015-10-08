@@ -72,8 +72,10 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
     // scroll to page bottom and
     // give focus to newly added input text
-    jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, 500);
-    jQuery('input:last').focus();
+    jQuery( 'html, body' ).animate({
+      scrollTop: jQuery( document ).height()
+    }, 500);
+    jQuery( 'input:last' ).focus();
   }
 
 

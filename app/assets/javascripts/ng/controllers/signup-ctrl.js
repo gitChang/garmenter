@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
+App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache, $compile ) {
 
   // model
   $scope.model = {
@@ -13,6 +13,18 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
     password: null,
     confirm_password: null
   };
+
+
+  // apply class .acct-data to all <input>
+  $scope.assignAcctDataClass = function () {
+    // = input.acct-data
+    jQuery( 'input' ).addClass( 'acct-data' );
+    // recompile for directives to function
+    $compile( jQuery('#signup-form') )( $scope );
+    // report
+    console.log( 'applied class acct-data.' )
+  }
+
 
   // invalid field pointer
   $scope.pointInvalid = function ( err ) {
@@ -44,6 +56,9 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
     },
     1000)
   }
+
+  // place acct-data class
+  setTimeout( function () { $scope.assignAcctDataClass(); }, 500 )
 
   // focus to first <input>
   setTimeout( function () { jQuery('input:first').focus(); }, 500 )

@@ -23,6 +23,7 @@ App.directive('acctData', function ($state, $templateCache) {
       }
 
     });
+
   }
 
   return {
