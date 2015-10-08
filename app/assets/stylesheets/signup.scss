@@ -20,6 +20,8 @@
         &.has-error-field {
           color: $brand-danger;
         }
+
+        &.first { margin-top: 0; }
       }
 
       .form-group.has-error {

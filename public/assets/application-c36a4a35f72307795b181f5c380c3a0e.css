@@ -15101,34 +15101,38 @@ body {
 #signup-form #form-panel form h4.has-error-field {
   color: #d9534f;
 }
-/* line 25, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
+/* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
+#signup-form #form-panel form h4.first {
+  margin-top: 0;
+}
+/* line 27, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
 #signup-form #form-panel form .form-group.has-error {
   position: relative;
 }
-/* line 28, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
+/* line 30, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
 #signup-form #form-panel form .form-group.has-error input {
   border-width: 2px;
   box-shadow: none;
   color: #d9534f;
 }
-/* line 33, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
+/* line 35, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
 #signup-form #form-panel form .form-group.has-error input::selection {
   background: #000;
   /* WebKit/Blink Browsers */
 }
-/* line 36, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
+/* line 38, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
 #signup-form #form-panel form .form-group.has-error input::selection {
   background: #000;
   /* WebKit/Blink Browsers */
 }
-/* line 41, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
+/* line 43, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
 #signup-form #form-panel form .form-group.has-error span.icon-pointer {
   position: absolute;
   top: 25%;
   right: 20px;
   color: #d9534f;
 }
-/* line 49, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
+/* line 51, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
 #signup-form #form-panel form input {
   padding-top: 18px;
   padding-bottom: 18px;
@@ -15141,7 +15145,7 @@ body {
   -moz-transition: max-height 0.5s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-/* line 65, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
+/* line 67, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
 #signup-form #form-panel form input:focus {
   border-radius: 55px;
 }
