@@ -14,18 +14,6 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
     confirm_password: null
   };
 
-
-  // on enter key, proceed to next input
-  $scope.nextInputOnEnter = function () {
-    jQuery( 'input' ).on('keyup', function (event) {
-      if ( event.which === 13 ) {
-        console.log( jQuery( this ).next( 'input' )[0] );
-        jQuery( this ).next( 'input' )[0].focus();
-      }
-    })
-  }
-
-
   // invalid field pointer
   $scope.pointInvalid = function ( err ) {
     // element the contains invalida data
@@ -57,14 +45,10 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
     1000)
   }
 
-
-  // bind event on enter
-  setTimeout( function () { $scope.nextInputOnEnter() }, 1000 )
-
   // focus to first <input>
   setTimeout( function () { jQuery('input:first').focus(); }, 500 )
 
   // test error display
-  setTimeout( function () { $scope.pointInvalid( 'company_name' ); }, 2000 )
-  setTimeout( function () { $scope.pointInvalid( 'branch_name' ); }, 6000 )
+  //setTimeout( function () { $scope.pointInvalid( 'company_name' ); }, 2000 )
+  //setTimeout( function () { $scope.pointInvalid( 'branch_name' ); }, 6000 )
 })

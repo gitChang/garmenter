@@ -49518,7 +49518,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/signup-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div id="form-panel">\n    <form>\n      <h4>\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.branch_name" placeholder="branch name" type="text" />\n      </div>\n      <br />\n      <h4>\n        <i class="fa fa-phone"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.contact_person_name" placeholder="contact person&#39;s name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="email" />\n      </div>\n      <br />\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div id="form-panel">\n    <form>\n      <h4>\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.branch_name" placeholder="branch name" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-phone"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_name" placeholder="contact person&#39;s name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="email" />\n      </div>\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -50070,18 +50070,6 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
     confirm_password: null
   };
 
-
-  // on enter key, proceed to next input
-  $scope.nextInputOnEnter = function () {
-    jQuery( 'input' ).on('keyup', function (event) {
-      if ( event.which === 13 ) {
-        console.log( jQuery( this ).next( 'input' )[0] );
-        jQuery( this ).next( 'input' )[0].focus();
-      }
-    })
-  }
-
-
   // invalid field pointer
   $scope.pointInvalid = function ( err ) {
     // element the contains invalida data
@@ -50113,16 +50101,12 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
     1000)
   }
 
-
-  // bind event on enter
-  setTimeout( function () { $scope.nextInputOnEnter() }, 1000 )
-
   // focus to first <input>
   setTimeout( function () { jQuery('input:first').focus(); }, 500 )
 
   // test error display
-  setTimeout( function () { $scope.pointInvalid( 'company_name' ); }, 2000 )
-  setTimeout( function () { $scope.pointInvalid( 'branch_name' ); }, 6000 )
+  //setTimeout( function () { $scope.pointInvalid( 'company_name' ); }, 2000 )
+  //setTimeout( function () { $scope.pointInvalid( 'branch_name' ); }, 6000 )
 })
 ;
 'use strict';
@@ -50746,6 +50730,38 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
   return {
     restrict: 'C',
     template: tpl,
+    link: linker
+  };
+});
+'use strict';
+
+App.directive('acctData', function ($state, $templateCache) {
+
+  function linker ( scope, element ) {
+
+    element.on('keyup', function ( event ) {
+      //
+      if ( event.which !== 13 ) return;
+
+      // next element .form-group > input
+      var elemNext = element.parent().next();
+
+      // = div.form-group
+      if ( elemNext.prop('nodeName') === 'DIV' ) {
+        // > input
+        elemNext.find( 'input' ).focus()
+      }
+      // = h4
+      if ( elemNext.prop('nodeName') === 'H4' ) {
+        // = div.form-group > input
+        elemNext.next().find( 'input' ).focus()
+      }
+
+    });
+  }
+
+  return {
+    restrict: 'C',
     link: linker
   };
 });

@@ -6,48 +6,46 @@
         | &nbsp;
         | Company
       .form-group
-        input [
+        input.acct-data [
           ng-model="model.company_name"
           type="text"
           placeholder="company name"
         ]
 
       .form-group
-        input [
+        input.acct-data [
           ng-model="model.branch_name"
           type="text"
           placeholder="branch name"
         ]
 
-      br
 
       h4
         i.fa.fa-phone
         | &nbsp;
         | Contact
       .form-group
-        input ng-model="model.contact_person_name" type="text" placeholder="contact person's name"
+        input.acct-data ng-model="model.contact_person_name" type="text" placeholder="contact person's name"
 
       .form-group
-        input ng-model="model.contact_person_mobile" type="text" placeholder="contact person's mobile"
+        input.acct-data ng-model="model.contact_person_mobile" type="text" placeholder="contact person's mobile"
 
       .form-group
-        input ng-model="model.contact_person_email" type="email" placeholder="contact person's email"
+        input.acct-data ng-model="model.contact_person_email" type="email" placeholder="contact person's email"
 
-      br
 
       h4
         i.fa.fa-key
         | &nbsp;
         | Credentials
       .form-group
-        input ng-model="model.account_name" type="text" placeholder="account name"
+        input.acct-data ng-model="model.account_name" type="text" placeholder="account name"
 
       .form-group
-        input ng-model="model.password" type="password" placeholder="password"
+        input.acct-data ng-model="model.password" type="password" placeholder="password"
 
       .form-group
-        input ng-model="model.confirm_password" type="password" placeholder="re-enter password"
+        input.acct-data ng-model="model.confirm_password" type="password" placeholder="re-enter password"
 
 // actionbar
 #actionbar-bottom
