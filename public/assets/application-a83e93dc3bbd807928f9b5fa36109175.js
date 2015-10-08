@@ -50062,8 +50062,8 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache, $compil
 
   // model
   $scope.model = {
-    company_name: 'Clean Master',
-    branch_name: 'West Branch',
+    company_name: null,
+    branch_name: null,
     contact_person_name: null,
     contact_person_mobile: null,
     contact_person_email: null,
