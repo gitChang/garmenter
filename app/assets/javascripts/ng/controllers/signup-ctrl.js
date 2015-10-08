@@ -1,0 +1,70 @@
+'use strict';
+
+App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
+
+  // model
+  $scope.model = {
+    company_name: 'Clean Master',
+    branch_name: 'West Branch',
+    contact_person_name: null,
+    contact_person_mobile: null,
+    contact_person_email: null,
+    account_name: null,
+    password: null,
+    confirm_password: null
+  };
+
+
+  // on enter key, proceed to next input
+  $scope.nextInputOnEnter = function () {
+    jQuery( 'input' ).on('keyup', function (event) {
+      if ( event.which === 13 ) {
+        console.log( jQuery( this ).next( 'input' )[0] );
+        jQuery( this ).next( 'input' )[0].focus();
+      }
+    })
+  }
+
+
+  // invalid field pointer
+  $scope.pointInvalid = function ( err ) {
+    // element the contains invalida data
+    var attrModel = 'input[ng-model="model.' + err + '"]';
+    var elemInvalid = jQuery( attrModel );
+    var elemParent = elemInvalid.parent( '.form-group' );
+    var iconTpl = 'signup-tpls/icon-error-pointer-tpl.html';
+
+
+    // reset fields has error style
+    jQuery( '.form-group.has-error' ).removeClass( 'has-error' );
+    jQuery( 'span.icon-pointer' ).remove();
+    jQuery( 'h4.has-error-field' ).removeClass( 'has-error-field' );
+
+    setTimeout(
+    function () {
+      // class="form-group has-error"
+      elemParent.addClass( 'has-error' );
+
+      // insert <i class="fa fa-ban fa-sm"><i>
+      elemParent.append( $templateCache.get( iconTpl ) );
+
+      // colorize red <h4>
+      elemParent.prev( 'h4' ).addClass( 'has-error-field' );
+
+      // focus
+      elemInvalid.select();
+    },
+    1000)
+  }
+
+
+  // bind event on enter
+  setTimeout( function () { $scope.nextInputOnEnter() }, 1000 )
+
+  // focus to first <input>
+  setTimeout( function () { jQuery('input:first').focus(); }, 500 )
+
+  // test error display
+  setTimeout( function () { $scope.pointInvalid( 'company_name' ); }, 2000 )
+  setTimeout( function () { $scope.pointInvalid( 'branch_name' ); }, 6000 )
+})

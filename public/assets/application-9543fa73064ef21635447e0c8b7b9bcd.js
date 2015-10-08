@@ -49518,7 +49518,14 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/signup-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div id="form-panel">\n    <form>\n      <h4 class="text-center mg-t-x">\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.branch_name" placeholder="branch Name" type="text" />\n      </div>\n      <br />\n      <h4 class="text-center mg-t-x">\n        <i class="fa fa-user"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.contact_person_name" placeholder="contact person&#39;s name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="email" />\n      </div>\n      <br />\n      <h4 class="text-center mg-t-x">\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div id="form-panel">\n    <form>\n      <h4>\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.branch_name" placeholder="branch name" type="text" />\n      </div>\n      <br />\n      <h4>\n        <i class="fa fa-phone"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.contact_person_name" placeholder="contact person&#39;s name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="email" />\n      </div>\n      <br />\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/signup-tpls/icon-error-pointer-tpl.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("signup-tpls/icon-error-pointer-tpl.html", '<span class="icon-pointer"><i class="fa fa-user fa-ban"></i></span>')
 }]);
 
 'use strict';
@@ -49533,7 +49540,8 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		// state for questions controller.
 		.state('signup-page', {
 			url  				: '/signup',
-			templateUrl : 'signup-page.html'
+			templateUrl : 'signup-page.html',
+			controller  : 'SignupCtrl'
 		})
 		.state('login-page', {
 			url  				: '/login',
@@ -50046,6 +50054,77 @@ App.controller('RecentInvoiceCollection', function ( $scope, HelperSvc ) {
     return total > 1 ? 'Items' : 'Item';
   }
 });
+'use strict';
+
+App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache ) {
+
+  // model
+  $scope.model = {
+    company_name: 'Clean Master',
+    branch_name: 'West Branch',
+    contact_person_name: null,
+    contact_person_mobile: null,
+    contact_person_email: null,
+    account_name: null,
+    password: null,
+    confirm_password: null
+  };
+
+
+  // on enter key, proceed to next input
+  $scope.nextInputOnEnter = function () {
+    jQuery( 'input' ).on('keyup', function (event) {
+      if ( event.which === 13 ) {
+        console.log( jQuery( this ).next( 'input' )[0] );
+        jQuery( this ).next( 'input' )[0].focus();
+      }
+    })
+  }
+
+
+  // invalid field pointer
+  $scope.pointInvalid = function ( err ) {
+    // element the contains invalida data
+    var attrModel = 'input[ng-model="model.' + err + '"]';
+    var elemInvalid = jQuery( attrModel );
+    var elemParent = elemInvalid.parent( '.form-group' );
+    var iconTpl = 'signup-tpls/icon-error-pointer-tpl.html';
+
+
+    // reset fields has error style
+    jQuery( '.form-group.has-error' ).removeClass( 'has-error' );
+    jQuery( 'span.icon-pointer' ).remove();
+    jQuery( 'h4.has-error-field' ).removeClass( 'has-error-field' );
+
+    setTimeout(
+    function () {
+      // class="form-group has-error"
+      elemParent.addClass( 'has-error' );
+
+      // insert <i class="fa fa-ban fa-sm"><i>
+      elemParent.append( $templateCache.get( iconTpl ) );
+
+      // colorize red <h4>
+      elemParent.prev( 'h4' ).addClass( 'has-error-field' );
+
+      // focus
+      elemInvalid.select();
+    },
+    1000)
+  }
+
+
+  // bind event on enter
+  setTimeout( function () { $scope.nextInputOnEnter() }, 1000 )
+
+  // focus to first <input>
+  setTimeout( function () { jQuery('input:first').focus(); }, 500 )
+
+  // test error display
+  setTimeout( function () { $scope.pointInvalid( 'company_name' ); }, 2000 )
+  setTimeout( function () { $scope.pointInvalid( 'branch_name' ); }, 6000 )
+})
+;
 'use strict';
 
 App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $templateCache) {
@@ -50672,7 +50751,7 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
 });
 'use strict';
 
-App.directive('signup', function ($state, $templateCache, SharedVarsSvc) {
+App.directive('signup', function ($state, $templateCache) {
 
   function linker (scope, element) {
     element.on('click', function (event) {
@@ -50684,9 +50763,11 @@ App.directive('signup', function ($state, $templateCache, SharedVarsSvc) {
       // show processing
       element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
-      setTimeout(function () {
+      setTimeout(
+      function () {
         $state.go('login-page');
-      }, 2000)
+      },
+      2000)
     });
   }
 

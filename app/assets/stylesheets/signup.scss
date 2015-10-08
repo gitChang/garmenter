@@ -12,19 +12,59 @@
 
     form {
       h4 {
+        @extend .text-center, .mg-t-x;
         color: $brand-primary;
         text-shadow: 0px 2px 0px rgba(darken($gray-darker, 10%), 1);
+
+        &.has-error-field {
+          color: $brand-danger;
+        }
+      }
+
+      .form-group.has-error {
+        position: relative;
+
+          input {
+            border-width: 2px;
+            box-shadow: none;
+            color: $brand-danger;
+
+            &::selection {
+              background: $gray-base; /* WebKit/Blink Browsers */
+            }
+            &::selection {
+              background: $gray-base; /* WebKit/Blink Browsers */
+            }
+        }
+
+        span.icon-pointer {
+          position: absolute;
+          top: 25%;
+          right: 20px;
+          color: $brand-danger;
+        }
       }
 
       input {
         @extend .form-control;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+
         background-color: $gray-dark;
+
         border: 1px solid darken($gray, 10%);
         border-radius: 50px;
-        //border: 0;
+
         color: $brand-primary;
+        max-height: 58px;
+        -webkit-transition: max-height 0.5s ease-in-out;
+        -moz-transition: max-height 0.5s ease-in-out;
+        transition: all 0.2s ease-in-out;
+
+        &:focus {
+          @extend .input-lg;
+          border-radius: 55px;
+        }
       }
     }
   }

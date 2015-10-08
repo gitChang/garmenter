@@ -1,6 +1,6 @@
 'use strict';
 
-App.directive('signup', function ($state, $templateCache, SharedVarsSvc) {
+App.directive('signup', function ($state, $templateCache) {
 
   function linker (scope, element) {
     element.on('click', function (event) {
@@ -12,9 +12,11 @@ App.directive('signup', function ($state, $templateCache, SharedVarsSvc) {
       // show processing
       element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
-      setTimeout(function () {
+      setTimeout(
+      function () {
         $state.go('login-page');
-      }, 2000)
+      },
+      2000)
     });
   }
 

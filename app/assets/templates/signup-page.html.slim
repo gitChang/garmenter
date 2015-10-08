@@ -1,20 +1,28 @@
 .row#signup-form
   #form-panel
     form
-      h4.text-center.mg-t-x
+      h4
         i.fa.fa-building-o
         | &nbsp;
         | Company
       .form-group
-        input ng-model="model.company_name" type="text" placeholder="company name"
+        input [
+          ng-model="model.company_name"
+          type="text"
+          placeholder="company name"
+        ]
 
       .form-group
-        input ng-model="model.branch_name" type="text" placeholder="branch Name"
+        input [
+          ng-model="model.branch_name"
+          type="text"
+          placeholder="branch name"
+        ]
 
       br
 
-      h4.text-center.mg-t-x
-        i.fa.fa-user
+      h4
+        i.fa.fa-phone
         | &nbsp;
         | Contact
       .form-group
@@ -28,7 +36,7 @@
 
       br
 
-      h4.text-center.mg-t-x
+      h4
         i.fa.fa-key
         | &nbsp;
         | Credentials

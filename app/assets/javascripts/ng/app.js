@@ -10,7 +10,8 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		// state for questions controller.
 		.state('signup-page', {
 			url  				: '/signup',
-			templateUrl : 'signup-page.html'
+			templateUrl : 'signup-page.html',
+			controller  : 'SignupCtrl'
 		})
 		.state('login-page', {
 			url  				: '/login',
