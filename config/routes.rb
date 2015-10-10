@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   # to avoid format render problem. try it to
   # see the problem.
   scope 'ajax', defaults: { format: 'json' } do
+
     resources :signup, only: [:create]
-    resources :user_sessions, only: [:create, :destroy]
+
+    post 'login'  => 'user_sessions#create',  as: :login
+    post 'logout' => 'user_sessions#destroy', as: :logout
   end
 
   # must be declared after api to prevent

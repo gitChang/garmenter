@@ -13009,6 +13009,12 @@ return jQuery;
     };
     namespace(root, "Routes");
     root.Routes = {
+// login => /ajax/login(.:format)
+  // function(options)
+  login_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"login",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
+// logout => /ajax/logout(.:format)
+  // function(options)
+  logout_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"logout",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
 // rails_info => /rails/info(.:format)
   // function(options)
   rails_info_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"info",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
@@ -13026,13 +13032,7 @@ return jQuery;
   root_path: Utils.route([], [], [7,"/",false], arguments),
 // signup_index => /ajax/signup(.:format)
   // function(options)
-  signup_index_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"signup",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
-// user_session => /ajax/user_sessions/:id(.:format)
-  // function(id, options)
-  user_session_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"user_sessions",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// user_sessions => /ajax/user_sessions(.:format)
-  // function(options)
-  user_sessions_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"user_sessions",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments)}
+  signup_index_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"signup",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments)}
 ;
     root.Routes.options = defaults;
     return root.Routes;
@@ -49414,7 +49414,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/login-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("login-page.html", '<div class="row" id="login-form">\n  <div class="hidden" id="notif-center"></div>\n  <div class="col-xs-12">\n    <div id="form-panel">\n      <form>\n        <div class="row">\n          <input ng-model="model.account_name" placeholder="account name" type="text" />\n        </div>\n        <div class="row">\n          <input ng-model="model.password" placeholder="password" type="password" />\n        </div>\n        <div class="row">\n          <button class="login-btn">Login</button>\n        </div>\n        <div class="row text-center" id="or-signup">\n          <div class="col-xs-12">\n            <a ui-sref="signup-page">Or create an account.</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<div class="row" id="company-label">\n  <div class="col-xs-12 label-panel">\n    <small><a href="http://tuku-singapore.com" target="blank">visit&nbsp;<b>TUKU Singapore PTE. LTD.</b></a></small>\n  </div>\n</div>')
+  $templateCache.put("login-page.html", '<div class="row" id="login-form">\n  <div class="hidden" id="notif-center"></div>\n  <div class="col-xs-12">\n    <div id="form-panel">\n      <form>\n        <div class="row">\n          <input ng-model="model.account_name" placeholder="account name or email address" type="text" />\n        </div>\n        <div class="row">\n          <input ng-model="model.password" placeholder="password" type="password" />\n        </div>\n        <div class="row">\n          <button class="login-btn">Login</button>\n        </div>\n        <div class="row text-center" id="or-signup">\n          <div class="col-xs-12">\n            <a ui-sref="signup-page">Or create an account.</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<div class="row" id="company-label">\n  <div class="col-xs-12 label-panel">\n    <small><a href="http://tuku-singapore.com" target="blank">visit&nbsp;<b>TUKU Singapore PTE. LTD.</b></a></small>\n  </div>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49829,24 +49829,7 @@ function ($scope, $state, $templateCache, HelperSvc) {
   //--
   var $hs = HelperSvc;
 
-  $scope.entryTitle = $hs.getInvoiceNumber(); // topbat title
-
-
-  //--
-  // methods
-  //--
-  $scope.logoutUser = function () {
-    // ignore when already processing
-    if (angular.element('.logout-user').find('.fa-spinner').length) return;
-    // spinner
-    angular.element('.logout-user').html(function () {
-      return $templateCache.get('shared-tpls/processing-tpl.html');
-    })
-
-    setTimeout(function () {
-      $state.go('login-page');
-    }, 2000)
-  }
+  $scope.entryTitle = $hs.getInvoiceNumber(); // topbar title
 
 })
 ;
@@ -50215,6 +50198,69 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
 ;
 'use strict';
 
+App.directive('logoutUser', function ($compile, HelperSvc) {
+
+  function linker (scope, element) {
+
+    //--
+    // variables
+    //--
+    var $hs = HelperSvc;
+
+
+    //--
+    // methods
+    //--
+    function showProcessing() {
+      $hs.indicateProcessing(element);
+    }
+
+
+    function processLogout() {
+      $.ajax({
+        url: Routes.logout_path(),
+        type: 'post',
+        beforeSend: showProcessing()
+      })
+      .done(function () {
+        $hs.removeNotify();
+        location.pathname = '/login';
+      })
+      .fail(function (jqXHR) {
+        // stop spinner
+        $hs.stopIndicateProcessing(element);
+
+        if (jqXHR.status === 500)
+          $hs.notify('Server Error Encountered.');
+
+      })
+    }
+
+
+    //--
+    // callbacks
+    //--
+    function callbackClick () {
+      processLogout();
+    }
+
+
+    //--
+    // events
+    //--
+    element.on('click', callbackClick);
+
+  }
+
+
+  return {
+    restrict: 'C',
+    link: linker
+  };
+})
+;
+'use strict';
+
 App.directive('deleteScannedGarment',
 function ( $compile, $templateCache, HelperSvc ) {
 
@@ -50537,7 +50583,7 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
 
     function processLogin() {
       $.ajax({
-        url: Routes.user_sessions_path(),
+        url: Routes.login_path(),
         type: 'post',
         data: scope.model,
         dataType: 'json',
@@ -50547,11 +50593,24 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
         $hs.removeNotify();
         location.pathname = '/invoice-barcode-scan';
       })
-      .fail(function (error) {
+      .fail(function (jqXHR) {
         // stop spinner
         $hs.stopIndicateProcessing(element);
         // display message / notify
-        $hs.notify('Invalid account name or password.');
+        if (jqXHR.status === 500) {
+          $hs.notify('Server Error Encountered.');
+          return;
+        }
+
+        var key = Object.keys(jqXHR.responseJSON)[0];
+
+        if (key === 'msg') {
+          $hs.notify(jqXHR.responseJSON.msg);
+          return;
+        }
+
+        $hs.notify('Invalid Account Name or Password.');
+
       })
     }
 

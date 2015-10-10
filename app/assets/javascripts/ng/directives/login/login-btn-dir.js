@@ -20,7 +20,7 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
 
     function processLogin() {
       $.ajax({
-        url: Routes.user_sessions_path(),
+        url: Routes.login_path(),
         type: 'post',
         data: scope.model,
         dataType: 'json',
@@ -30,11 +30,24 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
         $hs.removeNotify();
         location.pathname = '/invoice-barcode-scan';
       })
-      .fail(function (error) {
+      .fail(function (jqXHR) {
         // stop spinner
         $hs.stopIndicateProcessing(element);
         // display message / notify
-        $hs.notify('Invalid account name or password.');
+        if (jqXHR.status === 500) {
+          $hs.notify('Server Error Encountered.');
+          return;
+        }
+
+        var key = Object.keys(jqXHR.responseJSON)[0];
+
+        if (key === 'msg') {
+          $hs.notify(jqXHR.responseJSON.msg);
+          return;
+        }
+
+        $hs.notify('Invalid Account Name or Password.');
+
       })
     }
 

@@ -46,7 +46,7 @@ class SignupController < ApplicationController
 
 
   def create
-    sleep 1
+    pause
     user = User.new(params_user)
 
     if user.save

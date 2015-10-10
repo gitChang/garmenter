@@ -1,24 +1,27 @@
 class UserSessionsController < ApplicationController
 
   def create
-    sleep 2
+    pause
+
     user = login(params[:account_name], params[:password])
-    puts ""
-    puts "==============="
-    puts "#{logged_in?}"
-    puts "==============="
 
     if user
+      unless user.approved
+        logout
+        render json: { msg: 'Your account is pending for Admin\'s Approval.' }, status: 301
+        return
+      end
       render json: { auth: true }, status: 200
-    else
-      render json: { auth: false }, status: 301
+      return
     end
+
+    render json: { auth: false }, status: 301
   end
 
 
   def destroy
     logout
-    redirect_to '/login'
+    render json: { deauth: true }, status: 200
   end
 
 end
