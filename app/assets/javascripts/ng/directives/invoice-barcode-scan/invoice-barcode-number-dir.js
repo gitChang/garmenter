@@ -12,6 +12,7 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
     function processInvoice () {
       // invoice barcode value
       var $invoiceNumber = element.val().trim().toUpperCase();
+
       // when empty value
       if ( $invoiceNumber === '' ) return;
       // check duplicate

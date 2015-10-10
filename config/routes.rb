@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # see the problem.
   scope 'ajax', defaults: { format: 'json' } do
     resources :signup, only: [:create]
+    resources :user_sessions, only: [:create, :destroy]
   end
 
   # must be declared after api to prevent

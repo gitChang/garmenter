@@ -1,20 +1,59 @@
 'use strict';
 
-App.directive('loginBtn', function ($state, $templateCache) {
+App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
-    element.on('click', function () {
 
+    //--
+    // variables
+    //--
+    var $hs = HelperSvc;
+
+
+    //--
+    // methods
+    //--
+    function showProcessing() {
+      $hs.indicateProcessing(element);
+    }
+
+
+    function processLogin() {
+      $.ajax({
+        url: Routes.user_sessions_path(),
+        type: 'post',
+        data: scope.model,
+        dataType: 'json',
+        beforeSend: showProcessing()
+      })
+      .done(function () {
+        $hs.removeNotify();
+        location.pathname = '/invoice-barcode-scan';
+      })
+      .fail(function (error) {
+        // stop spinner
+        $hs.stopIndicateProcessing(element);
+        // display message / notify
+        $hs.notify('Invalid account name or password.');
+      })
+    }
+
+
+    //--
+    // callbacks
+    //--
+    function callbackClick() {
       // ignore click when processing
       if (element.find('.fa-spinner').length) return;
 
-      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
+      processLogin();
+    }
 
-      setTimeout(function () {
-        $state.go('invoice-barcode-scan-page');
-      }, 2000)
 
-    })
+    //--
+    // events
+    //--
+    element.on('click', callbackClick)
   }
 
   return {

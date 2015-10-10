@@ -7,6 +7,7 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
   //--
   var $hs = HelperSvc;
 
+  /**
   $scope.model = {
     company_name: null,
     branch_name: null,
@@ -16,7 +17,20 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
     contact_person_email: null,
     account_name: null,
     password: null,
-    confirm_password: null
+    password_confirmation: null
+  };
+  **/
+
+  $scope.model = {
+    company_name: 'Clean Master',
+    branch_name: 'West Branch',
+    contact_person_first_name: 'Luke',
+    contact_person_last_name: 'Lui',
+    contact_person_mobile: '09265415953',
+    contact_person_email: 'luke_lui@gmail.com',
+    account_name: 'clean_master_wb',
+    password: 'com_password',
+    password_confirmation: 'com_password'
   };
 
 
@@ -59,9 +73,9 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
   //--
   // events
   //--
-  setTimeout(function () {
-    $scope.assignAcctDataClass();
-  }, 500)
+  //setTimeout(function () {
+  //  $scope.assignAcctDataClass();
+  //}, 500)
 
   setTimeout(function () {
     $('input:first').focus();

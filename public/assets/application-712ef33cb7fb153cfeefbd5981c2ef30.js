@@ -13026,7 +13026,13 @@ return jQuery;
   root_path: Utils.route([], [], [7,"/",false], arguments),
 // signup_index => /ajax/signup(.:format)
   // function(options)
-  signup_index_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"signup",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments)}
+  signup_index_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"signup",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
+// user_session => /ajax/user_sessions/:id(.:format)
+  // function(id, options)
+  user_session_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"user_sessions",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
+// user_sessions => /ajax/user_sessions(.:format)
+  // function(options)
+  user_sessions_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"user_sessions",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments)}
 ;
     root.Routes.options = defaults;
     return root.Routes;
@@ -49408,7 +49414,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/login-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("login-page.html", '<div class="row" id="login-form">\n  <div class="col-xs-12">\n    <div id="form-panel">\n      <form>\n        <div class="row">\n          <input placeholder="account name" type="text" />\n        </div>\n        <div class="row">\n          <input placeholder="password" type="password" />\n        </div>\n        <div class="row">\n          <button class="login-btn">Login</button>\n        </div>\n        <div class="row text-center" id="or-signup">\n          <div class="col-xs-12">\n            <a ui-sref="signup-page">Or create an account.</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<div class="row" id="company-label">\n  <div class="col-xs-12 label-panel">\n    <small><a href="http://tuku-singapore.com" target="blank">visit&nbsp;<b>TUKU Singapore PTE. LTD.</b></a></small>\n  </div>\n</div>')
+  $templateCache.put("login-page.html", '<div class="row" id="login-form">\n  <div class="hidden" id="notif-center"></div>\n  <div class="col-xs-12">\n    <div id="form-panel">\n      <form>\n        <div class="row">\n          <input ng-model="model.account_name" placeholder="account name" type="text" />\n        </div>\n        <div class="row">\n          <input ng-model="model.password" placeholder="password" type="password" />\n        </div>\n        <div class="row">\n          <button class="login-btn">Login</button>\n        </div>\n        <div class="row text-center" id="or-signup">\n          <div class="col-xs-12">\n            <a ui-sref="signup-page">Or create an account.</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<div class="row" id="company-label">\n  <div class="col-xs-12 label-panel">\n    <small><a href="http://tuku-singapore.com" target="blank">visit&nbsp;<b>TUKU Singapore PTE. LTD.</b></a></small>\n  </div>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49443,7 +49449,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/signup-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div class="hidden" id="notif-center"></div>\n  <div id="form-panel">\n    <form>\n      <h4 class="first">\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.branch_name" placeholder="branch name" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-phone"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.contact_person_first_name" placeholder="contact person&#39;s first name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_last_name" placeholder="contact person&#39;s last name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup" href="#"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div class="hidden" id="notif-center"></div>\n  <div id="form-panel">\n    <form>\n      <h4 class="first">\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.branch_name" placeholder="branch name" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-phone"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_first_name" placeholder="contact person&#39;s first name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_last_name" placeholder="contact person&#39;s last name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.password_confirmation" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup" href="#"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49994,6 +50000,20 @@ App.controller( 'InvoiceScanCtrl', function ( $scope, $state, HelperSvc ) {
 
 App.controller('LoginCtrl', function ($scope, $state) {
 
+  //--
+  // variables
+  //--
+  $scope.model = {
+    account_name: 'clean_master_wb',
+    password: 'password'
+  }
+
+
+  //--
+  // events
+  //--
+
+
 })
 ;
 'use strict';
@@ -50026,6 +50046,7 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
   //--
   var $hs = HelperSvc;
 
+  /**
   $scope.model = {
     company_name: null,
     branch_name: null,
@@ -50035,7 +50056,20 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
     contact_person_email: null,
     account_name: null,
     password: null,
-    confirm_password: null
+    password_confirmation: null
+  };
+  **/
+
+  $scope.model = {
+    company_name: 'Clean Master',
+    branch_name: 'West Branch',
+    contact_person_first_name: 'Luke',
+    contact_person_last_name: 'Lui',
+    contact_person_mobile: '09265415953',
+    contact_person_email: 'luke_lui@gmail.com',
+    account_name: 'clean_master_wb',
+    password: 'com_password',
+    password_confirmation: 'com_password'
   };
 
 
@@ -50078,9 +50112,9 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
   //--
   // events
   //--
-  setTimeout(function () {
-    $scope.assignAcctDataClass();
-  }, 500)
+  //setTimeout(function () {
+  //  $scope.assignAcctDataClass();
+  //}, 500)
 
   setTimeout(function () {
     $('input:first').focus();
@@ -50413,6 +50447,7 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
     function processInvoice () {
       // invoice barcode value
       var $invoiceNumber = element.val().trim().toUpperCase();
+
       // when empty value
       if ( $invoiceNumber === '' ) return;
       // check duplicate
@@ -50482,21 +50517,60 @@ App.directive('recentCollection', function ($compile, $templateCache, $state) {
 ;
 'use strict';
 
-App.directive('loginBtn', function ($state, $templateCache) {
+App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
-    element.on('click', function () {
 
+    //--
+    // variables
+    //--
+    var $hs = HelperSvc;
+
+
+    //--
+    // methods
+    //--
+    function showProcessing() {
+      $hs.indicateProcessing(element);
+    }
+
+
+    function processLogin() {
+      $.ajax({
+        url: Routes.user_sessions_path(),
+        type: 'post',
+        data: scope.model,
+        dataType: 'json',
+        beforeSend: showProcessing()
+      })
+      .done(function () {
+        $hs.removeNotify();
+        location.pathname = '/invoice-barcode-scan';
+      })
+      .fail(function (error) {
+        // stop spinner
+        $hs.stopIndicateProcessing(element);
+        // display message / notify
+        $hs.notify('Invalid account name or password.');
+      })
+    }
+
+
+    //--
+    // callbacks
+    //--
+    function callbackClick() {
       // ignore click when processing
       if (element.find('.fa-spinner').length) return;
 
-      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
+      processLogin();
+    }
 
-      setTimeout(function () {
-        $state.go('invoice-barcode-scan-page');
-      }, 2000)
 
-    })
+    //--
+    // events
+    //--
+    element.on('click', callbackClick)
   }
 
   return {

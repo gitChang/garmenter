@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008203555) do
+ActiveRecord::Schema.define(version: 20151010055509) do
 
   create_table "branches", force: :cascade do |t|
     t.integer  "company_id"
@@ -35,12 +35,15 @@ ActiveRecord::Schema.define(version: 20151008203555) do
     t.string   "contact_person_mobile",                     null: false
     t.string   "contact_person_email",                      null: false
     t.string   "account_name",                              null: false
-    t.string   "password",                                  null: false
+    t.string   "crypted_password"
+    t.string   "salt"
     t.boolean  "approved",                  default: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
 
+  add_index "users", ["account_name"], name: "index_users_on_account_name", unique: true
   add_index "users", ["branch_id"], name: "index_users_on_branch_id"
+  add_index "users", ["contact_person_email"], name: "index_users_on_contact_person_email", unique: true
 
 end

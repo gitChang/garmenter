@@ -1,7 +1,7 @@
 class SignupController < ApplicationController
 
   before_action :find_or_new_company,         only: :create
-  before_action :find_or_new_company_branch,  only: :create
+  before_action :new_company_branch,  only: :create
 
   before_action :create, only: :create_company
   before_action :create, only: :create_company_branch
@@ -29,12 +29,7 @@ class SignupController < ApplicationController
 
 
 
-  def find_or_new_company_branch
-    # get existing company branch name record
-    @branch = Branch.where(company: @company).find_by_branch_name(params[:branch_name])
-
-    return if @branch
-
+  def new_company_branch
     # create new company branch name record instead
     @branch = Branch.new(params_branch)
 
@@ -87,7 +82,7 @@ class SignupController < ApplicationController
 
                     :account_name,
                     :password,
-                    :confirm_password)
+                    :password_confirmation)
 
       pu.merge(branch: @branch)
     end

@@ -1,11 +1,13 @@
 .row#login-form
+  #notif-center.hidden
+
   .col-xs-12
     #form-panel
       form
         .row
-          input type="text" placeholder="account name"
+          input ng-model="model.account_name" type="text" placeholder="account name"
         .row
-          input type="password" placeholder="password"
+          input ng-model="model.password" type="password" placeholder="password"
         .row
           button.login-btn
             | Login

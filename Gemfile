@@ -4,6 +4,9 @@ source 'https://rubygems.org'
 # version of rails to use.
 gem 'rails', '4.2.1'
 
+# authentication
+gem 'sorcery'
+
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'

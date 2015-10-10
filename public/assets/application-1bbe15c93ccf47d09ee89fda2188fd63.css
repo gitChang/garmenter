@@ -342,10 +342,10 @@ th {
   }
 
   /* line 83, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_print.scss */
-  .btn > .caret, #login-form #form-panel button > .caret, #actionbar-top .logout-user > .caret,
+  .btn > .caret, #actionbar-top .logout-user > .caret, #login-form #form-panel button > .caret,
   .dropup > .btn > .caret,
-  #login-form #form-panel .dropup > button > .caret,
-  #actionbar-top .dropup > .logout-user > .caret {
+  #actionbar-top .dropup > .logout-user > .caret,
+  #login-form #form-panel .dropup > button > .caret {
     border-top-color: #000 !important;
   }
 
@@ -4033,12 +4033,12 @@ input[type="checkbox"] {
 .form-control-static.input-lg, .input-group-lg > .form-control-static.form-control, #signup-form #form-panel form .input-group-lg > input.form-control-static,
 .input-group-lg > .form-control-static.input-group-addon,
 .input-group-lg > .input-group-btn > .form-control-static.btn,
-#login-form #form-panel .input-group-lg > .input-group-btn > button.form-control-static,
-#actionbar-top .input-group-lg > .input-group-btn > .form-control-static.logout-user, #signup-form #form-panel form input.form-control-static:focus, #login-form #form-panel input.form-control-static, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control, #signup-form #form-panel form .input-group-sm > input.form-control-static, #login-form #form-panel .input-group-sm > input.form-control-static,
+#actionbar-top .input-group-lg > .input-group-btn > .form-control-static.logout-user,
+#login-form #form-panel .input-group-lg > .input-group-btn > button.form-control-static, #signup-form #form-panel form input.form-control-static:focus, #login-form #form-panel input.form-control-static, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control, #signup-form #form-panel form .input-group-sm > input.form-control-static, #login-form #form-panel .input-group-sm > input.form-control-static,
 .input-group-sm > .form-control-static.input-group-addon,
 .input-group-sm > .input-group-btn > .form-control-static.btn,
-#login-form #form-panel .input-group-sm > .input-group-btn > button.form-control-static,
-#actionbar-top .input-group-sm > .input-group-btn > .form-control-static.logout-user {
+#actionbar-top .input-group-sm > .input-group-btn > .form-control-static.logout-user,
+#login-form #form-panel .input-group-sm > .input-group-btn > button.form-control-static {
   padding-left: 0;
   padding-right: 0;
 }
@@ -4047,8 +4047,8 @@ input[type="checkbox"] {
 .input-sm, .input-group-sm > .form-control, #signup-form #form-panel form .input-group-sm > input, #login-form #form-panel .input-group-sm > input,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn,
-#login-form #form-panel .input-group-sm > .input-group-btn > button,
-#actionbar-top .input-group-sm > .input-group-btn > .logout-user {
+#actionbar-top .input-group-sm > .input-group-btn > .logout-user,
+#login-form #form-panel .input-group-sm > .input-group-btn > button {
   height: 33px;
   padding: 5px 10px;
   font-size: 14px;
@@ -4109,8 +4109,8 @@ select[multiple].input-sm,
 .input-lg, .input-group-lg > .form-control, #signup-form #form-panel form .input-group-lg > input,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn,
-#login-form #form-panel .input-group-lg > .input-group-btn > button,
-#actionbar-top .input-group-lg > .input-group-btn > .logout-user, #signup-form #form-panel form input:focus, #login-form #form-panel input {
+#actionbar-top .input-group-lg > .input-group-btn > .logout-user,
+#login-form #form-panel .input-group-lg > .input-group-btn > button, #signup-form #form-panel form input:focus, #login-form #form-panel input {
   height: 49px;
   padding: 10px 16px;
   font-size: 20px;
@@ -4194,8 +4194,8 @@ select[multiple].input-lg,
 .input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, #signup-form #form-panel form .input-group-lg > input + .form-control-feedback, #login-form #form-panel .input-group-lg > input + .form-control-feedback,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
-#login-form #form-panel .input-group-lg > .input-group-btn > button + .form-control-feedback,
-#actionbar-top .input-group-lg > .input-group-btn > .logout-user + .form-control-feedback, #signup-form #form-panel form input:focus + .form-control-feedback, #login-form #form-panel input + .form-control-feedback {
+#actionbar-top .input-group-lg > .input-group-btn > .logout-user + .form-control-feedback,
+#login-form #form-panel .input-group-lg > .input-group-btn > button + .form-control-feedback, #signup-form #form-panel form input:focus + .form-control-feedback, #login-form #form-panel input + .form-control-feedback {
   width: 49px;
   height: 49px;
   line-height: 49px;
@@ -4205,8 +4205,8 @@ select[multiple].input-lg,
 .input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, #signup-form #form-panel form .input-group-sm > input + .form-control-feedback, #login-form #form-panel .input-group-sm > input + .form-control-feedback,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
-#login-form #form-panel .input-group-sm > .input-group-btn > button + .form-control-feedback,
-#actionbar-top .input-group-sm > .input-group-btn > .logout-user + .form-control-feedback {
+#actionbar-top .input-group-sm > .input-group-btn > .logout-user + .form-control-feedback,
+#login-form #form-panel .input-group-sm > .input-group-btn > button + .form-control-feedback {
   width: 33px;
   height: 33px;
   line-height: 33px;
@@ -4445,7 +4445,7 @@ select[multiple].input-lg,
 }
 
 /* line 9, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
-.btn, #login-form #form-panel button, #actionbar-top .logout-user {
+.btn, #actionbar-top .logout-user, #login-form #form-panel button {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -4466,25 +4466,25 @@ select[multiple].input-lg,
   user-select: none;
 }
 /* line 26, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:focus, #login-form #form-panel button:focus, #actionbar-top .logout-user:focus, .btn.focus, #login-form #form-panel button.focus, #actionbar-top .focus.logout-user, .btn:active:focus, #login-form #form-panel button:active:focus, #actionbar-top .logout-user:active:focus, .btn:active.focus, #login-form #form-panel button:active.focus, #actionbar-top .logout-user:active.focus, .btn.active:focus, #login-form #form-panel button.active:focus, #actionbar-top .active.logout-user:focus, .btn.active.focus, #login-form #form-panel button.active.focus, #actionbar-top .active.focus.logout-user {
+.btn:focus, #actionbar-top .logout-user:focus, #login-form #form-panel button:focus, .btn.focus, #actionbar-top .focus.logout-user, #login-form #form-panel button.focus, .btn:active:focus, #actionbar-top .logout-user:active:focus, #login-form #form-panel button:active:focus, .btn:active.focus, #actionbar-top .logout-user:active.focus, #login-form #form-panel button:active.focus, .btn.active:focus, #actionbar-top .active.logout-user:focus, #login-form #form-panel button.active:focus, .btn.active.focus, #actionbar-top .active.focus.logout-user, #login-form #form-panel button.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 /* line 32, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:hover, #login-form #form-panel button:hover, #actionbar-top .logout-user:hover, .btn:focus, #login-form #form-panel button:focus, #actionbar-top .logout-user:focus, .btn.focus, #login-form #form-panel button.focus, #actionbar-top .focus.logout-user {
+.btn:hover, #actionbar-top .logout-user:hover, #login-form #form-panel button:hover, .btn:focus, #actionbar-top .logout-user:focus, #login-form #form-panel button:focus, .btn.focus, #actionbar-top .focus.logout-user, #login-form #form-panel button.focus {
   color: #333;
   text-decoration: none;
 }
 /* line 39, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
-.btn:active, #login-form #form-panel button:active, #actionbar-top .logout-user:active, .btn.active, #login-form #form-panel button.active, #actionbar-top .active.logout-user {
+.btn:active, #actionbar-top .logout-user:active, #login-form #form-panel button:active, .btn.active, #actionbar-top .active.logout-user, #login-form #form-panel button.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 /* line 46, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
-.btn.disabled, #login-form #form-panel button.disabled, #actionbar-top .disabled.logout-user, .btn[disabled], #login-form #form-panel button[disabled], #actionbar-top [disabled].logout-user, fieldset[disabled] .btn, fieldset[disabled] #login-form #form-panel button, #login-form #form-panel fieldset[disabled] button, fieldset[disabled] #actionbar-top .logout-user, #actionbar-top fieldset[disabled] .logout-user {
+.btn.disabled, #actionbar-top .disabled.logout-user, #login-form #form-panel button.disabled, .btn[disabled], #actionbar-top [disabled].logout-user, #login-form #form-panel button[disabled], fieldset[disabled] .btn, fieldset[disabled] #actionbar-top .logout-user, #actionbar-top fieldset[disabled] .logout-user, fieldset[disabled] #login-form #form-panel button, #login-form #form-panel fieldset[disabled] button {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -4521,28 +4521,28 @@ select[multiple].input-lg,
 }
 
 /* line 63, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-primary, #login-form #form-panel button, #actionbar-top .logout-user {
+.btn-primary, #actionbar-top .logout-user, #login-form #form-panel button {
   color: #fff;
   background-color: #4bc8de;
   border-color: #35c1da;
 }
 /* line 11, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:hover, #login-form #form-panel button:hover, #actionbar-top .logout-user:hover, .btn-primary:focus, #login-form #form-panel button:focus, #actionbar-top .logout-user:focus, .btn-primary.focus, #login-form #form-panel button.focus, #actionbar-top .focus.logout-user, .btn-primary:active, #login-form #form-panel button:active, #actionbar-top .logout-user:active, .btn-primary.active, #login-form #form-panel button.active, #actionbar-top .active.logout-user, .open > .btn-primary.dropdown-toggle, #login-form #form-panel .open > button.dropdown-toggle, #actionbar-top .open > .dropdown-toggle.logout-user {
+.btn-primary:hover, #actionbar-top .logout-user:hover, #login-form #form-panel button:hover, .btn-primary:focus, #actionbar-top .logout-user:focus, #login-form #form-panel button:focus, .btn-primary.focus, #actionbar-top .focus.logout-user, #login-form #form-panel button.focus, .btn-primary:active, #actionbar-top .logout-user:active, #login-form #form-panel button:active, .btn-primary.active, #actionbar-top .active.logout-user, #login-form #form-panel button.active, .open > .btn-primary.dropdown-toggle, #actionbar-top .open > .dropdown-toggle.logout-user, #login-form #form-panel .open > button.dropdown-toggle {
   color: #fff;
   background-color: #26b6d0;
   border-color: #219cb2;
 }
 /* line 21, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary:active, #login-form #form-panel button:active, #actionbar-top .logout-user:active, .btn-primary.active, #login-form #form-panel button.active, #actionbar-top .active.logout-user, .open > .btn-primary.dropdown-toggle, #login-form #form-panel .open > button.dropdown-toggle, #actionbar-top .open > .dropdown-toggle.logout-user {
+.btn-primary:active, #actionbar-top .logout-user:active, #login-form #form-panel button:active, .btn-primary.active, #actionbar-top .active.logout-user, #login-form #form-panel button.active, .open > .btn-primary.dropdown-toggle, #actionbar-top .open > .dropdown-toggle.logout-user, #login-form #form-panel .open > button.dropdown-toggle {
   background-image: none;
 }
 /* line 29, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary.disabled, #login-form #form-panel button.disabled, #actionbar-top .disabled.logout-user, .btn-primary.disabled:hover, #login-form #form-panel button.disabled:hover, #actionbar-top .disabled.logout-user:hover, .btn-primary.disabled:focus, #login-form #form-panel button.disabled:focus, #actionbar-top .disabled.logout-user:focus, .btn-primary.disabled.focus, #login-form #form-panel button.disabled.focus, #actionbar-top .disabled.focus.logout-user, .btn-primary.disabled:active, #login-form #form-panel button.disabled:active, #actionbar-top .disabled.logout-user:active, .btn-primary.disabled.active, #login-form #form-panel button.disabled.active, #actionbar-top .disabled.active.logout-user, .btn-primary[disabled], #login-form #form-panel button[disabled], #actionbar-top [disabled].logout-user, .btn-primary[disabled]:hover, #login-form #form-panel button[disabled]:hover, #actionbar-top [disabled].logout-user:hover, .btn-primary[disabled]:focus, #login-form #form-panel button[disabled]:focus, #actionbar-top [disabled].logout-user:focus, .btn-primary[disabled].focus, #login-form #form-panel button[disabled].focus, #actionbar-top [disabled].focus.logout-user, .btn-primary[disabled]:active, #login-form #form-panel button[disabled]:active, #actionbar-top [disabled].logout-user:active, .btn-primary[disabled].active, #login-form #form-panel button[disabled].active, #actionbar-top [disabled].active.logout-user, fieldset[disabled] .btn-primary, fieldset[disabled] #login-form #form-panel button, #login-form #form-panel fieldset[disabled] button, fieldset[disabled] #actionbar-top .logout-user, #actionbar-top fieldset[disabled] .logout-user, fieldset[disabled] .btn-primary:hover, fieldset[disabled] #login-form #form-panel button:hover, #login-form #form-panel fieldset[disabled] button:hover, fieldset[disabled] #actionbar-top .logout-user:hover, #actionbar-top fieldset[disabled] .logout-user:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] #login-form #form-panel button:focus, #login-form #form-panel fieldset[disabled] button:focus, fieldset[disabled] #actionbar-top .logout-user:focus, #actionbar-top fieldset[disabled] .logout-user:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] #login-form #form-panel button.focus, #login-form #form-panel fieldset[disabled] button.focus, fieldset[disabled] #actionbar-top .focus.logout-user, #actionbar-top fieldset[disabled] .focus.logout-user, fieldset[disabled] .btn-primary:active, fieldset[disabled] #login-form #form-panel button:active, #login-form #form-panel fieldset[disabled] button:active, fieldset[disabled] #actionbar-top .logout-user:active, #actionbar-top fieldset[disabled] .logout-user:active, fieldset[disabled] .btn-primary.active, fieldset[disabled] #login-form #form-panel button.active, #login-form #form-panel fieldset[disabled] button.active, fieldset[disabled] #actionbar-top .active.logout-user, #actionbar-top fieldset[disabled] .active.logout-user {
+.btn-primary.disabled, #actionbar-top .disabled.logout-user, #login-form #form-panel button.disabled, .btn-primary.disabled:hover, #actionbar-top .disabled.logout-user:hover, #login-form #form-panel button.disabled:hover, .btn-primary.disabled:focus, #actionbar-top .disabled.logout-user:focus, #login-form #form-panel button.disabled:focus, .btn-primary.disabled.focus, #actionbar-top .disabled.focus.logout-user, #login-form #form-panel button.disabled.focus, .btn-primary.disabled:active, #actionbar-top .disabled.logout-user:active, #login-form #form-panel button.disabled:active, .btn-primary.disabled.active, #actionbar-top .disabled.active.logout-user, #login-form #form-panel button.disabled.active, .btn-primary[disabled], #actionbar-top [disabled].logout-user, #login-form #form-panel button[disabled], .btn-primary[disabled]:hover, #actionbar-top [disabled].logout-user:hover, #login-form #form-panel button[disabled]:hover, .btn-primary[disabled]:focus, #actionbar-top [disabled].logout-user:focus, #login-form #form-panel button[disabled]:focus, .btn-primary[disabled].focus, #actionbar-top [disabled].focus.logout-user, #login-form #form-panel button[disabled].focus, .btn-primary[disabled]:active, #actionbar-top [disabled].logout-user:active, #login-form #form-panel button[disabled]:active, .btn-primary[disabled].active, #actionbar-top [disabled].active.logout-user, #login-form #form-panel button[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] #actionbar-top .logout-user, #actionbar-top fieldset[disabled] .logout-user, fieldset[disabled] #login-form #form-panel button, #login-form #form-panel fieldset[disabled] button, fieldset[disabled] .btn-primary:hover, fieldset[disabled] #actionbar-top .logout-user:hover, #actionbar-top fieldset[disabled] .logout-user:hover, fieldset[disabled] #login-form #form-panel button:hover, #login-form #form-panel fieldset[disabled] button:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] #actionbar-top .logout-user:focus, #actionbar-top fieldset[disabled] .logout-user:focus, fieldset[disabled] #login-form #form-panel button:focus, #login-form #form-panel fieldset[disabled] button:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] #actionbar-top .focus.logout-user, #actionbar-top fieldset[disabled] .focus.logout-user, fieldset[disabled] #login-form #form-panel button.focus, #login-form #form-panel fieldset[disabled] button.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] #actionbar-top .logout-user:active, #actionbar-top fieldset[disabled] .logout-user:active, fieldset[disabled] #login-form #form-panel button:active, #login-form #form-panel fieldset[disabled] button:active, fieldset[disabled] .btn-primary.active, fieldset[disabled] #actionbar-top .active.logout-user, #actionbar-top fieldset[disabled] .active.logout-user, fieldset[disabled] #login-form #form-panel button.active, #login-form #form-panel fieldset[disabled] button.active {
   background-color: #4bc8de;
   border-color: #35c1da;
 }
 /* line 40, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
-.btn-primary .badge, #login-form #form-panel button .badge, #actionbar-top .logout-user .badge {
+.btn-primary .badge, #actionbar-top .logout-user .badge, #login-form #form-panel button .badge {
   color: #4bc8de;
   background-color: #fff;
 }
@@ -4692,7 +4692,7 @@ select[multiple].input-lg,
 }
 
 /* line 131, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
-.btn-sm, .btn-group-sm > .btn, #login-form #form-panel .btn-group-sm > button, #actionbar-top .btn-group-sm > .logout-user {
+.btn-sm, .btn-group-sm > .btn, #actionbar-top .btn-group-sm > .logout-user, #login-form #form-panel .btn-group-sm > button {
   padding: 5px 10px;
   font-size: 14px;
   line-height: 1.5;
@@ -4949,42 +4949,42 @@ tbody.collapse.in {
   vertical-align: middle;
 }
 /* line 11, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn, #login-form #form-panel .btn-group > button, #actionbar-top .btn-group > .logout-user,
+.btn-group > .btn, #actionbar-top .btn-group > .logout-user, #login-form #form-panel .btn-group > button,
 .btn-group-vertical > .btn,
-#login-form #form-panel .btn-group-vertical > button,
-#actionbar-top .btn-group-vertical > .logout-user {
+#actionbar-top .btn-group-vertical > .logout-user,
+#login-form #form-panel .btn-group-vertical > button {
   position: relative;
   float: left;
 }
 /* line 15, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:hover, #login-form #form-panel .btn-group > button:hover, #actionbar-top .btn-group > .logout-user:hover, .btn-group > .btn:focus, #login-form #form-panel .btn-group > button:focus, #actionbar-top .btn-group > .logout-user:focus, .btn-group > .btn:active, #login-form #form-panel .btn-group > button:active, #actionbar-top .btn-group > .logout-user:active, .btn-group > .btn.active, #login-form #form-panel .btn-group > button.active, #actionbar-top .btn-group > .active.logout-user,
+.btn-group > .btn:hover, #actionbar-top .btn-group > .logout-user:hover, #login-form #form-panel .btn-group > button:hover, .btn-group > .btn:focus, #actionbar-top .btn-group > .logout-user:focus, #login-form #form-panel .btn-group > button:focus, .btn-group > .btn:active, #actionbar-top .btn-group > .logout-user:active, #login-form #form-panel .btn-group > button:active, .btn-group > .btn.active, #actionbar-top .btn-group > .active.logout-user, #login-form #form-panel .btn-group > button.active,
 .btn-group-vertical > .btn:hover,
-#login-form #form-panel .btn-group-vertical > button:hover,
 #actionbar-top .btn-group-vertical > .logout-user:hover,
+#login-form #form-panel .btn-group-vertical > button:hover,
 .btn-group-vertical > .btn:focus,
-#login-form #form-panel .btn-group-vertical > button:focus,
 #actionbar-top .btn-group-vertical > .logout-user:focus,
+#login-form #form-panel .btn-group-vertical > button:focus,
 .btn-group-vertical > .btn:active,
-#login-form #form-panel .btn-group-vertical > button:active,
 #actionbar-top .btn-group-vertical > .logout-user:active,
+#login-form #form-panel .btn-group-vertical > button:active,
 .btn-group-vertical > .btn.active,
-#login-form #form-panel .btn-group-vertical > button.active,
-#actionbar-top .btn-group-vertical > .active.logout-user {
+#actionbar-top .btn-group-vertical > .active.logout-user,
+#login-form #form-panel .btn-group-vertical > button.active {
   z-index: 2;
 }
 
 /* line 26, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group .btn + .btn, .btn-group #login-form #form-panel button + .btn, #login-form #form-panel .btn-group button + .btn, .btn-group #actionbar-top .logout-user + .btn, #actionbar-top .btn-group .logout-user + .btn, .btn-group #login-form #form-panel .btn + button, #login-form #form-panel .btn-group .btn + button, .btn-group #login-form #form-panel button + button, #login-form #form-panel .btn-group button + button, .btn-group #actionbar-top #login-form #form-panel .logout-user + button, #login-form #form-panel .btn-group #actionbar-top .logout-user + button, #actionbar-top .btn-group #login-form #form-panel .logout-user + button, #login-form #form-panel #actionbar-top .btn-group .logout-user + button, .btn-group #actionbar-top .btn + .logout-user, #actionbar-top .btn-group .btn + .logout-user, .btn-group #login-form #form-panel #actionbar-top button + .logout-user, #actionbar-top .btn-group #login-form #form-panel button + .logout-user, #login-form #form-panel .btn-group #actionbar-top button + .logout-user, #actionbar-top #login-form #form-panel .btn-group button + .logout-user, .btn-group #actionbar-top .logout-user + .logout-user, #actionbar-top .btn-group .logout-user + .logout-user,
+.btn-group .btn + .btn, .btn-group #actionbar-top .logout-user + .btn, #actionbar-top .btn-group .logout-user + .btn, .btn-group #login-form #form-panel button + .btn, #login-form #form-panel .btn-group button + .btn, .btn-group #actionbar-top .btn + .logout-user, #actionbar-top .btn-group .btn + .logout-user, .btn-group #actionbar-top .logout-user + .logout-user, #actionbar-top .btn-group .logout-user + .logout-user, .btn-group #login-form #form-panel #actionbar-top button + .logout-user, #actionbar-top .btn-group #login-form #form-panel button + .logout-user, #login-form #form-panel .btn-group #actionbar-top button + .logout-user, #actionbar-top #login-form #form-panel .btn-group button + .logout-user, .btn-group #login-form #form-panel .btn + button, #login-form #form-panel .btn-group .btn + button, .btn-group #actionbar-top #login-form #form-panel .logout-user + button, #login-form #form-panel .btn-group #actionbar-top .logout-user + button, #actionbar-top .btn-group #login-form #form-panel .logout-user + button, #login-form #form-panel #actionbar-top .btn-group .logout-user + button, .btn-group #login-form #form-panel button + button, #login-form #form-panel .btn-group button + button,
 .btn-group .btn + .btn-group,
-.btn-group #login-form #form-panel button + .btn-group,
-#login-form #form-panel .btn-group button + .btn-group,
 .btn-group #actionbar-top .logout-user + .btn-group,
 #actionbar-top .btn-group .logout-user + .btn-group,
+.btn-group #login-form #form-panel button + .btn-group,
+#login-form #form-panel .btn-group button + .btn-group,
 .btn-group .btn-group + .btn,
-.btn-group #login-form #form-panel .btn-group + button,
-#login-form #form-panel .btn-group .btn-group + button,
 .btn-group #actionbar-top .btn-group + .logout-user,
 #actionbar-top .btn-group .btn-group + .logout-user,
+.btn-group #login-form #form-panel .btn-group + button,
+#login-form #form-panel .btn-group .btn-group + button,
 .btn-group .btn-group + .btn-group {
   margin-left: -1px;
 }
@@ -5008,29 +5008,29 @@ tbody.collapse.in {
   float: left;
 }
 /* line 43, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-toolbar > .btn, #login-form #form-panel .btn-toolbar > button, #actionbar-top .btn-toolbar > .logout-user,
+.btn-toolbar > .btn, #actionbar-top .btn-toolbar > .logout-user, #login-form #form-panel .btn-toolbar > button,
 .btn-toolbar > .btn-group,
 .btn-toolbar > .input-group {
   margin-left: 5px;
 }
 
 /* line 50, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), #login-form #form-panel .btn-group > button:not(:first-child):not(:last-child):not(.dropdown-toggle), #actionbar-top .btn-group > .logout-user:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), #actionbar-top .btn-group > .logout-user:not(:first-child):not(:last-child):not(.dropdown-toggle), #login-form #form-panel .btn-group > button:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0;
 }
 
 /* line 55, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:first-child, #login-form #form-panel .btn-group > button:first-child, #actionbar-top .btn-group > .logout-user:first-child {
+.btn-group > .btn:first-child, #actionbar-top .btn-group > .logout-user:first-child, #login-form #form-panel .btn-group > button:first-child {
   margin-left: 0;
 }
 /* line 57, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), #login-form #form-panel .btn-group > button:first-child:not(:last-child):not(.dropdown-toggle), #actionbar-top .btn-group > .logout-user:first-child:not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), #actionbar-top .btn-group > .logout-user:first-child:not(:last-child):not(.dropdown-toggle), #login-form #form-panel .btn-group > button:first-child:not(:last-child):not(.dropdown-toggle) {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
 
 /* line 62, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn:last-child:not(:first-child), #login-form #form-panel .btn-group > button:last-child:not(:first-child), #actionbar-top .btn-group > .logout-user:last-child:not(:first-child),
+.btn-group > .btn:last-child:not(:first-child), #actionbar-top .btn-group > .logout-user:last-child:not(:first-child), #login-form #form-panel .btn-group > button:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -5042,19 +5042,19 @@ tbody.collapse.in {
 }
 
 /* line 71, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, #login-form #form-panel .btn-group > .btn-group:not(:first-child):not(:last-child) > button, #actionbar-top .btn-group > .btn-group:not(:first-child):not(:last-child) > .logout-user {
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, #actionbar-top .btn-group > .btn-group:not(:first-child):not(:last-child) > .logout-user, #login-form #form-panel .btn-group > .btn-group:not(:first-child):not(:last-child) > button {
   border-radius: 0;
 }
 
 /* line 75, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, #login-form #form-panel .btn-group > .btn-group:first-child:not(:last-child) > button:last-child, #actionbar-top .btn-group > .btn-group:first-child:not(:last-child) > .logout-user:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, #actionbar-top .btn-group > .btn-group:first-child:not(:last-child) > .logout-user:last-child, #login-form #form-panel .btn-group > .btn-group:first-child:not(:last-child) > button:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
 
 /* line 80, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, #login-form #form-panel .btn-group > .btn-group:last-child:not(:first-child) > button:first-child, #actionbar-top .btn-group > .btn-group:last-child:not(:first-child) > .logout-user:first-child {
+.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, #actionbar-top .btn-group > .btn-group:last-child:not(:first-child) > .logout-user:first-child, #login-form #form-panel .btn-group > .btn-group:last-child:not(:first-child) > button:first-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5066,7 +5066,7 @@ tbody.collapse.in {
 }
 
 /* line 104, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group > .btn + .dropdown-toggle, #login-form #form-panel .btn-group > button + .dropdown-toggle, #actionbar-top .btn-group > .logout-user + .dropdown-toggle {
+.btn-group > .btn + .dropdown-toggle, #actionbar-top .btn-group > .logout-user + .dropdown-toggle, #login-form #form-panel .btn-group > button + .dropdown-toggle {
   padding-left: 8px;
   padding-right: 8px;
 }
@@ -5089,7 +5089,7 @@ tbody.collapse.in {
 }
 
 /* line 126, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn .caret, #login-form #form-panel button .caret, #actionbar-top .logout-user .caret {
+.btn .caret, #actionbar-top .logout-user .caret, #login-form #form-panel button .caret {
   margin-left: 0;
 }
 
@@ -5105,11 +5105,11 @@ tbody.collapse.in {
 }
 
 /* line 144, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn, #login-form #form-panel .btn-group-vertical > button, #actionbar-top .btn-group-vertical > .logout-user,
+.btn-group-vertical > .btn, #actionbar-top .btn-group-vertical > .logout-user, #login-form #form-panel .btn-group-vertical > button,
 .btn-group-vertical > .btn-group,
 .btn-group-vertical > .btn-group > .btn,
-#login-form #form-panel .btn-group-vertical > .btn-group > button,
-#actionbar-top .btn-group-vertical > .btn-group > .logout-user {
+#actionbar-top .btn-group-vertical > .btn-group > .logout-user,
+#login-form #form-panel .btn-group-vertical > .btn-group > button {
   display: block;
   float: none;
   width: 100%;
@@ -5125,53 +5125,53 @@ tbody.collapse.in {
   clear: both;
 }
 /* line 156, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group > .btn, #login-form #form-panel .btn-group-vertical > .btn-group > button, #actionbar-top .btn-group-vertical > .btn-group > .logout-user {
+.btn-group-vertical > .btn-group > .btn, #actionbar-top .btn-group-vertical > .btn-group > .logout-user, #login-form #form-panel .btn-group-vertical > .btn-group > button {
   float: none;
 }
 /* line 161, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn + .btn, #login-form #form-panel .btn-group-vertical > button + .btn, #actionbar-top .btn-group-vertical > .logout-user + .btn, #login-form #form-panel .btn-group-vertical > .btn + button, #login-form #form-panel .btn-group-vertical > button + button, #actionbar-top #login-form #form-panel .btn-group-vertical > .logout-user + button, #login-form #form-panel #actionbar-top .btn-group-vertical > .logout-user + button, #actionbar-top .btn-group-vertical > .btn + .logout-user, #login-form #form-panel #actionbar-top .btn-group-vertical > button + .logout-user, #actionbar-top #login-form #form-panel .btn-group-vertical > button + .logout-user, #actionbar-top .btn-group-vertical > .logout-user + .logout-user,
+.btn-group-vertical > .btn + .btn, #actionbar-top .btn-group-vertical > .logout-user + .btn, #login-form #form-panel .btn-group-vertical > button + .btn, #actionbar-top .btn-group-vertical > .btn + .logout-user, #actionbar-top .btn-group-vertical > .logout-user + .logout-user, #login-form #form-panel #actionbar-top .btn-group-vertical > button + .logout-user, #actionbar-top #login-form #form-panel .btn-group-vertical > button + .logout-user, #login-form #form-panel .btn-group-vertical > .btn + button, #actionbar-top #login-form #form-panel .btn-group-vertical > .logout-user + button, #login-form #form-panel #actionbar-top .btn-group-vertical > .logout-user + button, #login-form #form-panel .btn-group-vertical > button + button,
 .btn-group-vertical > .btn + .btn-group,
-#login-form #form-panel .btn-group-vertical > button + .btn-group,
 #actionbar-top .btn-group-vertical > .logout-user + .btn-group,
+#login-form #form-panel .btn-group-vertical > button + .btn-group,
 .btn-group-vertical > .btn-group + .btn,
-#login-form #form-panel .btn-group-vertical > .btn-group + button,
 #actionbar-top .btn-group-vertical > .btn-group + .logout-user,
+#login-form #form-panel .btn-group-vertical > .btn-group + button,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-top: -1px;
   margin-left: 0;
 }
 
 /* line 171, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn:not(:first-child):not(:last-child), #login-form #form-panel .btn-group-vertical > button:not(:first-child):not(:last-child), #actionbar-top .btn-group-vertical > .logout-user:not(:first-child):not(:last-child) {
+.btn-group-vertical > .btn:not(:first-child):not(:last-child), #actionbar-top .btn-group-vertical > .logout-user:not(:first-child):not(:last-child), #login-form #form-panel .btn-group-vertical > button:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
 /* line 174, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn:first-child:not(:last-child), #login-form #form-panel .btn-group-vertical > button:first-child:not(:last-child), #actionbar-top .btn-group-vertical > .logout-user:first-child:not(:last-child) {
+.btn-group-vertical > .btn:first-child:not(:last-child), #actionbar-top .btn-group-vertical > .logout-user:first-child:not(:last-child), #login-form #form-panel .btn-group-vertical > button:first-child:not(:last-child) {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 /* line 178, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn:last-child:not(:first-child), #login-form #form-panel .btn-group-vertical > button:last-child:not(:first-child), #actionbar-top .btn-group-vertical > .logout-user:last-child:not(:first-child) {
+.btn-group-vertical > .btn:last-child:not(:first-child), #actionbar-top .btn-group-vertical > .logout-user:last-child:not(:first-child), #login-form #form-panel .btn-group-vertical > button:last-child:not(:first-child) {
   border-bottom-left-radius: 2px;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
 
 /* line 183, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, #login-form #form-panel .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > button, #actionbar-top .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .logout-user {
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, #actionbar-top .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .logout-user, #login-form #form-panel .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > button {
   border-radius: 0;
 }
 
 /* line 187, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, #login-form #form-panel .btn-group-vertical > .btn-group:first-child:not(:last-child) > button:last-child, #actionbar-top .btn-group-vertical > .btn-group:first-child:not(:last-child) > .logout-user:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, #actionbar-top .btn-group-vertical > .btn-group:first-child:not(:last-child) > .logout-user:last-child, #login-form #form-panel .btn-group-vertical > .btn-group:first-child:not(:last-child) > button:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 /* line 192, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, #login-form #form-panel .btn-group-vertical > .btn-group:last-child:not(:first-child) > button:first-child, #actionbar-top .btn-group-vertical > .btn-group:last-child:not(:first-child) > .logout-user:first-child {
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, #actionbar-top .btn-group-vertical > .btn-group:last-child:not(:first-child) > .logout-user:first-child, #login-form #form-panel .btn-group-vertical > .btn-group:last-child:not(:first-child) > button:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5184,14 +5184,14 @@ tbody.collapse.in {
   border-collapse: separate;
 }
 /* line 205, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-justified > .btn, #login-form #form-panel .btn-group-justified > button, #actionbar-top .btn-group-justified > .logout-user,
+.btn-group-justified > .btn, #actionbar-top .btn-group-justified > .logout-user, #login-form #form-panel .btn-group-justified > button,
 .btn-group-justified > .btn-group {
   float: none;
   display: table-cell;
   width: 1%;
 }
 /* line 211, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-.btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group #login-form #form-panel button, #login-form #form-panel .btn-group-justified > .btn-group button, .btn-group-justified > .btn-group #actionbar-top .logout-user, #actionbar-top .btn-group-justified > .btn-group .logout-user {
+.btn-group-justified > .btn-group .btn, .btn-group-justified > .btn-group #actionbar-top .logout-user, #actionbar-top .btn-group-justified > .btn-group .logout-user, .btn-group-justified > .btn-group #login-form #form-panel button, #login-form #form-panel .btn-group-justified > .btn-group button {
   width: 100%;
 }
 /* line 215, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
@@ -5200,16 +5200,16 @@ tbody.collapse.in {
 }
 
 /* line 236, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_button-groups.scss */
-[data-toggle="buttons"] > .btn input[type="radio"], #login-form #form-panel [data-toggle="buttons"] > button input[type="radio"], #actionbar-top [data-toggle="buttons"] > .logout-user input[type="radio"],
+[data-toggle="buttons"] > .btn input[type="radio"], #actionbar-top [data-toggle="buttons"] > .logout-user input[type="radio"], #login-form #form-panel [data-toggle="buttons"] > button input[type="radio"],
 [data-toggle="buttons"] > .btn input[type="checkbox"],
-#login-form #form-panel [data-toggle="buttons"] > button input[type="checkbox"],
 #actionbar-top [data-toggle="buttons"] > .logout-user input[type="checkbox"],
+#login-form #form-panel [data-toggle="buttons"] > button input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="radio"],
-#login-form #form-panel [data-toggle="buttons"] > .btn-group > button input[type="radio"],
 #actionbar-top [data-toggle="buttons"] > .btn-group > .logout-user input[type="radio"],
+#login-form #form-panel [data-toggle="buttons"] > .btn-group > button input[type="radio"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"],
-#login-form #form-panel [data-toggle="buttons"] > .btn-group > button input[type="checkbox"],
-#actionbar-top [data-toggle="buttons"] > .btn-group > .logout-user input[type="checkbox"] {
+#actionbar-top [data-toggle="buttons"] > .btn-group > .logout-user input[type="checkbox"],
+#login-form #form-panel [data-toggle="buttons"] > .btn-group > button input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
@@ -5281,8 +5281,8 @@ tbody.collapse.in {
 .input-group-addon.input-sm, #signup-form #form-panel form .input-group-sm > input.input-group-addon, #login-form #form-panel .input-group-sm > input.input-group-addon,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .input-group-addon.btn,
-#login-form #form-panel .input-group-sm > .input-group-btn > button.input-group-addon,
-#actionbar-top .input-group-sm > .input-group-btn > .input-group-addon.logout-user {
+#actionbar-top .input-group-sm > .input-group-btn > .input-group-addon.logout-user,
+#login-form #form-panel .input-group-sm > .input-group-btn > button.input-group-addon {
   padding: 5px 10px;
   font-size: 14px;
   border-radius: 3px;
@@ -5291,8 +5291,8 @@ tbody.collapse.in {
 .input-group-addon.input-lg, #signup-form #form-panel form .input-group-lg > input.input-group-addon,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .input-group-addon.btn,
-#login-form #form-panel .input-group-lg > .input-group-btn > button.input-group-addon,
-#actionbar-top .input-group-lg > .input-group-btn > .input-group-addon.logout-user, #signup-form #form-panel form input.input-group-addon:focus, #login-form #form-panel input.input-group-addon {
+#actionbar-top .input-group-lg > .input-group-btn > .input-group-addon.logout-user,
+#login-form #form-panel .input-group-lg > .input-group-btn > button.input-group-addon, #signup-form #form-panel form input.input-group-addon:focus, #login-form #form-panel input.input-group-addon {
   padding: 10px 16px;
   font-size: 20px;
   border-radius: 2px;
@@ -5307,18 +5307,18 @@ tbody.collapse.in {
 .input-group .form-control:first-child, .input-group #signup-form #form-panel form input:first-child, #signup-form #form-panel form .input-group input:first-child, .input-group #login-form #form-panel input:first-child, #login-form #form-panel .input-group input:first-child,
 .input-group-addon:first-child,
 .input-group-btn:first-child > .btn,
-#login-form #form-panel .input-group-btn:first-child > button,
 #actionbar-top .input-group-btn:first-child > .logout-user,
+#login-form #form-panel .input-group-btn:first-child > button,
 .input-group-btn:first-child > .btn-group > .btn,
-#login-form #form-panel .input-group-btn:first-child > .btn-group > button,
 #actionbar-top .input-group-btn:first-child > .btn-group > .logout-user,
+#login-form #form-panel .input-group-btn:first-child > .btn-group > button,
 .input-group-btn:first-child > .dropdown-toggle,
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
-#login-form #form-panel .input-group-btn:last-child > button:not(:last-child):not(.dropdown-toggle),
 #actionbar-top .input-group-btn:last-child > .logout-user:not(:last-child):not(.dropdown-toggle),
+#login-form #form-panel .input-group-btn:last-child > button:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
-#login-form #form-panel .input-group-btn:last-child > .btn-group:not(:last-child) > button,
-#actionbar-top .input-group-btn:last-child > .btn-group:not(:last-child) > .logout-user {
+#actionbar-top .input-group-btn:last-child > .btn-group:not(:last-child) > .logout-user,
+#login-form #form-panel .input-group-btn:last-child > .btn-group:not(:last-child) > button {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
@@ -5332,18 +5332,18 @@ tbody.collapse.in {
 .input-group .form-control:last-child, .input-group #signup-form #form-panel form input:last-child, #signup-form #form-panel form .input-group input:last-child, .input-group #login-form #form-panel input:last-child, #login-form #form-panel .input-group input:last-child,
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
-#login-form #form-panel .input-group-btn:last-child > button,
 #actionbar-top .input-group-btn:last-child > .logout-user,
+#login-form #form-panel .input-group-btn:last-child > button,
 .input-group-btn:last-child > .btn-group > .btn,
-#login-form #form-panel .input-group-btn:last-child > .btn-group > button,
 #actionbar-top .input-group-btn:last-child > .btn-group > .logout-user,
+#login-form #form-panel .input-group-btn:last-child > .btn-group > button,
 .input-group-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child),
-#login-form #form-panel .input-group-btn:first-child > button:not(:first-child),
 #actionbar-top .input-group-btn:first-child > .logout-user:not(:first-child),
+#login-form #form-panel .input-group-btn:first-child > button:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
-#login-form #form-panel .input-group-btn:first-child > .btn-group:not(:first-child) > button,
-#actionbar-top .input-group-btn:first-child > .btn-group:not(:first-child) > .logout-user {
+#actionbar-top .input-group-btn:first-child > .btn-group:not(:first-child) > .logout-user,
+#login-form #form-panel .input-group-btn:first-child > .btn-group:not(:first-child) > button {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5360,24 +5360,24 @@ tbody.collapse.in {
   white-space: nowrap;
 }
 /* line 140, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn, #login-form #form-panel .input-group-btn > button, #actionbar-top .input-group-btn > .logout-user {
+.input-group-btn > .btn, #actionbar-top .input-group-btn > .logout-user, #login-form #form-panel .input-group-btn > button {
   position: relative;
 }
 /* line 142, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn + .btn, #login-form #form-panel .input-group-btn > button + .btn, #actionbar-top .input-group-btn > .logout-user + .btn, #login-form #form-panel .input-group-btn > .btn + button, #login-form #form-panel .input-group-btn > button + button, #actionbar-top #login-form #form-panel .input-group-btn > .logout-user + button, #login-form #form-panel #actionbar-top .input-group-btn > .logout-user + button, #actionbar-top .input-group-btn > .btn + .logout-user, #login-form #form-panel #actionbar-top .input-group-btn > button + .logout-user, #actionbar-top #login-form #form-panel .input-group-btn > button + .logout-user, #actionbar-top .input-group-btn > .logout-user + .logout-user {
+.input-group-btn > .btn + .btn, #actionbar-top .input-group-btn > .logout-user + .btn, #login-form #form-panel .input-group-btn > button + .btn, #actionbar-top .input-group-btn > .btn + .logout-user, #actionbar-top .input-group-btn > .logout-user + .logout-user, #login-form #form-panel #actionbar-top .input-group-btn > button + .logout-user, #actionbar-top #login-form #form-panel .input-group-btn > button + .logout-user, #login-form #form-panel .input-group-btn > .btn + button, #actionbar-top #login-form #form-panel .input-group-btn > .logout-user + button, #login-form #form-panel #actionbar-top .input-group-btn > .logout-user + button, #login-form #form-panel .input-group-btn > button + button {
   margin-left: -1px;
 }
 /* line 146, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn > .btn:hover, #login-form #form-panel .input-group-btn > button:hover, #actionbar-top .input-group-btn > .logout-user:hover, .input-group-btn > .btn:focus, #login-form #form-panel .input-group-btn > button:focus, #actionbar-top .input-group-btn > .logout-user:focus, .input-group-btn > .btn:active, #login-form #form-panel .input-group-btn > button:active, #actionbar-top .input-group-btn > .logout-user:active {
+.input-group-btn > .btn:hover, #actionbar-top .input-group-btn > .logout-user:hover, #login-form #form-panel .input-group-btn > button:hover, .input-group-btn > .btn:focus, #actionbar-top .input-group-btn > .logout-user:focus, #login-form #form-panel .input-group-btn > button:focus, .input-group-btn > .btn:active, #actionbar-top .input-group-btn > .logout-user:active, #login-form #form-panel .input-group-btn > button:active {
   z-index: 2;
 }
 /* line 155, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn:first-child > .btn, #login-form #form-panel .input-group-btn:first-child > button, #actionbar-top .input-group-btn:first-child > .logout-user,
+.input-group-btn:first-child > .btn, #actionbar-top .input-group-btn:first-child > .logout-user, #login-form #form-panel .input-group-btn:first-child > button,
 .input-group-btn:first-child > .btn-group {
   margin-right: -1px;
 }
 /* line 161, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-btn:last-child > .btn, #login-form #form-panel .input-group-btn:last-child > button, #actionbar-top .input-group-btn:last-child > .logout-user,
+.input-group-btn:last-child > .btn, #actionbar-top .input-group-btn:last-child > .logout-user, #login-form #form-panel .input-group-btn:last-child > button,
 .input-group-btn:last-child > .btn-group {
   margin-left: -1px;
 }
@@ -5973,7 +5973,7 @@ tbody.collapse.in {
   margin-bottom: 7px;
 }
 /* line 346, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
-.navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, #login-form #form-panel .btn-group-sm > button.navbar-btn, #actionbar-top .btn-group-sm > .navbar-btn.logout-user {
+.navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, #actionbar-top .btn-group-sm > .navbar-btn.logout-user, #login-form #form-panel .btn-group-sm > button.navbar-btn {
   margin-top: 8.5px;
   margin-bottom: 8.5px;
 }
@@ -6428,7 +6428,7 @@ tbody.collapse.in {
   display: none;
 }
 /* line 25, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_labels.scss */
-.btn .label, #login-form #form-panel button .label, #actionbar-top .logout-user .label {
+.btn .label, #actionbar-top .logout-user .label, #login-form #form-panel button .label {
   position: relative;
   top: -1px;
 }
@@ -6514,12 +6514,12 @@ a.label:hover, a.label:focus {
   display: none;
 }
 /* line 27, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_badges.scss */
-.btn .badge, #login-form #form-panel button .badge, #actionbar-top .logout-user .badge {
+.btn .badge, #actionbar-top .logout-user .badge, #login-form #form-panel button .badge {
   position: relative;
   top: -1px;
 }
 /* line 32, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_badges.scss */
-.btn-xs .badge, .btn-group-xs > .btn .badge, #login-form #form-panel .btn-group-xs > button .badge, #actionbar-top .logout-user .badge, .btn-group-xs > .btn .badge, #login-form #form-panel .btn-group-xs > button .badge, #actionbar-top .btn-group-xs > .logout-user .badge {
+.btn-xs .badge, .btn-group-xs > .btn .badge, #login-form #form-panel .btn-group-xs > button .badge, #actionbar-top .logout-user .badge, .btn-group-xs > .btn .badge, #actionbar-top .btn-group-xs > .logout-user .badge, #login-form #form-panel .btn-group-xs > button .badge {
   top: 0;
   padding: 1px 5px;
 }
@@ -7744,12 +7744,12 @@ button.close {
   clear: both;
 }
 /* line 110, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn + .btn, .modal-footer #login-form #form-panel button + .btn, #login-form #form-panel .modal-footer button + .btn, .modal-footer #actionbar-top .logout-user + .btn, #actionbar-top .modal-footer .logout-user + .btn, .modal-footer #login-form #form-panel .btn + button, #login-form #form-panel .modal-footer .btn + button, .modal-footer #login-form #form-panel button + button, #login-form #form-panel .modal-footer button + button, .modal-footer #actionbar-top #login-form #form-panel .logout-user + button, #login-form #form-panel .modal-footer #actionbar-top .logout-user + button, #actionbar-top .modal-footer #login-form #form-panel .logout-user + button, #login-form #form-panel #actionbar-top .modal-footer .logout-user + button, .modal-footer #actionbar-top .btn + .logout-user, #actionbar-top .modal-footer .btn + .logout-user, .modal-footer #login-form #form-panel #actionbar-top button + .logout-user, #actionbar-top .modal-footer #login-form #form-panel button + .logout-user, #login-form #form-panel .modal-footer #actionbar-top button + .logout-user, #actionbar-top #login-form #form-panel .modal-footer button + .logout-user, .modal-footer #actionbar-top .logout-user + .logout-user, #actionbar-top .modal-footer .logout-user + .logout-user {
+.modal-footer .btn + .btn, .modal-footer #actionbar-top .logout-user + .btn, #actionbar-top .modal-footer .logout-user + .btn, .modal-footer #login-form #form-panel button + .btn, #login-form #form-panel .modal-footer button + .btn, .modal-footer #actionbar-top .btn + .logout-user, #actionbar-top .modal-footer .btn + .logout-user, .modal-footer #actionbar-top .logout-user + .logout-user, #actionbar-top .modal-footer .logout-user + .logout-user, .modal-footer #login-form #form-panel #actionbar-top button + .logout-user, #actionbar-top .modal-footer #login-form #form-panel button + .logout-user, #login-form #form-panel .modal-footer #actionbar-top button + .logout-user, #actionbar-top #login-form #form-panel .modal-footer button + .logout-user, .modal-footer #login-form #form-panel .btn + button, #login-form #form-panel .modal-footer .btn + button, .modal-footer #actionbar-top #login-form #form-panel .logout-user + button, #login-form #form-panel .modal-footer #actionbar-top .logout-user + button, #actionbar-top .modal-footer #login-form #form-panel .logout-user + button, #login-form #form-panel #actionbar-top .modal-footer .logout-user + button, .modal-footer #login-form #form-panel button + button, #login-form #form-panel .modal-footer button + button {
   margin-left: 5px;
   margin-bottom: 0;
 }
 /* line 115, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_modals.scss */
-.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group #login-form #form-panel button + .btn, #login-form #form-panel .modal-footer .btn-group button + .btn, .modal-footer .btn-group #actionbar-top .logout-user + .btn, #actionbar-top .modal-footer .btn-group .logout-user + .btn, .modal-footer .btn-group #login-form #form-panel .btn + button, #login-form #form-panel .modal-footer .btn-group .btn + button, .modal-footer .btn-group #login-form #form-panel button + button, #login-form #form-panel .modal-footer .btn-group button + button, .modal-footer .btn-group #actionbar-top #login-form #form-panel .logout-user + button, #login-form #form-panel .modal-footer .btn-group #actionbar-top .logout-user + button, #actionbar-top .modal-footer .btn-group #login-form #form-panel .logout-user + button, #login-form #form-panel #actionbar-top .modal-footer .btn-group .logout-user + button, .modal-footer .btn-group #actionbar-top .btn + .logout-user, #actionbar-top .modal-footer .btn-group .btn + .logout-user, .modal-footer .btn-group #login-form #form-panel #actionbar-top button + .logout-user, #actionbar-top .modal-footer .btn-group #login-form #form-panel button + .logout-user, #login-form #form-panel .modal-footer .btn-group #actionbar-top button + .logout-user, #actionbar-top #login-form #form-panel .modal-footer .btn-group button + .logout-user, .modal-footer .btn-group #actionbar-top .logout-user + .logout-user, #actionbar-top .modal-footer .btn-group .logout-user + .logout-user {
+.modal-footer .btn-group .btn + .btn, .modal-footer .btn-group #actionbar-top .logout-user + .btn, #actionbar-top .modal-footer .btn-group .logout-user + .btn, .modal-footer .btn-group #login-form #form-panel button + .btn, #login-form #form-panel .modal-footer .btn-group button + .btn, .modal-footer .btn-group #actionbar-top .btn + .logout-user, #actionbar-top .modal-footer .btn-group .btn + .logout-user, .modal-footer .btn-group #actionbar-top .logout-user + .logout-user, #actionbar-top .modal-footer .btn-group .logout-user + .logout-user, .modal-footer .btn-group #login-form #form-panel #actionbar-top button + .logout-user, #actionbar-top .modal-footer .btn-group #login-form #form-panel button + .logout-user, #login-form #form-panel .modal-footer .btn-group #actionbar-top button + .logout-user, #actionbar-top #login-form #form-panel .modal-footer .btn-group button + .logout-user, .modal-footer .btn-group #login-form #form-panel .btn + button, #login-form #form-panel .modal-footer .btn-group .btn + button, .modal-footer .btn-group #actionbar-top #login-form #form-panel .logout-user + button, #login-form #form-panel .modal-footer .btn-group #actionbar-top .logout-user + button, #actionbar-top .modal-footer .btn-group #login-form #form-panel .logout-user + button, #login-form #form-panel #actionbar-top .modal-footer .btn-group .logout-user + button, .modal-footer .btn-group #login-form #form-panel button + button, #login-form #form-panel .modal-footer .btn-group button + button {
   margin-left: -1px;
 }
 /* line 119, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_modals.scss */
@@ -8284,7 +8284,7 @@ button.close {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 /* line 228, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_carousel.scss */
-.carousel-caption .btn, .carousel-caption #login-form #form-panel button, #login-form #form-panel .carousel-caption button, .carousel-caption #actionbar-top .logout-user, #actionbar-top .carousel-caption .logout-user {
+.carousel-caption .btn, .carousel-caption #actionbar-top .logout-user, #actionbar-top .carousel-caption .logout-user, .carousel-caption #login-form #form-panel button, #login-form #form-panel .carousel-caption button {
   text-shadow: none;
 }
 
@@ -8687,8 +8687,8 @@ button.close {
 /* line 15, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_theme.scss */
 .btn-default,
 .btn-primary,
-#login-form #form-panel button,
 #actionbar-top .logout-user,
+#login-form #form-panel button,
 .btn-success,
 .btn-info,
 .btn-warning,
@@ -8700,11 +8700,11 @@ button.close {
 /* line 26, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_theme.scss */
 .btn-default:active, .btn-default.active,
 .btn-primary:active,
-#login-form #form-panel button:active,
 #actionbar-top .logout-user:active,
+#login-form #form-panel button:active,
 .btn-primary.active,
-#login-form #form-panel button.active,
 #actionbar-top .active.logout-user,
+#login-form #form-panel button.active,
 .btn-success:active,
 .btn-success.active,
 .btn-info:active,
@@ -8719,8 +8719,8 @@ button.close {
 /* line 31, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_theme.scss */
 .btn-default .badge,
 .btn-primary .badge,
-#login-form #form-panel button .badge,
 #actionbar-top .logout-user .badge,
+#login-form #form-panel button .badge,
 .btn-success .badge,
 .btn-info .badge,
 .btn-warning .badge,
@@ -8729,7 +8729,7 @@ button.close {
 }
 
 /* line 66, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_theme.scss */
-.btn:active, #login-form #form-panel button:active, #actionbar-top .logout-user:active, .btn.active, #login-form #form-panel button.active, #actionbar-top .active.logout-user {
+.btn:active, #actionbar-top .logout-user:active, #login-form #form-panel button:active, .btn.active, #actionbar-top .active.logout-user, #login-form #form-panel button.active {
   background-image: none;
 }
 
@@ -8763,7 +8763,7 @@ button.close {
 }
 
 /* line 74, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_theme.scss */
-.btn-primary, #login-form #form-panel button, #actionbar-top .logout-user {
+.btn-primary, #actionbar-top .logout-user, #login-form #form-panel button {
   background-image: -webkit-linear-gradient(top, #4bc8de 0%, #25afc7 100%);
   background-image: -o-linear-gradient(top, #4bc8de 0%, #25afc7 100%);
   background-image: linear-gradient(to bottom, #4bc8de 0%, #25afc7 100%);
@@ -8774,17 +8774,17 @@ button.close {
   border-color: #23a7bf;
 }
 /* line 43, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_theme.scss */
-.btn-primary:hover, #login-form #form-panel button:hover, #actionbar-top .logout-user:hover, .btn-primary:focus, #login-form #form-panel button:focus, #actionbar-top .logout-user:focus {
+.btn-primary:hover, #actionbar-top .logout-user:hover, #login-form #form-panel button:hover, .btn-primary:focus, #actionbar-top .logout-user:focus, #login-form #form-panel button:focus {
   background-color: #25afc7;
   background-position: 0 -15px;
 }
 /* line 49, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_theme.scss */
-.btn-primary:active, #login-form #form-panel button:active, #actionbar-top .logout-user:active, .btn-primary.active, #login-form #form-panel button.active, #actionbar-top .active.logout-user {
+.btn-primary:active, #actionbar-top .logout-user:active, #login-form #form-panel button:active, .btn-primary.active, #actionbar-top .active.logout-user, #login-form #form-panel button.active {
   background-color: #25afc7;
   border-color: #23a7bf;
 }
 /* line 55, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_theme.scss */
-.btn-primary.disabled, #login-form #form-panel button.disabled, #actionbar-top .disabled.logout-user, .btn-primary:disabled, #login-form #form-panel button:disabled, #actionbar-top .logout-user:disabled, .btn-primary[disabled], #login-form #form-panel button[disabled], #actionbar-top [disabled].logout-user {
+.btn-primary.disabled, #actionbar-top .disabled.logout-user, #login-form #form-panel button.disabled, .btn-primary:disabled, #actionbar-top .logout-user:disabled, #login-form #form-panel button:disabled, .btn-primary[disabled], #actionbar-top [disabled].logout-user, #login-form #form-panel button[disabled] {
   background-color: #25afc7;
   background-image: none;
 }
@@ -9238,7 +9238,7 @@ button.close {
 
 /* makes the font 33% larger relative to the icon container */
 /* line 5, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-sass-4.3.2.1/assets/stylesheets/font-awesome/_larger.scss */
-.fa-lg, #recent-invoice-collection .collection-panel .delete-garment-parent a.delete-garment i.fa, #actionbar-bottom .navbar-nav > li a i.fa {
+.fa-lg, #actionbar-bottom .navbar-nav > li a i.fa, #recent-invoice-collection .collection-panel .delete-garment-parent a.delete-garment i.fa {
   font-size: 1.33333333em;
   line-height: 0.75em;
   vertical-align: -15%;
@@ -9290,7 +9290,7 @@ button.close {
   text-align: center;
 }
 /* line 16, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-sass-4.3.2.1/assets/stylesheets/font-awesome/_list.scss */
-.fa-li.fa-lg, #recent-invoice-collection .collection-panel .delete-garment-parent a.delete-garment i.fa-li.fa, #actionbar-bottom .navbar-nav > li a i.fa-li.fa {
+.fa-li.fa-lg, #actionbar-bottom .navbar-nav > li a i.fa-li.fa, #recent-invoice-collection .collection-panel .delete-garment-parent a.delete-garment i.fa-li.fa {
   left: -1.85714286em;
 }
 
@@ -15085,6 +15085,81 @@ body {
   background-color: #000;
 }
 
+/* line 4, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top .navbar-header {
+  position: relative;
+}
+/* line 8, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top .navbar-brand-extend-pad-left {
+  width: 400px;
+  padding-left: 60px !important;
+}
+/* line 13, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top .navbar-brand {
+  font-weight: bold;
+}
+/* line 17, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top span#logo {
+  position: absolute;
+  top: 8px;
+  left: 0;
+}
+/* line 21, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top span#logo img {
+  height: 36px !important;
+}
+/* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top .navbar-right {
+  margin-right: 15px;
+}
+/* line 28, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
+#actionbar-top .logout-user {
+  min-width: 56px;
+}
+
+/* line 5, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom .navbar-nav {
+  width: 100%;
+  text-align: center;
+}
+/* line 8, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom .navbar-nav > li {
+  float: none;
+  display: inline-block;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/* line 15, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom .navbar-nav > li.first, #actionbar-bottom .navbar-nav > li.last {
+  border-left: 1px solid #222222;
+  border-right: 1px solid #222222;
+}
+/* line 19, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom .navbar-nav > li.two {
+  border-right: 1px solid #222222;
+}
+/* line 23, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom .navbar-nav > li a {
+  position: relative;
+  color: #eeeeee;
+  text-shadow: 0px 2px 0px black;
+}
+/* line 28, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom .navbar-nav > li a:hover {
+  color: #4bc8de;
+}
+/* line 32, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom .navbar-nav > li a i.fa {
+  margin-right: 10px;
+}
+/* line 37, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom .navbar-nav > li a span.badge {
+  background-color: #d9534f;
+  position: absolute;
+  top: 5px;
+  left: 0px;
+}
+
 /* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/signup.scss */
 #signup-form {
   margin-top: 20px;
@@ -15154,24 +15229,30 @@ body {
 #login-form {
   margin-top: 100px;
 }
-/* line 12, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 4, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+#login-form #notif-center {
+  top: 50px;
+  left: 0;
+  bottom: auto;
+}
+/* line 18, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #login-form #form-panel input {
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: center;
 }
-/* line 18, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #login-form #form-panel input[type="text"] {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-/* line 25, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 31, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #login-form #form-panel input[type="password"] {
   border-radius: 0;
 }
-/* line 30, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 36, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #login-form #form-panel button {
   outline: none !important;
   padding-top: 10px;
@@ -15182,11 +15263,11 @@ body {
   border-bottom-right-radius: 25px;
 }
 
-/* line 46, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 52, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #or-signup {
   margin-top: 30px;
 }
-/* line 48, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 54, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #or-signup a {
   padding: 5px;
   padding-left: 10px;
@@ -15194,13 +15275,13 @@ body {
   color: #4bc8de;
   text-decoration: none;
 }
-/* line 54, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 60, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #or-signup a:hover {
   border-radius: 20px;
   background-color: #1d1d1d;
 }
 
-/* line 61, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 67, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #company-label {
   position: fixed;
   bottom: 0;
@@ -15208,11 +15289,11 @@ body {
   width: 100%;
   text-align: center;
 }
-/* line 68, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 74, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #company-label .label-panel {
   padding: 20px;
 }
-/* line 69, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 75, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #company-label a {
   padding: 5px;
   padding-left: 10px;
@@ -15220,7 +15301,7 @@ body {
   border-radius: 20px;
   color: inherit;
 }
-/* line 75, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
+/* line 81, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/login.scss */
 #company-label a:hover {
   text-decoration: none;
   background-color: #1d1d1d;
@@ -15411,79 +15492,4 @@ body {
 /* line 40, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
 #history-invoice-collection .collection-panel .invoice-garment-number {
   padding-left: 15px;
-}
-
-/* line 4, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
-#actionbar-top .navbar-header {
-  position: relative;
-}
-/* line 8, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
-#actionbar-top .navbar-brand-extend-pad-left {
-  width: 400px;
-  padding-left: 60px !important;
-}
-/* line 13, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
-#actionbar-top .navbar-brand {
-  font-weight: bold;
-}
-/* line 17, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
-#actionbar-top span#logo {
-  position: absolute;
-  top: 8px;
-  left: 0;
-}
-/* line 21, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
-#actionbar-top span#logo img {
-  height: 36px !important;
-}
-/* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
-#actionbar-top .navbar-right {
-  margin-right: 15px;
-}
-/* line 28, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
-#actionbar-top .logout-user {
-  min-width: 56px;
-}
-
-/* line 5, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
-#actionbar-bottom .navbar-nav {
-  width: 100%;
-  text-align: center;
-}
-/* line 8, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
-#actionbar-bottom .navbar-nav > li {
-  float: none;
-  display: inline-block;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-/* line 15, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
-#actionbar-bottom .navbar-nav > li.first, #actionbar-bottom .navbar-nav > li.last {
-  border-left: 1px solid #222222;
-  border-right: 1px solid #222222;
-}
-/* line 19, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
-#actionbar-bottom .navbar-nav > li.two {
-  border-right: 1px solid #222222;
-}
-/* line 23, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
-#actionbar-bottom .navbar-nav > li a {
-  position: relative;
-  color: #eeeeee;
-  text-shadow: 0px 2px 0px black;
-}
-/* line 28, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
-#actionbar-bottom .navbar-nav > li a:hover {
-  color: #4bc8de;
-}
-/* line 32, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
-#actionbar-bottom .navbar-nav > li a i.fa {
-  margin-right: 10px;
-}
-/* line 37, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
-#actionbar-bottom .navbar-nav > li a span.badge {
-  background-color: #d9534f;
-  position: absolute;
-  top: 5px;
-  left: 0px;
 }

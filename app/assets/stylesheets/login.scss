@@ -1,6 +1,12 @@
 #login-form {
   margin-top: 100px;
 
+  #notif-center {
+    top: 50px;
+    left: 0;
+    bottom: auto;
+  }
+
   #form-panel {
     @extend .col-xs-10;
     @extend .col-xs-offset-1;
