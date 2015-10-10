@@ -5,48 +5,13 @@ Rails.application.routes.draw do
   # only API response. must declare before *path
   # to avoid format render problem. try it to
   # see the problem.
-  scope 'api', defaults: { format: 'json' } do
-    resources :questions, except: [:edit, :delete]
-
-    resources :disciplines do
-      resources :class_codes, only: [:index, :create]
-    end
-
-    resources :question_types, only: [:index]
-    resources :choices, only: [:create]
-    resources :answers, only: [:create]
-
-    resources :questionnaires, except: [:edit, :delete]
-
-    resources :questionnaires do
-      resources :questionnaire_candidates, only: [:index]
-    end
-
-    resources :questionnaire_candidates, only: [:destroy]
-
-    resources :exams, only: [:index, :destroy] do
-      collection do
-        post :prepare
-        get  :focus
-        post :skip
-        get  :skip_items
-        post :answer
-        get  :result
-      end
-    end
+  scope 'ajax', defaults: { format: 'json' } do
+    resources :signup, only: [:create]
   end
 
   # must be declared after api to prevent
   # format render problem.
   get  '*path' => 'application#index'
-
-
-  # non-API resources.
-  resources :questions, only: [:new]
-
-  resources :disciplines do
-    resources :class_codes, only: [:new]
-  end
 
 
 

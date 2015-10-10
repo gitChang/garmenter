@@ -13009,75 +13009,6 @@ return jQuery;
     };
     namespace(root, "Routes");
     root.Routes = {
-// answer_exams => /api/exams/answer(.:format)
-  // function(options)
-  answer_exams_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"exams",false],[2,[7,"/",false],[2,[6,"answer",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// answers => /api/answers(.:format)
-  // function(options)
-  answers_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"answers",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
-// choices => /api/choices(.:format)
-  // function(options)
-  choices_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"choices",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
-// discipline => /api/disciplines/:id(.:format)
-  // function(id, options)
-  discipline_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"disciplines",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// discipline_class_codes => /api/disciplines/:discipline_id/class_codes(.:format)
-  // function(discipline_id, options)
-  discipline_class_codes_path: Utils.route(["discipline_id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"disciplines",false],[2,[7,"/",false],[2,[3,"discipline_id",false],[2,[7,"/",false],[2,[6,"class_codes",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
-// disciplines => /api/disciplines(.:format)
-  // function(options)
-  disciplines_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"disciplines",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
-// edit_discipline => /api/disciplines/:id/edit(.:format)
-  // function(id, options)
-  edit_discipline_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"disciplines",false],[2,[7,"/",false],[2,[3,"id",false],[2,[7,"/",false],[2,[6,"edit",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
-// edit_questionnaire => /api/questionnaires/:id/edit(.:format)
-  // function(id, options)
-  edit_questionnaire_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"questionnaires",false],[2,[7,"/",false],[2,[3,"id",false],[2,[7,"/",false],[2,[6,"edit",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
-// exam => /api/exams/:id(.:format)
-  // function(id, options)
-  exam_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"exams",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// exams => /api/exams(.:format)
-  // function(options)
-  exams_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"exams",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
-// focus_exams => /api/exams/focus(.:format)
-  // function(options)
-  focus_exams_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"exams",false],[2,[7,"/",false],[2,[6,"focus",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// new_discipline => /api/disciplines/new(.:format)
-  // function(options)
-  new_discipline_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"disciplines",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// new_discipline_class_code => /disciplines/:discipline_id/class_codes/new(.:format)
-  // function(discipline_id, options)
-  new_discipline_class_code_path: Utils.route(["discipline_id"], ["format"], [2,[7,"/",false],[2,[6,"disciplines",false],[2,[7,"/",false],[2,[3,"discipline_id",false],[2,[7,"/",false],[2,[6,"class_codes",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
-// new_question => /api/questions/new(.:format)
-  // function(options)
-  new_question_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"questions",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// new_questionnaire => /api/questionnaires/new(.:format)
-  // function(options)
-  new_questionnaire_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"questionnaires",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// prepare_exams => /api/exams/prepare(.:format)
-  // function(options)
-  prepare_exams_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"exams",false],[2,[7,"/",false],[2,[6,"prepare",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// question => /api/questions/:id(.:format)
-  // function(id, options)
-  question_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"questions",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// question_types => /api/question_types(.:format)
-  // function(options)
-  question_types_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"question_types",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
-// questionnaire => /api/questionnaires/:id(.:format)
-  // function(id, options)
-  questionnaire_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"questionnaires",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// questionnaire_candidate => /api/questionnaire_candidates/:id(.:format)
-  // function(id, options)
-  questionnaire_candidate_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"questionnaire_candidates",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// questionnaire_questionnaire_candidates => /api/questionnaires/:questionnaire_id/questionnaire_candidates(.:format)
-  // function(questionnaire_id, options)
-  questionnaire_questionnaire_candidates_path: Utils.route(["questionnaire_id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"questionnaires",false],[2,[7,"/",false],[2,[3,"questionnaire_id",false],[2,[7,"/",false],[2,[6,"questionnaire_candidates",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
-// questionnaires => /api/questionnaires(.:format)
-  // function(options)
-  questionnaires_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"questionnaires",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
-// questions => /api/questions(.:format)
-  // function(options)
-  questions_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"questions",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
 // rails_info => /rails/info(.:format)
   // function(options)
   rails_info_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"info",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
@@ -13090,18 +13021,12 @@ return jQuery;
 // rails_mailers => /rails/mailers(.:format)
   // function(options)
   rails_mailers_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"mailers",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
-// result_exams => /api/exams/result(.:format)
-  // function(options)
-  result_exams_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"exams",false],[2,[7,"/",false],[2,[6,"result",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
 // root => /
   // function(options)
   root_path: Utils.route([], [], [7,"/",false], arguments),
-// skip_exams => /api/exams/skip(.:format)
+// signup_index => /ajax/signup(.:format)
   // function(options)
-  skip_exams_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"exams",false],[2,[7,"/",false],[2,[6,"skip",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// skip_items_exams => /api/exams/skip_items(.:format)
-  // function(options)
-  skip_items_exams_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"exams",false],[2,[7,"/",false],[2,[6,"skip_items",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments)}
+  signup_index_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"signup",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments)}
 ;
     root.Routes.options = defaults;
     return root.Routes;
@@ -49518,7 +49443,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/signup-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div id="form-panel">\n    <form>\n      <h4 class="first">\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.branch_name" placeholder="branch name" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-phone"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.contact_person_name" placeholder="contact person&#39;s name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="email" />\n      </div>\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("signup-page.html", '<div class="row" id="signup-form">\n  <div class="hidden" id="notif-center"></div>\n  <div id="form-panel">\n    <form>\n      <h4 class="first">\n        <i class="fa fa-building-o"></i>&nbsp;Company\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.company_name" placeholder="company name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.branch_name" placeholder="branch name" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-phone"></i>&nbsp;Contact\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.contact_person_first_name" placeholder="contact person&#39;s first name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_last_name" placeholder="contact person&#39;s last name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_mobile" placeholder="contact person&#39;s mobile" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.contact_person_email" placeholder="contact person&#39;s email" type="text" />\n      </div>\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Credentials\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.account_name" placeholder="account name" type="text" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input ng-model="model.confirm_password" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="signup" href="#"><i class="fa fa-user-plus"></i>Signup</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49538,6 +49463,10 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 	$stateProvider
 
 		// state for questions controller.
+		.state('test', {
+			url: '/test',
+			controller: 'TestCtrl'
+		})
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -49625,13 +49554,13 @@ App.service('DaemonSvc', function ( $rootScope, $state, HelperSvc ) {
 ;
 'use strict';
 
-App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
+App.service('HelperSvc', function ($templateCache, GlobalDataSvc) {
 
   // this
   var self = this;
 
 
-  this.setInvoiceNumber = function ( number ) {
+  this.setInvoiceNumber = function (number) {
     // set invoice
     GlobalDataSvc.currentInvoiceNumber = number.toUpperCase();
   }
@@ -49672,9 +49601,9 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
     var size;
 
     GlobalDataSvc.recentInvoiceCollection
-    .forEach( function ( item, index, object ) {
+    .forEach(function (item, index, object) {
       // compare
-      if ( item.invoice_number === GlobalDataSvc.currentInvoiceNumber )
+      if (item.invoice_number === GlobalDataSvc.currentInvoiceNumber)
         size = item.garment_barcodes.length;
     })
 
@@ -49692,21 +49621,21 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
   }
 
 
-  this.deleteInvoiceGarment = function ( invoiceNumber, garmentNumber ) {
+  this.deleteInvoiceGarment = function (invoiceNumber, garmentNumber) {
     // signal
     var affirm = false;
 
     // loop thru invoice
     GlobalDataSvc.recentInvoiceCollection
-    .forEach( function ( invoice, nindex, nobject ) {
+    .forEach(function (invoice, nindex, nobject) {
       // compare invoice
-      if ( invoice.invoice_number === invoiceNumber.toUpperCase() ) {
+      if (invoice.invoice_number === invoiceNumber.toUpperCase()) {
         // loop thru garments
         invoice.garment_barcodes
-        .forEach( function ( garment, gindex, gobject ) {
+        .forEach(function (garment, gindex, gobject) {
           // compare garment
-          if ( garment === garmentNumber.toUpperCase() ) {
-            gobject.splice( gindex, 1 );
+          if (garment === garmentNumber.toUpperCase()) {
+            gobject.splice(gindex, 1);
             affirm = true;
           }
         })
@@ -49724,32 +49653,32 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
     // loop thru recent invoice collection and
     // find invoice number
     GlobalDataSvc.recentInvoiceCollection
-    .forEach( function ( invoice, index, object ) {
-      if ( invoice.invoice_number === self.getInvoiceNumber() )
+    .forEach(function (invoice, index, object) {
+      if (invoice.invoice_number === self.getInvoiceNumber())
         found = true;
     })
 
     // log
-    console.log('invoice ', self.getInvoiceNumber(), ' is in collection ', found );
+    console.log('invoice ', self.getInvoiceNumber(), ' is in collection ', found);
 
     return found;
   }
 
 
-  this.saveInvoice = function ( object ) {
+  this.saveInvoice = function (object) {
     // signal either saved or updated
     var update = false;
 
     // verify if update
-    if ( self.findInvoiceRecentCollection() ) {
+    if (self.findInvoiceRecentCollection()) {
       // then perform update
-      if ( self.updateGarmentCollection( object.garment_barcodes ) )
+      if (self.updateGarmentCollection(object.garment_barcodes))
         update = true;
 
     } else {
       // this is new invoice
       // push to recent collection invoice
-      if ( self.addGarmentCollection( object ) )
+      if (self.addGarmentCollection(object))
         update = false
     }
 
@@ -49757,21 +49686,21 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
   }
 
 
-  this.addGarmentCollection = function ( object ) {
+  this.addGarmentCollection = function (object) {
     // save invoice to collection
-    GlobalDataSvc.recentInvoiceCollection.push( object );
+    GlobalDataSvc.recentInvoiceCollection.push(object);
     return true;
   }
 
 
-  this.updateGarmentCollection = function ( array ) {
+  this.updateGarmentCollection = function (array) {
     // loop thru and find existing invoice
-    GlobalDataSvc.recentInvoiceCollection.forEach( function ( invoice, nindex, nobject ) {
+    GlobalDataSvc.recentInvoiceCollection.forEach(function (invoice, nindex, nobject) {
       // compare
-      if ( invoice.invoice_number === self.getInvoiceNumber() ) {
+      if (invoice.invoice_number === self.getInvoiceNumber()) {
         // get each and push
-        array.forEach( function ( garment, gindex, gobject ) {
-          invoice.garment_barcodes.push( garment );
+        array.forEach(function (garment, gindex, gobject) {
+          invoice.garment_barcodes.push(garment);
         })
       }
     })
@@ -49780,70 +49709,105 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
   }
 
 
-  this.notify = function ( msg ) {
+  this.notify = function (msg) {
     var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
-    var notifyCenter = jQuery( '#notif-center' )
-                       .html( $templateCache.get( tplPath ));
+    var notifyCenter = jQuery('#notif-center')
+                       .html($templateCache.get(tplPath));
 
     // place msg and display warning
-    notifyCenter.find( '.msg' ).text( msg );
-    notifyCenter.removeClass( 'hidden' );
+    notifyCenter.find('.msg').text(msg);
+    notifyCenter.removeClass('hidden');
   }
 
 
   this.removeNotify = function () {
     var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
-    var notifyCenter = jQuery( '#notif-center' )
-                       .html( $templateCache.get( tplPath ));
+    var notifyCenter = jQuery('#notif-center')
+                       .html($templateCache.get(tplPath));
 
     // hide and remove warning
-    notifyCenter.addClass( 'hidden' );
-    notifyCenter.find( '.msg' ).text( '' );
+    notifyCenter.addClass('hidden');
+    notifyCenter.find('.msg').text('');
   }
 
 
-  this.findBarcodeDuplicate = function ( number, arrayLocal ) {
+  this.findBarcodeDuplicate = function (number, arrayLocal) {
     // signal
     var found = false;
 
     // compare unsaved current invoice number first
-    if ( number === GlobalDataSvc.currentInvoiceNumber ) found = true;
+    if (number === GlobalDataSvc.currentInvoiceNumber) found = true;
 
     // array local is the array from the ctrl, inspect it also.
-    arrayLocal.forEach( function (item, index, object ) {
-      if ( item === number ) found = true;
+    arrayLocal.forEach(function (item, index, object) {
+      if (item === number) found = true;
     })
 
     // loop thru and find duplicate
     GlobalDataSvc.recentInvoiceCollection
-    .forEach( function ( invoice, nindex, nobject ) {
+    .forEach(function (invoice, nindex, nobject) {
       // compare to invoices
-      if ( invoice.invoice_number === number.toUpperCase() ) found = true;
+      if (invoice.invoice_number === number.toUpperCase()) found = true;
       // compare to garments
-      invoice.garment_barcodes.forEach( function ( garment, gindex, gobject ) {
-        if ( garment === number.toUpperCase() ) found = true;
+      invoice.garment_barcodes.forEach(function (garment, gindex, gobject) {
+        if (garment === number.toUpperCase()) found = true;
       })
     })
 
     // notify user
-    if ( found ) this.notify( 'barcode already exists!' );
+    if (found) this.notify('barcode already exists!');
     else this.removeNotify();
 
     // log
-    console.log( 'duplicate barcode ', found );
+    console.log('duplicate barcode ', found);
 
     return found;
   }
 
 
-  this.scannerSpecialCharFound = function ( number ) {
+  this.scannerSpecialCharFound = function (number) {
     var charSignal = '*';
     var tempNumber = number.replace(/(\r\n|\n|\r)/gm, charSignal);
 
     // check char
-    if ( tempNumber.indexOf( charSignal ) === -1 ) return false;
+    if (tempNumber.indexOf(charSignal) === -1) return false;
 
     // default true
+    return true;
+  }
+
+
+  this.inspectEmpty = function (object) {
+    var key;
+
+    for (var k in object) {
+      if (!object[k] || object[k].trim().length === 0) {
+        key = k;
+        break;
+      }
+    }
+
+    return key;
+  }
+
+
+  this.originalHtml; // cache the original html content of element requesting
+
+  this.indicateProcessing = function (element) {
+    var tpl = $templateCache.get('shared-tpls/processing-tpl.html');
+
+    // cache original template for late reset
+    self.originalHtml = jQuery(element).html();
+
+    jQuery(element).html(tpl);
+
+    return true;
+  }
+
+
+  this.stopIndicateProcessing = function (element) {
+    // reset element html
+    jQuery(element).html(self.originalHtml);
     return true;
   }
 
@@ -49852,26 +49816,30 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
 'use strict';
 
 App.controller('ActionbarTopCtrl',
-function ( $scope, $state, $templateCache, HelperSvc ) {
+function ($scope, $state, $templateCache, HelperSvc) {
 
+  //--
+  // variables
+  //--
   var $hs = HelperSvc;
 
-  $scope.entryTitle = $hs.getInvoiceNumber();
+  $scope.entryTitle = $hs.getInvoiceNumber(); // topbat title
 
 
+  //--
+  // methods
+  //--
   $scope.logoutUser = function () {
-
+    // ignore when already processing
     if (angular.element('.logout-user').find('.fa-spinner').length) return;
-
-    angular.element('.logout-user').html( function () {
+    // spinner
+    angular.element('.logout-user').html(function () {
       return $templateCache.get('shared-tpls/processing-tpl.html');
     })
 
-    setTimeout(
-    function () {
+    setTimeout(function () {
       $state.go('login-page');
-    },
-    2000)
+    }, 2000)
   }
 
 })
@@ -49881,41 +49849,35 @@ function ( $scope, $state, $templateCache, HelperSvc ) {
 App.controller('GarmentScanCtrl',
 function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
-  // inherit
+  //--
+  // variables
+  //--
   var $hs = HelperSvc;
 
-  // model object
   $scope.model = {
     invoice_number: $hs.getInvoiceNumber(),
     garment_barcodes: []
   };
 
+  $scope.garmentScannedLen = 0; // bound to badge
 
   // invoice number is required,
   // so if not present, goto invoice scan page
-  if ( !$scope.model.invoice_number ) {
+  if (!$scope.model.invoice_number) {
     $state.go('invoice-barcode-scan-page');
     return;
   }
 
 
-  // indicates the realtime length og garments
-  $scope.garmentScannedLen = 0;
-
-
   // indicate invoice number
-  setTimeout(
-  function () {
-    // label to top bar
+  setTimeout(function () {
     var text;
-
-    if ( $hs.findInvoiceRecentCollection() )
+    if ($hs.findInvoiceRecentCollection())
       text = 'UPDATE Invoice : ' + $scope.model.invoice_number;
     else text = 'NEW Invoice : ' + $scope.model.invoice_number;
-
-    jQuery('.navbar-brand').text( text );
-  },
-  500);
+    // apply text
+    jQuery('.navbar-brand').text(text);
+  }, 500);
 
 
   // holds the ordering
@@ -49926,8 +49888,8 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
   // create barcode img using the number scanned.
   // display barcode canvas element on page.
-  jQuery( '#invoice-barcode-pic' )
-  .JsBarcode( $scope.model.invoice_number, {
+  jQuery('#invoice-barcode-pic')
+  .JsBarcode($scope.model.invoice_number, {
     width: 2,
     height: 60,
     lineColor: '#eee'
@@ -49936,24 +49898,24 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
   // create a new tpl for asking new entry
   // of garment barcode.
-  $scope.newGarmentScanTemplate = function ( prevOrder ) {
+  $scope.newGarmentScanTemplate = function (prevOrder) {
     // template
-    var tpl = $templateCache.get( 'garment-scan-tpls/new-garment-scan-tpl.html' );
+    var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan-tpl.html');
 
     // set the number label of the next garment
-    tpl = tpl.replace( '$', prevOrder + 1 );
+    tpl = tpl.replace('$', prevOrder + 1);
 
     // add to page
     angular.element('new-garment-scan-dir').append(function () {
-      return $compile( tpl )( $scope );
+      return $compile(tpl)($scope);
     })
 
     // scroll to page bottom and
     // give focus to newly added input text
-    jQuery( 'html, body' ).animate({
-      scrollTop: jQuery( document ).height()
+    jQuery('html, body').animate({
+      scrollTop: jQuery(document).height()
     }, 500);
-    jQuery( 'input:last' ).focus();
+    jQuery('input:last').focus();
   }
 
 
@@ -49962,7 +49924,7 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
   var initialOrder = null;
 
 
-  if ( $hs.getSizeGarmentCollection() ) {
+  if ($hs.getSizeGarmentCollection()) {
     // this is an update transaction of the existing invoice.
     initialOrder = $hs.getSizeGarmentCollection();
 
@@ -49974,25 +49936,24 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
 
   // initialize template
-  $scope.newGarmentScanTemplate( initialOrder );
+  $scope.newGarmentScanTemplate(initialOrder);
 
 
   // save function garment
-  $scope.pushGarment = function ( number, order ) {
+  $scope.pushGarment = function (number, order) {
     // append
-    $scope.model.garment_barcodes.push( number );
+    $scope.model.garment_barcodes.push(number);
     $scope.$apply();
 
     //log
-    console.log( 'garment number ', number, ' pushed.')
+    console.log('garment number ', number, ' pushed.')
   }
 
 
   // update the badge count.
-  $scope.$watch( 'model', function ( model ) {
-    // log
-    console.log( 'model', JSON.stringify( model ) );
+  $scope.$watch('model', function (model) {
     $scope.garmentScannedLen = model.garment_barcodes.length;
+    console.log('model', JSON.stringify(model));
   }, true);
 
 });
@@ -50058,13 +50019,18 @@ App.controller('RecentInvoiceCollection', function ( $scope, HelperSvc ) {
 });
 'use strict';
 
-App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache, $compile ) {
+App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile, HelperSvc) {
 
-  // model
+  //--
+  // variables
+  //--
+  var $hs = HelperSvc;
+
   $scope.model = {
     company_name: null,
     branch_name: null,
-    contact_person_name: null,
+    contact_person_first_name: null,
+    contact_person_last_name: null,
     contact_person_mobile: null,
     contact_person_email: null,
     account_name: null,
@@ -50073,57 +50039,79 @@ App.controller( 'SignupCtrl', function ( $scope, $state, $templateCache, $compil
   };
 
 
-  // apply class .acct-data to all <input>
+  //--
+  // functions
+  //--
   $scope.assignAcctDataClass = function () {
-    // = input.acct-data
-    jQuery( 'input' ).addClass( 'acct-data' );
-    // recompile for directives to function
-    $compile( jQuery('#signup-form') )( $scope );
-    // report
-    console.log( 'applied class acct-data.' )
+    $('input').addClass('acct-data');
+    // recompile to bind
+    $compile($('#signup-form'))($scope);
   }
 
-
-  // invalid field pointer
-  $scope.pointInvalid = function ( err ) {
-    // element the contains invalida data
-    var attrModel = 'input[ng-model="model.' + err + '"]';
-    var elemInvalid = jQuery( attrModel );
-    var elemParent = elemInvalid.parent( '.form-group' );
+  $scope.pointInvalid = function (field, msg) {
+    // invalid field pointer
+    var attrModel = 'input[ng-model="model.' + field + '"]';
+    var elemInvalid = $(attrModel);
+    var elemParent = elemInvalid.parent('.form-group');
     var iconTpl = 'signup-tpls/icon-error-pointer-tpl.html';
 
+    // reset style field has error
+    $('.form-group.has-error').removeClass('has-error');
+    $('span.icon-pointer').remove();
+    $('h4.has-error-field').removeClass('has-error-field');
 
-    // reset fields has error style
-    jQuery( '.form-group.has-error' ).removeClass( 'has-error' );
-    jQuery( 'span.icon-pointer' ).remove();
-    jQuery( 'h4.has-error-field' ).removeClass( 'has-error-field' );
+    // remove notification
+    $hs.removeNotify();
 
-    setTimeout(
-    function () {
-      // class="form-group has-error"
-      elemParent.addClass( 'has-error' );
+    // apply error style
+    elemParent.addClass('has-error'); // class="form-group has-error"
+    elemParent.append($templateCache.get(iconTpl));
+    elemParent.prev('h4').addClass('has-error-field'); // colorize red <h4>
+    elemInvalid.focus();
+    elemInvalid.select();
 
-      // insert <i class="fa fa-ban fa-sm"><i>
-      elemParent.append( $templateCache.get( iconTpl ) );
-
-      // colorize red <h4>
-      elemParent.prev( 'h4' ).addClass( 'has-error-field' );
-
-      // focus
-      elemInvalid.select();
-    },
-    1000)
+    // display message / notify
+    $hs.notify(msg);
   }
 
-  // place acct-data class
-  setTimeout( function () { $scope.assignAcctDataClass(); }, 500 )
 
-  // focus to first <input>
-  setTimeout( function () { jQuery('input:first').focus(); }, 500 )
+  //--
+  // events
+  //--
+  setTimeout(function () {
+    $scope.assignAcctDataClass();
+  }, 500)
+
+  setTimeout(function () {
+    $('input:first').focus();
+  }, 500)
 
   // test error display
-  //setTimeout( function () { $scope.pointInvalid( 'company_name' ); }, 2000 )
-  //setTimeout( function () { $scope.pointInvalid( 'branch_name' ); }, 6000 )
+  //setTimeout(function () { $scope.pointInvalid('company_name'); }, 2000)
+  //setTimeout(function () { $scope.pointInvalid('branch_name'); }, 6000)
+})
+;
+'use strict';
+
+App.controller('TestCtrl', function ($scope) {
+
+  $scope.model = {
+    //company_name: 'aaa',
+    branch_name: 'aaa',
+    contact_person_first_name: 'aaa',
+    contact_person_last_name: 'aaa',
+    contact_person_mobile: 'aaa',
+    contact_person_email: 'aaa',
+    account_name: 'aaa',
+    password: 'aaa',
+    confirm_password: 'aaa'
+  };
+
+  console.log(Routes.signup_index_path());
+  $.post(Routes.signup_index_path(), $scope.model, function (data) {
+    console.log(data);
+  });
+
 })
 ;
 'use strict';
@@ -50441,7 +50429,7 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
 
       // redirect to garment scanning page with timeout.
       setTimeout( function () {
-      $state.go('garment-barcode-scan-page');
+        $state.go('garment-barcode-scan-page');
       },
       2000);
     }
@@ -50752,29 +50740,29 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
 });
 'use strict';
 
-App.directive('acctData', function ($state, $templateCache) {
+App.directive('acctData', function($state) {
 
-  function linker ( scope, element ) {
+  function linker (scope, element) {
+    //--
+    // callbacks
+    //--
+    function callbackEnter(event) {
+      if (event.which !== 13) return;
 
-    element.on('keyup', function ( event ) {
-      //
-      if ( event.which !== 13 ) return;
-
-      // next element .form-group > input
+      // next .form-group > input
       var elemNext = element.parent().next();
 
-      // = div.form-group
-      if ( elemNext.prop('nodeName') === 'DIV' ) {
-        // > input
-        elemNext.find( 'input' ).focus()
-      }
-      // = h4
-      if ( elemNext.prop('nodeName') === 'H4' ) {
-        // = div.form-group > input
-        elemNext.next().find( 'input' ).focus()
-      }
+      if (elemNext.prop('nodeName') === 'DIV')
+        elemNext.find('input').focus()
 
-    });
+      if (elemNext.prop('nodeName') === 'H4')
+        elemNext.next().find('input').focus()
+    }
+
+    //--
+    // events
+    //--
+    element.on('keyup', callbackEnter);
 
   }
 
@@ -50785,30 +50773,73 @@ App.directive('acctData', function ($state, $templateCache) {
 });
 'use strict';
 
-App.directive('signup', function ($state, $templateCache) {
+App.directive('signup', function ($state, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
-    element.on('click', function (event) {
+
+    //--
+    // variables
+    //--
+    var $hs = HelperSvc;
+
+
+    //--
+    // methods
+    //--
+    function showProcessing() {
+      $hs.indicateProcessing(element);
+    }
+
+
+    function processSignup() {
+      $.ajax({
+        url: Routes.signup_index_path(),
+        type: 'post',
+        data: scope.model,
+        dataType: 'json',
+        beforeSend: showProcessing()
+      })
+      .done(function () {
+        $state.go('login-page');
+      })
+      .fail(function (error) {
+        var key = error.responseJSON[0], msg = error.responseJSON[1];
+        // hightlight error field and display message
+        scope.pointInvalid(key, msg );
+      })
+      .always(function () {
+        $hs.stopIndicateProcessing(element);
+      })
+    }
+
+
+    //--
+    // callbacks
+    //--
+    function callbackSignup(event) {
       event.preventDefault();
 
       // ignore event when processing
       if (element.find('.fa-spinner').length) return;
 
-      // show processing
-      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
+      setTimeout(function () {
+        processSignup()
+      }, 1000)
+    }
 
-      setTimeout(
-      function () {
-        $state.go('login-page');
-      },
-      2000)
-    });
+
+    //--
+    // events
+    //--
+    element.on('click', callbackSignup);
+
   }
 
   return {
     restrict: 'C',
     link: linker
   };
+
 });
 
 

@@ -1,28 +1,28 @@
 'use strict';
 
-App.directive('acctData', function ($state, $templateCache) {
+App.directive('acctData', function($state) {
 
-  function linker ( scope, element ) {
+  function linker (scope, element) {
+    //--
+    // callbacks
+    //--
+    function callbackEnter(event) {
+      if (event.which !== 13) return;
 
-    element.on('keyup', function ( event ) {
-      //
-      if ( event.which !== 13 ) return;
-
-      // next element .form-group > input
+      // next .form-group > input
       var elemNext = element.parent().next();
 
-      // = div.form-group
-      if ( elemNext.prop('nodeName') === 'DIV' ) {
-        // > input
-        elemNext.find( 'input' ).focus()
-      }
-      // = h4
-      if ( elemNext.prop('nodeName') === 'H4' ) {
-        // = div.form-group > input
-        elemNext.next().find( 'input' ).focus()
-      }
+      if (elemNext.prop('nodeName') === 'DIV')
+        elemNext.find('input').focus()
 
-    });
+      if (elemNext.prop('nodeName') === 'H4')
+        elemNext.next().find('input').focus()
+    }
+
+    //--
+    // events
+    //--
+    element.on('keyup', callbackEnter);
 
   }
 

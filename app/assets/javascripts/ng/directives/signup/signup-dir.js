@@ -1,27 +1,70 @@
 'use strict';
 
-App.directive('signup', function ($state, $templateCache) {
+App.directive('signup', function ($state, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
-    element.on('click', function (event) {
+
+    //--
+    // variables
+    //--
+    var $hs = HelperSvc;
+
+
+    //--
+    // methods
+    //--
+    function showProcessing() {
+      $hs.indicateProcessing(element);
+    }
+
+
+    function processSignup() {
+      $.ajax({
+        url: Routes.signup_index_path(),
+        type: 'post',
+        data: scope.model,
+        dataType: 'json',
+        beforeSend: showProcessing()
+      })
+      .done(function () {
+        $state.go('login-page');
+      })
+      .fail(function (error) {
+        var key = error.responseJSON[0], msg = error.responseJSON[1];
+        // hightlight error field and display message
+        scope.pointInvalid(key, msg );
+      })
+      .always(function () {
+        $hs.stopIndicateProcessing(element);
+      })
+    }
+
+
+    //--
+    // callbacks
+    //--
+    function callbackSignup(event) {
       event.preventDefault();
 
       // ignore event when processing
       if (element.find('.fa-spinner').length) return;
 
-      // show processing
-      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
+      setTimeout(function () {
+        processSignup()
+      }, 1000)
+    }
 
-      setTimeout(
-      function () {
-        $state.go('login-page');
-      },
-      2000)
-    });
+
+    //--
+    // events
+    //--
+    element.on('click', callbackSignup);
+
   }
 
   return {
     restrict: 'C',
     link: linker
   };
+
 });

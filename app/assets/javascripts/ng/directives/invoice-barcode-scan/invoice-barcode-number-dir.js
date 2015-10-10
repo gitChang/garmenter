@@ -28,7 +28,7 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
 
       // redirect to garment scanning page with timeout.
       setTimeout( function () {
-      $state.go('garment-barcode-scan-page');
+        $state.go('garment-barcode-scan-page');
       },
       2000);
     }

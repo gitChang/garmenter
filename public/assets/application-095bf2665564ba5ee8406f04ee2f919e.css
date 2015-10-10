@@ -15429,12 +15429,12 @@ body {
 /* line 17, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top span#logo {
   position: absolute;
-  top: 6px;
+  top: 8px;
   left: 0;
 }
 /* line 21, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top span#logo img {
-  height: 38px !important;
+  height: 36px !important;
 }
 /* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top .navbar-right {

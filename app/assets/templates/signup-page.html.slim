@@ -1,4 +1,6 @@
 .row#signup-form
+  #notif-center.hidden
+
   #form-panel
     form
       h4.first
@@ -26,9 +28,16 @@
         | Contact
       .form-group
         input [
-          ng-model="model.contact_person_name"
+          ng-model="model.contact_person_first_name"
           type="text"
-          placeholder="contact person's name"
+          placeholder="contact person's first name"
+        ]
+
+      .form-group
+        input [
+          ng-model="model.contact_person_last_name"
+          type="text"
+          placeholder="contact person's last name"
         ]
 
       .form-group
@@ -41,7 +50,7 @@
       .form-group
         input [
           ng-model="model.contact_person_email"
-          type="email"
+          type="text"
           placeholder="contact person's email"
         ]
 
@@ -79,7 +88,7 @@
         i.fa.fa-chevron-left
         | Back
     li.two
-      a.signup
+      a.signup href="#"
         i.fa.fa-user-plus
         | Signup
 

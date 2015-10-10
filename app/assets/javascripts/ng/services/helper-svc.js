@@ -1,12 +1,12 @@
 'use strict';
 
-App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
+App.service('HelperSvc', function ($templateCache, GlobalDataSvc) {
 
   // this
   var self = this;
 
 
-  this.setInvoiceNumber = function ( number ) {
+  this.setInvoiceNumber = function (number) {
     // set invoice
     GlobalDataSvc.currentInvoiceNumber = number.toUpperCase();
   }
@@ -47,9 +47,9 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
     var size;
 
     GlobalDataSvc.recentInvoiceCollection
-    .forEach( function ( item, index, object ) {
+    .forEach(function (item, index, object) {
       // compare
-      if ( item.invoice_number === GlobalDataSvc.currentInvoiceNumber )
+      if (item.invoice_number === GlobalDataSvc.currentInvoiceNumber)
         size = item.garment_barcodes.length;
     })
 
@@ -67,21 +67,21 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
   }
 
 
-  this.deleteInvoiceGarment = function ( invoiceNumber, garmentNumber ) {
+  this.deleteInvoiceGarment = function (invoiceNumber, garmentNumber) {
     // signal
     var affirm = false;
 
     // loop thru invoice
     GlobalDataSvc.recentInvoiceCollection
-    .forEach( function ( invoice, nindex, nobject ) {
+    .forEach(function (invoice, nindex, nobject) {
       // compare invoice
-      if ( invoice.invoice_number === invoiceNumber.toUpperCase() ) {
+      if (invoice.invoice_number === invoiceNumber.toUpperCase()) {
         // loop thru garments
         invoice.garment_barcodes
-        .forEach( function ( garment, gindex, gobject ) {
+        .forEach(function (garment, gindex, gobject) {
           // compare garment
-          if ( garment === garmentNumber.toUpperCase() ) {
-            gobject.splice( gindex, 1 );
+          if (garment === garmentNumber.toUpperCase()) {
+            gobject.splice(gindex, 1);
             affirm = true;
           }
         })
@@ -99,32 +99,32 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
     // loop thru recent invoice collection and
     // find invoice number
     GlobalDataSvc.recentInvoiceCollection
-    .forEach( function ( invoice, index, object ) {
-      if ( invoice.invoice_number === self.getInvoiceNumber() )
+    .forEach(function (invoice, index, object) {
+      if (invoice.invoice_number === self.getInvoiceNumber())
         found = true;
     })
 
     // log
-    console.log('invoice ', self.getInvoiceNumber(), ' is in collection ', found );
+    console.log('invoice ', self.getInvoiceNumber(), ' is in collection ', found);
 
     return found;
   }
 
 
-  this.saveInvoice = function ( object ) {
+  this.saveInvoice = function (object) {
     // signal either saved or updated
     var update = false;
 
     // verify if update
-    if ( self.findInvoiceRecentCollection() ) {
+    if (self.findInvoiceRecentCollection()) {
       // then perform update
-      if ( self.updateGarmentCollection( object.garment_barcodes ) )
+      if (self.updateGarmentCollection(object.garment_barcodes))
         update = true;
 
     } else {
       // this is new invoice
       // push to recent collection invoice
-      if ( self.addGarmentCollection( object ) )
+      if (self.addGarmentCollection(object))
         update = false
     }
 
@@ -132,21 +132,21 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
   }
 
 
-  this.addGarmentCollection = function ( object ) {
+  this.addGarmentCollection = function (object) {
     // save invoice to collection
-    GlobalDataSvc.recentInvoiceCollection.push( object );
+    GlobalDataSvc.recentInvoiceCollection.push(object);
     return true;
   }
 
 
-  this.updateGarmentCollection = function ( array ) {
+  this.updateGarmentCollection = function (array) {
     // loop thru and find existing invoice
-    GlobalDataSvc.recentInvoiceCollection.forEach( function ( invoice, nindex, nobject ) {
+    GlobalDataSvc.recentInvoiceCollection.forEach(function (invoice, nindex, nobject) {
       // compare
-      if ( invoice.invoice_number === self.getInvoiceNumber() ) {
+      if (invoice.invoice_number === self.getInvoiceNumber()) {
         // get each and push
-        array.forEach( function ( garment, gindex, gobject ) {
-          invoice.garment_barcodes.push( garment );
+        array.forEach(function (garment, gindex, gobject) {
+          invoice.garment_barcodes.push(garment);
         })
       }
     })
@@ -155,70 +155,105 @@ App.service('HelperSvc', function ( $templateCache, GlobalDataSvc ) {
   }
 
 
-  this.notify = function ( msg ) {
+  this.notify = function (msg) {
     var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
-    var notifyCenter = jQuery( '#notif-center' )
-                       .html( $templateCache.get( tplPath ));
+    var notifyCenter = jQuery('#notif-center')
+                       .html($templateCache.get(tplPath));
 
     // place msg and display warning
-    notifyCenter.find( '.msg' ).text( msg );
-    notifyCenter.removeClass( 'hidden' );
+    notifyCenter.find('.msg').text(msg);
+    notifyCenter.removeClass('hidden');
   }
 
 
   this.removeNotify = function () {
     var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
-    var notifyCenter = jQuery( '#notif-center' )
-                       .html( $templateCache.get( tplPath ));
+    var notifyCenter = jQuery('#notif-center')
+                       .html($templateCache.get(tplPath));
 
     // hide and remove warning
-    notifyCenter.addClass( 'hidden' );
-    notifyCenter.find( '.msg' ).text( '' );
+    notifyCenter.addClass('hidden');
+    notifyCenter.find('.msg').text('');
   }
 
 
-  this.findBarcodeDuplicate = function ( number, arrayLocal ) {
+  this.findBarcodeDuplicate = function (number, arrayLocal) {
     // signal
     var found = false;
 
     // compare unsaved current invoice number first
-    if ( number === GlobalDataSvc.currentInvoiceNumber ) found = true;
+    if (number === GlobalDataSvc.currentInvoiceNumber) found = true;
 
     // array local is the array from the ctrl, inspect it also.
-    arrayLocal.forEach( function (item, index, object ) {
-      if ( item === number ) found = true;
+    arrayLocal.forEach(function (item, index, object) {
+      if (item === number) found = true;
     })
 
     // loop thru and find duplicate
     GlobalDataSvc.recentInvoiceCollection
-    .forEach( function ( invoice, nindex, nobject ) {
+    .forEach(function (invoice, nindex, nobject) {
       // compare to invoices
-      if ( invoice.invoice_number === number.toUpperCase() ) found = true;
+      if (invoice.invoice_number === number.toUpperCase()) found = true;
       // compare to garments
-      invoice.garment_barcodes.forEach( function ( garment, gindex, gobject ) {
-        if ( garment === number.toUpperCase() ) found = true;
+      invoice.garment_barcodes.forEach(function (garment, gindex, gobject) {
+        if (garment === number.toUpperCase()) found = true;
       })
     })
 
     // notify user
-    if ( found ) this.notify( 'barcode already exists!' );
+    if (found) this.notify('barcode already exists!');
     else this.removeNotify();
 
     // log
-    console.log( 'duplicate barcode ', found );
+    console.log('duplicate barcode ', found);
 
     return found;
   }
 
 
-  this.scannerSpecialCharFound = function ( number ) {
+  this.scannerSpecialCharFound = function (number) {
     var charSignal = '*';
     var tempNumber = number.replace(/(\r\n|\n|\r)/gm, charSignal);
 
     // check char
-    if ( tempNumber.indexOf( charSignal ) === -1 ) return false;
+    if (tempNumber.indexOf(charSignal) === -1) return false;
 
     // default true
+    return true;
+  }
+
+
+  this.inspectEmpty = function (object) {
+    var key;
+
+    for (var k in object) {
+      if (!object[k] || object[k].trim().length === 0) {
+        key = k;
+        break;
+      }
+    }
+
+    return key;
+  }
+
+
+  this.originalHtml; // cache the original html content of element requesting
+
+  this.indicateProcessing = function (element) {
+    var tpl = $templateCache.get('shared-tpls/processing-tpl.html');
+
+    // cache original template for late reset
+    self.originalHtml = jQuery(element).html();
+
+    jQuery(element).html(tpl);
+
+    return true;
+  }
+
+
+  this.stopIndicateProcessing = function (element) {
+    // reset element html
+    jQuery(element).html(self.originalHtml);
     return true;
   }
 

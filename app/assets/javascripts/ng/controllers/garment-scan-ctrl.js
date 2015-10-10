@@ -3,41 +3,35 @@
 App.controller('GarmentScanCtrl',
 function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
-  // inherit
+  //--
+  // variables
+  //--
   var $hs = HelperSvc;
 
-  // model object
   $scope.model = {
     invoice_number: $hs.getInvoiceNumber(),
     garment_barcodes: []
   };
 
+  $scope.garmentScannedLen = 0; // bound to badge
 
   // invoice number is required,
   // so if not present, goto invoice scan page
-  if ( !$scope.model.invoice_number ) {
+  if (!$scope.model.invoice_number) {
     $state.go('invoice-barcode-scan-page');
     return;
   }
 
 
-  // indicates the realtime length og garments
-  $scope.garmentScannedLen = 0;
-
-
   // indicate invoice number
-  setTimeout(
-  function () {
-    // label to top bar
+  setTimeout(function () {
     var text;
-
-    if ( $hs.findInvoiceRecentCollection() )
+    if ($hs.findInvoiceRecentCollection())
       text = 'UPDATE Invoice : ' + $scope.model.invoice_number;
     else text = 'NEW Invoice : ' + $scope.model.invoice_number;
-
-    jQuery('.navbar-brand').text( text );
-  },
-  500);
+    // apply text
+    jQuery('.navbar-brand').text(text);
+  }, 500);
 
 
   // holds the ordering
@@ -48,8 +42,8 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
   // create barcode img using the number scanned.
   // display barcode canvas element on page.
-  jQuery( '#invoice-barcode-pic' )
-  .JsBarcode( $scope.model.invoice_number, {
+  jQuery('#invoice-barcode-pic')
+  .JsBarcode($scope.model.invoice_number, {
     width: 2,
     height: 60,
     lineColor: '#eee'
@@ -58,24 +52,24 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
   // create a new tpl for asking new entry
   // of garment barcode.
-  $scope.newGarmentScanTemplate = function ( prevOrder ) {
+  $scope.newGarmentScanTemplate = function (prevOrder) {
     // template
-    var tpl = $templateCache.get( 'garment-scan-tpls/new-garment-scan-tpl.html' );
+    var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan-tpl.html');
 
     // set the number label of the next garment
-    tpl = tpl.replace( '$', prevOrder + 1 );
+    tpl = tpl.replace('$', prevOrder + 1);
 
     // add to page
     angular.element('new-garment-scan-dir').append(function () {
-      return $compile( tpl )( $scope );
+      return $compile(tpl)($scope);
     })
 
     // scroll to page bottom and
     // give focus to newly added input text
-    jQuery( 'html, body' ).animate({
-      scrollTop: jQuery( document ).height()
+    jQuery('html, body').animate({
+      scrollTop: jQuery(document).height()
     }, 500);
-    jQuery( 'input:last' ).focus();
+    jQuery('input:last').focus();
   }
 
 
@@ -84,7 +78,7 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
   var initialOrder = null;
 
 
-  if ( $hs.getSizeGarmentCollection() ) {
+  if ($hs.getSizeGarmentCollection()) {
     // this is an update transaction of the existing invoice.
     initialOrder = $hs.getSizeGarmentCollection();
 
@@ -96,25 +90,24 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
 
   // initialize template
-  $scope.newGarmentScanTemplate( initialOrder );
+  $scope.newGarmentScanTemplate(initialOrder);
 
 
   // save function garment
-  $scope.pushGarment = function ( number, order ) {
+  $scope.pushGarment = function (number, order) {
     // append
-    $scope.model.garment_barcodes.push( number );
+    $scope.model.garment_barcodes.push(number);
     $scope.$apply();
 
     //log
-    console.log( 'garment number ', number, ' pushed.')
+    console.log('garment number ', number, ' pushed.')
   }
 
 
   // update the badge count.
-  $scope.$watch( 'model', function ( model ) {
-    // log
-    console.log( 'model', JSON.stringify( model ) );
+  $scope.$watch('model', function (model) {
     $scope.garmentScannedLen = model.garment_barcodes.length;
+    console.log('model', JSON.stringify(model));
   }, true);
 
 });

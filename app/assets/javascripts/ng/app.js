@@ -8,6 +8,10 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 	$stateProvider
 
 		// state for questions controller.
+		.state('test', {
+			url: '/test',
+			controller: 'TestCtrl'
+		})
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',

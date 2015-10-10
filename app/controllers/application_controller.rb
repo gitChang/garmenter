@@ -7,13 +7,27 @@ class ApplicationController < ActionController::Base
     # render index html.
   end
 
-  # shared method
-  def get_first_error(errors)
-    puts "/////===> errors: #{errors.inspect}"
-    key = errors.as_json.to_a.first[0].to_s
-    value = errors.as_json.to_a.first[1].first
 
-    Hash[key, value]
+  # might help to
+  # traffic
+  def pause
+    sleep 1
+  end
+
+
+  # show in console
+  def put_inspect(object)
+    puts ""
+    puts '==========================='
+    puts "#{object.inspect}"
+    puts '==========================='
+    puts ""
+  end
+
+
+  # get the first hash
+  def get_error(errors)
+    errors.first
   end
 
 end
