@@ -50371,8 +50371,8 @@ App.controller('LoginCtrl', function ($scope, $state, HelperSvc) {
   var $hs = HelperSvc;
 
   $scope.model = {
-    account_name: 'clean_master_wb',
-    password: 'password'
+    account_name: null,
+    password: null
   }
 
 
@@ -50413,7 +50413,6 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
   //--
   var $hs = HelperSvc;
 
-  /**
   $scope.model = {
     company_name: null,
     branch_name: null,
@@ -50425,8 +50424,8 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
     password: null,
     password_confirmation: null
   };
-  **/
 
+  /**
   $scope.model = {
     company_name: 'Clean Master',
     branch_name: 'West Branch',
@@ -50438,7 +50437,7 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
     password: 'password',
     password_confirmation: 'password'
   };
-
+  **/
 
   //--
   // functions

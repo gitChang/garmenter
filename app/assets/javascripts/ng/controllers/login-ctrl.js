@@ -8,8 +8,8 @@ App.controller('LoginCtrl', function ($scope, $state, HelperSvc) {
   var $hs = HelperSvc;
 
   $scope.model = {
-    account_name: 'clean_master_wb',
-    password: 'password'
+    account_name: null,
+    password: null
   }
 
 
