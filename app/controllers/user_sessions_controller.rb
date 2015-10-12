@@ -29,7 +29,7 @@ class UserSessionsController < ApplicationController
   private
 
     def pending_message
-      msg = 'Your account is pending for Admin\'s Approval.'
+      msg = 'Your account activation is pending for Admin\'s Approval.'
       Hash[:msg, msg]
     end
 end
