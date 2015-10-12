@@ -22,7 +22,7 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
       $.ajax({
         url: Routes.signup_index_path(),
         type: 'post',
-        data: scope.model,
+        data: $hs.injectAuthToken(scope.model),
         dataType: 'json',
         beforeSend: showProcessing()
       })

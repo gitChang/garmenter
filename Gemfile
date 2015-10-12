@@ -15,7 +15,6 @@ gem 'js-routes'
 
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
-gem 'angular_rails_csrf'
 gem 'ngannotate-rails'
 
 gem 'slim-rails'

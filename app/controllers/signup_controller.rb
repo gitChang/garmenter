@@ -1,6 +1,8 @@
 class SignupController < ApplicationController
 
-  before_action :find_or_new_company,         only: :create
+  skip_before_action :require_login, only: [:create]
+
+  before_action :find_or_new_company, only: :create
   before_action :new_company_branch,  only: :create
 
   before_action :create, only: :create_company
@@ -46,7 +48,6 @@ class SignupController < ApplicationController
 
 
   def create
-    pause
     user = User.new(params_user)
 
     if user.save

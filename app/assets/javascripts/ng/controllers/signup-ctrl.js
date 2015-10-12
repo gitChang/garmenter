@@ -29,8 +29,8 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
     contact_person_mobile: '09265415953',
     contact_person_email: 'luke_lui@gmail.com',
     account_name: 'clean_master_wb',
-    password: 'com_password',
-    password_confirmation: 'com_password'
+    password: 'password',
+    password_confirmation: 'password'
   };
 
 

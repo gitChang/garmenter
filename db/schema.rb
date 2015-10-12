@@ -13,6 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20151010055509) do
 
+  create_table "companies", force: :cascade do |t|
+    t.string   "company_name", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "branches", force: :cascade do |t|
     t.integer  "company_id"
     t.string   "branch_name", null: false
@@ -21,12 +27,6 @@ ActiveRecord::Schema.define(version: 20151010055509) do
   end
 
   add_index "branches", ["company_id"], name: "index_branches_on_company_id"
-
-  create_table "companies", force: :cascade do |t|
-    t.string   "company_name", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.integer  "branch_id"

@@ -22,7 +22,7 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
       $.ajax({
         url: Routes.login_path(),
         type: 'post',
-        data: scope.model,
+        data: $hs.injectAuthToken(scope.model),
         dataType: 'json',
         beforeSend: showProcessing()
       })
@@ -33,19 +33,21 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
       .fail(function (jqXHR) {
         // stop spinner
         $hs.stopIndicateProcessing(element);
+
         // display message / notify
-        if (jqXHR.status === 500) {
-          $hs.notify('Server Error Encountered.');
+        var pendingMsg = !jqXHR.responseJSON ? null : jqXHR.responseJSON.msg;
+
+        if (pendingMsg) {
+          $hs.notify(pendingMsg);
           return;
         }
 
-        var key = Object.keys(jqXHR.responseJSON)[0];
-
-        if (key === 'msg') {
-          $hs.notify(jqXHR.responseJSON.msg);
+        if (jqXHR.status === 422 || jqXHR.status === 500) {
+          $hs.notify('Server Error Encountered.')
           return;
         }
 
+        // default notif. message
         $hs.notify('Invalid Account Name or Password.');
 
       })

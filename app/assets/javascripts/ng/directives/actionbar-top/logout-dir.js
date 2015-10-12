@@ -21,6 +21,8 @@ App.directive('logoutUser', function ($compile, HelperSvc) {
     function processLogout() {
       $.ajax({
         url: Routes.logout_path(),
+        data: $hs.getAuthToken(),
+        dataType: 'json',
         type: 'post',
         beforeSend: showProcessing()
       })

@@ -13032,7 +13032,10 @@ return jQuery;
   root_path: Utils.route([], [], [7,"/",false], arguments),
 // signup_index => /ajax/signup(.:format)
   // function(options)
-  signup_index_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"signup",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments)}
+  signup_index_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"signup",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
+// user_access => /ajax/user_access(.:format)
+  // function(options)
+  user_access_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"user_access",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments)}
 ;
     root.Routes.options = defaults;
     return root.Routes;
@@ -41867,6 +41870,327 @@ angular.module('ngResource', ['ng']).
 
 })(window, window.angular);
 /**
+ * @license AngularJS v1.4.0
+ * (c) 2010-2015 Google, Inc. http://angularjs.org
+ * License: MIT
+ */
+
+(function(window, angular, undefined) {'use strict';
+
+/**
+ * @ngdoc module
+ * @name ngCookies
+ * @description
+ *
+ * # ngCookies
+ *
+ * The `ngCookies` module provides a convenient wrapper for reading and writing browser cookies.
+ *
+ *
+ * <div doc-module-components="ngCookies"></div>
+ *
+ * See {@link ngCookies.$cookies `$cookies`} and
+ * {@link ngCookies.$cookieStore `$cookieStore`} for usage.
+ */
+
+
+angular.module('ngCookies', ['ng']).
+  /**
+   * @ngdoc provider
+   * @name $cookiesProvider
+   * @description
+   * Use `$cookiesProvider` to change the default behavior of the {@link ngCookies.$cookies $cookies} service.
+   * */
+   provider('$cookies', [function $CookiesProvider() {
+    /**
+     * @ngdoc property
+     * @name $cookiesProvider#defaults
+     * @description
+     *
+     * Object containing default options to pass when setting cookies.
+     *
+     * The object may have following properties:
+     *
+     * - **path** - `{string}` - The cookie will be available only for this path and its
+     *   sub-paths. By default, this would be the URL that appears in your base tag.
+     * - **domain** - `{string}` - The cookie will be available only for this domain and
+     *   its sub-domains. For obvious security reasons the user agent will not accept the
+     *   cookie if the current domain is not a sub domain or equals to the requested domain.
+     * - **expires** - `{string|Date}` - String of the form "Wdy, DD Mon YYYY HH:MM:SS GMT"
+     *   or a Date object indicating the exact date/time this cookie will expire.
+     * - **secure** - `{boolean}` - The cookie will be available only in secured connection.
+     *
+     * Note: by default the address that appears in your <base> tag will be used as path.
+     * This is import so that cookies will be visible for all routes in case html5mode is enabled
+     *
+     **/
+    var defaults = this.defaults = {};
+
+    function calcOptions(options) {
+      return options ? angular.extend({}, defaults, options) : defaults;
+    }
+
+    /**
+     * @ngdoc service
+     * @name $cookies
+     *
+     * @description
+     * Provides read/write access to browser's cookies.
+     *
+     * BREAKING CHANGE: `$cookies` no longer exposes properties that represent the
+     * current browser cookie values. Now you must use the get/put/remove/etc. methods
+     * as described below.
+     *
+     * Requires the {@link ngCookies `ngCookies`} module to be installed.
+     *
+     * @example
+     *
+     * ```js
+     * angular.module('cookiesExample', ['ngCookies'])
+     *   .controller('ExampleController', ['$cookies', function($cookies) {
+     *     // Retrieving a cookie
+     *     var favoriteCookie = $cookies.get('myFavorite');
+     *     // Setting a cookie
+     *     $cookies.put('myFavorite', 'oatmeal');
+     *   }]);
+     * ```
+     */
+    this.$get = ['$$cookieReader', '$$cookieWriter', function($$cookieReader, $$cookieWriter) {
+      return {
+        /**
+         * @ngdoc method
+         * @name $cookies#get
+         *
+         * @description
+         * Returns the value of given cookie key
+         *
+         * @param {string} key Id to use for lookup.
+         * @returns {string} Raw cookie value.
+         */
+        get: function(key) {
+          return $$cookieReader()[key];
+        },
+
+        /**
+         * @ngdoc method
+         * @name $cookies#getObject
+         *
+         * @description
+         * Returns the deserialized value of given cookie key
+         *
+         * @param {string} key Id to use for lookup.
+         * @returns {Object} Deserialized cookie value.
+         */
+        getObject: function(key) {
+          var value = this.get(key);
+          return value ? angular.fromJson(value) : value;
+        },
+
+        /**
+         * @ngdoc method
+         * @name $cookies#getAll
+         *
+         * @description
+         * Returns a key value object with all the cookies
+         *
+         * @returns {Object} All cookies
+         */
+        getAll: function() {
+          return $$cookieReader();
+        },
+
+        /**
+         * @ngdoc method
+         * @name $cookies#put
+         *
+         * @description
+         * Sets a value for given cookie key
+         *
+         * @param {string} key Id for the `value`.
+         * @param {string} value Raw value to be stored.
+         * @param {Object=} options Options object.
+         *    See {@link ngCookies.$cookiesProvider#defaults $cookiesProvider.defaults}
+         */
+        put: function(key, value, options) {
+          $$cookieWriter(key, value, calcOptions(options));
+        },
+
+        /**
+         * @ngdoc method
+         * @name $cookies#putObject
+         *
+         * @description
+         * Serializes and sets a value for given cookie key
+         *
+         * @param {string} key Id for the `value`.
+         * @param {Object} value Value to be stored.
+         * @param {Object=} options Options object.
+         *    See {@link ngCookies.$cookiesProvider#defaults $cookiesProvider.defaults}
+         */
+        putObject: function(key, value, options) {
+          this.put(key, angular.toJson(value), options);
+        },
+
+        /**
+         * @ngdoc method
+         * @name $cookies#remove
+         *
+         * @description
+         * Remove given cookie
+         *
+         * @param {string} key Id of the key-value pair to delete.
+         * @param {Object=} options Options object.
+         *    See {@link ngCookies.$cookiesProvider#defaults $cookiesProvider.defaults}
+         */
+        remove: function(key, options) {
+          $$cookieWriter(key, undefined, calcOptions(options));
+        }
+      };
+    }];
+  }]);
+
+angular.module('ngCookies').
+/**
+ * @ngdoc service
+ * @name $cookieStore
+ * @deprecated
+ * @requires $cookies
+ *
+ * @description
+ * Provides a key-value (string-object) storage, that is backed by session cookies.
+ * Objects put or retrieved from this storage are automatically serialized or
+ * deserialized by angular's toJson/fromJson.
+ *
+ * Requires the {@link ngCookies `ngCookies`} module to be installed.
+ *
+ * <div class="alert alert-danger">
+ * **Note:** The $cookieStore service is deprecated.
+ * Please use the {@link ngCookies.$cookies `$cookies`} service instead.
+ * </div>
+ *
+ * @example
+ *
+ * ```js
+ * angular.module('cookieStoreExample', ['ngCookies'])
+ *   .controller('ExampleController', ['$cookieStore', function($cookieStore) {
+ *     // Put cookie
+ *     $cookieStore.put('myFavorite','oatmeal');
+ *     // Get cookie
+ *     var favoriteCookie = $cookieStore.get('myFavorite');
+ *     // Removing a cookie
+ *     $cookieStore.remove('myFavorite');
+ *   }]);
+ * ```
+ */
+ factory('$cookieStore', ['$cookies', function($cookies) {
+
+    return {
+      /**
+       * @ngdoc method
+       * @name $cookieStore#get
+       *
+       * @description
+       * Returns the value of given cookie key
+       *
+       * @param {string} key Id to use for lookup.
+       * @returns {Object} Deserialized cookie value, undefined if the cookie does not exist.
+       */
+      get: function(key) {
+        return $cookies.getObject(key);
+      },
+
+      /**
+       * @ngdoc method
+       * @name $cookieStore#put
+       *
+       * @description
+       * Sets a value for given cookie key
+       *
+       * @param {string} key Id for the `value`.
+       * @param {Object} value Value to be stored.
+       */
+      put: function(key, value) {
+        $cookies.putObject(key, value);
+      },
+
+      /**
+       * @ngdoc method
+       * @name $cookieStore#remove
+       *
+       * @description
+       * Remove given cookie
+       *
+       * @param {string} key Id of the key-value pair to delete.
+       */
+      remove: function(key) {
+        $cookies.remove(key);
+      }
+    };
+
+  }]);
+
+/**
+ * @name $$cookieWriter
+ * @requires $document
+ *
+ * @description
+ * This is a private service for writing cookies
+ *
+ * @param {string} name Cookie name
+ * @param {string=} value Cookie value (if undefined, cookie will be deleted)
+ * @param {Object=} options Object with options that need to be stored for the cookie.
+ */
+function $$CookieWriter($document, $log, $browser) {
+  var cookiePath = $browser.baseHref();
+  var rawDocument = $document[0];
+
+  function buildCookieString(name, value, options) {
+    var path, expires;
+    options = options || {};
+    expires = options.expires;
+    path = angular.isDefined(options.path) ? options.path : cookiePath;
+    if (value === undefined) {
+      expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
+      value = '';
+    }
+    if (angular.isString(expires)) {
+      expires = new Date(expires);
+    }
+
+    var str = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+    str += path ? ';path=' + path : '';
+    str += options.domain ? ';domain=' + options.domain : '';
+    str += expires ? ';expires=' + expires.toUTCString() : '';
+    str += options.secure ? ';secure' : '';
+
+    // per http://www.ietf.org/rfc/rfc2109.txt browser must allow at minimum:
+    // - 300 cookies
+    // - 20 cookies per unique domain
+    // - 4096 bytes per cookie
+    var cookieLength = str.length + 1;
+    if (cookieLength > 4096) {
+      $log.warn("Cookie '" + name +
+        "' possibly not set or overflowed because it was too large (" +
+        cookieLength + " > 4096 bytes)!");
+    }
+
+    return str;
+  }
+
+  return function(name, value, options) {
+    rawDocument.cookie = buildCookieString(name, value, options);
+  };
+}
+
+$$CookieWriter.$inject = ['$document', '$log', '$browser'];
+
+angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterProvider() {
+  this.$get = $$CookieWriter;
+});
+
+
+})(window, window.angular);
+/**
  * State-based routing for AngularJS
  * @version v0.2.13
  * @link http://angular-ui.github.com/
@@ -49462,7 +49786,10 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 'use strict';
 
 var App = angular
-						.module('GarmentScanner', ['ngResource', 'ui.router', 'templates', 'angularMoment']);
+						.module('GarmentScanner', [
+
+							'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
+						]);
 
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -49480,7 +49807,13 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 		.state('login-page', {
 			url  				: '/login',
-			templateUrl : 'login-page.html'
+			templateUrl : 'login-page.html',
+			controller  :  'LoginCtrl'
+		})
+		.state('home-page', {
+			url  				: '/',
+			templateUrl : 'login-page.html',
+			controller  :  'LoginCtrl'
 		})
 		.state('invoice-barcode-scan-page', {
 			url  				: '/invoice-barcode-scan',
@@ -49535,7 +49868,32 @@ App.service('GlobalDataSvc', function () {
 
 App.service('DaemonSvc', function ( $rootScope, $state, HelperSvc ) {
 
-  // ???
+  //--
+  // methods
+  //--
+  function verifyUserAccess() {
+    // don't render login
+    // on users already
+    // logged in.
+    $.ajax({
+      url: Routes.user_access_path(),
+      type: 'get'
+    })
+    .done(function (authorized) {
+      if (authorized === true && $state.current.name === 'login-page')
+          $state.go('invoice-barcode-scan-page');
+
+      if (authorized === false) {
+        if ($state.current.name !== 'login-page' && $state.current.name !== 'signup-page')
+            $state.go('login-page');
+      }
+    })
+  }
+
+
+  //--
+  // events
+  //--
   $rootScope.$on('$stateChangeSuccess', function () {
     // inherit
     var $hs = HelperSvc;
@@ -49549,21 +49907,45 @@ App.service('DaemonSvc', function ( $rootScope, $state, HelperSvc ) {
     }
 
     // log invoice collections
-    console.log( 'state: ', $state.current.name );
-    console.log( 'invoice: ', $hs.getInvoiceNumber() );
-    console.log( 'coll: ', JSON.stringify( $hs.getRecentInvoiceCollection() ) );
-    console.log( 'hist: ', JSON.stringify( $hs.getHistoryInvoiceCollection() ) );
+    //console.log( 'state: ', $state.current.name );
+    //console.log( 'invoice: ', $hs.getInvoiceNumber() );
+    //console.log( 'coll: ', JSON.stringify( $hs.getRecentInvoiceCollection() ) );
+    //console.log( 'hist: ', JSON.stringify( $hs.getHistoryInvoiceCollection() ) );
+  })
 
+
+  $rootScope.$on('$stateChangeStart', function () {
+    // inspect user status if already logged in.
+    verifyUserAccess();
+  })
+
+  $(window).on('focus', function () {
+    // inspect user status if already logged in.
+    verifyUserAccess();
   })
 
 })
 ;
 'use strict';
 
-App.service('HelperSvc', function ($templateCache, GlobalDataSvc) {
+App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
   // this
   var self = this;
+
+
+  //--
+  // methods
+  //--
+
+  this.getAuthToken = function () {
+    return { authenticity_token: $cookies.get('xsrf_token') }
+  }
+
+
+  this.injectAuthToken = function (model) {
+    return $.extend(model, self.getAuthToken());
+  }
 
 
   this.setInvoiceNumber = function (number) {
@@ -49981,11 +50363,13 @@ App.controller( 'InvoiceScanCtrl', function ( $scope, $state, HelperSvc ) {
 });
 'use strict';
 
-App.controller('LoginCtrl', function ($scope, $state) {
+App.controller('LoginCtrl', function ($scope, $state, HelperSvc) {
 
   //--
   // variables
   //--
+  var $hs = HelperSvc;
+
   $scope.model = {
     account_name: 'clean_master_wb',
     password: 'password'
@@ -50051,8 +50435,8 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
     contact_person_mobile: '09265415953',
     contact_person_email: 'luke_lui@gmail.com',
     account_name: 'clean_master_wb',
-    password: 'com_password',
-    password_confirmation: 'com_password'
+    password: 'password',
+    password_confirmation: 'password'
   };
 
 
@@ -50219,6 +50603,8 @@ App.directive('logoutUser', function ($compile, HelperSvc) {
     function processLogout() {
       $.ajax({
         url: Routes.logout_path(),
+        data: $hs.getAuthToken(),
+        dataType: 'json',
         type: 'post',
         beforeSend: showProcessing()
       })
@@ -50585,7 +50971,7 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
       $.ajax({
         url: Routes.login_path(),
         type: 'post',
-        data: scope.model,
+        data: $hs.injectAuthToken(scope.model),
         dataType: 'json',
         beforeSend: showProcessing()
       })
@@ -50596,19 +50982,21 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
       .fail(function (jqXHR) {
         // stop spinner
         $hs.stopIndicateProcessing(element);
+
         // display message / notify
-        if (jqXHR.status === 500) {
-          $hs.notify('Server Error Encountered.');
+        var pendingMsg = !jqXHR.responseJSON ? null : jqXHR.responseJSON.msg;
+
+        if (pendingMsg) {
+          $hs.notify(pendingMsg);
           return;
         }
 
-        var key = Object.keys(jqXHR.responseJSON)[0];
-
-        if (key === 'msg') {
-          $hs.notify(jqXHR.responseJSON.msg);
+        if (jqXHR.status === 422 || jqXHR.status === 500) {
+          $hs.notify('Server Error Encountered.')
           return;
         }
 
+        // default notif. message
         $hs.notify('Invalid Account Name or Password.');
 
       })
@@ -50928,7 +51316,7 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
       $.ajax({
         url: Routes.signup_index_path(),
         type: 'post',
-        data: scope.model,
+        data: $hs.injectAuthToken(scope.model),
         dataType: 'json',
         beforeSend: showProcessing()
       })
@@ -50974,6 +51362,7 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
   };
 
 });
+
 
 
 

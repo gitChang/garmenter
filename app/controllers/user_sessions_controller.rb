@@ -1,27 +1,35 @@
 class UserSessionsController < ApplicationController
 
-  def create
-    pause
+  skip_before_action :require_login, except: :destroy
 
+
+  def create
     user = login(params[:account_name], params[:password])
 
     if user
       unless user.approved
         logout
-        render json: { msg: 'Your account is pending for Admin\'s Approval.' }, status: 301
+        render json: pending_message, status: 301
         return
       end
-      render json: { auth: true }, status: 200
+      render json: true, status: 200
       return
     end
 
-    render json: { auth: false }, status: 301
+    render json: false, status: 301
   end
 
 
   def destroy
     logout
-    render json: { deauth: true }, status: 200
+    render json: false, status: 200
   end
 
+
+  private
+
+    def pending_message
+      msg = 'Your account is pending for Admin\'s Approval.'
+      Hash[:msg, msg]
+    end
 end

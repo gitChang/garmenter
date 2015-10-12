@@ -1,7 +1,10 @@
 'use strict';
 
 var App = angular
-						.module('GarmentScanner', ['ngResource', 'ui.router', 'templates', 'angularMoment']);
+						.module('GarmentScanner', [
+
+							'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
+						]);
 
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -19,7 +22,13 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 		.state('login-page', {
 			url  				: '/login',
-			templateUrl : 'login-page.html'
+			templateUrl : 'login-page.html',
+			controller  :  'LoginCtrl'
+		})
+		.state('home-page', {
+			url  				: '/',
+			templateUrl : 'login-page.html',
+			controller  :  'LoginCtrl'
 		})
 		.state('invoice-barcode-scan-page', {
 			url  				: '/invoice-barcode-scan',

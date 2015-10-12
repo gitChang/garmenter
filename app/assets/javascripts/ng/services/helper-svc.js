@@ -1,9 +1,23 @@
 'use strict';
 
-App.service('HelperSvc', function ($templateCache, GlobalDataSvc) {
+App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
   // this
   var self = this;
+
+
+  //--
+  // methods
+  //--
+
+  this.getAuthToken = function () {
+    return { authenticity_token: $cookies.get('xsrf_token') }
+  }
+
+
+  this.injectAuthToken = function (model) {
+    return $.extend(model, self.getAuthToken());
+  }
 
 
   this.setInvoiceNumber = function (number) {
