@@ -24,6 +24,7 @@ App.directive('initScan', function ($compile, HelperSvc) {
         return false
       }
 
+      console.log($ZXingURL);
       return true;
     }
 
@@ -31,18 +32,22 @@ App.directive('initScan', function ($compile, HelperSvc) {
     //--
     // callbacks
     //--
-    function callbackClick () {
+    function callbackClick (events) {
+      event.preventDefault();
       // when not using android
       // or ios, ignore.
-      if (!setZXingURL()) return;
+      //if (!setZXingURL()) return;
+
+
+      setZXingURL();
 
       var popwin = window.open($ZXingURL, '_blank');
 
       popwin.document.write('Initializing Scanner...');
 
       setTimeout(function() {
-        close();
-      }, 2000)
+        popwin.close();
+      })
     }
 
 

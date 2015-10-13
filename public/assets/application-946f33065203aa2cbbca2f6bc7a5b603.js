@@ -49740,7 +49740,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/invoice-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="sizeHistoryInvoiceCollection">{{ sizeHistoryInvoiceCollection }}</span></a>\n    </li>\n    <li>\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="sizeRecentInvoiceCollection">{{ sizeRecentInvoiceCollection }}</span></a>\n    </li>\n    <li class="last">\n      <a class="init-scan" href="#"><i class="fa fa-dot-circle-o"></i>Scan</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="sizeHistoryInvoiceCollection">{{ sizeHistoryInvoiceCollection }}</span></a>\n    </li>\n    <li>\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="sizeRecentInvoiceCollection">{{ sizeRecentInvoiceCollection }}</span></a>\n    </li>\n    <li class="last">\n      <a href="/init-scan" target="_blank"><i class="fa fa-dot-circle-o"></i>Scan</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49803,6 +49803,11 @@ var App = angular
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 	$stateProvider
+
+
+		.state('blank', {
+			url  				: '/blank'
+		})
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -49827,6 +49832,10 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			url  				: '/garment-barcode-scan',
 			templateUrl : 'garment-barcode-scan-page.html',
 			controller  : 'GarmentScanCtrl'
+		})
+		.state('init-scan-page', {
+			url  				: '/init-scan',
+			controller  : 'InitScanCtrl'
 		})
 		.state('scan-result-page', {
 			url  				: '/scan-result/:barcode',
@@ -50414,6 +50423,38 @@ App.controller('HistoryInvoiceCollection', function ( $scope, HelperSvc ) {
 });
 'use strict';
 
+App.controller('InitScanCtrl', function($state, $window, HelperSvc) {
+
+  // variables
+  //--
+  var $hs = HelperSvc;
+  var $host = $(location).attr('host');
+  var $ZXingURL = 'zxing://scan/?ret=http%3A%2F%2F' +  encodeURI($host) + '%2Fscan-result%2F%7BCODE%7D';
+
+  $window.location.href = $ZXingURL;
+
+  //--
+  // methods
+  //--
+
+  //--
+  // events
+  //--
+
+  // when not using android
+  // or ios, ignore.
+  //if (!setZXingURL()) return;
+
+  //if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+
+  //} else {
+  //  $hs.notify('You device is incompatible. Instead, use external barcode scanner.');
+  //}
+
+})
+;
+'use strict';
+
 App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSvc ) {
 
   var $hs = HelperSvc;
@@ -50423,9 +50464,6 @@ App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSv
 
   // indicate number of recent invoices
   $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
-
-  //
-  $scope.invoice_barcode = null;
 
 
   //--
@@ -50478,17 +50516,10 @@ App.controller('RecentInvoiceCollection', function ( $scope, HelperSvc ) {
 });
 'use strict';
 
-App.controller('ScanResultCtrl', function ($scope, $cookies, $stateParams) {
+App.controller('ScanResultCtrl', function($window, $stateParams) {
 
   $.get(Routes.cookie_barcode_path($stateParams.barcode), function(data) {
-
-    $('#actionbar-top .container-fluid:first').append(function() {
-      return '<h4>' + $cookies.get('barcode') + '</h4>';
-    })
-
-    setTimeout(function() {
-      close();
-    }, 1000);
+    $window.close();
   })
 
 })
@@ -51393,6 +51424,7 @@ App.directive('initScan', function ($compile, HelperSvc) {
         return false
       }
 
+      console.log($ZXingURL);
       return true;
     }
 
@@ -51400,18 +51432,22 @@ App.directive('initScan', function ($compile, HelperSvc) {
     //--
     // callbacks
     //--
-    function callbackClick () {
+    function callbackClick (events) {
+      event.preventDefault();
       // when not using android
       // or ios, ignore.
-      if (!setZXingURL()) return;
+      //if (!setZXingURL()) return;
+
+
+      setZXingURL();
 
       var popwin = window.open($ZXingURL, '_blank');
 
       popwin.document.write('Initializing Scanner...');
 
       setTimeout(function() {
-        close();
-      }, 2000)
+        popwin.close();
+      })
     }
 
 

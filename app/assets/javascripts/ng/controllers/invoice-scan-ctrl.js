@@ -10,9 +10,6 @@ App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSv
   // indicate number of recent invoices
   $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
 
-  //
-  $scope.invoice_barcode = null;
-
 
   //--
   // events

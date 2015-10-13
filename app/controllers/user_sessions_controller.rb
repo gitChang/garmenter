@@ -6,6 +6,8 @@ class UserSessionsController < ApplicationController
   def create
     user = login(params[:account_name], params[:password])
 
+    puts "*********** #{user.inspect}"
+
     if user
       unless user.approved
         logout

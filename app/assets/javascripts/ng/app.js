@@ -9,6 +9,11 @@ var App = angular
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 	$stateProvider
+
+
+		.state('blank', {
+			url  				: '/blank'
+		})
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -33,6 +38,10 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			url  				: '/garment-barcode-scan',
 			templateUrl : 'garment-barcode-scan-page.html',
 			controller  : 'GarmentScanCtrl'
+		})
+		.state('init-scan-page', {
+			url  				: '/init-scan',
+			controller  : 'InitScanCtrl'
 		})
 		.state('scan-result-page', {
 			url  				: '/scan-result/:barcode',
