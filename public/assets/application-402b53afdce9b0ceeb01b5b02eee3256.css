@@ -15085,6 +15085,12 @@ body {
   background-color: #000;
 }
 
+@media (max-width: 480px) {
+  /* line 22, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
+  body {
+    font-size: 11px;
+  }
+}
 /* line 4, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top .navbar-header {
   position: relative;

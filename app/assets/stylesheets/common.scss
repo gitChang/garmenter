@@ -16,3 +16,10 @@ body {
   color: $brand-warning;
   background-color: $gray-base;
 }
+
+
+@media (max-width: 480px) {
+  body {
+    font-size: 11px;
+  }
+}

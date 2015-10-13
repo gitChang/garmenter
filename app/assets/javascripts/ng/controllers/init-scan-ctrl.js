@@ -8,7 +8,9 @@ App.controller('InitScanCtrl', function($state, $window, HelperSvc) {
   var $host = $(location).attr('host');
   var $ZXingURL = 'zxing://scan/?ret=http%3A%2F%2F' +  encodeURI($host) + '%2Fscan-result%2F%7BCODE%7D';
 
-  $window.location.href = $ZXingURL;
+  setTimeout(function() {
+    $window.location.replace($ZXingURL);
+  }, 1000)
 
   //--
   // methods

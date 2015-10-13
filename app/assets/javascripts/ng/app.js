@@ -6,14 +6,15 @@ var App = angular
 							'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
 						]);
 
-App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+App.config(
+function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
+
+	$compileProvider
+
+		.aHrefSanitizationWhitelist(/^\s*(https?|zxing):/);
+
 
 	$stateProvider
-
-
-		.state('blank', {
-			url  				: '/blank'
-		})
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -59,7 +60,7 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     });
 
 	// default fall back route.
-	$urlRouterProvider.otherwise('/login');
+	//$urlRouterProvider.otherwise('/login');
 
 	// remove hash on the url.
 	$locationProvider.html5Mode(true);

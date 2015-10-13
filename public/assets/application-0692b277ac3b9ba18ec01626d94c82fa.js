@@ -49649,7 +49649,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/common-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/common-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" src="/images/tuku.png" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/common-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" height="36" src="/images/tuku.png" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
@@ -49677,7 +49677,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/login-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand navbar-brand-extend-pad-left">TUKU Laundry System</span><span id="logo"><img alt="brand" src="/images/tuku.png" /></span>\n</div>')
+  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand navbar-brand-extend-pad-left">TUKU Laundry System</span><span id="logo"><img alt="brand" height="36" src="/images/tuku.png" /></span>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49800,14 +49800,15 @@ var App = angular
 							'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
 						]);
 
-App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+App.config(
+function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
+
+	$compileProvider
+
+		.aHrefSanitizationWhitelist(/^\s*(https?|zxing):/);
+
 
 	$stateProvider
-
-
-		.state('blank', {
-			url  				: '/blank'
-		})
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -49853,7 +49854,7 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     });
 
 	// default fall back route.
-	$urlRouterProvider.otherwise('/login');
+	//$urlRouterProvider.otherwise('/login');
 
 	// remove hash on the url.
 	$locationProvider.html5Mode(true);
@@ -50431,7 +50432,9 @@ App.controller('InitScanCtrl', function($state, $window, HelperSvc) {
   var $host = $(location).attr('host');
   var $ZXingURL = 'zxing://scan/?ret=http%3A%2F%2F' +  encodeURI($host) + '%2Fscan-result%2F%7BCODE%7D';
 
-  $window.location.href = $ZXingURL;
+  setTimeout(function() {
+    $window.location.replace($ZXingURL);
+  }, 1000)
 
   //--
   // methods
@@ -50458,6 +50461,8 @@ App.controller('InitScanCtrl', function($state, $window, HelperSvc) {
 App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSvc ) {
 
   var $hs = HelperSvc;
+  var $host = $(location).attr('host');
+
 
   // indicate number of recent invoices
   $scope.sizeRecentInvoiceCollection = $hs.getSizeRecentInvoiceCollection();
@@ -50465,6 +50470,8 @@ App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSv
   // indicate number of recent invoices
   $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
 
+  //
+  $scope.ZXingURL = 'zxing://scan/?ret=http%3A%2F%2F' +  encodeURI($host) + '%2Fscan-result%2F%7BCODE%7D';
 
   //--
   // events
