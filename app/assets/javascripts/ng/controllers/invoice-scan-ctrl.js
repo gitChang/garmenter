@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller( 'InvoiceScanCtrl', function ( $scope, $state, HelperSvc ) {
+App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSvc ) {
 
   var $hs = HelperSvc;
 
@@ -9,4 +9,13 @@ App.controller( 'InvoiceScanCtrl', function ( $scope, $state, HelperSvc ) {
 
   // indicate number of recent invoices
   $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
+
+  //
+  $scope.invoice_barcode = null;
+
+
+  //--
+  // events
+  //--
+
 });

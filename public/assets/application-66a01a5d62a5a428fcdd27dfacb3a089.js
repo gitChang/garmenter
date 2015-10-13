@@ -13009,12 +13009,21 @@ return jQuery;
     };
     namespace(root, "Routes");
     root.Routes = {
+// cookie_barcode => /ajax/barcode/cookie_barcode/:barcode(.:format)
+  // function(barcode, options)
+  cookie_barcode_path: Utils.route(["barcode"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"barcode",false],[2,[7,"/",false],[2,[6,"cookie_barcode",false],[2,[7,"/",false],[2,[3,"barcode",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
+// invoices => /ajax/invoices(.:format)
+  // function(options)
+  invoices_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
 // login => /ajax/login(.:format)
   // function(options)
   login_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"login",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
 // logout => /ajax/logout(.:format)
   // function(options)
   logout_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"logout",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
+// new_invoice => /ajax/invoices/new(.:format)
+  // function(options)
+  new_invoice_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
 // rails_info => /rails/info(.:format)
   // function(options)
   rails_info_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"info",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
@@ -49696,7 +49705,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/garment-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two" id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n    <li class="last">\n      <a class="init-scan" href="#"><i class="fa fa-dot-circle-o"></i>Scan</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49731,14 +49740,14 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/invoice-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="sizeHistoryInvoiceCollection">{{ sizeHistoryInvoiceCollection }}</span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="sizeRecentInvoiceCollection">{{ sizeRecentInvoiceCollection }}</span></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="sizeHistoryInvoiceCollection">{{ sizeHistoryInvoiceCollection }}</span></a>\n    </li>\n    <li>\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="sizeRecentInvoiceCollection">{{ sizeRecentInvoiceCollection }}</span></a>\n    </li>\n    <li class="last">\n      <a class="init-scan" href="#"><i class="fa fa-dot-circle-o"></i>Scan</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/login-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("login-page.html", '<div class="row" id="login-form">\n  <div class="hidden" id="notif-center"></div>\n  <div class="col-xs-12">\n    <div id="form-panel">\n      <form>\n        <div class="row">\n          <input ng-model="model.account_name" placeholder="account name or email address" type="text" />\n        </div>\n        <div class="row">\n          <input ng-model="model.password" placeholder="password" type="password" />\n        </div>\n        <div class="row">\n          <button class="login-btn">Login</button>\n        </div>\n        <div class="row text-center" id="or-signup">\n          <div class="col-xs-12">\n            <a ui-sref="signup-page">Or create an account.</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<div class="row" id="company-label">\n  <div class="col-xs-12 label-panel">\n    <small><a href="http://tuku-singapore.com" target="blank">visit&nbsp;<b>TUKU Singapore PTE. LTD.</b></a></small>\n  </div>\n</div>')
+  $templateCache.put("login-page.html", '<div class="row" id="login-form">\n  <div class="hidden" id="notif-center"></div>\n  <div class="col-xs-12">\n    <div id="form-panel">\n      <form>\n        <div class="row">\n          <input ng-model="model.account_name" placeholder="account name or email address" type="text" />\n        </div>\n        <div class="row">\n          <input ng-model="model.password" placeholder="password" type="password" />\n        </div>\n        <div class="row">\n          <button class="login-btn">Login</button>\n        </div>\n        <div class="row text-center" id="or-signup">\n          <div class="col-xs-12">\n            <a ui-sref="signup-page">Or create an account.</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<div class="row" id="company-label">\n  <div class="col-xs-12 label-panel">\n    <small><a href="http://tuku-singapore.com" target="_blank">visit&nbsp;<b>TUKU Singapore PTE. LTD.</b></a></small>\n  </div>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49794,12 +49803,6 @@ var App = angular
 App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 	$stateProvider
-
-		// state for questions controller.
-		.state('test', {
-			url: '/test',
-			controller: 'TestCtrl'
-		})
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -49825,6 +49828,10 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			templateUrl : 'garment-barcode-scan-page.html',
 			controller  : 'GarmentScanCtrl'
 		})
+		.state('scan-result-page', {
+			url  				: '/scan-result/:barcode',
+			controller  : 'ScanResultCtrl'
+		})
 		.state('recent-invoice-collection-page', {
 			url  				: '/recent-invoice-collection',
 			templateUrl : 'recent-invoice-collection-page.html',
@@ -49837,7 +49844,7 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     });
 
 	// default fall back route.
-	$urlRouterProvider.otherwise('/login');
+	//$urlRouterProvider.otherwise('/login');
 
 	// remove hash on the url.
 	$locationProvider.html5Mode(true);
@@ -49866,7 +49873,14 @@ App.service('GlobalDataSvc', function () {
 });
 'use strict';
 
-App.service('DaemonSvc', function ( $rootScope, $state, HelperSvc ) {
+App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
+
+  //--
+  // variables
+  //--
+
+  var $hs = HelperSvc;
+
 
   //--
   // methods
@@ -49891,26 +49905,57 @@ App.service('DaemonSvc', function ( $rootScope, $state, HelperSvc ) {
   }
 
 
+  function putScannedBarcode() {
+    switch ($state.current.name) {
+      case 'invoice-barcode-scan-page':
+      case 'garment-barcode-scan-page':
+
+        if ($cookies.get('barcode') && $cookies.get('barcode').length) {
+
+          var input = $('input:last');
+
+          input.val($cookies.get('barcode'))
+
+          // trigger enter key here with timeout
+          setTimeout(function() {
+            var e = $.Event('keyup');
+
+            e.which = 13;
+
+            input.trigger(e)
+
+            // clear prev cookie barcode
+            // to avoid dups
+            $hs.clearCookieBarcode();
+
+          }, 1500)
+        }
+
+        break;
+    }
+  }
+
+
   //--
   // events
   //--
-  $rootScope.$on('$stateChangeSuccess', function () {
-    // inherit
-    var $hs = HelperSvc;
 
+  $rootScope.$on('$stateChangeSuccess', function () {
     // clear global invoice var
+    // and cookie barcode
     switch ( $state.current.name ) {
       case 'invoice-barcode-scan-page':
       case 'recent-invoice-collection-page':
         $hs.clearInvoiceNumber();
+        $hs.clearCookieBarcode();
         break;
     }
 
     // log invoice collections
-    //console.log( 'state: ', $state.current.name );
-    //console.log( 'invoice: ', $hs.getInvoiceNumber() );
-    //console.log( 'coll: ', JSON.stringify( $hs.getRecentInvoiceCollection() ) );
-    //console.log( 'hist: ', JSON.stringify( $hs.getHistoryInvoiceCollection() ) );
+    console.log( 'state: ', $state.current.name );
+    console.log( 'invoice: ', $hs.getInvoiceNumber() );
+    console.log( 'coll: ', JSON.stringify( $hs.getRecentInvoiceCollection() ) );
+    console.log( 'hist: ', JSON.stringify( $hs.getHistoryInvoiceCollection() ) );
   })
 
 
@@ -49922,6 +49967,10 @@ App.service('DaemonSvc', function ( $rootScope, $state, HelperSvc ) {
   $(window).on('focus', function () {
     // inspect user status if already logged in.
     verifyUserAccess();
+
+    // assign the cookie barcode cookie to the
+    // last input.
+    putScannedBarcode();
   })
 
 })
@@ -49958,6 +50007,12 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
     // clear invoice
     GlobalDataSvc.currentInvoiceNumber = null;
   }
+
+
+  this.clearCookieBarcode = function () {
+    $cookies.remove('barcode');
+    console.log('cookie barcode: ', $cookies.get('barcode'));
+  };
 
 
   this.getInvoiceNumber = function () {
@@ -50267,6 +50322,10 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
   });
 
 
+  //--
+  // methods
+  //--
+
   // create a new tpl for asking new entry
   // of garment barcode.
   $scope.newGarmentScanTemplate = function (prevOrder) {
@@ -50321,6 +50380,10 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
   }
 
 
+  //--
+  // events
+  //--
+
   // update the badge count.
   $scope.$watch('model', function (model) {
     $scope.garmentScannedLen = model.garment_barcodes.length;
@@ -50351,7 +50414,7 @@ App.controller('HistoryInvoiceCollection', function ( $scope, HelperSvc ) {
 });
 'use strict';
 
-App.controller( 'InvoiceScanCtrl', function ( $scope, $state, HelperSvc ) {
+App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSvc ) {
 
   var $hs = HelperSvc;
 
@@ -50360,6 +50423,15 @@ App.controller( 'InvoiceScanCtrl', function ( $scope, $state, HelperSvc ) {
 
   // indicate number of recent invoices
   $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
+
+  //
+  $scope.invoice_barcode = null;
+
+
+  //--
+  // events
+  //--
+
 });
 'use strict';
 
@@ -50404,6 +50476,23 @@ App.controller('RecentInvoiceCollection', function ( $scope, HelperSvc ) {
     return total > 1 ? 'Items' : 'Item';
   }
 });
+'use strict';
+
+App.controller('ScanResultCtrl', function ($scope, $cookies, $stateParams) {
+
+  $.get(Routes.cookie_barcode_path($stateParams.barcode), function(data) {
+
+    $('#actionbar-top .container-fluid:first').append(function() {
+      return '<h4>' + $cookies.get('barcode') + '</h4>';
+    })
+
+    setTimeout(function() {
+      close();
+    }, 1000);
+  })
+
+})
+;
 'use strict';
 
 App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile, HelperSvc) {
@@ -50851,6 +50940,7 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
 
       // check if garment barcodes not empty
       if ( !scope.model.garment_barcodes.length ) return;
+
       // ignore when already saving
       if ( element.find('.fa-spinner').length ) return;
 
@@ -51171,7 +51261,8 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
 
   function linker (scope, element) {
 
-    // inherit
+    //--
+    // variables
     var $hs = HelperSvc;
 
     // countdown to auto-cancel delete action.
@@ -51180,6 +51271,10 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
     var elTimer;
     var timeoutMyOswego;
 
+
+    //--
+    // methods
+    //--
 
     function countdown() {
 
@@ -51210,6 +51305,9 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
       countdown();
     }
 
+    //function Sync() {
+    //  $.post(Routes.)
+    //}
 
     function makeHistory () {
       // show process syncing
@@ -51227,7 +51325,11 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
     }
 
 
-    element.on('click', function (event) {
+    //--
+    // callbacks
+    //--
+
+    function callbackClick(event) {
       event.preventDefault();
 
       // if nothing to sync
@@ -51249,7 +51351,14 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
         makeHistory();
         return;
       }
-    });
+    }
+
+
+    //--
+    // events
+    //--
+
+    element.on('click', callbackClick);
   }
 
   return {
@@ -51258,6 +51367,68 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
     link: linker
   };
 });
+'use strict';
+
+App.directive('initScan', function ($compile, HelperSvc) {
+
+  function linker (scope, element) {
+
+    //--
+    // variables
+    //--
+    var $hs = HelperSvc;
+    var $host = $(location).attr('host');
+    var $ZXingURL;
+
+
+    //--
+    // methods
+    //--
+
+    function setZXingURL() {
+      if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+        $ZXingURL = 'zxing://scan/?ret=http%3A%2F%2F' +  encodeURI($host) + '%2Fscan-result%2F%7BCODE%7D';
+      } else {
+        $hs.notify('You device is incompatible. Instead, use external barcode scanner.');
+        return false
+      }
+
+      return true;
+    }
+
+
+    //--
+    // callbacks
+    //--
+    function callbackClick () {
+      // when not using android
+      // or ios, ignore.
+      if (!setZXingURL()) return;
+
+      var popwin = window.open($ZXingURL, '_blank');
+
+      popwin.document.write('Initializing Scanner...');
+
+      setTimeout(function() {
+        close();
+      }, 2000)
+    }
+
+
+    //--
+    // events
+    //--
+    element.on('click', callbackClick);
+
+  }
+
+
+  return {
+    restrict: 'C',
+    link: linker
+  };
+})
+;
 'use strict';
 
 App.directive('acctData', function($state) {

@@ -21,10 +21,13 @@
         | History
         span.badge ng-show="sizeHistoryInvoiceCollection"
           | {{ sizeHistoryInvoiceCollection }}
-    li.two
+    li
       a.recent-collection href="#"
         i.fa.fa-th
         | Collection
         span.badge ng-show="sizeRecentInvoiceCollection"
           | {{ sizeRecentInvoiceCollection }}
-
+    li.last
+      a.init-scan href="#"
+        i.fa.fa-dot-circle-o
+        | Scan

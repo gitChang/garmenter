@@ -50,6 +50,10 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
   });
 
 
+  //--
+  // methods
+  //--
+
   // create a new tpl for asking new entry
   // of garment barcode.
   $scope.newGarmentScanTemplate = function (prevOrder) {
@@ -103,6 +107,10 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
     console.log('garment number ', number, ' pushed.')
   }
 
+
+  //--
+  // events
+  //--
 
   // update the badge count.
   $scope.$watch('model', function (model) {

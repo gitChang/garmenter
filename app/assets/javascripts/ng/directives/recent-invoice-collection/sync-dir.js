@@ -9,7 +9,8 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
 
   function linker (scope, element) {
 
-    // inherit
+    //--
+    // variables
     var $hs = HelperSvc;
 
     // countdown to auto-cancel delete action.
@@ -18,6 +19,10 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
     var elTimer;
     var timeoutMyOswego;
 
+
+    //--
+    // methods
+    //--
 
     function countdown() {
 
@@ -48,6 +53,9 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
       countdown();
     }
 
+    //function Sync() {
+    //  $.post(Routes.)
+    //}
 
     function makeHistory () {
       // show process syncing
@@ -65,7 +73,11 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
     }
 
 
-    element.on('click', function (event) {
+    //--
+    // callbacks
+    //--
+
+    function callbackClick(event) {
       event.preventDefault();
 
       // if nothing to sync
@@ -87,7 +99,14 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
         makeHistory();
         return;
       }
-    });
+    }
+
+
+    //--
+    // events
+    //--
+
+    element.on('click', callbackClick);
   }
 
   return {

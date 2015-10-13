@@ -41,6 +41,7 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
 
       // check if garment barcodes not empty
       if ( !scope.model.garment_barcodes.length ) return;
+
       // ignore when already saving
       if ( element.find('.fa-spinner').length ) return;
 
