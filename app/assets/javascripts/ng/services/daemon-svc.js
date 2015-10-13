@@ -22,11 +22,11 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
     })
     .done(function (authorized) {
       if (authorized === true && $state.current.name === 'login-page')
-          $state.go('invoice-barcode-scan-page');
+        location.pathname = '/invoice-barcode-scan';
 
       if (authorized === false) {
         if ($state.current.name !== 'login-page' && $state.current.name !== 'signup-page')
-            $state.go('login-page');
+          location.pathname = '/login';
       }
     })
   }
