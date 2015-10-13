@@ -50,7 +50,7 @@ App.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     });
 
 	// default fall back route.
-	//$urlRouterProvider.otherwise('/login');
+	$urlRouterProvider.otherwise('/login');
 
 	// remove hash on the url.
 	$locationProvider.html5Mode(true);
