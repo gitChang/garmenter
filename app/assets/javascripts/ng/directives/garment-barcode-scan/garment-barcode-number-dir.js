@@ -7,26 +7,19 @@ function ( $compile, $templateCache, HelperSvc ) {
 
     // inherit
     var $hs = HelperSvc;
-    // garment number
-    var $garmentNumber;
 
 
     function processGarment () {
-      // garment barcode value
-      $garmentNumber = element.val().trim().toUpperCase();
       // check if not empty
-      if ( !$garmentNumber || $garmentNumber.length <= 5 ) return;
+      if ( element.attr('disabled') || !element.val() || element.val().length <= 5 ) return;
 
       // check duplicate barcode
-      var duplicated = $hs.findBarcodeDuplicate( $garmentNumber, scope.model.garment_barcodes );
+      var duplicated = $hs.findBarcodeDuplicate( element.val(), scope.model.garment_barcodes );
 
       if ( duplicated ) {
         element.select().focus();
         return;
       }
-
-      // locked this to prevent adding new tpl
-      element.prop('disabled', true);
 
       // assign a value to temp key
       if ( !scope.tempLastOrder ) {
@@ -41,7 +34,7 @@ function ( $compile, $templateCache, HelperSvc ) {
 
 
       // push garment to model
-      scope.pushGarment( $garmentNumber );
+      scope.pushGarment( element.val() );
 
 
       // allow user to delete the garment entry.
@@ -51,6 +44,8 @@ function ( $compile, $templateCache, HelperSvc ) {
       // create new template with a temp key number label.
       scope.newGarmentScanTemplate( scope.tempLastOrder );
 
+      // locked this to prevent adding new tpl
+      element.prop('disabled', true);
 
       // scroll to page bottom and
       // give focus to newly added input text
@@ -61,7 +56,7 @@ function ( $compile, $templateCache, HelperSvc ) {
 
     // auto enter after scanned
     var typingTimer; // hols timeout object
-    var typeInterval = 2500; // interval ajax request
+    var typeInterval = 2000; // interval ajax request
 
     function doneTypingCallBack() {
       var e = $.Event('keyup');
@@ -71,19 +66,29 @@ function ( $compile, $templateCache, HelperSvc ) {
 
 
     //--
-    // events
+    // callbacks
     //--
 
-    element.on('input', function() {
+    function callbackInput() {
       // clears the timeout object to avoid stuck request.
       clearTimeout(typingTimer);
       typingTimer = setTimeout(doneTypingCallBack, typeInterval);
-    })
+    }
 
-    element.on('keyup', function ( event ) {
-      if ( event.which !== 13) return;
+    function callbackEnter(event) {
+      if ( event.which !== 13 ) return;
+      element.off('input');
       processGarment();
-    })
+    }
+
+
+    //--
+    // events
+    //--
+
+    element.on('input', callbackInput)
+
+    element.on('keyup', callbackEnter)
   }
 
   return {

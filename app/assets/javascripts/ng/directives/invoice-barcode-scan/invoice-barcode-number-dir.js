@@ -6,17 +6,14 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
   function linker (scope, element) {
 
     var $hs = HelperSvc;
-    var $invoiceNumber;
 
 
     function processInvoice () {
-      // invoice barcode value
-      var $invoiceNumber = element.val().trim().toUpperCase();
-
       // when empty value
-      if ( !$invoiceNumber || $invoiceNumber.length <= 5 ) return;
+      if ( element.attr('disabled') || !element.val() || element.val().length <= 5 ) return;
+
       // check duplicate
-      if ( $hs.findBarcodeDuplicate( $invoiceNumber, [] ) ) {
+      if ( $hs.findBarcodeDuplicate( element.val(), [] ) ) {
         element.select().focus();
         return;
       }
@@ -28,7 +25,7 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
       jQuery('#spinner').removeClass('hidden');
 
       // set current invoice number
-      $hs.setInvoiceNumber( $invoiceNumber );
+      $hs.setInvoiceNumber( element.val() );
 
       // redirect to garment scanning page with timeout.
       setTimeout( function () {
@@ -40,7 +37,7 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
 
     // auto enter after scanned
     var typingTimer; // hols timeout object
-    var typeInterval = 2500; // interval ajax request
+    var typeInterval = 2000; // interval ajax request
 
     function doneTypingCallBack() {
       var e = $.Event('keyup');
