@@ -18,8 +18,9 @@ body {
 }
 
 
-@media (max-width: 480px) {
-  body {
-    font-size: 11px;
-  }
+@media(max-width: 767px) {
+  body { font-size: 12 px; }
+
+  h1 { font-size: 1.9em; }
+  h2, h3 { font-size: 1.4em; }
 }

@@ -15064,33 +15064,6 @@ Copyright (c) 2015 Daniel Eden
   margin-bottom: 0;
 }
 
-/* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
-body {
-  padding-top: 70px;
-  background-color: #222222;
-  color: #777777;
-}
-
-/* line 7, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
-#notif-center {
-  position: fixed;
-  bottom: 50px;
-  left: 0;
-  z-index: 800;
-  width: 100%;
-  padding: 6px;
-  font-size: 16px;
-  text-align: center;
-  color: #f0ad4e;
-  background-color: #000;
-}
-
-@media (max-width: 480px) {
-  /* line 22, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
-  body {
-    font-size: 11px;
-  }
-}
 /* line 4, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-top.scss */
 #actionbar-top .navbar-header {
   position: relative;
@@ -15496,4 +15469,42 @@ body {
 /* line 40, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
 #history-invoice-collection .collection-panel .invoice-garment-number {
   padding-left: 15px;
+}
+
+/* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
+body {
+  padding-top: 70px;
+  background-color: #222222;
+  color: #777777;
+}
+
+/* line 7, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
+#notif-center {
+  position: fixed;
+  bottom: 50px;
+  left: 0;
+  z-index: 800;
+  width: 100%;
+  padding: 6px;
+  font-size: 16px;
+  text-align: center;
+  color: #f0ad4e;
+  background-color: #000;
+}
+
+@media (max-width: 767px) {
+  /* line 22, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
+  body {
+    font-size: 12 px;
+  }
+
+  /* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
+  h1 {
+    font-size: 1.9em;
+  }
+
+  /* line 25, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
+  h2, h3 {
+    font-size: 1.4em;
+  }
 }
