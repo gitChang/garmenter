@@ -15,7 +15,7 @@ function ( $compile, $templateCache, HelperSvc ) {
       // garment barcode value
       $garmentNumber = element.val().trim().toUpperCase();
       // check if not empty
-      if ( !$garmentNumber ) return;
+      if ( !$garmentNumber || $garmentNumber.length <= 5 ) return;
 
       // check duplicate barcode
       var duplicated = $hs.findBarcodeDuplicate( $garmentNumber, scope.model.garment_barcodes );
@@ -81,7 +81,7 @@ function ( $compile, $templateCache, HelperSvc ) {
     })
 
     element.on('keyup', function ( event ) {
-      if ( event.which !== 13 && element.val().length) return;
+      if ( event.which !== 13) return;
       processGarment();
     })
   }

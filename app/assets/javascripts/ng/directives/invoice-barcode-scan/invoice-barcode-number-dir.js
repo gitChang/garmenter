@@ -14,7 +14,7 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
       var $invoiceNumber = element.val().trim().toUpperCase();
 
       // when empty value
-      if ( $invoiceNumber === '' ) return;
+      if ( !$invoiceNumber || $invoiceNumber.length <= 5 ) return;
       // check duplicate
       if ( $hs.findBarcodeDuplicate( $invoiceNumber, [] ) ) {
         element.select().focus();
