@@ -15123,42 +15123,46 @@ body {
   min-width: 56px;
 }
 
-/* line 5, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+/* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+#actionbar-bottom {
+  max-height: 51px;
+}
+/* line 7, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
 #actionbar-bottom .navbar-nav {
   width: 100%;
   text-align: center;
 }
-/* line 8, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+/* line 10, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
 #actionbar-bottom .navbar-nav > li {
   float: none;
   display: inline-block;
   padding-left: 20px;
   padding-right: 20px;
 }
-/* line 15, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+/* line 17, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
 #actionbar-bottom .navbar-nav > li.first, #actionbar-bottom .navbar-nav > li.last {
   border-left: 1px solid #222222;
   border-right: 1px solid #222222;
 }
-/* line 19, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+/* line 21, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
 #actionbar-bottom .navbar-nav > li.two {
   border-right: 1px solid #222222;
 }
-/* line 23, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+/* line 25, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
 #actionbar-bottom .navbar-nav > li a {
   position: relative;
   color: #eeeeee;
   text-shadow: 0px 2px 0px black;
 }
-/* line 28, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+/* line 30, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
 #actionbar-bottom .navbar-nav > li a:hover {
   color: #4bc8de;
 }
-/* line 32, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+/* line 34, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
 #actionbar-bottom .navbar-nav > li a i.fa {
   margin-right: 10px;
 }
-/* line 37, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
+/* line 39, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/actionbar-bottom.scss */
 #actionbar-bottom .navbar-nav > li a span.badge {
   background-color: #d9534f;
   position: absolute;
