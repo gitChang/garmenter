@@ -1,17 +1,17 @@
 'use strict';
 
-App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
+App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
 
-  //--
+  //
   // variables
-  //--
+  //
 
   var $hs = HelperSvc;
 
-
-  //--
+  //
   // methods
-  //--
+  //
+
   function verifyUserAccess() {
     // don't render login
     // on users already
@@ -22,60 +22,30 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
     })
     .done(function (authorized) {
       if (authorized === true && $state.current.name === 'login-page')
-        location.pathname = '/invoice-barcode-scan';
+        $window.location.pathname = '/invoice-barcode-scan';
 
       if (authorized === false) {
         if ($state.current.name !== 'login-page' && $state.current.name !== 'signup-page')
-          location.pathname = '/login';
+          $window.location.pathname = '/login';
       }
     })
   }
 
-
-  /**function putScannedBarcode() {
-    switch ($state.current.name) {
-      case 'invoice-barcode-scan-page':
-      case 'garment-barcode-scan-page':
-
-        if ($cookies.get('barcode') && $cookies.get('barcode').length) {
-
-          var input = $('input:last');
-
-          input.val($cookies.get('barcode'))
-
-          // trigger enter key here with timeout
-          setTimeout(function() {
-            var e = $.Event('keyup');
-
-            e.which = 13;
-
-            input.trigger(e)
-
-            // clear prev cookie barcode
-            // to avoid dups
-            $hs.clearCookieBarcode();
-
-          }, 1500)
-        }
-
-        break;
-    }
-  }**/
-
-
-  //--
+  //
   // events
-  //--
+  //
 
   $rootScope.$on('$stateChangeSuccess', function () {
-    // clear global invoice var
-    // and cookie barcode
+    // clear global invoice variable
     switch ( $state.current.name ) {
       case 'invoice-barcode-scan-page':
       case 'recent-invoice-collection-page':
         $hs.clearInvoiceNumber();
         break;
     }
+
+    // inspect user status if already logged in.
+    verifyUserAccess();
 
     // log invoice collections
     console.log( 'state: ', $state.current.name );
@@ -84,19 +54,9 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
     console.log( 'hist: ', JSON.stringify( $hs.getHistoryInvoiceCollection() ) );
   })
 
-
-  $rootScope.$on('$stateChangeStart', function () {
-    // inspect user status if already logged in.
-    verifyUserAccess();
-  })
-
   $(window).on('focus', function () {
     // inspect user status if already logged in.
     verifyUserAccess();
-
-    // assign the cookie barcode cookie to the
-    // last input.
-    //putScannedBarcode();
   })
 
 })

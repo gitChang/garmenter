@@ -2,12 +2,11 @@
 
 var App = angular
 						.module('GarmentScanner', [
-
 							'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
 						]);
 
 App.config(
-function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
+ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
 
 	$compileProvider
 
@@ -23,11 +22,6 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvide
 		})
 		.state('login-page', {
 			url  				: '/login',
-			templateUrl : 'login-page.html',
-			controller  :  'LoginCtrl'
-		})
-		.state('home-page', {
-			url  				: '/',
 			templateUrl : 'login-page.html',
 			controller  :  'LoginCtrl'
 		})

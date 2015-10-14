@@ -50224,28 +50224,28 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/common-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/common-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" height="36" src="/images/tuku.png" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/common-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><span><img alt="brand" height="36" src="/images/tuku.png" />&nbsp;<b>TUKU Laundry System</b></span></span>\n</div>\n<p class="navbar-text navbar-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/actionbar-top-tpls/garment-scan-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/garment-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/garment-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"></span>\n</div>\n<p class="navbar-text navbar-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/actionbar-top-tpls/history-invoice-collection-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/history-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Collection History</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/history-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Collection History</b></span>\n</div>\n<p class="navbar-text navbar-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/actionbar-top-tpls/invoice-scan-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/invoice-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand">New Invoice</span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/invoice-scan-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand">New Invoice</span>\n</div>\n<p class="navbar-text navbar-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
@@ -50259,7 +50259,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/recent-invoice-collection-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/recent-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Modify Recent Collection</b></span>\n</div>\n<p class="navbar-text pull-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+  $templateCache.put("actionbar-top-tpls/recent-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Recent Collection</b></span>\n</div>\n<p class="navbar-text navbar-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
 }]);
 
 // Angular Rails Template
@@ -50371,12 +50371,11 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 
 var App = angular
 						.module('GarmentScanner', [
-
 							'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
 						]);
 
 App.config(
-function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
+ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
 
 	$compileProvider
 
@@ -50392,11 +50391,6 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvide
 		})
 		.state('login-page', {
 			url  				: '/login',
-			templateUrl : 'login-page.html',
-			controller  :  'LoginCtrl'
-		})
-		.state('home-page', {
-			url  				: '/',
 			templateUrl : 'login-page.html',
 			controller  :  'LoginCtrl'
 		})
@@ -50451,18 +50445,18 @@ App.service('GlobalDataSvc', function () {
 });
 'use strict';
 
-App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
+App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
 
-  //--
+  //
   // variables
-  //--
+  //
 
   var $hs = HelperSvc;
 
-
-  //--
+  //
   // methods
-  //--
+  //
+
   function verifyUserAccess() {
     // don't render login
     // on users already
@@ -50473,60 +50467,30 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
     })
     .done(function (authorized) {
       if (authorized === true && $state.current.name === 'login-page')
-        location.pathname = '/invoice-barcode-scan';
+        $window.location.pathname = '/invoice-barcode-scan';
 
       if (authorized === false) {
         if ($state.current.name !== 'login-page' && $state.current.name !== 'signup-page')
-          location.pathname = '/login';
+          $window.location.pathname = '/login';
       }
     })
   }
 
-
-  /**function putScannedBarcode() {
-    switch ($state.current.name) {
-      case 'invoice-barcode-scan-page':
-      case 'garment-barcode-scan-page':
-
-        if ($cookies.get('barcode') && $cookies.get('barcode').length) {
-
-          var input = $('input:last');
-
-          input.val($cookies.get('barcode'))
-
-          // trigger enter key here with timeout
-          setTimeout(function() {
-            var e = $.Event('keyup');
-
-            e.which = 13;
-
-            input.trigger(e)
-
-            // clear prev cookie barcode
-            // to avoid dups
-            $hs.clearCookieBarcode();
-
-          }, 1500)
-        }
-
-        break;
-    }
-  }**/
-
-
-  //--
+  //
   // events
-  //--
+  //
 
   $rootScope.$on('$stateChangeSuccess', function () {
-    // clear global invoice var
-    // and cookie barcode
+    // clear global invoice variable
     switch ( $state.current.name ) {
       case 'invoice-barcode-scan-page':
       case 'recent-invoice-collection-page':
         $hs.clearInvoiceNumber();
         break;
     }
+
+    // inspect user status if already logged in.
+    verifyUserAccess();
 
     // log invoice collections
     console.log( 'state: ', $state.current.name );
@@ -50535,19 +50499,9 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
     console.log( 'hist: ', JSON.stringify( $hs.getHistoryInvoiceCollection() ) );
   })
 
-
-  $rootScope.$on('$stateChangeStart', function () {
-    // inspect user status if already logged in.
-    verifyUserAccess();
-  })
-
   $(window).on('focus', function () {
     // inspect user status if already logged in.
     verifyUserAccess();
-
-    // assign the cookie barcode cookie to the
-    // last input.
-    //putScannedBarcode();
   })
 
 })
@@ -50871,8 +50825,8 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
   setTimeout(function () {
     var text;
     if ($hs.findInvoiceRecentCollection())
-      text = 'UPDATE Invoice : ' + $scope.model.invoice_number;
-    else text = 'NEW Invoice : ' + $scope.model.invoice_number;
+      text = 'UPDATE : ' + $scope.model.invoice_number;
+    else text = 'NEW : ' + $scope.model.invoice_number;
     // apply text
     jQuery('.navbar-brand').text(text);
   },500);

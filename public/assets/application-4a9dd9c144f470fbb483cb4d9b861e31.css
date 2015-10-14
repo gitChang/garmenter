@@ -15494,8 +15494,8 @@ body {
 
 @media (max-width: 767px) {
   /* line 22, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
-  body {
-    font-size: 12 px;
+  body, .container-fluid {
+    font-size: 11 px;
   }
 
   /* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */

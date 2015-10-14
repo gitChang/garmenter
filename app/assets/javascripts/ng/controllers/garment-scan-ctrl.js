@@ -28,8 +28,8 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
   setTimeout(function () {
     var text;
     if ($hs.findInvoiceRecentCollection())
-      text = 'UPDATE Invoice : ' + $scope.model.invoice_number;
-    else text = 'NEW Invoice : ' + $scope.model.invoice_number;
+      text = 'UPDATE : ' + $scope.model.invoice_number;
+    else text = 'NEW : ' + $scope.model.invoice_number;
     // apply text
     jQuery('.navbar-brand').text(text);
   },500);
