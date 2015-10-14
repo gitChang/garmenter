@@ -15,6 +15,7 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvide
 
 
 	$stateProvider
+
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -40,14 +41,6 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvide
 			templateUrl : 'garment-barcode-scan-page.html',
 			controller  : 'GarmentScanCtrl'
 		})
-		.state('init-scan-page', {
-			url  				: '/init-scan',
-			controller  : 'InitScanCtrl'
-		})
-		.state('scan-result-page', {
-			url  				: '/scan-result/:barcode',
-			controller  : 'ScanResultCtrl'
-		})
 		.state('recent-invoice-collection-page', {
 			url  				: '/recent-invoice-collection',
 			templateUrl : 'recent-invoice-collection-page.html',
@@ -60,7 +53,7 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvide
     });
 
 	// default fall back route.
-	//$urlRouterProvider.otherwise('/login');
+	$urlRouterProvider.otherwise('/login');
 
 	// remove hash on the url.
 	$locationProvider.html5Mode(true);

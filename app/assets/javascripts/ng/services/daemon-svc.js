@@ -32,7 +32,7 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
   }
 
 
-  function putScannedBarcode() {
+  /**function putScannedBarcode() {
     switch ($state.current.name) {
       case 'invoice-barcode-scan-page':
       case 'garment-barcode-scan-page':
@@ -60,7 +60,7 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
 
         break;
     }
-  }
+  }**/
 
 
   //--
@@ -74,7 +74,6 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
       case 'invoice-barcode-scan-page':
       case 'recent-invoice-collection-page':
         $hs.clearInvoiceNumber();
-        $hs.clearCookieBarcode();
         break;
     }
 
@@ -97,7 +96,7 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
 
     // assign the cookie barcode cookie to the
     // last input.
-    putScannedBarcode();
+    //putScannedBarcode();
   })
 
 })

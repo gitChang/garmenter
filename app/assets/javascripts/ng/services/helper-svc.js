@@ -32,12 +32,6 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
   }
 
 
-  this.clearCookieBarcode = function () {
-    $cookies.remove('barcode');
-    console.log('cookie barcode: ', $cookies.get('barcode'));
-  };
-
-
   this.getInvoiceNumber = function () {
     return GlobalDataSvc.currentInvoiceNumber;
   }

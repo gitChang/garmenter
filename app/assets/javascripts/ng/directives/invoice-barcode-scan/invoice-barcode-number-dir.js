@@ -16,7 +16,10 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
       // when empty value
       if ( $invoiceNumber === '' ) return;
       // check duplicate
-      if ( $hs.findBarcodeDuplicate( $invoiceNumber, [] ) ) return;
+      if ( $hs.findBarcodeDuplicate( $invoiceNumber, [] ) ) {
+        element.select().focus();
+        return;
+      }
 
       // locked this to prevent another input
       element.prop('disabled', true);
@@ -35,12 +38,25 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
     }
 
 
-    // user action
-    element.on('input', function () {
-      // when special char not found
-      //if ( !$hs.scannerSpecialCharFound( $invoiceNumber ) ) return;
-      //processInvoice();
-      //alert();
+    // auto enter after scanned
+    var typingTimer; // hols timeout object
+    var typeInterval = 2500; // interval ajax request
+
+    function doneTypingCallBack() {
+      var e = $.Event('keyup');
+      e.which = 13;
+      element.trigger(e)
+    }
+
+
+    //--
+    // events
+    //--
+
+    element.on('input', function() {
+      // clears the timeout object to avoid stuck request.
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doneTypingCallBack, typeInterval);
     })
 
 

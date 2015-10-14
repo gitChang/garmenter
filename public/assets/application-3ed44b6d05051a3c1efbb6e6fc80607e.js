@@ -10345,6 +10345,584 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
+/*!
+ * WebCodeCamJS 1.9.2 javascript Bar code and QR code decoder 
+ * Author: Tóth András
+ * Web: http://atandrastoth.co.uk
+ * email: atandrastoth@gmail.com
+ * Licensed under the MIT license
+ */
+
+var WebCodeCamJS = function(element) {
+    'use strict';
+    this.Version = {
+        name: 'WebCodeCamJS',
+        version: '1.9.2',
+        author: 'Tóth András'
+    };
+    var mediaDevices = (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) ? navigator.mediaDevices : ((navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia) ? {
+        getUserMedia: function(c) {
+            return new Promise(function(y, n) {
+                (navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia).call(navigator, c, y, n);
+            });
+        },
+        enumerateDevices: function(c) {
+            return new Promise(function(c, y, n) {
+                (MediaStreamTrack.getSources).call(navigator, c, y, n);
+            });
+        }
+    } : null);
+    HTMLVideoElement.prototype.streamSrc = ('srcObject' in HTMLVideoElement.prototype) ? function(stream) {
+        this.srcObject = !!stream ? stream : null;
+    } : function(stream) {
+        this.src = !!stream ? (window.URL || window.webkitURL).createObjectURL(stream) : new String();
+    };
+    var videoSelect, lastImageSrc, con, beepSound, w, h;
+    var display = Q(element),
+        DecodeWorker = new Worker('js/DecoderWorker.js'),
+        video = html('<video muted autoplay></video>'),
+        sucessLocalDecode = false,
+        localImage = false,
+        flipped = false,
+        isStreaming = false,
+        delayBool = false,
+        initialized = false,
+        localStream = null,
+        options = {
+            decodeQRCodeRate: 5,
+            decodeBarCodeRate: 5,
+            frameRate: 15,
+            width: 320,
+            height: 240,
+            constraints: {
+                video: {
+                    mandatory: {
+                        maxWidth: 1280,
+                        maxHeight: 720
+                    },
+                    optional: [{
+                        sourceId: true
+                    }]
+                },
+                audio: false
+            },
+            flipVertical: false,
+            flipHorizontal: false,
+            zoom: -1,
+            beep: 'audio/beep.mp3',
+            brightness: 0,
+            autoBrightnessValue: false,
+            grayScale: false,
+            contrast: 0,
+            threshold: 0,
+            sharpness: [],
+            resultFunction: function(resText, lastImageSrc) {
+                console.log(resText);
+            },
+            cameraSuccess: function(stream) {
+                console.log('cameraSuccess');
+            },
+            canPlayFunction: function() {
+                console.log('canPlayFunction');
+            },
+            getDevicesError: function(error) {
+                console.log(error);
+            },
+            getUserMediaError: function(error) {
+                console.log(error);
+            },
+            cameraError: function(error) {
+                console.log(error);
+            }
+        };
+
+    function init() {
+        var constraints = changeConstraints();
+        try {
+            mediaDevices.getUserMedia(constraints).then(cameraSuccess).catch(function(error) {
+                options.cameraError(error);
+                return false;
+            });
+        } catch (error) {
+            options.getUserMediaError(error);
+            return false;
+        }
+        return true;
+    }
+
+    function play() {
+        if (!localImage) {
+            if (!localStream) {
+                init();
+            }
+            delayBool = true;
+            video.play();
+            setTimeout(function() {
+                delayBool = false;
+                if (options.decodeBarCodeRate) {
+                    tryParseBarCode();
+                }
+                if (options.decodeQRCodeRate) {
+                    tryParseQRCode();
+                }
+            }, 2E3);
+        }
+    }
+
+    function stop() {
+        delayBool = true;
+        video.pause();
+        video.streamSrc(null);
+        con.clearRect(0, 0, w, h);
+        if (localStream) {
+            for (var i = 0; i < localStream.getTracks().length; i++) {
+                localStream.getTracks()[i].stop();
+            }
+        }
+        localStream = null;
+    }
+
+    function pause() {
+        delayBool = true;
+        video.pause();
+    }
+
+    function cameraSuccess(stream) {
+        localStream = stream;
+        video.streamSrc(stream);
+        video.play();
+        options.cameraSuccess(stream);
+    }
+
+    function cameraError(error) {
+        options.cameraError(error);
+    }
+
+    function setEventListeners() {
+        video.addEventListener('canplay', function(e) {
+            if (!isStreaming) {
+                if (video.videoWidth > 0) {
+                    h = video.videoHeight / (video.videoWidth / w);
+                }
+                display.setAttribute('width', w);
+                display.setAttribute('height', h);
+                if (options.flipHorizontal) {
+                    con.scale(-1, 1);
+                    con.translate(-w, 0);
+                }
+                if (options.flipVertical) {
+                    con.scale(1, -1);
+                    con.translate(0, -h);
+                }
+                isStreaming = true;
+                if (options.decodeQRCodeRate || options.decodeBarCodeRate) {
+                    delay();
+                }
+            }
+        }, false);
+        video.addEventListener('play', function() {
+            setInterval(function() {
+                if (video.paused || video.ended) {
+                    return;
+                }
+                var z = options.zoom;
+                if (z < 0) {
+                    z = optimalZoom();
+                }
+                con.drawImage(video, (w * z - w) / -2, (h * z - h) / -2, w * z, h * z);
+                var imageData = con.getImageData(0, 0, w, h);
+                if (options.grayScale) {
+                    imageData = grayScale(imageData);
+                }
+                if (options.brightness !== 0 || options.autoBrightnessValue) {
+                    imageData = brightness(imageData, options.brightness);
+                }
+                if (options.contrast !== 0) {
+                    imageData = contrast(imageData, options.contrast);
+                }
+                if (options.threshold !== 0) {
+                    imageData = threshold(imageData, options.threshold);
+                }
+                if (options.sharpness.length !== 0) {
+                    imageData = convolute(imageData, options.sharpness);
+                }
+                con.putImageData(imageData, 0, 0);
+            }, 1E3 / options.frameRate);
+        }, false);
+    }
+
+    function setCallBack() {
+        DecodeWorker.onmessage = function(e) {
+            if (localImage || (!delayBool && !video.paused)) {
+                if (e.data.success && e.data.result[0].length > 1 && e.data.result[0].indexOf('undefined') == -1) {
+                    sucessLocalDecode = true;
+                    beepSound.play();
+                    delayBool = true;
+                    delay();
+                    setTimeout(function() {
+                        options.resultFunction(e.data.result[0], lastImageSrc);
+                    }, 0);
+                } else if (e.data.finished && options.decodeBarCodeRate) {
+                    flipped = !flipped;
+                    if (!sucessLocalDecode || !localImage) {
+                        setTimeout(tryParseBarCode, 1E3 / options.decodeBarCodeRate);
+                    }
+                }
+            }
+        };
+        qrcode.callback = function(a) {
+            if (localImage || (!delayBool && !video.paused)) {
+                beepSound.play();
+                delayBool = true;
+                delay();
+                sucessLocalDecode = true;
+                setTimeout(function() {
+                    options.resultFunction(a, lastImageSrc);
+                }, 0);
+            }
+        };
+    }
+
+    function tryParseBarCode() {
+        var flipMode = flipped === true ? 'flip' : 'normal';
+        lastImageSrc = display.toDataURL();
+        DecodeWorker.postMessage({
+            ImageData: con.getImageData(0, 0, w, h).data,
+            Width: w,
+            Height: h,
+            cmd: flipMode,
+            DecodeNr: 1,
+            LowLight: false
+        });
+    }
+
+    function tryParseQRCode() {
+        try {
+            lastImageSrc = display.toDataURL();
+            qrcode.decode();
+        } catch (e) {
+            if (!localImage && !delayBool) {
+                setTimeout(tryParseQRCode, 1E3 / options.decodeQRCodeRate);
+            }
+        }
+    }
+
+    function delay() {
+        if (!localImage) {
+            setTimeout(play, 500, true);
+        }
+    }
+
+    function optimalZoom() {
+        return video.videoHeight / h;
+    }
+
+    function getImageLightness() {
+        var pixels = con.getImageData(0, 0, w, h),
+            d = pixels.data,
+            colorSum = 0,
+            r, g, b, avg;
+        for (var x = 0, len = d.length; x < len; x += 4) {
+            r = d[x];
+            g = d[x + 1];
+            b = d[x + 2];
+            avg = Math.floor((r + g + b) / 3);
+            colorSum += avg;
+        }
+        return Math.floor(colorSum / (w * h));
+    }
+
+    function brightness(pixels, adjustment) {
+        adjustment = adjustment === 0 && options.autoBrightnessValue ? Number(options.autoBrightnessValue) - getImageLightness() : adjustment;
+        var d = pixels.data;
+        for (var i = 0; i < d.length; i += 4) {
+            d[i] += adjustment;
+            d[i + 1] += adjustment;
+            d[i + 2] += adjustment;
+        }
+        return pixels;
+    }
+
+    function grayScale(pixels) {
+        var d = pixels.data;
+        for (var i = 0; i < d.length; i += 4) {
+            var r = d[i],
+                g = d[i + 1],
+                b = d[i + 2],
+                v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+            d[i] = d[i + 1] = d[i + 2] = v;
+        }
+        return pixels;
+    }
+
+    function contrast(pixels, cont) {
+        var d = pixels.data,
+            average;
+        for (var i = 0; i < d.length; i += 4) {
+            cont = 10,
+                average = Math.round((d[i] + d[i + 1] + d[i + 2]) / 3);
+            if (average > 127) {
+                d[i] += d[i] / average * cont;
+                d[i + 1] += d[i + 1] / average * cont;
+                d[i + 2] += d[i + 2] / average * cont;
+            } else {
+                d[i] -= d[i] / average * cont;
+                d[i + 1] -= d[i + 1] / average * cont;
+                d[i + 2] -= d[i + 2] / average * cont;
+            }
+        }
+        return pixels;
+    }
+
+    function threshold(pixels, thres) {
+        var average, d = pixels.data;
+        for (var i = 0, len = w * h * 4; i < len; i += 4) {
+            average = d[i] + d[i + 1] + d[i + 2];
+            if (average < thres) {
+                d[i] = d[i + 1] = d[i + 2] = 0;
+            } else {
+                d[i] = d[i + 1] = d[i + 2] = 255;
+            }
+            d[i + 3] = 255;
+        }
+        return pixels;
+    }
+
+    function convolute(pixels, weights, opaque) {
+        var sw = pixels.width,
+            sh = pixels.height,
+            w = sw,
+            h = sh,
+            side = Math.round(Math.sqrt(weights.length)),
+            halfSide = Math.floor(side / 2),
+            src = pixels.data,
+            tmpCanvas = document.createElement('canvas'),
+            tmpCtx = tmpCanvas.getContext('2d'),
+            output = tmpCtx.createImageData(w, h),
+            dst = output.data,
+            alphaFac = opaque ? 1 : 0;
+        for (var y = 0; y < h; y++) {
+            for (var x = 0; x < w; x++) {
+                var sy = y,
+                    sx = x,
+                    r = 0,
+                    g = 0,
+                    b = 0,
+                    a = 0,
+                    dstOff = (y * w + x) * 4;
+                for (var cy = 0; cy < side; cy++) {
+                    for (var cx = 0; cx < side; cx++) {
+                        var scy = sy + cy - halfSide,
+                            scx = sx + cx - halfSide;
+                        if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
+                            var srcOff = (scy * sw + scx) * 4,
+                                wt = weights[cy * side + cx];
+                            r += src[srcOff] * wt;
+                            g += src[srcOff + 1] * wt;
+                            b += src[srcOff + 2] * wt;
+                            a += src[srcOff + 3] * wt;
+                        }
+                    }
+                }
+                dst[dstOff] = r;
+                dst[dstOff + 1] = g;
+                dst[dstOff + 2] = b;
+                dst[dstOff + 3] = a + alphaFac * (255 - a);
+            }
+        }
+        return output;
+    }
+
+    function buildSelectMenu(selectorVideo, ind) {
+        videoSelect = Q(selectorVideo);
+        videoSelect.innerHTML = '';
+        try {
+            if (mediaDevices && mediaDevices.enumerateDevices) {
+                mediaDevices.enumerateDevices().then(function(devices) {
+                    devices.forEach(function(device) {
+                        gotSources(device);
+                    });
+                    videoSelect.selectedIndex = videoSelect.children.length <= ind ? 0 : ind;
+                }).catch(function(error) {
+                    options.getDevicesError(error);
+                });
+            } else if (mediaDevices && !mediaDevices.enumerateDevices) {
+                html('<option value="true">On</option>', videoSelect);
+                options.getDevicesError(new NotSupportError('enumerateDevices Or getSources is Not supported'));
+            } else {
+                throw new NotSupportError('getUserMedia is Not supported');
+            }
+        } catch (error) {
+            options.getDevicesError(error);
+        }
+    }
+
+    function gotSources(device) {
+        if (device.kind === 'video' || device.kind === 'videoinput') {
+            var face = (!device.facing || device.facing === '') ? 'unknown' : device.facing;
+            var text = device.label || 'camera ' + (videoSelect.length + 1) + ' (facing: ' + face + ')';
+            html('<option value="' + (device.id || device.deviceId) + '">' + text + '</option>', videoSelect);
+        }
+    }
+
+    function changeConstraints() {
+        var constraints = JSON.parse(JSON.stringify(options.constraints));
+        if (videoSelect && videoSelect.length !== 0) {
+            switch (videoSelect[videoSelect.selectedIndex].value.toString()) {
+                case 'true':
+                    constraints.video.optional = [{
+                        sourceId: true
+                    }];
+                    break;
+                case 'false':
+                    constraints.video = false;
+                    break;
+                default:
+                    constraints.video.optional = [{
+                        sourceId: videoSelect[videoSelect.selectedIndex].value
+                    }];
+                    break;
+            }
+        }
+        constraints.audio = false;
+        return constraints;
+    }
+
+    function Q(el) {
+        if (typeof el === 'string') {
+            var els = document.querySelectorAll(el);
+            return typeof els === 'undefined' ? undefined : els.length > 1 ? els : els[0];
+        }
+        return el;
+    }
+
+    function decodeLocalImage(url) {
+        stop();
+        localImage = true;
+        sucessLocalDecode = false;
+        var img = new Image();
+        img.onload = function() {
+            con.fillStyle = '#fff';
+            con.fillRect(0, 0, w, h);
+            con.drawImage(this, 5, 5, w - 10, h - 10);
+            tryParseQRCode();
+            tryParseBarCode();
+        };
+        if (url) {
+            download("temp", url);
+            decodeLocalImage();
+        } else {
+            if (FileReaderHelper) {
+                new FileReaderHelper().Init('jpg|png|jpeg|gif', 'dataURL', function(e) {
+                    img.src = e.data;
+                }, true);
+            } else {
+                alert("fileReader class not found!");
+            }
+        }
+    }
+
+    function download(filename, url) {
+        var a = window.document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.click();
+    }
+
+    function mergeRecursive(target, source) {
+        if (typeof target !== 'object') {
+            target = {};
+        }
+        for (var property in source) {
+            if (source.hasOwnProperty(property)) {
+                var sourceProperty = source[property];
+                if (typeof sourceProperty === 'object') {
+                    target[property] = mergeRecursive(target[property], sourceProperty);
+                    continue;
+                }
+                target[property] = sourceProperty;
+            }
+        }
+        for (var a = 2, l = arguments.length; a < l; a++) {
+            mergeRecursive(target, arguments[a]);
+        }
+        return target;
+    }
+
+    function html(innerhtml, appendTo) {
+        var item = document.createElement('div');
+        if (innerhtml) {
+            item.innerHTML = innerhtml;
+        }
+        if (appendTo) {
+            appendTo.appendChild(item.children[0]);
+            return item;
+        }
+        return item.children[0];
+    }
+
+    function NotSupportError(message) {
+        this.name = 'NotSupportError';
+        this.message = (message || '');
+    }
+    NotSupportError.prototype = Error.prototype;
+    return {
+        init: function(opt) {
+            if (initialized) {
+                return this;
+            }
+            if (!display || display.tagName.toLowerCase() !== 'canvas') {
+                console.log('Element type must be canvas!');
+                alert('Element type must be canvas!');
+                return false;
+            }
+            con = display.getContext('2d');
+            if (opt) {
+                options = mergeRecursive(options, opt);
+                beepSound = new Audio(options.beep);
+            }
+            display.width = w = options.width;
+            display.height = h = options.height;
+            qrcode.sourceCanvas = display;
+            initialized = true;
+            setEventListeners();
+            if (options.decodeQRCodeRate || options.decodeBarCodeRate) {
+                setCallBack();
+            }
+            return this;
+        },
+        play: function() {
+            localImage = false;
+            play();
+            return this;
+        },
+        stop: function() {
+            stop();
+            return this;
+        },
+        pause: function() {
+            pause();
+            return this;
+        },
+        buildSelectMenu: function(selector, ind) {
+            buildSelectMenu(selector, ind ? ind : 0);
+            return this;
+        },
+        getOptimalZoom: function() {
+            return optimalZoom();
+        },
+        getLastImageSrc: function() {
+            return display.toDataURL();
+        },
+        decodeLocalImage: function(url) {
+            decodeLocalImage(url);
+        },
+        isInitialized: function() {
+            return initialized;
+        },
+        options: options
+    };
+};
 /* ========================================================================
  * Bootstrap: affix.js v3.3.4
  * http://getbootstrap.com/javascript/#affix
@@ -13009,9 +13587,6 @@ return jQuery;
     };
     namespace(root, "Routes");
     root.Routes = {
-// cookie_barcode => /ajax/barcode/cookie_barcode/:barcode(.:format)
-  // function(barcode, options)
-  cookie_barcode_path: Utils.route(["barcode"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"barcode",false],[2,[7,"/",false],[2,[6,"cookie_barcode",false],[2,[7,"/",false],[2,[3,"barcode",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
 // invoices => /ajax/invoices(.:format)
   // function(options)
   invoices_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
@@ -49705,7 +50280,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/garment-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n    <li class="last">\n      <a class="init-scan" href="#"><i class="fa fa-dot-circle-o"></i>Scan</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two" id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49740,7 +50315,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/invoice-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="sizeHistoryInvoiceCollection">{{ sizeHistoryInvoiceCollection }}</span></a>\n    </li>\n    <li>\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="sizeRecentInvoiceCollection">{{ sizeRecentInvoiceCollection }}</span></a>\n    </li>\n    <li class="last">\n      <a href="/init-scan" target="_blank"><i class="fa fa-dot-circle-o"></i>Scan</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="sizeHistoryInvoiceCollection">{{ sizeHistoryInvoiceCollection }}</span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="sizeRecentInvoiceCollection">{{ sizeRecentInvoiceCollection }}</span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -49809,6 +50384,7 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvide
 
 
 	$stateProvider
+
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -49834,14 +50410,6 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvide
 			templateUrl : 'garment-barcode-scan-page.html',
 			controller  : 'GarmentScanCtrl'
 		})
-		.state('init-scan-page', {
-			url  				: '/init-scan',
-			controller  : 'InitScanCtrl'
-		})
-		.state('scan-result-page', {
-			url  				: '/scan-result/:barcode',
-			controller  : 'ScanResultCtrl'
-		})
 		.state('recent-invoice-collection-page', {
 			url  				: '/recent-invoice-collection',
 			templateUrl : 'recent-invoice-collection-page.html',
@@ -49854,7 +50422,7 @@ function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvide
     });
 
 	// default fall back route.
-	//$urlRouterProvider.otherwise('/login');
+	$urlRouterProvider.otherwise('/login');
 
 	// remove hash on the url.
 	$locationProvider.html5Mode(true);
@@ -49915,7 +50483,7 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
   }
 
 
-  function putScannedBarcode() {
+  /**function putScannedBarcode() {
     switch ($state.current.name) {
       case 'invoice-barcode-scan-page':
       case 'garment-barcode-scan-page':
@@ -49943,7 +50511,7 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
 
         break;
     }
-  }
+  }**/
 
 
   //--
@@ -49957,7 +50525,6 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
       case 'invoice-barcode-scan-page':
       case 'recent-invoice-collection-page':
         $hs.clearInvoiceNumber();
-        $hs.clearCookieBarcode();
         break;
     }
 
@@ -49980,7 +50547,7 @@ App.service('DaemonSvc', function ( $rootScope, $state, $cookies, HelperSvc ) {
 
     // assign the cookie barcode cookie to the
     // last input.
-    putScannedBarcode();
+    //putScannedBarcode();
   })
 
 })
@@ -50017,12 +50584,6 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
     // clear invoice
     GlobalDataSvc.currentInvoiceNumber = null;
   }
-
-
-  this.clearCookieBarcode = function () {
-    $cookies.remove('barcode');
-    console.log('cookie barcode: ', $cookies.get('barcode'));
-  };
 
 
   this.getInvoiceNumber = function () {
@@ -50424,40 +50985,6 @@ App.controller('HistoryInvoiceCollection', function ( $scope, HelperSvc ) {
 });
 'use strict';
 
-App.controller('InitScanCtrl', function($state, $window, HelperSvc) {
-
-  // variables
-  //--
-  var $hs = HelperSvc;
-  var $host = $(location).attr('host');
-  var $ZXingURL = 'zxing://scan/?ret=http%3A%2F%2F' +  encodeURI($host) + '%2Fscan-result%2F%7BCODE%7D';
-
-  setTimeout(function() {
-    $window.location.replace($ZXingURL);
-  }, 1000)
-
-  //--
-  // methods
-  //--
-
-  //--
-  // events
-  //--
-
-  // when not using android
-  // or ios, ignore.
-  //if (!setZXingURL()) return;
-
-  //if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
-
-  //} else {
-  //  $hs.notify('You device is incompatible. Instead, use external barcode scanner.');
-  //}
-
-})
-;
-'use strict';
-
 App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSvc ) {
 
   var $hs = HelperSvc;
@@ -50523,14 +51050,10 @@ App.controller('RecentInvoiceCollection', function ( $scope, HelperSvc ) {
 });
 'use strict';
 
-App.controller('ScanResultCtrl', function($window, $stateParams) {
+App.controller('ScanResultCtrl', function($window, $stateParams, $cookies) {
 
-  $.get(Routes.cookie_barcode_path($stateParams.barcode), function(data) {
-
-    setTimeout(function() {
-      $window.close();
-    }, 1000)
-
+  $(Routes.cookie_barcode_path($stateParams.barcode), function() {
+    close();
   })
 
 })
@@ -50838,6 +51361,7 @@ function ( $compile, $templateCache, HelperSvc ) {
       var duplicated = $hs.findBarcodeDuplicate( $garmentNumber, scope.model.garment_barcodes );
 
       if ( duplicated ) {
+        element.select().focus();
         return;
       }
 
@@ -50875,18 +51399,26 @@ function ( $compile, $templateCache, HelperSvc ) {
     }
 
 
+    // auto enter after scanned
+    var typingTimer; // hols timeout object
+    var typeInterval = 2500; // interval ajax request
 
-    element.on('input', function () {
+    function doneTypingCallBack() {
+      var e = $.Event('keyup');
+      e.which = 13;
+      element.trigger(e)
+    }
 
-      var charSignal = '*';
-      var inputString = element.val().replace(/(\r\n|\n|\r)/gm, charSignal);
 
-      // trapping
-      if ( inputString.indexOf( charSignal ) === -1 ) return;
-      processGarment();
+    //--
+    // events
+    //--
+
+    element.on('input', function() {
+      // clears the timeout object to avoid stuck request.
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doneTypingCallBack, typeInterval);
     })
-
-
 
     element.on('keyup', function ( event ) {
       if ( event.which !== 13 ) return;
@@ -51014,7 +51546,10 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
       // when empty value
       if ( $invoiceNumber === '' ) return;
       // check duplicate
-      if ( $hs.findBarcodeDuplicate( $invoiceNumber, [] ) ) return;
+      if ( $hs.findBarcodeDuplicate( $invoiceNumber, [] ) ) {
+        element.select().focus();
+        return;
+      }
 
       // locked this to prevent another input
       element.prop('disabled', true);
@@ -51033,12 +51568,25 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
     }
 
 
-    // user action
-    element.on('input', function () {
-      // when special char not found
-      //if ( !$hs.scannerSpecialCharFound( $invoiceNumber ) ) return;
-      //processInvoice();
-      //alert();
+    // auto enter after scanned
+    var typingTimer; // hols timeout object
+    var typeInterval = 2500; // interval ajax request
+
+    function doneTypingCallBack() {
+      var e = $.Event('keyup');
+      e.which = 13;
+      element.trigger(e)
+    }
+
+
+    //--
+    // events
+    //--
+
+    element.on('input', function() {
+      // clears the timeout object to avoid stuck request.
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doneTypingCallBack, typeInterval);
     })
 
 
@@ -51411,73 +51959,6 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
 });
 'use strict';
 
-App.directive('initScan', function ($compile, HelperSvc) {
-
-  function linker (scope, element) {
-
-    //--
-    // variables
-    //--
-    var $hs = HelperSvc;
-    var $host = $(location).attr('host');
-    var $ZXingURL;
-
-
-    //--
-    // methods
-    //--
-
-    function setZXingURL() {
-      if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
-        $ZXingURL = 'zxing://scan/?ret=http%3A%2F%2F' +  encodeURI($host) + '%2Fscan-result%2F%7BCODE%7D';
-      } else {
-        $hs.notify('You device is incompatible. Instead, use external barcode scanner.');
-        return false
-      }
-
-      console.log($ZXingURL);
-      return true;
-    }
-
-
-    //--
-    // callbacks
-    //--
-    function callbackClick (events) {
-      event.preventDefault();
-      // when not using android
-      // or ios, ignore.
-      //if (!setZXingURL()) return;
-
-
-      setZXingURL();
-
-      var popwin = window.open($ZXingURL, '_blank');
-
-      popwin.document.write('Initializing Scanner...');
-
-      setTimeout(function() {
-        popwin.close();
-      })
-    }
-
-
-    //--
-    // events
-    //--
-    element.on('click', callbackClick);
-
-  }
-
-
-  return {
-    restrict: 'C',
-    link: linker
-  };
-})
-;
-'use strict';
-
 App.directive('acctData', function($state) {
 
   function linker (scope, element) {
@@ -51579,6 +52060,10 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
   };
 
 });
+
+
+
+
 
 
 

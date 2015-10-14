@@ -1,13 +1,9 @@
 'use strict';
 
-App.controller('ScanResultCtrl', function($window, $stateParams) {
+App.controller('ScanResultCtrl', function($window, $stateParams, $cookies) {
 
-  $.get(Routes.cookie_barcode_path($stateParams.barcode), function(data) {
-
-    setTimeout(function() {
-      $window.close();
-    }, 1000)
-
+  $(Routes.cookie_barcode_path($stateParams.barcode), function() {
+    close();
   })
 
 })

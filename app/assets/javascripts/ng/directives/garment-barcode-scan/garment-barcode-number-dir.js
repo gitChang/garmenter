@@ -21,6 +21,7 @@ function ( $compile, $templateCache, HelperSvc ) {
       var duplicated = $hs.findBarcodeDuplicate( $garmentNumber, scope.model.garment_barcodes );
 
       if ( duplicated ) {
+        element.select().focus();
         return;
       }
 
@@ -58,18 +59,26 @@ function ( $compile, $templateCache, HelperSvc ) {
     }
 
 
+    // auto enter after scanned
+    var typingTimer; // hols timeout object
+    var typeInterval = 2500; // interval ajax request
 
-    element.on('input', function () {
+    function doneTypingCallBack() {
+      var e = $.Event('keyup');
+      e.which = 13;
+      element.trigger(e)
+    }
 
-      var charSignal = '*';
-      var inputString = element.val().replace(/(\r\n|\n|\r)/gm, charSignal);
 
-      // trapping
-      if ( inputString.indexOf( charSignal ) === -1 ) return;
-      processGarment();
+    //--
+    // events
+    //--
+
+    element.on('input', function() {
+      // clears the timeout object to avoid stuck request.
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doneTypingCallBack, typeInterval);
     })
-
-
 
     element.on('keyup', function ( event ) {
       if ( event.which !== 13 ) return;
