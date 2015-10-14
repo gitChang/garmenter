@@ -11,19 +11,15 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
     function processInvoice () {
       // when empty value
       if ( element.attr('disabled') || !element.val() || element.val().length <= 5 ) return;
-
       // check duplicate
       if ( $hs.findBarcodeDuplicate( element.val(), [] ) ) {
         element.select().focus();
         return;
       }
-
       // locked this to prevent another input
       element.prop('disabled', true);
-
       // indicate processing
       jQuery('#spinner').removeClass('hidden');
-
       // set current invoice number
       $hs.setInvoiceNumber( element.val() );
 
@@ -45,22 +41,23 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
       element.trigger(e)
     }
 
+    function callbackInput() {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doneTypingCallBack, typeInterval);
+    }
+
+    function callbackEnter(event) {
+      if ( event.which !== 13 ) return;
+      processInvoice();
+    }
+
 
     //--
     // events
     //--
 
-    element.on('input', function() {
-      // clears the timeout object to avoid stuck request.
-      clearTimeout(typingTimer);
-      typingTimer = setTimeout(doneTypingCallBack, typeInterval);
-    })
-
-
-    element.on('keyup', function (event) {
-      if ( event.which !== 13 ) return;
-      processInvoice();
-    });
+    element.on('input', callbackInput);
+    element.on('keyup', callbackEnter);
 
 
   }

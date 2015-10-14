@@ -50846,9 +50846,10 @@ function ($scope, $state, $templateCache, HelperSvc) {
 App.controller('GarmentScanCtrl',
 function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
-  //--
+  //
   // variables
-  //--
+  //
+
   var $hs = HelperSvc;
 
   $scope.model = {
@@ -50874,7 +50875,7 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
     else text = 'NEW Invoice : ' + $scope.model.invoice_number;
     // apply text
     jQuery('.navbar-brand').text(text);
-  }, 500);
+  },500);
 
 
   // holds the ordering
@@ -50900,23 +50901,21 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
   // create a new tpl for asking new entry
   // of garment barcode.
   $scope.newGarmentScanTemplate = function (prevOrder) {
-    // template
-    var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan-tpl.html');
+        // template
+        var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan-tpl.html');
+        // set the number label of the next garment
+        tpl = tpl.replace('$', prevOrder + 1);
+        // add to page
+        angular.element('new-garment-scan-dir').append(function () {
+          return $compile(tpl)($scope);
+        })
 
-    // set the number label of the next garment
-    tpl = tpl.replace('$', prevOrder + 1);
-
-    // add to page
-    angular.element('new-garment-scan-dir').append(function () {
-      return $compile(tpl)($scope);
-    })
-
-    // scroll to page bottom and
-    // give focus to newly added input text
-    jQuery('html, body').animate({
-      scrollTop: jQuery(document).height()
-    }, 500);
-    jQuery('input:last').focus();
+        // scroll to page bottom and
+        // give focus to newly added input text
+        $('html, body').animate({
+          scrollTop: $(document).height()
+        },500);
+        $('input:last').focus();
   }
 
 
@@ -50926,13 +50925,12 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
 
   if ($hs.getSizeGarmentCollection()) {
-    // this is an update transaction of the existing invoice.
-    initialOrder = $hs.getSizeGarmentCollection();
-
+      // this is an update transaction of the existing invoice.
+      initialOrder = $hs.getSizeGarmentCollection();
   } else {
-    // meaning this is a new invoice entry
-    // so we have to get size on the model
-    initialOrder = $scope.model.garment_barcodes.length;
+      // meaning this is a new invoice entry
+      // so we have to get size on the model
+      initialOrder = $scope.model.garment_barcodes.length;
   }
 
 
@@ -50942,24 +50940,23 @@ function ($scope, $state, $compile, $templateCache, HelperSvc) {
 
   // save function garment
   $scope.pushGarment = function (number, order) {
-    // append
-    $scope.model.garment_barcodes.push(number);
-    $scope.$apply();
-
-    //log
-    console.log('garment number ', number, ' pushed.')
+        // append
+        $scope.model.garment_barcodes.push(number);
+        $scope.$apply();
+        //log
+        console.log('garment number ', number, ' pushed.')
   }
 
 
-  //--
+  //
   // events
-  //--
+  //
 
   // update the badge count.
   $scope.$watch('model', function (model) {
-    $scope.garmentScannedLen = model.garment_barcodes.length;
-    console.log('model', JSON.stringify(model));
-  }, true);
+         $scope.garmentScannedLen = model.garment_barcodes.length;
+         console.log('model', JSON.stringify(model));
+  },true);
 
 });
 'use strict';
@@ -50996,9 +50993,6 @@ App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSv
 
   // indicate number of recent invoices
   $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
-
-  //
-  $scope.ZXingURL = 'zxing://scan/?ret=http%3A%2F%2F' +  encodeURI($host) + '%2Fscan-result%2F%7BCODE%7D';
 
   //--
   // events
@@ -51340,10 +51334,10 @@ function ( $compile, $templateCache, HelperSvc ) {
 });
 'use strict';
 
-App.directive( 'garmentBarcodeNumber',
-function ( $compile, $templateCache, HelperSvc ) {
+App.directive('garmentBarcodeNumber',
+function ($compile, $templateCache, HelperSvc) {
 
-  function linker ( scope, element ) {
+  function linker (scope, element) {
 
     // inherit
     var $hs = HelperSvc;
@@ -51351,18 +51345,18 @@ function ( $compile, $templateCache, HelperSvc ) {
 
     function processGarment () {
       // check if not empty
-      if ( element.attr('disabled') || !element.val() || element.val().length <= 5 ) return;
+      if (element.attr('disabled') || !element.val() || element.val().length <= 5) return;
 
       // check duplicate barcode
-      var duplicated = $hs.findBarcodeDuplicate( element.val(), scope.model.garment_barcodes );
+      var duplicated = $hs.findBarcodeDuplicate(element.val(), scope.model.garment_barcodes);
 
-      if ( duplicated ) {
+      if (duplicated) {
         element.select().focus();
         return;
       }
 
       // assign a value to temp key
-      if ( !scope.tempLastOrder ) {
+      if (!scope.tempLastOrder) {
         // previous size of garments
         var previousSize = $hs.getSizeGarmentCollection() || 0;
         // cache the size.
@@ -51371,32 +51365,27 @@ function ( $compile, $templateCache, HelperSvc ) {
 
       // increment temp key to maintain ordering.
       scope.tempLastOrder += 1; scope.$apply();
-
-
       // push garment to model
-      scope.pushGarment( element.val() );
-
-
+      scope.pushGarment(element.val());
       // allow user to delete the garment entry.
       element.parents('.row').find('.delete-scanned-garment').removeClass('hidden');
-
-
-      // create new template with a temp key number label.
-      scope.newGarmentScanTemplate( scope.tempLastOrder );
-
       // locked this to prevent adding new tpl
       element.prop('disabled', true);
+      // remove events
+      element.off('keyup input');
+
+      // create new template with a temp key number label.
+      scope.newGarmentScanTemplate(scope.tempLastOrder);
 
       // scroll to page bottom and
       // give focus to newly added input text
-      jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, 500);
-      jQuery('input:last').focus();
+      $("html, body").animate({ scrollTop: $(document).height() }, 500);
+      $('input:last').focus();
     }
 
 
-    // auto enter after scanned
-    var typingTimer; // hols timeout object
-    var typeInterval = 2000; // interval ajax request
+    var typingTimer;          // holds timeout object
+    var typeInterval = 2000;  // interval ajax request
 
     function doneTypingCallBack() {
       var e = $.Event('keyup');
@@ -51405,29 +51394,27 @@ function ( $compile, $templateCache, HelperSvc ) {
     }
 
 
-    //--
+    //
     // callbacks
-    //--
+    //
+
+    function callbackEnter(event) {
+      if (event.which !== 13) return;
+      processGarment();
+    }
 
     function callbackInput() {
-      // clears the timeout object to avoid stuck request.
       clearTimeout(typingTimer);
       typingTimer = setTimeout(doneTypingCallBack, typeInterval);
     }
 
-    function callbackEnter(event) {
-      if ( event.which !== 13 ) return;
-      processGarment();
-    }
 
-
-    //--
+    //
     // events
-    //--
+    //
 
-    element.on('input', callbackInput)
-
-    element.on('keyup', callbackEnter)
+    element.on('input', callbackInput);
+    element.on('keyup', callbackEnter);
   }
 
   return {
@@ -51545,19 +51532,15 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
     function processInvoice () {
       // when empty value
       if ( element.attr('disabled') || !element.val() || element.val().length <= 5 ) return;
-
       // check duplicate
       if ( $hs.findBarcodeDuplicate( element.val(), [] ) ) {
         element.select().focus();
         return;
       }
-
       // locked this to prevent another input
       element.prop('disabled', true);
-
       // indicate processing
       jQuery('#spinner').removeClass('hidden');
-
       // set current invoice number
       $hs.setInvoiceNumber( element.val() );
 
@@ -51579,22 +51562,23 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
       element.trigger(e)
     }
 
+    function callbackInput() {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doneTypingCallBack, typeInterval);
+    }
+
+    function callbackEnter(event) {
+      if ( event.which !== 13 ) return;
+      processInvoice();
+    }
+
 
     //--
     // events
     //--
 
-    element.on('input', function() {
-      // clears the timeout object to avoid stuck request.
-      clearTimeout(typingTimer);
-      typingTimer = setTimeout(doneTypingCallBack, typeInterval);
-    })
-
-
-    element.on('keyup', function (event) {
-      if ( event.which !== 13 ) return;
-      processInvoice();
-    });
+    element.on('input', callbackInput);
+    element.on('keyup', callbackEnter);
 
 
   }

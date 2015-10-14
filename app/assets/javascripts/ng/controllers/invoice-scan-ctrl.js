@@ -12,9 +12,6 @@ App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSv
   // indicate number of recent invoices
   $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
 
-  //
-  $scope.ZXingURL = 'zxing://scan/?ret=http%3A%2F%2F' +  encodeURI($host) + '%2Fscan-result%2F%7BCODE%7D';
-
   //--
   // events
   //--

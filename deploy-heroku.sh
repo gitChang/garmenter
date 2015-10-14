@@ -1,3 +1,10 @@
+read -p 'Confirm Deploy to Heroku (y/n)' choice
+echo 
+if [[ ! $choice =~ ^[Yy]$ ]]
+then
+  exit 1
+fi
+
 clear
 
 echo 'removing previous compiled assets...'
