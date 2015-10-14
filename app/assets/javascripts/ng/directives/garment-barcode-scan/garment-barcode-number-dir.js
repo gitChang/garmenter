@@ -81,7 +81,7 @@ function ( $compile, $templateCache, HelperSvc ) {
     })
 
     element.on('keyup', function ( event ) {
-      if ( event.which !== 13 ) return;
+      if ( event.which !== 13 && element.val().length) return;
       processGarment();
     })
   }
