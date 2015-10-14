@@ -77,7 +77,6 @@ function ( $compile, $templateCache, HelperSvc ) {
 
     function callbackEnter(event) {
       if ( event.which !== 13 ) return;
-      element.off('input');
       processGarment();
     }
 

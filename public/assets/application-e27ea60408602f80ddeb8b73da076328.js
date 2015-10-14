@@ -51417,7 +51417,6 @@ function ( $compile, $templateCache, HelperSvc ) {
 
     function callbackEnter(event) {
       if ( event.which !== 13 ) return;
-      element.off('input');
       processGarment();
     }
 
@@ -51593,7 +51592,6 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
 
 
     element.on('keyup', function (event) {
-      // when not entery key
       if ( event.which !== 13 ) return;
       processInvoice();
     });
