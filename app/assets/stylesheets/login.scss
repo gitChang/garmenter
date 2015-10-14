@@ -17,8 +17,8 @@
 
     input {
       @extend .form-control, .input-lg;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      //padding-top: 20px;
+      //padding-bottom: 20px;
       text-align: center;
 
       &[type="text"] {
