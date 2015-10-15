@@ -16,7 +16,7 @@ function ( $compile, $templateCache, HelperSvc ) {
       // deleting garment scanned
       scope.model.garment_barcodes.forEach( function ( item, index, object ) {
         // compare
-        if ( item === $garmentNumber ) {
+        if ( item.toUpperCase() === $garmentNumber ) {
           object.splice( index, 1 );
           scope.$apply();
 
