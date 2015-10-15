@@ -13,6 +13,8 @@ App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
   //
 
   function verifyUserAccess() {
+    if ($state.current.name === 'login-page' || $state.current.name === 'signup-page')
+      return;
     // don't render login
     // on users already
     // logged in.
