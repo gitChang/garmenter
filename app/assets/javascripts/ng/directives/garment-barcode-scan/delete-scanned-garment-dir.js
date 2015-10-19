@@ -1,36 +1,54 @@
 'use strict';
 
-App.directive('deleteScannedGarment',
-function ( $compile, $templateCache, HelperSvc ) {
+App.directive('deleteScannedGarmentDir', function ($templateCache, $http, HelperSvc) {
 
   function linker (scope, element) {
+    //
+    // aliases
+    //
+    var $helper = HelperSvc;
 
-    function processDelete () {
+    //
+    // methods
+    //
+    function deleteGarment () {
+      var $elemParent = element.closest('.row'),
+          _garmentBarcode = $elemParent.find('.garment-barcode-dir')
+                                       .val()
+                                       .trim()
+                                       .toUpperCase();
 
-      var $elemParent = element.closest('.row');
-      var $garmentNumber = $elemParent.find('.garment-barcode-number')
-                          .val()
-                          .trim()
-                          .toUpperCase();
-
-      // deleting garment scanned
-      scope.model.garment_barcodes.forEach( function ( item, index, object ) {
-        // compare
-        if ( item.toUpperCase() === $garmentNumber ) {
-          object.splice( index, 1 );
-          scope.$apply();
-
+      $http.delete(Routes.garment_path(_garmentBarcode), {
+        params: $helper.getAuthToken()
+      })
+      .then(function(res) {
+        // delete successfull
+        if (res.data === true) {
           // animate remove element for emphasis
           $elemParent.addClass('animated');
           $elemParent.addClass('fadeOut');
 
           setTimeout( function () { $elemParent.remove(); }, 1000 );
+
+          // update quantity in
+          // the badge.
+          scope.getQuantity();
         }
       })
     }
 
+    //
+    // event handlers
+    //
+    function clickEventHandler() {
+      deleteGarment();
+    }
 
-    element.on('click', function () { processDelete(); });
+    //
+    // events
+    //
+    element.on('click', clickEventHandler);
+
   }
 
   return {

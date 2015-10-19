@@ -23,6 +23,18 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
           })
           break;
 
+        case 'password-reset-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/password-reset-content-tpl.html'))(scope);
+          })
+          break;
+
+        case 'request-password-reset-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/request-password-reset-content-tpl.html'))(scope);
+          })
+          break;
+
         case 'invoice-barcode-scan-page':
           element.html(function () {
             return $compile($templateCache.get('actionbar-top-tpls/invoice-scan-content-tpl.html'))(scope);

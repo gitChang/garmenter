@@ -1,50 +1,51 @@
 class InvoicesController < ApplicationController
+  before_action :init_invoice, only: [:create]
 
-  before_action :new,         only: [:create]
-  before_action :new_garment, only: [:create_garments]
-
-
-  def new
-    @invoice = Invoice.new(params[:invoice_number])
-    if @invoice.valid?
-      render json: true
-    else
-      render json: @invoice.errors.first, status: 301
-    end
+  def init_invoice
+    @invoice = Invoice.new(user: current_user, invoice_barcode: params[:invoice_barcode])
   end
-
-
-  def new_garment
-    @garment ||= params[:garment_number]
-
-    garment = Garment.new(garment_barcode: @garment)
-    if garment.valid?
-      render json: true
-    else
-      render json: garment.errors.first, status: 301
-    end
-  end
-
-
-  def create_garments
-    params[:garment_barcodes].each do |garment|
-      @garment = garment
-
-      new_garment = Garment.new(invoice: @invoice, garment_barcode: @garment)
-
-      unless new_garment.save
-        render json: new_garment.errors.first, status: 301
-      end
-    end
-  end
-
 
   def create
-    invoice = Invoice.create(invoice_barcode: params[:invoice_number])
-    if invoice.save
-      render json: true
-    else
-      render json: false, status: 301
+    sleep 1
+
+    if @invoice.invalid?
+      render json: @invoice.errors.first
     end
+    render json: true if @invoice.save
   end
+
+  def recent
+    render json: Invoice.invoice_garments(current_user)
+  end
+
+  def recent_size
+    render json: Invoice.invoice_garments(current_user).size
+  end
+
+  def history
+    render json: Invoice.invoice_garments(current_user, false)
+  end
+
+  def history_size
+    render json: Invoice.invoice_garments(current_user, false).size
+  end
+
+  def close_recent
+    sleep 2
+    close_invoices = Invoice.updatable
+                            .where(user: current_user)
+                            .update_all(closed: true)
+
+    render json: true if close_invoices
+  end
+
+  def mark_delete
+    sleep 1
+    invoice = Invoice.where(invoice_barcode: params[:invoice_barcode]).first
+    render json: true if Invoice.flag_deleted invoice
+  end
+
+
+  private
+
 end

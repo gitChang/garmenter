@@ -1722,8 +1722,8 @@ html {
 
 /* line 27, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_scaffolding.scss */
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: "Varela Round", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
   background-color: #fff;
@@ -1800,8 +1800,8 @@ img {
 
 /* line 113, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_scaffolding.scss */
 hr {
-  margin-top: 22px;
-  margin-bottom: 22px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 0;
   border-top: 1px solid #eeeeee;
 }
@@ -1865,8 +1865,8 @@ h6 .small,
 h1, .h1,
 h2, .h2,
 h3, .h3 {
-  margin-top: 22px;
-  margin-bottom: 11px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 /* line 30, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 h1 small,
@@ -1885,8 +1885,8 @@ h3 .small, .h3 small,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-  margin-top: 11px;
-  margin-bottom: 11px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 /* line 41, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 h4 small,
@@ -1903,57 +1903,57 @@ h6 .small, .h6 small,
 
 /* line 47, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 h1, .h1 {
-  font-size: 41px;
+  font-size: 36px;
 }
 
 /* line 48, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 h2, .h2 {
-  font-size: 34px;
+  font-size: 30px;
 }
 
 /* line 49, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 h3, .h3 {
-  font-size: 28px;
+  font-size: 24px;
 }
 
 /* line 50, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 h4, .h4 {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 /* line 51, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 h5, .h5 {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* line 52, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 h6, .h6 {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* line 58, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 p {
-  margin: 0 0 11px;
+  margin: 0 0 10px;
 }
 
 /* line 62, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 .lead {
-  margin-bottom: 22px;
-  font-size: 18px;
+  margin-bottom: 20px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.4;
 }
 @media (min-width: 768px) {
   /* line 62, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
   .lead {
-    font-size: 24px;
+    font-size: 21px;
   }
 }
 
 /* line 78, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 small,
 .small {
-  font-size: 87%;
+  font-size: 85%;
 }
 
 /* line 83, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
@@ -1974,7 +1974,7 @@ mark,
 }
 
 /* line 92, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
-.text-center, #signup-form #form-panel form h4 {
+.text-center, #signup-form #form-panel form h4, #request-password-reset-form #form-panel form h4, #password-reset-form #form-panel form h4 {
   text-align: center;
 }
 
@@ -2115,8 +2115,8 @@ a.bg-danger:hover {
 
 /* line 138, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 .page-header {
-  padding-bottom: 10px;
-  margin: 44px 0 22px;
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee;
 }
 
@@ -2124,7 +2124,7 @@ a.bg-danger:hover {
 ul,
 ol {
   margin-top: 0;
-  margin-bottom: 11px;
+  margin-bottom: 10px;
 }
 /* line 153, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 ul ul,
@@ -2156,7 +2156,7 @@ ol ol {
 /* line 185, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 dl {
   margin-top: 0;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 /* line 189, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
@@ -2215,9 +2215,9 @@ abbr[data-original-title] {
 
 /* line 241, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 blockquote {
-  padding: 11px 22px;
-  margin: 0 0 22px;
-  font-size: 20px;
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
   border-left: 5px solid #eeeeee;
 }
 /* line 250, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
@@ -2244,7 +2244,10 @@ blockquote .small:before {
 
 /* line 274, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 .blockquote-reverse,
-blockquote.pull-right {
+blockquote.pull-right,
+#recent-invoice-collection .collection-panel .panel-title a blockquote.date-scanned,
+#recent-invoice-collection .collection-panel .panel-footer blockquote.delete-invoice-wrap,
+#history-invoice-collection .collection-panel h4.panel-title a blockquote.date-scanned {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #eeeeee;
@@ -2256,8 +2259,17 @@ blockquote.pull-right {
 .blockquote-reverse small:before,
 .blockquote-reverse .small:before,
 blockquote.pull-right footer:before,
+#recent-invoice-collection .collection-panel .panel-title a blockquote.date-scanned footer:before,
+#recent-invoice-collection .collection-panel .panel-footer blockquote.delete-invoice-wrap footer:before,
+#history-invoice-collection .collection-panel h4.panel-title a blockquote.date-scanned footer:before,
 blockquote.pull-right small:before,
-blockquote.pull-right .small:before {
+#recent-invoice-collection .collection-panel .panel-title a blockquote.date-scanned small:before,
+#recent-invoice-collection .collection-panel .panel-footer blockquote.delete-invoice-wrap small:before,
+#history-invoice-collection .collection-panel h4.panel-title a blockquote.date-scanned small:before,
+blockquote.pull-right .small:before,
+#recent-invoice-collection .collection-panel .panel-title a blockquote.date-scanned .small:before,
+#recent-invoice-collection .collection-panel .panel-footer blockquote.delete-invoice-wrap .small:before,
+#history-invoice-collection .collection-panel h4.panel-title a blockquote.date-scanned .small:before {
   content: '';
 }
 /* line 287, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
@@ -2265,14 +2277,23 @@ blockquote.pull-right .small:before {
 .blockquote-reverse small:after,
 .blockquote-reverse .small:after,
 blockquote.pull-right footer:after,
+#recent-invoice-collection .collection-panel .panel-title a blockquote.date-scanned footer:after,
+#recent-invoice-collection .collection-panel .panel-footer blockquote.delete-invoice-wrap footer:after,
+#history-invoice-collection .collection-panel h4.panel-title a blockquote.date-scanned footer:after,
 blockquote.pull-right small:after,
-blockquote.pull-right .small:after {
+#recent-invoice-collection .collection-panel .panel-title a blockquote.date-scanned small:after,
+#recent-invoice-collection .collection-panel .panel-footer blockquote.delete-invoice-wrap small:after,
+#history-invoice-collection .collection-panel h4.panel-title a blockquote.date-scanned small:after,
+blockquote.pull-right .small:after,
+#recent-invoice-collection .collection-panel .panel-title a blockquote.date-scanned .small:after,
+#recent-invoice-collection .collection-panel .panel-footer blockquote.delete-invoice-wrap .small:after,
+#history-invoice-collection .collection-panel h4.panel-title a blockquote.date-scanned .small:after {
   content: '\00A0 \2014';
 }
 
 /* line 294, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_type.scss */
 address {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   font-style: normal;
   line-height: 1.42857143;
 }
@@ -2314,9 +2335,9 @@ kbd kbd {
 /* line 41, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_code.scss */
 pre {
   display: block;
-  padding: 10.5px;
-  margin: 0 0 11px;
-  font-size: 15px;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
   line-height: 1.42857143;
   word-break: break-all;
   word-wrap: break-word;
@@ -2409,7 +2430,7 @@ pre code {
 }
 
 /* line 11, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, #login-form #form-panel, .row#garment-barcode-scan .barcode-panel, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, #signup-form #form-panel, #invoice-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, #signup-form #form-panel, #login-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, #login-form #form-panel, .col-sm-10, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, #signup-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-sm-12, .col-md-12, .col-lg-12 {
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, #login-form #form-panel, .row#garment-barcode-scan .barcode-panel, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, #signup-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, #signup-form #form-panel, #login-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, #login-form #form-panel, .col-sm-10, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, #signup-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-sm-12, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -2417,7 +2438,7 @@ pre code {
 }
 
 /* line 27, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, #login-form #form-panel, .col-xs-11, .col-xs-12, #signup-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel {
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, #login-form #form-panel, .col-xs-11, .col-xs-12, #signup-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel {
   float: left;
 }
 
@@ -2477,7 +2498,7 @@ pre code {
 }
 
 /* line 35, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-.col-xs-12, #signup-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel {
+.col-xs-12, #signup-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel {
   width: 100%;
 }
 
@@ -2678,7 +2699,7 @@ pre code {
 
 @media (min-width: 768px) {
   /* line 27, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, #signup-form #form-panel, #login-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, .col-sm-9, .col-sm-10, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-sm-11, .col-sm-12 {
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, #signup-form #form-panel, #login-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel, .col-sm-9, .col-sm-10, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-sm-11, .col-sm-12 {
     float: left;
   }
 
@@ -2718,7 +2739,7 @@ pre code {
   }
 
   /* line 35, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-8, #signup-form #form-panel, #login-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel {
+  .col-sm-8, #signup-form #form-panel, #login-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel {
     width: 66.66666667%;
   }
 
@@ -2883,7 +2904,7 @@ pre code {
   }
 
   /* line 60, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-sm-offset-2, #signup-form #form-panel, #login-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel {
+  .col-sm-offset-2, #signup-form #form-panel, #login-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, .row#garment-barcode-scan .barcode-panel {
     margin-left: 16.66666667%;
   }
 
@@ -2939,7 +2960,7 @@ pre code {
 }
 @media (min-width: 992px) {
   /* line 27, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-1, .col-md-2, .col-md-3, .col-md-4, #login-form #form-panel, .row#garment-barcode-scan .barcode-panel, .col-md-5, .col-md-6, #signup-form #form-panel, #invoice-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, #login-form #form-panel, .row#garment-barcode-scan .barcode-panel, .col-md-5, .col-md-6, #signup-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
   }
 
@@ -2969,7 +2990,7 @@ pre code {
   }
 
   /* line 35, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-6, #signup-form #form-panel, #invoice-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel {
+  .col-md-6, #signup-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel {
     width: 50%;
   }
 
@@ -3149,7 +3170,7 @@ pre code {
   }
 
   /* line 60, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
-  .col-md-offset-3, #signup-form #form-panel, #invoice-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel {
+  .col-md-offset-3, #signup-form #form-panel, #request-password-reset-form #form-panel, #password-reset-form #form-panel, #invoice-barcode-scan .barcode-panel, #recent-invoice-collection .collection-panel, #history-invoice-collection .collection-panel {
     margin-left: 25%;
   }
 
@@ -3481,7 +3502,7 @@ th {
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 /* line 31, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_tables.scss */
 .table > thead > tr > th,
@@ -3681,7 +3702,7 @@ table th[class*="col-"] {
   /* line 171, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_tables.scss */
   .table-responsive {
     width: 100%;
-    margin-bottom: 16.5px;
+    margin-bottom: 15px;
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     border: 1px solid #ddd;
@@ -3743,8 +3764,8 @@ legend {
   display: block;
   width: 100%;
   padding: 0;
-  margin-bottom: 22px;
-  font-size: 24px;
+  margin-bottom: 20px;
+  font-size: 21px;
   line-height: inherit;
   color: #333333;
   border: 0;
@@ -3804,18 +3825,18 @@ input[type="checkbox"]:focus {
 output {
   display: block;
   padding-top: 7px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.42857143;
   color: #555555;
 }
 
 /* line 115, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-.form-control, #signup-form #form-panel form input, #login-form #form-panel input {
+.form-control, #signup-form #form-panel form input, #login-form #form-panel input, #request-password-reset-form #form-panel form input, #password-reset-form #form-panel form input {
   display: block;
   width: 100%;
-  height: 36px;
+  height: 34px;
   padding: 6px 12px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.42857143;
   color: #555555;
   background-color: #fff;
@@ -3829,32 +3850,32 @@ output {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 /* line 57, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.form-control:focus, #signup-form #form-panel form input:focus, #login-form #form-panel input:focus {
+.form-control:focus, #signup-form #form-panel form input:focus, #login-form #form-panel input:focus, #request-password-reset-form #form-panel form input:focus, #password-reset-form #form-panel form input:focus {
   border-color: #4bc8de;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(75, 200, 222, 0.6);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(75, 200, 222, 0.6);
 }
 /* line 103, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss */
-.form-control::-moz-placeholder, #signup-form #form-panel form input::-moz-placeholder, #login-form #form-panel input::-moz-placeholder {
+.form-control::-moz-placeholder, #signup-form #form-panel form input::-moz-placeholder, #login-form #form-panel input::-moz-placeholder, #request-password-reset-form #form-panel form input::-moz-placeholder, #password-reset-form #form-panel form input::-moz-placeholder {
   color: #999;
   opacity: 1;
 }
 /* line 107, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss */
-.form-control:-ms-input-placeholder, #signup-form #form-panel form input:-ms-input-placeholder, #login-form #form-panel input:-ms-input-placeholder {
+.form-control:-ms-input-placeholder, #signup-form #form-panel form input:-ms-input-placeholder, #login-form #form-panel input:-ms-input-placeholder, #request-password-reset-form #form-panel form input:-ms-input-placeholder, #password-reset-form #form-panel form input:-ms-input-placeholder {
   color: #999;
 }
 /* line 108, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss */
-.form-control::-webkit-input-placeholder, #signup-form #form-panel form input::-webkit-input-placeholder, #login-form #form-panel input::-webkit-input-placeholder {
+.form-control::-webkit-input-placeholder, #signup-form #form-panel form input::-webkit-input-placeholder, #login-form #form-panel input::-webkit-input-placeholder, #request-password-reset-form #form-panel form input::-webkit-input-placeholder, #password-reset-form #form-panel form input::-webkit-input-placeholder {
   color: #999;
 }
 /* line 141, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-.form-control[disabled], #signup-form #form-panel form input[disabled], #login-form #form-panel input[disabled], .form-control[readonly], #signup-form #form-panel form input[readonly], #login-form #form-panel input[readonly], fieldset[disabled] .form-control, fieldset[disabled] #signup-form #form-panel form input, #signup-form #form-panel form fieldset[disabled] input, fieldset[disabled] #login-form #form-panel input, #login-form #form-panel fieldset[disabled] input {
+.form-control[disabled], #signup-form #form-panel form input[disabled], #login-form #form-panel input[disabled], #request-password-reset-form #form-panel form input[disabled], #password-reset-form #form-panel form input[disabled], .form-control[readonly], #signup-form #form-panel form input[readonly], #login-form #form-panel input[readonly], #request-password-reset-form #form-panel form input[readonly], #password-reset-form #form-panel form input[readonly], fieldset[disabled] .form-control, fieldset[disabled] #signup-form #form-panel form input, #signup-form #form-panel form fieldset[disabled] input, fieldset[disabled] #login-form #form-panel input, #login-form #form-panel fieldset[disabled] input, fieldset[disabled] #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form fieldset[disabled] input, fieldset[disabled] #password-reset-form #form-panel form input, #password-reset-form #form-panel form fieldset[disabled] input {
   background-color: #eeeeee;
   opacity: 1;
 }
 /* line 148, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-.form-control[disabled], #signup-form #form-panel form input[disabled], #login-form #form-panel input[disabled], fieldset[disabled] .form-control, fieldset[disabled] #signup-form #form-panel form input, #signup-form #form-panel form fieldset[disabled] input, fieldset[disabled] #login-form #form-panel input, #login-form #form-panel fieldset[disabled] input {
+.form-control[disabled], #signup-form #form-panel form input[disabled], #login-form #form-panel input[disabled], #request-password-reset-form #form-panel form input[disabled], #password-reset-form #form-panel form input[disabled], fieldset[disabled] .form-control, fieldset[disabled] #signup-form #form-panel form input, #signup-form #form-panel form fieldset[disabled] input, fieldset[disabled] #login-form #form-panel input, #login-form #form-panel fieldset[disabled] input, fieldset[disabled] #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form fieldset[disabled] input, fieldset[disabled] #password-reset-form #form-panel form input, #password-reset-form #form-panel form fieldset[disabled] input {
   cursor: not-allowed;
 }
 
@@ -3874,10 +3895,10 @@ input[type="search"] {
   input[type="time"],
   input[type="datetime-local"],
   input[type="month"] {
-    line-height: 36px;
+    line-height: 34px;
   }
   /* line 188, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-  input[type="date"].input-sm, .input-group-sm > input[type="date"].form-control, #signup-form #form-panel form .input-group-sm > input[type="date"], #login-form #form-panel .input-group-sm > input[type="date"],
+  input[type="date"].input-sm, .input-group-sm > input[type="date"].form-control, #signup-form #form-panel form .input-group-sm > input[type="date"], #login-form #form-panel .input-group-sm > input[type="date"], #request-password-reset-form #form-panel form .input-group-sm > input[type="date"], #password-reset-form #form-panel form .input-group-sm > input[type="date"],
   .input-group-sm > input[type="date"].input-group-addon,
   .input-group-sm > .input-group-btn > input[type="date"].btn,
   #actionbar-top .input-group-sm > .input-group-btn > input[type="date"].logout-user, .input-group-sm input[type="date"],
@@ -3885,6 +3906,8 @@ input[type="search"] {
   .input-group-sm > input[type="time"].form-control,
   #signup-form #form-panel form .input-group-sm > input[type="time"],
   #login-form #form-panel .input-group-sm > input[type="time"],
+  #request-password-reset-form #form-panel form .input-group-sm > input[type="time"],
+  #password-reset-form #form-panel form .input-group-sm > input[type="time"],
   .input-group-sm > input[type="time"].input-group-addon,
   .input-group-sm > .input-group-btn > input[type="time"].btn,
   #actionbar-top .input-group-sm > .input-group-btn > input[type="time"].logout-user, .input-group-sm
@@ -3893,6 +3916,8 @@ input[type="search"] {
   .input-group-sm > input[type="datetime-local"].form-control,
   #signup-form #form-panel form .input-group-sm > input[type="datetime-local"],
   #login-form #form-panel .input-group-sm > input[type="datetime-local"],
+  #request-password-reset-form #form-panel form .input-group-sm > input[type="datetime-local"],
+  #password-reset-form #form-panel form .input-group-sm > input[type="datetime-local"],
   .input-group-sm > input[type="datetime-local"].input-group-addon,
   .input-group-sm > .input-group-btn > input[type="datetime-local"].btn,
   #actionbar-top .input-group-sm > .input-group-btn > input[type="datetime-local"].logout-user, .input-group-sm
@@ -3901,45 +3926,59 @@ input[type="search"] {
   .input-group-sm > input[type="month"].form-control,
   #signup-form #form-panel form .input-group-sm > input[type="month"],
   #login-form #form-panel .input-group-sm > input[type="month"],
+  #request-password-reset-form #form-panel form .input-group-sm > input[type="month"],
+  #password-reset-form #form-panel form .input-group-sm > input[type="month"],
   .input-group-sm > input[type="month"].input-group-addon,
   .input-group-sm > .input-group-btn > input[type="month"].btn,
   #actionbar-top .input-group-sm > .input-group-btn > input[type="month"].logout-user, .input-group-sm
   input[type="month"] {
-    line-height: 33px;
+    line-height: 30px;
   }
   /* line 193, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-  input[type="date"].input-lg, .input-group-lg > input[type="date"].form-control, #signup-form #form-panel form .input-group-lg > input[type="date"],
+  input[type="date"].input-lg, .input-group-lg > input[type="date"].form-control, #signup-form #form-panel form .input-group-lg > input[type="date"], #request-password-reset-form #form-panel form .input-group-lg > input[type="date"], #password-reset-form #form-panel form .input-group-lg > input[type="date"],
   .input-group-lg > input[type="date"].input-group-addon,
   .input-group-lg > .input-group-btn > input[type="date"].btn,
-  #actionbar-top .input-group-lg > .input-group-btn > input[type="date"].logout-user, #signup-form #form-panel form input[type="date"]:focus, #login-form #form-panel input[type="date"], .input-group-lg input[type="date"],
+  #actionbar-top .input-group-lg > .input-group-btn > input[type="date"].logout-user, #signup-form #form-panel form input[type="date"]:focus, #login-form #form-panel input[type="date"], #request-password-reset-form #form-panel form input[type="date"]:focus, #password-reset-form #form-panel form input[type="date"]:focus, .input-group-lg input[type="date"],
   input[type="time"].input-lg,
   .input-group-lg > input[type="time"].form-control,
   #signup-form #form-panel form .input-group-lg > input[type="time"],
+  #request-password-reset-form #form-panel form .input-group-lg > input[type="time"],
+  #password-reset-form #form-panel form .input-group-lg > input[type="time"],
   .input-group-lg > input[type="time"].input-group-addon,
   .input-group-lg > .input-group-btn > input[type="time"].btn,
   #actionbar-top .input-group-lg > .input-group-btn > input[type="time"].logout-user,
   #signup-form #form-panel form input[type="time"]:focus,
-  #login-form #form-panel input[type="time"], .input-group-lg
+  #login-form #form-panel input[type="time"],
+  #request-password-reset-form #form-panel form input[type="time"]:focus,
+  #password-reset-form #form-panel form input[type="time"]:focus, .input-group-lg
   input[type="time"],
   input[type="datetime-local"].input-lg,
   .input-group-lg > input[type="datetime-local"].form-control,
   #signup-form #form-panel form .input-group-lg > input[type="datetime-local"],
+  #request-password-reset-form #form-panel form .input-group-lg > input[type="datetime-local"],
+  #password-reset-form #form-panel form .input-group-lg > input[type="datetime-local"],
   .input-group-lg > input[type="datetime-local"].input-group-addon,
   .input-group-lg > .input-group-btn > input[type="datetime-local"].btn,
   #actionbar-top .input-group-lg > .input-group-btn > input[type="datetime-local"].logout-user,
   #signup-form #form-panel form input[type="datetime-local"]:focus,
-  #login-form #form-panel input[type="datetime-local"], .input-group-lg
+  #login-form #form-panel input[type="datetime-local"],
+  #request-password-reset-form #form-panel form input[type="datetime-local"]:focus,
+  #password-reset-form #form-panel form input[type="datetime-local"]:focus, .input-group-lg
   input[type="datetime-local"],
   input[type="month"].input-lg,
   .input-group-lg > input[type="month"].form-control,
   #signup-form #form-panel form .input-group-lg > input[type="month"],
+  #request-password-reset-form #form-panel form .input-group-lg > input[type="month"],
+  #password-reset-form #form-panel form .input-group-lg > input[type="month"],
   .input-group-lg > input[type="month"].input-group-addon,
   .input-group-lg > .input-group-btn > input[type="month"].btn,
   #actionbar-top .input-group-lg > .input-group-btn > input[type="month"].logout-user,
   #signup-form #form-panel form input[type="month"]:focus,
-  #login-form #form-panel input[type="month"], .input-group-lg
+  #login-form #form-panel input[type="month"],
+  #request-password-reset-form #form-panel form input[type="month"]:focus,
+  #password-reset-form #form-panel form input[type="month"]:focus, .input-group-lg
   input[type="month"] {
-    line-height: 49px;
+    line-height: 46px;
   }
 }
 /* line 206, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
@@ -3958,7 +3997,7 @@ input[type="search"] {
 /* line 222, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
 .radio label,
 .checkbox label {
-  min-height: 22px;
+  min-height: 20px;
   padding-left: 20px;
   margin-bottom: 0;
   font-weight: normal;
@@ -4027,14 +4066,14 @@ input[type="checkbox"] {
   padding-top: 7px;
   padding-bottom: 7px;
   margin-bottom: 0;
-  min-height: 38px;
+  min-height: 34px;
 }
 /* line 306, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-.form-control-static.input-lg, .input-group-lg > .form-control-static.form-control, #signup-form #form-panel form .input-group-lg > input.form-control-static,
+.form-control-static.input-lg, .input-group-lg > .form-control-static.form-control, #signup-form #form-panel form .input-group-lg > input.form-control-static, #request-password-reset-form #form-panel form .input-group-lg > input.form-control-static, #password-reset-form #form-panel form .input-group-lg > input.form-control-static,
 .input-group-lg > .form-control-static.input-group-addon,
 .input-group-lg > .input-group-btn > .form-control-static.btn,
 #actionbar-top .input-group-lg > .input-group-btn > .form-control-static.logout-user,
-#login-form #form-panel .input-group-lg > .input-group-btn > button.form-control-static, #signup-form #form-panel form input.form-control-static:focus, #login-form #form-panel input.form-control-static, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control, #signup-form #form-panel form .input-group-sm > input.form-control-static, #login-form #form-panel .input-group-sm > input.form-control-static,
+#login-form #form-panel .input-group-lg > .input-group-btn > button.form-control-static, #signup-form #form-panel form input.form-control-static:focus, #login-form #form-panel input.form-control-static, #request-password-reset-form #form-panel form input.form-control-static:focus, #password-reset-form #form-panel form input.form-control-static:focus, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control, #signup-form #form-panel form .input-group-sm > input.form-control-static, #login-form #form-panel .input-group-sm > input.form-control-static, #request-password-reset-form #form-panel form .input-group-sm > input.form-control-static, #password-reset-form #form-panel form .input-group-sm > input.form-control-static,
 .input-group-sm > .form-control-static.input-group-addon,
 .input-group-sm > .input-group-btn > .form-control-static.btn,
 #actionbar-top .input-group-sm > .input-group-btn > .form-control-static.logout-user,
@@ -4044,14 +4083,14 @@ input[type="checkbox"] {
 }
 
 /* line 71, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.input-sm, .input-group-sm > .form-control, #signup-form #form-panel form .input-group-sm > input, #login-form #form-panel .input-group-sm > input,
+.input-sm, .input-group-sm > .form-control, #signup-form #form-panel form .input-group-sm > input, #login-form #form-panel .input-group-sm > input, #request-password-reset-form #form-panel form .input-group-sm > input, #password-reset-form #form-panel form .input-group-sm > input,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn,
 #actionbar-top .input-group-sm > .input-group-btn > .logout-user,
 #login-form #form-panel .input-group-sm > .input-group-btn > button {
-  height: 33px;
+  height: 30px;
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
@@ -4061,8 +4100,8 @@ select.input-sm, .input-group-sm > select.form-control,
 .input-group-sm > select.input-group-addon,
 .input-group-sm > .input-group-btn > select.btn,
 #actionbar-top .input-group-sm > .input-group-btn > select.logout-user {
-  height: 33px;
-  line-height: 33px;
+  height: 30px;
+  line-height: 30px;
 }
 
 /* line 84, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
@@ -4079,17 +4118,17 @@ select[multiple].input-sm,
 }
 
 /* line 71, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.form-group-sm .form-control, .form-group-sm #signup-form #form-panel form input, #signup-form #form-panel form .form-group-sm input, .form-group-sm #login-form #form-panel input, #login-form #form-panel .form-group-sm input {
-  height: 33px;
+.form-group-sm .form-control, .form-group-sm #signup-form #form-panel form input, #signup-form #form-panel form .form-group-sm input, .form-group-sm #login-form #form-panel input, #login-form #form-panel .form-group-sm input, .form-group-sm #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form .form-group-sm input, .form-group-sm #password-reset-form #form-panel form input, #password-reset-form #form-panel form .form-group-sm input {
+  height: 30px;
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
 /* line 79, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
 .form-group-sm select.form-control {
-  height: 33px;
-  line-height: 33px;
+  height: 30px;
+  line-height: 30px;
 }
 /* line 84, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
 .form-group-sm textarea.form-control,
@@ -4098,22 +4137,22 @@ select[multiple].input-sm,
 }
 /* line 327, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
 .form-group-sm .form-control-static {
-  height: 33px;
+  height: 30px;
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
-  min-height: 36px;
+  min-height: 32px;
 }
 
 /* line 71, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.input-lg, .input-group-lg > .form-control, #signup-form #form-panel form .input-group-lg > input,
+.input-lg, .input-group-lg > .form-control, #signup-form #form-panel form .input-group-lg > input, #request-password-reset-form #form-panel form .input-group-lg > input, #password-reset-form #form-panel form .input-group-lg > input,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn,
 #actionbar-top .input-group-lg > .input-group-btn > .logout-user,
-#login-form #form-panel .input-group-lg > .input-group-btn > button, #signup-form #form-panel form input:focus, #login-form #form-panel input {
-  height: 49px;
+#login-form #form-panel .input-group-lg > .input-group-btn > button, #signup-form #form-panel form input:focus, #login-form #form-panel input, #request-password-reset-form #form-panel form input:focus, #password-reset-form #form-panel form input:focus {
+  height: 46px;
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.3333333;
   border-radius: 2px;
 }
@@ -4123,8 +4162,8 @@ select.input-lg, .input-group-lg > select.form-control,
 .input-group-lg > select.input-group-addon,
 .input-group-lg > .input-group-btn > select.btn,
 #actionbar-top .input-group-lg > .input-group-btn > select.logout-user {
-  height: 49px;
-  line-height: 49px;
+  height: 46px;
+  line-height: 46px;
 }
 
 /* line 84, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
@@ -4141,17 +4180,17 @@ select[multiple].input-lg,
 }
 
 /* line 71, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.form-group-lg .form-control, .form-group-lg #signup-form #form-panel form input, #signup-form #form-panel form .form-group-lg input, .form-group-lg #login-form #form-panel input, #login-form #form-panel .form-group-lg input {
-  height: 49px;
+.form-group-lg .form-control, .form-group-lg #signup-form #form-panel form input, #signup-form #form-panel form .form-group-lg input, .form-group-lg #login-form #form-panel input, #login-form #form-panel .form-group-lg input, .form-group-lg #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form .form-group-lg input, .form-group-lg #password-reset-form #form-panel form input, #password-reset-form #form-panel form .form-group-lg input {
+  height: 46px;
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.3333333;
   border-radius: 2px;
 }
 /* line 79, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
 .form-group-lg select.form-control {
-  height: 49px;
-  line-height: 49px;
+  height: 46px;
+  line-height: 46px;
 }
 /* line 84, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
 .form-group-lg textarea.form-control,
@@ -4160,11 +4199,11 @@ select[multiple].input-lg,
 }
 /* line 341, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
 .form-group-lg .form-control-static {
-  height: 49px;
+  height: 46px;
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.3333333;
-  min-height: 42px;
+  min-height: 38px;
 }
 
 /* line 355, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
@@ -4172,8 +4211,8 @@ select[multiple].input-lg,
   position: relative;
 }
 /* line 360, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-.has-feedback .form-control, .has-feedback #signup-form #form-panel form input, #signup-form #form-panel form .has-feedback input, .has-feedback #login-form #form-panel input, #login-form #form-panel .has-feedback input {
-  padding-right: 45px;
+.has-feedback .form-control, .has-feedback #signup-form #form-panel form input, #signup-form #form-panel form .has-feedback input, .has-feedback #login-form #form-panel input, #login-form #form-panel .has-feedback input, .has-feedback #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form .has-feedback input, .has-feedback #password-reset-form #form-panel form input, #password-reset-form #form-panel form .has-feedback input {
+  padding-right: 42.5px;
 }
 
 /* line 365, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
@@ -4183,33 +4222,33 @@ select[multiple].input-lg,
   right: 0;
   z-index: 2;
   display: block;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
   text-align: center;
   pointer-events: none;
 }
 
 /* line 377, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-.input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, #signup-form #form-panel form .input-group-lg > input + .form-control-feedback, #login-form #form-panel .input-group-lg > input + .form-control-feedback,
+.input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, #signup-form #form-panel form .input-group-lg > input + .form-control-feedback, #login-form #form-panel .input-group-lg > input + .form-control-feedback, #request-password-reset-form #form-panel form .input-group-lg > input + .form-control-feedback, #password-reset-form #form-panel form .input-group-lg > input + .form-control-feedback,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
 #actionbar-top .input-group-lg > .input-group-btn > .logout-user + .form-control-feedback,
-#login-form #form-panel .input-group-lg > .input-group-btn > button + .form-control-feedback, #signup-form #form-panel form input:focus + .form-control-feedback, #login-form #form-panel input + .form-control-feedback {
-  width: 49px;
-  height: 49px;
-  line-height: 49px;
+#login-form #form-panel .input-group-lg > .input-group-btn > button + .form-control-feedback, #signup-form #form-panel form input:focus + .form-control-feedback, #login-form #form-panel input + .form-control-feedback, #request-password-reset-form #form-panel form input:focus + .form-control-feedback, #password-reset-form #form-panel form input:focus + .form-control-feedback {
+  width: 46px;
+  height: 46px;
+  line-height: 46px;
 }
 
 /* line 382, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-.input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, #signup-form #form-panel form .input-group-sm > input + .form-control-feedback, #login-form #form-panel .input-group-sm > input + .form-control-feedback,
+.input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, #signup-form #form-panel form .input-group-sm > input + .form-control-feedback, #login-form #form-panel .input-group-sm > input + .form-control-feedback, #request-password-reset-form #form-panel form .input-group-sm > input + .form-control-feedback, #password-reset-form #form-panel form .input-group-sm > input + .form-control-feedback,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
 #actionbar-top .input-group-sm > .input-group-btn > .logout-user + .form-control-feedback,
 #login-form #form-panel .input-group-sm > .input-group-btn > button + .form-control-feedback {
-  width: 33px;
-  height: 33px;
-  line-height: 33px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
 }
 
 /* line 8, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
@@ -4222,13 +4261,13 @@ select[multiple].input-lg,
   color: #3c763d;
 }
 /* line 21, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-success .form-control, .has-success #signup-form #form-panel form input, #signup-form #form-panel form .has-success input, .has-success #login-form #form-panel input, #login-form #form-panel .has-success input {
+.has-success .form-control, .has-success #signup-form #form-panel form input, #signup-form #form-panel form .has-success input, .has-success #login-form #form-panel input, #login-form #form-panel .has-success input, .has-success #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form .has-success input, .has-success #password-reset-form #form-panel form input, #password-reset-form #form-panel form .has-success input {
   border-color: #3c763d;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 /* line 24, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-success .form-control:focus, .has-success #signup-form #form-panel form input:focus, #signup-form #form-panel form .has-success input:focus, .has-success #login-form #form-panel input:focus, #login-form #form-panel .has-success input:focus {
+.has-success .form-control:focus, .has-success #signup-form #form-panel form input:focus, #signup-form #form-panel form .has-success input:focus, .has-success #login-form #form-panel input:focus, #login-form #form-panel .has-success input:focus, .has-success #request-password-reset-form #form-panel form input:focus, #request-password-reset-form #form-panel form .has-success input:focus, .has-success #password-reset-form #form-panel form input:focus, #password-reset-form #form-panel form .has-success input:focus {
   border-color: #2b542c;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
@@ -4254,13 +4293,13 @@ select[multiple].input-lg,
   color: #8a6d3b;
 }
 /* line 21, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-warning .form-control, .has-warning #signup-form #form-panel form input, #signup-form #form-panel form .has-warning input, .has-warning #login-form #form-panel input, #login-form #form-panel .has-warning input {
+.has-warning .form-control, .has-warning #signup-form #form-panel form input, #signup-form #form-panel form .has-warning input, .has-warning #login-form #form-panel input, #login-form #form-panel .has-warning input, .has-warning #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form .has-warning input, .has-warning #password-reset-form #form-panel form input, #password-reset-form #form-panel form .has-warning input {
   border-color: #8a6d3b;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 /* line 24, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-warning .form-control:focus, .has-warning #signup-form #form-panel form input:focus, #signup-form #form-panel form .has-warning input:focus, .has-warning #login-form #form-panel input:focus, #login-form #form-panel .has-warning input:focus {
+.has-warning .form-control:focus, .has-warning #signup-form #form-panel form input:focus, #signup-form #form-panel form .has-warning input:focus, .has-warning #login-form #form-panel input:focus, #login-form #form-panel .has-warning input:focus, .has-warning #request-password-reset-form #form-panel form input:focus, #request-password-reset-form #form-panel form .has-warning input:focus, .has-warning #password-reset-form #form-panel form input:focus, #password-reset-form #form-panel form .has-warning input:focus {
   border-color: #66512c;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
@@ -4286,13 +4325,13 @@ select[multiple].input-lg,
   color: #a94442;
 }
 /* line 21, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-error .form-control, .has-error #signup-form #form-panel form input, #signup-form #form-panel form .has-error input, .has-error #login-form #form-panel input, #login-form #form-panel .has-error input {
+.has-error .form-control, .has-error #signup-form #form-panel form input, #signup-form #form-panel form .has-error input, .has-error #login-form #form-panel input, #login-form #form-panel .has-error input, .has-error #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form .has-error input, .has-error #password-reset-form #form-panel form input, #password-reset-form #form-panel form .has-error input {
   border-color: #a94442;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 /* line 24, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_forms.scss */
-.has-error .form-control:focus, .has-error #signup-form #form-panel form input:focus, #signup-form #form-panel form .has-error input:focus, .has-error #login-form #form-panel input:focus, #login-form #form-panel .has-error input:focus {
+.has-error .form-control:focus, .has-error #signup-form #form-panel form input:focus, #signup-form #form-panel form .has-error input:focus, .has-error #login-form #form-panel input:focus, #login-form #form-panel .has-error input:focus, .has-error #request-password-reset-form #form-panel form input:focus, #request-password-reset-form #form-panel form .has-error input:focus, .has-error #password-reset-form #form-panel form input:focus, #password-reset-form #form-panel form .has-error input:focus {
   border-color: #843534;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
@@ -4310,7 +4349,7 @@ select[multiple].input-lg,
 
 /* line 402, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
 .has-feedback label ~ .form-control-feedback {
-  top: 27px;
+  top: 25px;
 }
 /* line 405, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
 .has-feedback label.sr-only ~ .form-control-feedback {
@@ -4333,7 +4372,7 @@ select[multiple].input-lg,
     vertical-align: middle;
   }
   /* line 448, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-  .form-inline .form-control, .form-inline #signup-form #form-panel form input, #signup-form #form-panel form .form-inline input, .form-inline #login-form #form-panel input, #login-form #form-panel .form-inline input {
+  .form-inline .form-control, .form-inline #signup-form #form-panel form input, #signup-form #form-panel form .form-inline input, .form-inline #login-form #form-panel input, #login-form #form-panel .form-inline input, .form-inline #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form .form-inline input, .form-inline #password-reset-form #form-panel form input, #password-reset-form #form-panel form .form-inline input {
     display: inline-block;
     width: auto;
     vertical-align: middle;
@@ -4354,11 +4393,15 @@ select[multiple].input-lg,
   .form-inline .input-group #signup-form #form-panel form input,
   #signup-form #form-panel form .form-inline .input-group input,
   .form-inline .input-group #login-form #form-panel input,
-  #login-form #form-panel .form-inline .input-group input {
+  #login-form #form-panel .form-inline .input-group input,
+  .form-inline .input-group #request-password-reset-form #form-panel form input,
+  #request-password-reset-form #form-panel form .form-inline .input-group input,
+  .form-inline .input-group #password-reset-form #form-panel form input,
+  #password-reset-form #form-panel form .form-inline .input-group input {
     width: auto;
   }
   /* line 471, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-  .form-inline .input-group > .form-control, .form-inline #signup-form #form-panel form .input-group > input, #signup-form #form-panel form .form-inline .input-group > input, .form-inline #login-form #form-panel .input-group > input, #login-form #form-panel .form-inline .input-group > input {
+  .form-inline .input-group > .form-control, .form-inline #signup-form #form-panel form .input-group > input, #signup-form #form-panel form .form-inline .input-group > input, .form-inline #login-form #form-panel .input-group > input, #login-form #form-panel .form-inline .input-group > input, .form-inline #request-password-reset-form #form-panel form .input-group > input, #request-password-reset-form #form-panel form .form-inline .input-group > input, .form-inline #password-reset-form #form-panel form .input-group > input, #password-reset-form #form-panel form .form-inline .input-group > input {
     width: 100%;
   }
   /* line 475, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
@@ -4403,7 +4446,7 @@ select[multiple].input-lg,
 /* line 532, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
 .form-horizontal .radio,
 .form-horizontal .checkbox {
-  min-height: 29px;
+  min-height: 27px;
 }
 /* line 538, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
 .form-horizontal .form-group {
@@ -4457,7 +4500,7 @@ select[multiple].input-lg,
   border: 1px solid transparent;
   white-space: nowrap;
   padding: 6px 12px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.42857143;
   border-radius: 2px;
   -webkit-user-select: none;
@@ -4686,7 +4729,7 @@ select[multiple].input-lg,
 /* line 127, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-lg, .btn-group-lg > .btn, #actionbar-top .btn-group-lg > .logout-user, #login-form #form-panel button {
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.3333333;
   border-radius: 2px;
 }
@@ -4694,7 +4737,7 @@ select[multiple].input-lg,
 /* line 131, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-sm, .btn-group-sm > .btn, #actionbar-top .btn-group-sm > .logout-user, #login-form #form-panel .btn-group-sm > button {
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
@@ -4702,7 +4745,7 @@ select[multiple].input-lg,
 /* line 135, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-xs, .btn-group-xs > .btn, #login-form #form-panel .btn-group-xs > button, #actionbar-top .logout-user {
   padding: 1px 5px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
@@ -4804,7 +4847,7 @@ tbody.collapse.in {
   padding: 5px 0;
   margin: 2px 0 0;
   list-style: none;
-  font-size: 16px;
+  font-size: 14px;
   text-align: left;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -4815,14 +4858,14 @@ tbody.collapse.in {
   background-clip: padding-box;
 }
 /* line 53, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_dropdowns.scss */
-.dropdown-menu.pull-right {
+.dropdown-menu.pull-right, #recent-invoice-collection .collection-panel .panel-title a .dropdown-menu.date-scanned, #recent-invoice-collection .collection-panel .panel-footer .dropdown-menu.delete-invoice-wrap, #history-invoice-collection .collection-panel h4.panel-title a .dropdown-menu.date-scanned {
   right: 0;
   left: auto;
 }
 /* line 59, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_dropdowns.scss */
 .dropdown-menu .divider {
   height: 1px;
-  margin: 10px 0;
+  margin: 9px 0;
   overflow: hidden;
   background-color: #e5e5e5;
 }
@@ -4890,7 +4933,7 @@ tbody.collapse.in {
 .dropdown-header {
   display: block;
   padding: 3px 20px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #777777;
   white-space: nowrap;
@@ -4907,7 +4950,7 @@ tbody.collapse.in {
 }
 
 /* line 172, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_dropdowns.scss */
-.pull-right > .dropdown-menu {
+.pull-right > .dropdown-menu, #recent-invoice-collection .collection-panel .panel-title a .date-scanned > .dropdown-menu, #recent-invoice-collection .collection-panel .panel-footer .delete-invoice-wrap > .dropdown-menu, #history-invoice-collection .collection-panel h4.panel-title a .date-scanned > .dropdown-menu {
   right: 0;
   left: auto;
 }
@@ -5228,7 +5271,7 @@ tbody.collapse.in {
   padding-right: 0;
 }
 /* line 19, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group .form-control, .input-group #signup-form #form-panel form input, #signup-form #form-panel form .input-group input, .input-group #login-form #form-panel input, #login-form #form-panel .input-group input {
+.input-group .form-control, .input-group #signup-form #form-panel form input, #signup-form #form-panel form .input-group input, .input-group #login-form #form-panel input, #login-form #form-panel .input-group input, .input-group #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form .input-group input, .input-group #password-reset-form #form-panel form input, #password-reset-form #form-panel form .input-group input {
   position: relative;
   z-index: 2;
   float: left;
@@ -5243,7 +5286,11 @@ tbody.collapse.in {
 .input-group #signup-form #form-panel form input,
 #signup-form #form-panel form .input-group input,
 .input-group #login-form #form-panel input,
-#login-form #form-panel .input-group input {
+#login-form #form-panel .input-group input,
+.input-group #request-password-reset-form #form-panel form input,
+#request-password-reset-form #form-panel form .input-group input,
+.input-group #password-reset-form #form-panel form input,
+#password-reset-form #form-panel form .input-group input {
   display: table-cell;
 }
 /* line 59, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
@@ -5253,7 +5300,11 @@ tbody.collapse.in {
 .input-group #signup-form #form-panel form input:not(:first-child):not(:last-child),
 #signup-form #form-panel form .input-group input:not(:first-child):not(:last-child),
 .input-group #login-form #form-panel input:not(:first-child):not(:last-child),
-#login-form #form-panel .input-group input:not(:first-child):not(:last-child) {
+#login-form #form-panel .input-group input:not(:first-child):not(:last-child),
+.input-group #request-password-reset-form #form-panel form input:not(:first-child):not(:last-child),
+#request-password-reset-form #form-panel form .input-group input:not(:first-child):not(:last-child),
+.input-group #password-reset-form #form-panel form input:not(:first-child):not(:last-child),
+#password-reset-form #form-panel form .input-group input:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
 
@@ -5268,7 +5319,7 @@ tbody.collapse.in {
 /* line 73, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
 .input-group-addon {
   padding: 6px 12px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: normal;
   line-height: 1;
   color: #555555;
@@ -5278,23 +5329,23 @@ tbody.collapse.in {
   border-radius: 2px;
 }
 /* line 85, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-addon.input-sm, #signup-form #form-panel form .input-group-sm > input.input-group-addon, #login-form #form-panel .input-group-sm > input.input-group-addon,
+.input-group-addon.input-sm, #signup-form #form-panel form .input-group-sm > input.input-group-addon, #login-form #form-panel .input-group-sm > input.input-group-addon, #request-password-reset-form #form-panel form .input-group-sm > input.input-group-addon, #password-reset-form #form-panel form .input-group-sm > input.input-group-addon,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .input-group-addon.btn,
 #actionbar-top .input-group-sm > .input-group-btn > .input-group-addon.logout-user,
 #login-form #form-panel .input-group-sm > .input-group-btn > button.input-group-addon {
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 3px;
 }
 /* line 90, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group-addon.input-lg, #signup-form #form-panel form .input-group-lg > input.input-group-addon,
+.input-group-addon.input-lg, #signup-form #form-panel form .input-group-lg > input.input-group-addon, #request-password-reset-form #form-panel form .input-group-lg > input.input-group-addon, #password-reset-form #form-panel form .input-group-lg > input.input-group-addon,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .input-group-addon.btn,
 #actionbar-top .input-group-lg > .input-group-btn > .input-group-addon.logout-user,
-#login-form #form-panel .input-group-lg > .input-group-btn > button.input-group-addon, #signup-form #form-panel form input.input-group-addon:focus, #login-form #form-panel input.input-group-addon {
+#login-form #form-panel .input-group-lg > .input-group-btn > button.input-group-addon, #signup-form #form-panel form input.input-group-addon:focus, #login-form #form-panel input.input-group-addon, #request-password-reset-form #form-panel form input.input-group-addon:focus, #password-reset-form #form-panel form input.input-group-addon:focus {
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 2px;
 }
 /* line 97, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
@@ -5304,7 +5355,7 @@ tbody.collapse.in {
 }
 
 /* line 104, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group .form-control:first-child, .input-group #signup-form #form-panel form input:first-child, #signup-form #form-panel form .input-group input:first-child, .input-group #login-form #form-panel input:first-child, #login-form #form-panel .input-group input:first-child,
+.input-group .form-control:first-child, .input-group #signup-form #form-panel form input:first-child, #signup-form #form-panel form .input-group input:first-child, .input-group #login-form #form-panel input:first-child, #login-form #form-panel .input-group input:first-child, .input-group #request-password-reset-form #form-panel form input:first-child, #request-password-reset-form #form-panel form .input-group input:first-child, .input-group #password-reset-form #form-panel form input:first-child, #password-reset-form #form-panel form .input-group input:first-child,
 .input-group-addon:first-child,
 .input-group-btn:first-child > .btn,
 #actionbar-top .input-group-btn:first-child > .logout-user,
@@ -5329,7 +5380,7 @@ tbody.collapse.in {
 }
 
 /* line 116, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_input-groups.scss */
-.input-group .form-control:last-child, .input-group #signup-form #form-panel form input:last-child, #signup-form #form-panel form .input-group input:last-child, .input-group #login-form #form-panel input:last-child, #login-form #form-panel .input-group input:last-child,
+.input-group .form-control:last-child, .input-group #signup-form #form-panel form input:last-child, #signup-form #form-panel form .input-group input:last-child, .input-group #login-form #form-panel input:last-child, #login-form #form-panel .input-group input:last-child, .input-group #request-password-reset-form #form-panel form input:last-child, #request-password-reset-form #form-panel form .input-group input:last-child, .input-group #password-reset-form #form-panel form input:last-child, #password-reset-form #form-panel form .input-group input:last-child,
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
 #actionbar-top .input-group-btn:last-child > .logout-user,
@@ -5432,7 +5483,7 @@ tbody.collapse.in {
 /* line 59, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navs.scss */
 .nav .nav-divider {
   height: 1px;
-  margin: 10px 0;
+  margin: 9px 0;
   overflow: hidden;
   background-color: #e5e5e5;
 }
@@ -5581,7 +5632,7 @@ tbody.collapse.in {
 .navbar, #actionbar-top, #actionbar-bottom {
   position: relative;
   min-height: 50px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   border: 1px solid transparent;
 }
 /* line 14, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
@@ -5743,9 +5794,9 @@ tbody.collapse.in {
 /* line 163, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-brand {
   float: left;
-  padding: 14px 15px;
-  font-size: 20px;
-  line-height: 22px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
   height: 50px;
 }
 /* line 170, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
@@ -5800,13 +5851,13 @@ tbody.collapse.in {
 
 /* line 232, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-nav {
-  margin: 7px -15px;
+  margin: 7.5px -15px;
 }
 /* line 235, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
-  line-height: 22px;
+  line-height: 20px;
 }
 @media (max-width: 299px) {
   /* line 243, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
@@ -5826,7 +5877,7 @@ tbody.collapse.in {
   }
   /* line 255, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-nav .open .dropdown-menu > li > a {
-    line-height: 22px;
+    line-height: 20px;
   }
   /* line 257, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus {
@@ -5845,8 +5896,8 @@ tbody.collapse.in {
   }
   /* line 272, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-nav > li > a {
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 }
 
@@ -5859,8 +5910,8 @@ tbody.collapse.in {
   border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 @media (min-width: 768px) {
   /* line 441, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
@@ -5870,7 +5921,7 @@ tbody.collapse.in {
     vertical-align: middle;
   }
   /* line 448, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-  .navbar-form .form-control, .navbar-form #signup-form #form-panel form input, #signup-form #form-panel form .navbar-form input, .navbar-form #login-form #form-panel input, #login-form #form-panel .navbar-form input {
+  .navbar-form .form-control, .navbar-form #signup-form #form-panel form input, #signup-form #form-panel form .navbar-form input, .navbar-form #login-form #form-panel input, #login-form #form-panel .navbar-form input, .navbar-form #request-password-reset-form #form-panel form input, #request-password-reset-form #form-panel form .navbar-form input, .navbar-form #password-reset-form #form-panel form input, #password-reset-form #form-panel form .navbar-form input {
     display: inline-block;
     width: auto;
     vertical-align: middle;
@@ -5891,11 +5942,15 @@ tbody.collapse.in {
   .navbar-form .input-group #signup-form #form-panel form input,
   #signup-form #form-panel form .navbar-form .input-group input,
   .navbar-form .input-group #login-form #form-panel input,
-  #login-form #form-panel .navbar-form .input-group input {
+  #login-form #form-panel .navbar-form .input-group input,
+  .navbar-form .input-group #request-password-reset-form #form-panel form input,
+  #request-password-reset-form #form-panel form .navbar-form .input-group input,
+  .navbar-form .input-group #password-reset-form #form-panel form input,
+  #password-reset-form #form-panel form .navbar-form .input-group input {
     width: auto;
   }
   /* line 471, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
-  .navbar-form .input-group > .form-control, .navbar-form #signup-form #form-panel form .input-group > input, #signup-form #form-panel form .navbar-form .input-group > input, .navbar-form #login-form #form-panel .input-group > input, #login-form #form-panel .navbar-form .input-group > input {
+  .navbar-form .input-group > .form-control, .navbar-form #signup-form #form-panel form .input-group > input, #signup-form #form-panel form .navbar-form .input-group > input, .navbar-form #login-form #form-panel .input-group > input, #login-form #form-panel .navbar-form .input-group > input, .navbar-form #request-password-reset-form #form-panel form .input-group > input, #request-password-reset-form #form-panel form .navbar-form .input-group > input, .navbar-form #password-reset-form #form-panel form .input-group > input, #password-reset-form #form-panel form .navbar-form .input-group > input {
     width: 100%;
   }
   /* line 475, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_forms.scss */
@@ -5969,13 +6024,13 @@ tbody.collapse.in {
 
 /* line 343, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-btn {
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 /* line 346, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-btn.btn-sm, .btn-group-sm > .navbar-btn.btn, #actionbar-top .btn-group-sm > .navbar-btn.logout-user, #login-form #form-panel .btn-group-sm > button.navbar-btn {
-  margin-top: 8.5px;
-  margin-bottom: 8.5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 /* line 349, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-btn.btn-xs, .btn-group-xs > .navbar-btn.btn, #login-form #form-panel .btn-group-xs > button.navbar-btn, #actionbar-top .navbar-btn.logout-user {
@@ -5985,8 +6040,8 @@ tbody.collapse.in {
 
 /* line 359, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-text {
-  margin-top: 14px;
-  margin-bottom: 14px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 @media (min-width: 300px) {
   /* line 359, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_navbar.scss */
@@ -6228,7 +6283,7 @@ tbody.collapse.in {
 /* line 6, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_breadcrumbs.scss */
 .breadcrumb {
   padding: 8px 15px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   list-style: none;
   background-color: #f5f5f5;
   border-radius: 2px;
@@ -6252,7 +6307,7 @@ tbody.collapse.in {
 .pagination {
   display: inline-block;
   padding-left: 0;
-  margin: 22px 0;
+  margin: 20px 0;
   border-radius: 2px;
 }
 /* line 10, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_pagination.scss */
@@ -6321,7 +6376,7 @@ tbody.collapse.in {
 .pagination-lg > li > a,
 .pagination-lg > li > span {
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
 }
 /* line 11, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_pagination.scss */
 .pagination-lg > li:first-child > a,
@@ -6340,7 +6395,7 @@ tbody.collapse.in {
 .pagination-sm > li > a,
 .pagination-sm > li > span {
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 12px;
 }
 /* line 11, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/mixins/_pagination.scss */
 .pagination-sm > li:first-child > a,
@@ -6358,7 +6413,7 @@ tbody.collapse.in {
 /* line 6, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_pager.scss */
 .pager {
   padding-left: 0;
-  margin: 22px 0;
+  margin: 20px 0;
   list-style: none;
   text-align: center;
 }
@@ -6499,7 +6554,7 @@ a.label:hover, a.label:focus {
   display: inline-block;
   min-width: 10px;
   padding: 3px 7px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   color: #fff;
   line-height: 1;
@@ -6563,7 +6618,7 @@ a.badge:hover, a.badge:focus {
 /* line 17, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_jumbotron.scss */
 .jumbotron p {
   margin-bottom: 15px;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 200;
 }
 /* line 23, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_jumbotron.scss */
@@ -6591,7 +6646,7 @@ a.badge:hover, a.badge:focus {
   /* line 45, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_jumbotron.scss */
   .jumbotron h1,
   .jumbotron .h1 {
-    font-size: 72px;
+    font-size: 63px;
   }
 }
 
@@ -6599,7 +6654,7 @@ a.badge:hover, a.badge:focus {
 .thumbnail {
   display: block;
   padding: 4px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   line-height: 1.42857143;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -6633,7 +6688,7 @@ a.thumbnail.active {
 /* line 9, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_alerts.scss */
 .alert {
   padding: 15px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 2px;
 }
@@ -6749,8 +6804,8 @@ a.thumbnail.active {
 /* line 26, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_progress-bars.scss */
 .progress {
   overflow: hidden;
-  height: 22px;
-  margin-bottom: 22px;
+  height: 20px;
+  margin-bottom: 20px;
   background-color: #f5f5f5;
   border-radius: 2px;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -6762,8 +6817,8 @@ a.thumbnail.active {
   float: left;
   width: 0%;
   height: 100%;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 12px;
+  line-height: 20px;
   color: #fff;
   text-align: center;
   background-color: #4bc8de;
@@ -6863,7 +6918,10 @@ a.thumbnail.active {
 
 /* line 24, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_media.scss */
 .media-right,
-.media > .pull-right {
+.media > .pull-right,
+#recent-invoice-collection .collection-panel .panel-title a .media > .date-scanned,
+#recent-invoice-collection .collection-panel .panel-footer .media > .delete-invoice-wrap,
+#history-invoice-collection .collection-panel h4.panel-title a .media > .date-scanned {
   padding-left: 10px;
 }
 
@@ -7099,7 +7157,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 /* line 7, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_panels.scss */
 .panel {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 2px;
@@ -7137,7 +7195,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 18px;
+  font-size: 16px;
   color: inherit;
 }
 /* line 39, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_panels.scss */
@@ -7356,7 +7414,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 /* line 216, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_panels.scss */
 .panel-group {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 /* line 220, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_panels.scss */
 .panel-group .panel {
@@ -7594,7 +7652,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 /* line 6, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_close.scss */
 .close {
   float: right;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: bold;
   line-height: 1;
   color: #000;
@@ -7795,8 +7853,8 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-family: "Varela Round", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
   font-weight: normal;
   line-height: 1.4;
   opacity: 0;
@@ -7922,8 +7980,8 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: "Varela Round", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
   text-align: left;
@@ -7957,7 +8015,7 @@ button.close {
 .popover-title {
   margin: 0;
   padding: 8px 14px;
-  font-size: 16px;
+  font-size: 14px;
   background-color: #f7f7f7;
   border-bottom: 1px solid #ebebeb;
   border-radius: 1px 1px 0 0;
@@ -8340,7 +8398,7 @@ button.close {
 }
 
 /* line 15, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets/bootstrap/_utilities.scss */
-.pull-right {
+.pull-right, #recent-invoice-collection .collection-panel .panel-title a .date-scanned, #recent-invoice-collection .collection-panel .panel-footer .delete-invoice-wrap, #history-invoice-collection .collection-panel h4.panel-title a .date-scanned {
   float: right !important;
 }
 
@@ -9238,7 +9296,7 @@ button.close {
 
 /* makes the font 33% larger relative to the icon container */
 /* line 5, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-sass-4.3.2.1/assets/stylesheets/font-awesome/_larger.scss */
-.fa-lg, #actionbar-bottom .navbar-nav > li a i.fa, #recent-invoice-collection .collection-panel .delete-garment-parent a.delete-garment i.fa {
+.fa-lg, #actionbar-bottom .navbar-nav > li a i.fa, #recent-invoice-collection .collection-panel .delete-garment-parent .fa-trash-o {
   font-size: 1.33333333em;
   line-height: 0.75em;
   vertical-align: -15%;
@@ -9290,7 +9348,7 @@ button.close {
   text-align: center;
 }
 /* line 16, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-sass-4.3.2.1/assets/stylesheets/font-awesome/_list.scss */
-.fa-li.fa-lg, #actionbar-bottom .navbar-nav > li a i.fa-li.fa, #recent-invoice-collection .collection-panel .delete-garment-parent a.delete-garment i.fa-li.fa {
+.fa-li.fa-lg, #actionbar-bottom .navbar-nav > li a i.fa-li.fa, #recent-invoice-collection .collection-panel .delete-garment-parent .fa-li.fa-trash-o {
   left: -1.85714286em;
 }
 
@@ -9302,7 +9360,7 @@ button.close {
 }
 
 /* line 10, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-sass-4.3.2.1/assets/stylesheets/font-awesome/_bordered-pulled.scss */
-.pull-right {
+.pull-right, #recent-invoice-collection .collection-panel .panel-title a .date-scanned, #recent-invoice-collection .collection-panel .panel-footer .delete-invoice-wrap, #history-invoice-collection .collection-panel h4.panel-title a .date-scanned {
   float: right;
 }
 
@@ -9316,7 +9374,7 @@ button.close {
   margin-right: .3em;
 }
 /* line 15, /Users/Charlie/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/font-awesome-sass-4.3.2.1/assets/stylesheets/font-awesome/_bordered-pulled.scss */
-.fa.pull-right {
+.fa.pull-right, #recent-invoice-collection .collection-panel .panel-title a .fa.date-scanned, #recent-invoice-collection .collection-panel .panel-footer .fa.delete-invoice-wrap, #history-invoice-collection .collection-panel h4.panel-title a .fa.date-scanned {
   margin-left: .3em;
 }
 
@@ -15055,7 +15113,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 /* line 21, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/patches.scss */
-.mg-t-x, #signup-form #form-panel form h4 {
+.mg-t-x, #signup-form #form-panel form h4, #request-password-reset-form #form-panel form h4, #password-reset-form #form-panel form h4 {
   margin-top: 0;
 }
 
@@ -15284,6 +15342,137 @@ Copyright (c) 2015 Daniel Eden
   background-color: #1d1d1d;
 }
 
+/* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form {
+  margin-top: 20px;
+  margin-bottom: 90px;
+  color: inherit;
+}
+/* line 14, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form h4 {
+  margin-top: 40px;
+  color: #4bc8de;
+  text-shadow: 0px 2px 0px #090909;
+}
+/* line 20, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form h4.has-error-field {
+  color: #d9534f;
+}
+/* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form h4.first {
+  margin-top: 0;
+}
+/* line 27, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form .form-group.error {
+  position: relative;
+}
+/* line 30, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form .form-group.error input {
+  text-align: center;
+  border-width: 2px;
+  box-shadow: none;
+  color: #d9534f;
+}
+/* line 36, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form .form-group.error input::selection {
+  background: #000;
+  /* WebKit/Blink Browsers */
+}
+/* line 39, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form .form-group.error input::selection {
+  background: #000;
+  /* WebKit/Blink Browsers */
+}
+/* line 44, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form .form-group.error span.icon-pointer {
+  position: absolute;
+  top: 25%;
+  right: 20px;
+  color: #d9534f;
+}
+/* line 52, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form input {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background-color: #333333;
+  border: 1px solid #3c3c3c;
+  border-radius: 50px;
+  color: #4bc8de;
+  max-height: 58px;
+  -webkit-transition: max-height 0.5s ease-in-out;
+  -moz-transition: max-height 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+/* line 68, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/request-password-reset.scss */
+#request-password-reset-form #form-panel form input:focus {
+  border-radius: 55px;
+}
+
+/* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form {
+  margin-top: 20px;
+  margin-bottom: 90px;
+  color: inherit;
+}
+/* line 14, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form h4 {
+  margin-top: 40px;
+  color: #4bc8de;
+  text-shadow: 0px 2px 0px #090909;
+}
+/* line 20, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form h4.has-error-field {
+  color: #d9534f;
+}
+/* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form h4.first {
+  margin-top: 0;
+}
+/* line 27, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form .form-group.has-error {
+  position: relative;
+}
+/* line 30, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form .form-group.has-error input {
+  border-width: 2px;
+  box-shadow: none;
+  color: #d9534f;
+}
+/* line 35, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form .form-group.has-error input::selection {
+  background: #000;
+  /* WebKit/Blink Browsers */
+}
+/* line 38, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form .form-group.has-error input::selection {
+  background: #000;
+  /* WebKit/Blink Browsers */
+}
+/* line 43, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form .form-group.has-error span.icon-pointer {
+  position: absolute;
+  top: 25%;
+  right: 20px;
+  color: #d9534f;
+}
+/* line 51, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form input {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background-color: #333333;
+  border: 1px solid #3c3c3c;
+  border-radius: 50px;
+  color: #4bc8de;
+  max-height: 58px;
+  -webkit-transition: max-height 0.5s ease-in-out;
+  -moz-transition: max-height 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+/* line 67, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/password-reset.scss */
+#password-reset-form #form-panel form input:focus {
+  border-radius: 55px;
+}
+
 /* line 1, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
 #invoice-barcode-scan {
   margin-top: 50px;
@@ -15302,7 +15491,7 @@ Copyright (c) 2015 Daniel Eden
   font-family: Courier !important;
 }
 /* line 14, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
-#invoice-barcode-scan .barcode-panel .invoice-barcode-number {
+#invoice-barcode-scan .barcode-panel input {
   outline: none;
   font-family: Courier !important;
   font-size: 38px;
@@ -15315,7 +15504,7 @@ Copyright (c) 2015 Daniel Eden
   text-transform: uppercase;
 }
 /* line 27, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/invoice_barcode_scan.scss */
-#invoice-barcode-scan .barcode-panel .invoice-barcode-number:disabled {
+#invoice-barcode-scan .barcode-panel input:disabled {
   color: #777777;
   border-color: #777777;
 }
@@ -15375,39 +15564,47 @@ Copyright (c) 2015 Daniel Eden
 #recent-invoice-collection {
   margin-top: 20px;
   margin-bottom: 90px;
-  font-size: 19px;
 }
-/* line 13, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+/* line 12, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+#recent-invoice-collection .collection-panel .blank-msg {
+  margin-top: 40px;
+  color: #4bc8de;
+}
+/* line 17, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
 #recent-invoice-collection .collection-panel .panel-group {
   margin-bottom: 15px;
   max-height: 500px;
   transition: max-height 1s ease-in-out;
 }
-/* line 19, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+/* line 23, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
 #recent-invoice-collection .collection-panel .table tr td {
   color: #333333;
 }
-/* line 22, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
-#recent-invoice-collection .collection-panel .panel-footer {
-  color: #4bc8de;
-}
 /* line 27, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
-#recent-invoice-collection .collection-panel h4.panel-title a {
+#recent-invoice-collection .collection-panel .panel-title {
+  font-weight: normal;
+}
+/* line 30, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+#recent-invoice-collection .collection-panel .panel-title a {
   display: inline-block;
   width: 100%;
   outline: none;
   text-decoration: none;
 }
-/* line 35, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+/* line 40, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+#recent-invoice-collection .collection-panel .panel-footer {
+  color: #4bc8de;
+}
+/* line 48, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
 #recent-invoice-collection .collection-panel .invoice-garment-number {
   padding-left: 15px;
 }
-/* line 39, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+/* line 52, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
 #recent-invoice-collection .collection-panel .delete-garment-parent {
   text-align: right;
   padding-right: 20px;
 }
-/* line 43, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+/* line 56, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
 #recent-invoice-collection .collection-panel .delete-garment-parent a.delete-garment {
   padding: 5px;
   padding-right: 5px;
@@ -15415,12 +15612,12 @@ Copyright (c) 2015 Daniel Eden
   color: inherit;
   font-size: 16px;
 }
-/* line 50, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+/* line 63, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
 #recent-invoice-collection .collection-panel .delete-garment-parent a.delete-garment:hover {
   border-radius: 20px;
   background-color: #eeeeee;
 }
-/* line 59, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+/* line 72, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
 #recent-invoice-collection .collection-panel .add-garment {
   padding: 5px;
   padding-top: 3px;
@@ -15428,7 +15625,7 @@ Copyright (c) 2015 Daniel Eden
   text-decoration: none;
   color: inherit;
 }
-/* line 65, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
+/* line 78, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/recent_invoice_collection.scss */
 #recent-invoice-collection .collection-panel .add-garment:hover {
   border-radius: 20px;
   background-color: #262626;
@@ -15438,35 +15635,32 @@ Copyright (c) 2015 Daniel Eden
 #history-invoice-collection {
   margin-top: 20px;
   margin-bottom: 90px;
-  font-size: 19px;
 }
-/* line 13, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
+/* line 12, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
 #history-invoice-collection .collection-panel .blank-msg {
   margin-top: 40px;
   color: #4bc8de;
 }
-/* line 18, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
+/* line 17, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
 #history-invoice-collection .collection-panel .panel-group {
   margin-bottom: 15px;
-  max-height: 500px;
-  transition: max-height 1s ease-in-out;
 }
-/* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
+/* line 21, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
 #history-invoice-collection .collection-panel .table tr td {
   color: #333333;
 }
-/* line 27, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
+/* line 24, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
 #history-invoice-collection .collection-panel .panel-footer {
   color: #4bc8de;
 }
-/* line 32, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
+/* line 29, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
 #history-invoice-collection .collection-panel h4.panel-title a {
   display: inline-block;
   width: 100%;
   outline: none;
   text-decoration: none;
 }
-/* line 40, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
+/* line 39, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/history_invoice_collection.scss */
 #history-invoice-collection .collection-panel .invoice-garment-number {
   padding-left: 15px;
 }

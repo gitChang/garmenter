@@ -14,7 +14,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string  :crypted_password
       t.string  :salt
 
-      t.boolean :approved,     default: false
+      t.boolean :approved, default: false
+      t.boolean :deleted, default: false
 
       t.timestamps null: false
     end

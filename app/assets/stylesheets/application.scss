@@ -4,6 +4,7 @@
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
+//@import "google-fonts";
 @import "animate";
 
 @import "patches";
@@ -14,6 +15,8 @@
 
 @import "signup";
 @import "login";
+@import "request-password-reset";
+@import "password-reset";
 @import "invoice_barcode_scan";
 @import "garment_barcode_scan";
 @import "recent_invoice_collection";

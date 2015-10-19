@@ -1,21 +1,10 @@
 'use strict';
 
-App.controller('LoginCtrl', function ($scope, $state, HelperSvc) {
+App.controller('LoginCtrl', function ($scope) {
 
-  //--
+  //
   // variables
-  //--
-  var $hs = HelperSvc;
-
-  $scope.model = {
-    account_name: null,
-    password: null
-  }
-
-
-  //--
-  // events
-  //--
-
+  //
+  $scope.model = { account_name: null, password: null };
 
 })

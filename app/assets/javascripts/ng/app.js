@@ -1,20 +1,21 @@
 'use strict';
 
-var App = angular
-						.module('GarmentScanner', [
-							'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
-						]);
+//
+// variables
+//
+var App = angular.module('GarmentScanner', [
+	'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
+]);
 
-App.config(
- function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
-
-	$compileProvider
-
-		.aHrefSanitizationWhitelist(/^\s*(https?|zxing):/);
-
-
+//
+// callbacks
+//
+function configCallback($stateProvider, $urlRouterProvider, $locationProvider) {
 	$stateProvider
-
+		.state('test-page', {
+			url: '/test',
+			controller: 'TestCtrl'
+		})
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -25,10 +26,21 @@ App.config(
 			templateUrl : 'login-page.html',
 			controller  :  'LoginCtrl'
 		})
+		/**
+		.state('request-password-reset-page', {
+			url  				: '/password_reset',
+			templateUrl : 'request-password-reset-page.html',
+			controller  : 'RequestPasswordResetCtrl'
+		})
+		.state('password-reset-page', {
+			url  				: '/password-reset/:id',
+			templateUrl : 'password-reset-page.html'
+		})
+		**/
 		.state('invoice-barcode-scan-page', {
 			url  				: '/invoice-barcode-scan',
 			templateUrl : 'invoice-barcode-scan-page.html',
-			controller  : 'InvoiceScanCtrl'
+			controller  : 'InvoiceScanCtrl',
 		})
 		.state('garment-barcode-scan-page', {
 			url  				: '/garment-barcode-scan',
@@ -46,13 +58,13 @@ App.config(
       controller  : 'HistoryInvoiceCollection'
     });
 
-	// default fall back route.
-	$urlRouterProvider.otherwise('/login');
+	//$urlRouterProvider.otherwise('/login');			// default fall back route.
+	$locationProvider.html5Mode(true);					// remove hash on the url.
+}
 
-	// remove hash on the url.
-	$locationProvider.html5Mode(true);
-
-})
-.run( ['DaemonSvc', function ( DaemonSvc ) {
+//
+// configs
+//
+App.config(configCallback).run(['DaemonSvc', function (DaemonSvc) {
 	// initiate daemon service by injecting on run()
 }]);

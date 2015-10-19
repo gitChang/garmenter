@@ -4,19 +4,17 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
 
-    //--
+    //
     // variables
-    //--
+    //
     var $hs = HelperSvc;
 
-
-    //--
+    //
     // methods
-    //--
+    //
     function showProcessing() {
       $hs.indicateProcessing(element);
     }
-
 
     function processSignup() {
       $.ajax({
@@ -39,10 +37,9 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
       })
     }
 
-
-    //--
+    //
     // callbacks
-    //--
+    //
     function callbackSignup(event) {
       event.preventDefault();
 
@@ -54,10 +51,9 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
       }, 1000)
     }
 
-
-    //--
+    //
     // events
-    //--
+    //
     element.on('click', callbackSignup);
 
   }

@@ -1,17 +1,20 @@
 'use strict';
 
-App.directive('recentCollection', function ($compile, $templateCache, $state) {
+App.directive('recentCollectionDir', function ($state) {
 
   function linker (scope, element) {
-
-    element.on('click', function (event) {
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
       event.preventDefault();
-
-      // do not proceed when no scanned garments.
-      if ( !scope.sizeRecentInvoiceCollection ) return;
-
       $state.go('recent-invoice-collection-page');
-    })
+    }
+
+    //
+    // events
+    //
+    element.on('click', clickEventHandler)
   }
 
   return {

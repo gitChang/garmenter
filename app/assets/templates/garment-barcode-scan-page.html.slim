@@ -17,8 +17,7 @@
         i.fa.fa-chevron-left
         | Back
     li.two#save-garment-parent
-      a.save-garments href="#"
-        i.fa.fa-save
-        | Save
-        span.badge ng-show="garmentScannedLen"
-          | {{ garmentScannedLen }}
+      a.garment-quantity-dir href="#"
+        i.fa.fa-database
+        span.badge ng-show="garmentQuantity"
+          | {{ garmentQuantity }}

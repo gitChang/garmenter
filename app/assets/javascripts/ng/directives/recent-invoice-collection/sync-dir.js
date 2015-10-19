@@ -1,17 +1,15 @@
 'use strict';
 
-App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
-
-  // pass the scope tpl value
-  // to local, for template object.
-  var tpl = '<i class="fa fa-refresh"></i>Sync';
-
+App.directive('sync', function ($state, $templateCache, $http, HelperSvc) {
+  // processing indicator template.
+  // place it here for link template accessible.
+  var $template = '<i class="fa fa-refresh"></i>Sync';
 
   function linker (scope, element) {
-
-    //--
-    // variables
-    var $hs = HelperSvc;
+    //
+    // aliases
+    //
+    var $helper = HelperSvc;
 
     // countdown to auto-cancel delete action.
     // defaults to 6s.
@@ -19,13 +17,10 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
     var elTimer;
     var timeoutMyOswego;
 
-
-    //--
+    //
     // methods
-    //--
-
+    //
     function countdown() {
-
       if (element.find('.fa-spin').length) return;
 
       seconds = element.find('.cancel-timer').text();
@@ -34,7 +29,7 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
       if (seconds == 1) {
         elTimer = element.find('.cancel-timer');
         // reset html content to default.
-        element.html( tpl );
+        element.html($template);
         return;
       }
 
@@ -48,40 +43,29 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
     // to confirm msg
     function confirmSync () {
       // replace text with confirm intent
-      element.html($templateCache.get('recent-invoice-collection-tpls/confirm-msg-tpl.html'));
-      // show timer cancel
+      var _template = $templateCache.get('recent-invoice-collection-tpls/confirm-msg-tpl.html');
+      element.html(_template);
       countdown();
     }
 
-    //function Sync() {
-    //  $.post(Routes.)
-    //}
-
-    function makeHistory () {
+    function closeInvoice () {
       // show process syncing
-      element.html( '<i class="fa fa-refresh fa-spin"></i>' );
+      element.html('<i class="fa fa-refresh fa-spin"></i>');
 
-      // try to create history
-      if ( $hs.setHistory() ) {
-        setTimeout (
-        function () {
-          // redirect to new invoice entry page
-          $state.go('invoice-barcode-scan-page');
-        },
-        3000)
-      }
+      $http.post(Routes.close_recent_invoices_path(), $helper.getAuthToken())
+      .then(function(res) {
+        if (res.data === true) $state.go('invoice-barcode-scan-page');
+      })
     }
 
-
-    //--
-    // callbacks
-    //--
-
-    function callbackClick(event) {
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
       event.preventDefault();
 
       // if nothing to sync
-      if ( !jQuery('table tbody tr').length ) return;
+      if (!jQuery('table tbody tr').length) return;
 
       // ignore event when processing
       if (element.find('.fa-refresh.fa-spin').length) {
@@ -96,22 +80,20 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
 
       // user confirms sync
       if (element.find('#confirm-msg').length) {
-        makeHistory();
+        closeInvoice();
         return;
       }
     }
 
-
-    //--
+    //
     // events
-    //--
-
-    element.on('click', callbackClick);
+    //
+    element.on('click', clickEventHandler);
   }
 
   return {
     restrict: 'C',
-    template: tpl,
+    template: $template,
     link: linker
   };
 });

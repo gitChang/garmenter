@@ -1,7 +1,7 @@
 .row#history-invoice-collection
   .collection-panel
 
-    .blank-msg ng-hide="invoices.length"
+    .blank-msg ng-show="invoices==0"
       h3.text-center
         i.fa.fa-hand-o-right
         | &nbsp;
@@ -17,18 +17,26 @@
               aria-expanded="true"
               data-parent="#accordion"
               data-toggle="collapse"
-              href=("{{ '#' + invoice.invoice_number }}")
+              href=("{{ '#' + invoice.invoice_barcode }}")
               onclick=("return false")
             ]
-              | Invoice no. {{ invoice.invoice_number }}
-
-              span.pull-right.total-garments
-                | {{ getGarmentsTotal($index) }}
+              span
+                | {{ $index + 1 + '.' }}
                 | &nbsp;
-                | {{ pluralize( getGarmentsTotal($index) )}}
+                | {{ invoice.invoice_barcode }}
+                | &nbsp;&ndash;&nbsp;
+
+              span.qty
+                span.total-garments
+                  | {{ getGarmentsTotal($index) }}
+                | &nbsp;
+                span.unit {{ pluralize( getGarmentsTotal($index) ) }}
+
+              span.date-scanned am-time-ago="invoice.date_scanned"
+
 
         div.panel-collapse.collapse [
-          id=("{{ invoice.invoice_number }}")
+          id=("{{ invoice.invoice_barcode }}")
           aria-labelledby="headingOne"
           role="tabpanel"
         ]
@@ -36,9 +44,6 @@
             tbody
               tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index"
                 td.invoice-garment-number {{ garment_barcode }}
-
-          .panel-footer
-            small Today
 
 // actionbar
 #actionbar-bottom

@@ -10345,584 +10345,6 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
-/*!
- * WebCodeCamJS 1.9.2 javascript Bar code and QR code decoder 
- * Author: Tóth András
- * Web: http://atandrastoth.co.uk
- * email: atandrastoth@gmail.com
- * Licensed under the MIT license
- */
-
-var WebCodeCamJS = function(element) {
-    'use strict';
-    this.Version = {
-        name: 'WebCodeCamJS',
-        version: '1.9.2',
-        author: 'Tóth András'
-    };
-    var mediaDevices = (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) ? navigator.mediaDevices : ((navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia) ? {
-        getUserMedia: function(c) {
-            return new Promise(function(y, n) {
-                (navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia).call(navigator, c, y, n);
-            });
-        },
-        enumerateDevices: function(c) {
-            return new Promise(function(c, y, n) {
-                (MediaStreamTrack.getSources).call(navigator, c, y, n);
-            });
-        }
-    } : null);
-    HTMLVideoElement.prototype.streamSrc = ('srcObject' in HTMLVideoElement.prototype) ? function(stream) {
-        this.srcObject = !!stream ? stream : null;
-    } : function(stream) {
-        this.src = !!stream ? (window.URL || window.webkitURL).createObjectURL(stream) : new String();
-    };
-    var videoSelect, lastImageSrc, con, beepSound, w, h;
-    var display = Q(element),
-        DecodeWorker = new Worker('js/DecoderWorker.js'),
-        video = html('<video muted autoplay></video>'),
-        sucessLocalDecode = false,
-        localImage = false,
-        flipped = false,
-        isStreaming = false,
-        delayBool = false,
-        initialized = false,
-        localStream = null,
-        options = {
-            decodeQRCodeRate: 5,
-            decodeBarCodeRate: 5,
-            frameRate: 15,
-            width: 320,
-            height: 240,
-            constraints: {
-                video: {
-                    mandatory: {
-                        maxWidth: 1280,
-                        maxHeight: 720
-                    },
-                    optional: [{
-                        sourceId: true
-                    }]
-                },
-                audio: false
-            },
-            flipVertical: false,
-            flipHorizontal: false,
-            zoom: -1,
-            beep: 'audio/beep.mp3',
-            brightness: 0,
-            autoBrightnessValue: false,
-            grayScale: false,
-            contrast: 0,
-            threshold: 0,
-            sharpness: [],
-            resultFunction: function(resText, lastImageSrc) {
-                console.log(resText);
-            },
-            cameraSuccess: function(stream) {
-                console.log('cameraSuccess');
-            },
-            canPlayFunction: function() {
-                console.log('canPlayFunction');
-            },
-            getDevicesError: function(error) {
-                console.log(error);
-            },
-            getUserMediaError: function(error) {
-                console.log(error);
-            },
-            cameraError: function(error) {
-                console.log(error);
-            }
-        };
-
-    function init() {
-        var constraints = changeConstraints();
-        try {
-            mediaDevices.getUserMedia(constraints).then(cameraSuccess).catch(function(error) {
-                options.cameraError(error);
-                return false;
-            });
-        } catch (error) {
-            options.getUserMediaError(error);
-            return false;
-        }
-        return true;
-    }
-
-    function play() {
-        if (!localImage) {
-            if (!localStream) {
-                init();
-            }
-            delayBool = true;
-            video.play();
-            setTimeout(function() {
-                delayBool = false;
-                if (options.decodeBarCodeRate) {
-                    tryParseBarCode();
-                }
-                if (options.decodeQRCodeRate) {
-                    tryParseQRCode();
-                }
-            }, 2E3);
-        }
-    }
-
-    function stop() {
-        delayBool = true;
-        video.pause();
-        video.streamSrc(null);
-        con.clearRect(0, 0, w, h);
-        if (localStream) {
-            for (var i = 0; i < localStream.getTracks().length; i++) {
-                localStream.getTracks()[i].stop();
-            }
-        }
-        localStream = null;
-    }
-
-    function pause() {
-        delayBool = true;
-        video.pause();
-    }
-
-    function cameraSuccess(stream) {
-        localStream = stream;
-        video.streamSrc(stream);
-        video.play();
-        options.cameraSuccess(stream);
-    }
-
-    function cameraError(error) {
-        options.cameraError(error);
-    }
-
-    function setEventListeners() {
-        video.addEventListener('canplay', function(e) {
-            if (!isStreaming) {
-                if (video.videoWidth > 0) {
-                    h = video.videoHeight / (video.videoWidth / w);
-                }
-                display.setAttribute('width', w);
-                display.setAttribute('height', h);
-                if (options.flipHorizontal) {
-                    con.scale(-1, 1);
-                    con.translate(-w, 0);
-                }
-                if (options.flipVertical) {
-                    con.scale(1, -1);
-                    con.translate(0, -h);
-                }
-                isStreaming = true;
-                if (options.decodeQRCodeRate || options.decodeBarCodeRate) {
-                    delay();
-                }
-            }
-        }, false);
-        video.addEventListener('play', function() {
-            setInterval(function() {
-                if (video.paused || video.ended) {
-                    return;
-                }
-                var z = options.zoom;
-                if (z < 0) {
-                    z = optimalZoom();
-                }
-                con.drawImage(video, (w * z - w) / -2, (h * z - h) / -2, w * z, h * z);
-                var imageData = con.getImageData(0, 0, w, h);
-                if (options.grayScale) {
-                    imageData = grayScale(imageData);
-                }
-                if (options.brightness !== 0 || options.autoBrightnessValue) {
-                    imageData = brightness(imageData, options.brightness);
-                }
-                if (options.contrast !== 0) {
-                    imageData = contrast(imageData, options.contrast);
-                }
-                if (options.threshold !== 0) {
-                    imageData = threshold(imageData, options.threshold);
-                }
-                if (options.sharpness.length !== 0) {
-                    imageData = convolute(imageData, options.sharpness);
-                }
-                con.putImageData(imageData, 0, 0);
-            }, 1E3 / options.frameRate);
-        }, false);
-    }
-
-    function setCallBack() {
-        DecodeWorker.onmessage = function(e) {
-            if (localImage || (!delayBool && !video.paused)) {
-                if (e.data.success && e.data.result[0].length > 1 && e.data.result[0].indexOf('undefined') == -1) {
-                    sucessLocalDecode = true;
-                    beepSound.play();
-                    delayBool = true;
-                    delay();
-                    setTimeout(function() {
-                        options.resultFunction(e.data.result[0], lastImageSrc);
-                    }, 0);
-                } else if (e.data.finished && options.decodeBarCodeRate) {
-                    flipped = !flipped;
-                    if (!sucessLocalDecode || !localImage) {
-                        setTimeout(tryParseBarCode, 1E3 / options.decodeBarCodeRate);
-                    }
-                }
-            }
-        };
-        qrcode.callback = function(a) {
-            if (localImage || (!delayBool && !video.paused)) {
-                beepSound.play();
-                delayBool = true;
-                delay();
-                sucessLocalDecode = true;
-                setTimeout(function() {
-                    options.resultFunction(a, lastImageSrc);
-                }, 0);
-            }
-        };
-    }
-
-    function tryParseBarCode() {
-        var flipMode = flipped === true ? 'flip' : 'normal';
-        lastImageSrc = display.toDataURL();
-        DecodeWorker.postMessage({
-            ImageData: con.getImageData(0, 0, w, h).data,
-            Width: w,
-            Height: h,
-            cmd: flipMode,
-            DecodeNr: 1,
-            LowLight: false
-        });
-    }
-
-    function tryParseQRCode() {
-        try {
-            lastImageSrc = display.toDataURL();
-            qrcode.decode();
-        } catch (e) {
-            if (!localImage && !delayBool) {
-                setTimeout(tryParseQRCode, 1E3 / options.decodeQRCodeRate);
-            }
-        }
-    }
-
-    function delay() {
-        if (!localImage) {
-            setTimeout(play, 500, true);
-        }
-    }
-
-    function optimalZoom() {
-        return video.videoHeight / h;
-    }
-
-    function getImageLightness() {
-        var pixels = con.getImageData(0, 0, w, h),
-            d = pixels.data,
-            colorSum = 0,
-            r, g, b, avg;
-        for (var x = 0, len = d.length; x < len; x += 4) {
-            r = d[x];
-            g = d[x + 1];
-            b = d[x + 2];
-            avg = Math.floor((r + g + b) / 3);
-            colorSum += avg;
-        }
-        return Math.floor(colorSum / (w * h));
-    }
-
-    function brightness(pixels, adjustment) {
-        adjustment = adjustment === 0 && options.autoBrightnessValue ? Number(options.autoBrightnessValue) - getImageLightness() : adjustment;
-        var d = pixels.data;
-        for (var i = 0; i < d.length; i += 4) {
-            d[i] += adjustment;
-            d[i + 1] += adjustment;
-            d[i + 2] += adjustment;
-        }
-        return pixels;
-    }
-
-    function grayScale(pixels) {
-        var d = pixels.data;
-        for (var i = 0; i < d.length; i += 4) {
-            var r = d[i],
-                g = d[i + 1],
-                b = d[i + 2],
-                v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-            d[i] = d[i + 1] = d[i + 2] = v;
-        }
-        return pixels;
-    }
-
-    function contrast(pixels, cont) {
-        var d = pixels.data,
-            average;
-        for (var i = 0; i < d.length; i += 4) {
-            cont = 10,
-                average = Math.round((d[i] + d[i + 1] + d[i + 2]) / 3);
-            if (average > 127) {
-                d[i] += d[i] / average * cont;
-                d[i + 1] += d[i + 1] / average * cont;
-                d[i + 2] += d[i + 2] / average * cont;
-            } else {
-                d[i] -= d[i] / average * cont;
-                d[i + 1] -= d[i + 1] / average * cont;
-                d[i + 2] -= d[i + 2] / average * cont;
-            }
-        }
-        return pixels;
-    }
-
-    function threshold(pixels, thres) {
-        var average, d = pixels.data;
-        for (var i = 0, len = w * h * 4; i < len; i += 4) {
-            average = d[i] + d[i + 1] + d[i + 2];
-            if (average < thres) {
-                d[i] = d[i + 1] = d[i + 2] = 0;
-            } else {
-                d[i] = d[i + 1] = d[i + 2] = 255;
-            }
-            d[i + 3] = 255;
-        }
-        return pixels;
-    }
-
-    function convolute(pixels, weights, opaque) {
-        var sw = pixels.width,
-            sh = pixels.height,
-            w = sw,
-            h = sh,
-            side = Math.round(Math.sqrt(weights.length)),
-            halfSide = Math.floor(side / 2),
-            src = pixels.data,
-            tmpCanvas = document.createElement('canvas'),
-            tmpCtx = tmpCanvas.getContext('2d'),
-            output = tmpCtx.createImageData(w, h),
-            dst = output.data,
-            alphaFac = opaque ? 1 : 0;
-        for (var y = 0; y < h; y++) {
-            for (var x = 0; x < w; x++) {
-                var sy = y,
-                    sx = x,
-                    r = 0,
-                    g = 0,
-                    b = 0,
-                    a = 0,
-                    dstOff = (y * w + x) * 4;
-                for (var cy = 0; cy < side; cy++) {
-                    for (var cx = 0; cx < side; cx++) {
-                        var scy = sy + cy - halfSide,
-                            scx = sx + cx - halfSide;
-                        if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
-                            var srcOff = (scy * sw + scx) * 4,
-                                wt = weights[cy * side + cx];
-                            r += src[srcOff] * wt;
-                            g += src[srcOff + 1] * wt;
-                            b += src[srcOff + 2] * wt;
-                            a += src[srcOff + 3] * wt;
-                        }
-                    }
-                }
-                dst[dstOff] = r;
-                dst[dstOff + 1] = g;
-                dst[dstOff + 2] = b;
-                dst[dstOff + 3] = a + alphaFac * (255 - a);
-            }
-        }
-        return output;
-    }
-
-    function buildSelectMenu(selectorVideo, ind) {
-        videoSelect = Q(selectorVideo);
-        videoSelect.innerHTML = '';
-        try {
-            if (mediaDevices && mediaDevices.enumerateDevices) {
-                mediaDevices.enumerateDevices().then(function(devices) {
-                    devices.forEach(function(device) {
-                        gotSources(device);
-                    });
-                    videoSelect.selectedIndex = videoSelect.children.length <= ind ? 0 : ind;
-                }).catch(function(error) {
-                    options.getDevicesError(error);
-                });
-            } else if (mediaDevices && !mediaDevices.enumerateDevices) {
-                html('<option value="true">On</option>', videoSelect);
-                options.getDevicesError(new NotSupportError('enumerateDevices Or getSources is Not supported'));
-            } else {
-                throw new NotSupportError('getUserMedia is Not supported');
-            }
-        } catch (error) {
-            options.getDevicesError(error);
-        }
-    }
-
-    function gotSources(device) {
-        if (device.kind === 'video' || device.kind === 'videoinput') {
-            var face = (!device.facing || device.facing === '') ? 'unknown' : device.facing;
-            var text = device.label || 'camera ' + (videoSelect.length + 1) + ' (facing: ' + face + ')';
-            html('<option value="' + (device.id || device.deviceId) + '">' + text + '</option>', videoSelect);
-        }
-    }
-
-    function changeConstraints() {
-        var constraints = JSON.parse(JSON.stringify(options.constraints));
-        if (videoSelect && videoSelect.length !== 0) {
-            switch (videoSelect[videoSelect.selectedIndex].value.toString()) {
-                case 'true':
-                    constraints.video.optional = [{
-                        sourceId: true
-                    }];
-                    break;
-                case 'false':
-                    constraints.video = false;
-                    break;
-                default:
-                    constraints.video.optional = [{
-                        sourceId: videoSelect[videoSelect.selectedIndex].value
-                    }];
-                    break;
-            }
-        }
-        constraints.audio = false;
-        return constraints;
-    }
-
-    function Q(el) {
-        if (typeof el === 'string') {
-            var els = document.querySelectorAll(el);
-            return typeof els === 'undefined' ? undefined : els.length > 1 ? els : els[0];
-        }
-        return el;
-    }
-
-    function decodeLocalImage(url) {
-        stop();
-        localImage = true;
-        sucessLocalDecode = false;
-        var img = new Image();
-        img.onload = function() {
-            con.fillStyle = '#fff';
-            con.fillRect(0, 0, w, h);
-            con.drawImage(this, 5, 5, w - 10, h - 10);
-            tryParseQRCode();
-            tryParseBarCode();
-        };
-        if (url) {
-            download("temp", url);
-            decodeLocalImage();
-        } else {
-            if (FileReaderHelper) {
-                new FileReaderHelper().Init('jpg|png|jpeg|gif', 'dataURL', function(e) {
-                    img.src = e.data;
-                }, true);
-            } else {
-                alert("fileReader class not found!");
-            }
-        }
-    }
-
-    function download(filename, url) {
-        var a = window.document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        a.click();
-    }
-
-    function mergeRecursive(target, source) {
-        if (typeof target !== 'object') {
-            target = {};
-        }
-        for (var property in source) {
-            if (source.hasOwnProperty(property)) {
-                var sourceProperty = source[property];
-                if (typeof sourceProperty === 'object') {
-                    target[property] = mergeRecursive(target[property], sourceProperty);
-                    continue;
-                }
-                target[property] = sourceProperty;
-            }
-        }
-        for (var a = 2, l = arguments.length; a < l; a++) {
-            mergeRecursive(target, arguments[a]);
-        }
-        return target;
-    }
-
-    function html(innerhtml, appendTo) {
-        var item = document.createElement('div');
-        if (innerhtml) {
-            item.innerHTML = innerhtml;
-        }
-        if (appendTo) {
-            appendTo.appendChild(item.children[0]);
-            return item;
-        }
-        return item.children[0];
-    }
-
-    function NotSupportError(message) {
-        this.name = 'NotSupportError';
-        this.message = (message || '');
-    }
-    NotSupportError.prototype = Error.prototype;
-    return {
-        init: function(opt) {
-            if (initialized) {
-                return this;
-            }
-            if (!display || display.tagName.toLowerCase() !== 'canvas') {
-                console.log('Element type must be canvas!');
-                alert('Element type must be canvas!');
-                return false;
-            }
-            con = display.getContext('2d');
-            if (opt) {
-                options = mergeRecursive(options, opt);
-                beepSound = new Audio(options.beep);
-            }
-            display.width = w = options.width;
-            display.height = h = options.height;
-            qrcode.sourceCanvas = display;
-            initialized = true;
-            setEventListeners();
-            if (options.decodeQRCodeRate || options.decodeBarCodeRate) {
-                setCallBack();
-            }
-            return this;
-        },
-        play: function() {
-            localImage = false;
-            play();
-            return this;
-        },
-        stop: function() {
-            stop();
-            return this;
-        },
-        pause: function() {
-            pause();
-            return this;
-        },
-        buildSelectMenu: function(selector, ind) {
-            buildSelectMenu(selector, ind ? ind : 0);
-            return this;
-        },
-        getOptimalZoom: function() {
-            return optimalZoom();
-        },
-        getLastImageSrc: function() {
-            return display.toDataURL();
-        },
-        decodeLocalImage: function(url) {
-            decodeLocalImage(url);
-        },
-        isInitialized: function() {
-            return initialized;
-        },
-        options: options
-    };
-};
 /* ========================================================================
  * Bootstrap: affix.js v3.3.4
  * http://getbootstrap.com/javascript/#affix
@@ -13587,6 +13009,24 @@ var WebCodeCamJS = function(element) {
     };
     namespace(root, "Routes");
     root.Routes = {
+// close_recent_invoices => /ajax/invoices/close_recent(.:format)
+  // function(options)
+  close_recent_invoices_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[2,[7,"/",false],[2,[6,"close_recent",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
+// find_barcode => /ajax/find_barcode/:invoice_barcode(.:format)
+  // function(invoice_barcode, options)
+  find_barcode_path: Utils.route(["invoice_barcode"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"find_barcode",false],[2,[7,"/",false],[2,[3,"invoice_barcode",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
+// garment => /ajax/garments/:garment_barcode(.:format)
+  // function(garment_barcode, options)
+  garment_path: Utils.route(["garment_barcode"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"garments",false],[2,[7,"/",false],[2,[3,"garment_barcode",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
+// garments => /ajax/garments(.:format)
+  // function(options)
+  garments_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"garments",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
+// history_invoices => /ajax/invoices/history(.:format)
+  // function(options)
+  history_invoices_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[2,[7,"/",false],[2,[6,"history",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
+// history_size_invoices => /ajax/invoices/history_size(.:format)
+  // function(options)
+  history_size_invoices_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[2,[7,"/",false],[2,[6,"history_size",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
 // invoices => /ajax/invoices(.:format)
   // function(options)
   invoices_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
@@ -13596,9 +13036,18 @@ var WebCodeCamJS = function(element) {
 // logout => /ajax/logout(.:format)
   // function(options)
   logout_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"logout",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
-// new_invoice => /ajax/invoices/new(.:format)
+// mark_delete_invoices => /ajax/invoices/delete/:invoice_barcode(.:format)
+  // function(invoice_barcode, options)
+  mark_delete_invoices_path: Utils.route(["invoice_barcode"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[2,[7,"/",false],[2,[6,"delete",false],[2,[7,"/",false],[2,[3,"invoice_barcode",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
+// password_reset => /ajax/password_resets/:id(.:format)
+  // function(id, options)
+  password_reset_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"password_resets",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
+// password_resets => /ajax/password_resets(.:format)
   // function(options)
-  new_invoice_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
+  password_resets_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"password_resets",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
+// quantity_garments => /ajax/garments/:invoice_barcode/quantity(.:format)
+  // function(invoice_barcode, options)
+  quantity_garments_path: Utils.route(["invoice_barcode"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"garments",false],[2,[7,"/",false],[2,[3,"invoice_barcode",false],[2,[7,"/",false],[2,[6,"quantity",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
 // rails_info => /rails/info(.:format)
   // function(options)
   rails_info_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"info",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
@@ -13611,6 +13060,12 @@ var WebCodeCamJS = function(element) {
 // rails_mailers => /rails/mailers(.:format)
   // function(options)
   rails_mailers_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"rails",false],[2,[7,"/",false],[2,[6,"mailers",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
+// recent_invoices => /ajax/invoices/recent(.:format)
+  // function(options)
+  recent_invoices_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[2,[7,"/",false],[2,[6,"recent",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
+// recent_size_invoices => /ajax/invoices/recent_size(.:format)
+  // function(options)
+  recent_size_invoices_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[2,[7,"/",false],[2,[6,"recent_size",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
 // root => /
   // function(options)
   root_path: Utils.route([], [], [7,"/",false], arguments),
@@ -50252,7 +49707,14 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/actionbar-top-tpls/login-content-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand navbar-brand-extend-pad-left">TUKU Laundry System</span><span id="logo"><img alt="brand" height="36" src="/images/tuku.png" /></span>\n</div>')
+  $templateCache.put("actionbar-top-tpls/login-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand navbar-brand-extend-pad-left">TUKU Laundry System</span><span id="logo"><img alt="logo" height="36" src="/images/tuku.png" /></span>\n</div>\n<p class="navbar-text navbar-right">\n  <a class="btn btn-primary btn-xs" ui-sref="signup-page">Sign Up</a>\n</p>')
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/actionbar-top-tpls/password-reset-content-tpl.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("actionbar-top-tpls/password-reset-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Password Reset</b></span>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -50260,6 +49722,13 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
   $templateCache.put("actionbar-top-tpls/recent-invoice-collection-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Recent Collection</b></span>\n</div>\n<p class="navbar-text navbar-right">\n  <a class="logout-user" ng-click="logoutUser()">Logout</a>\n</p>')
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/actionbar-top-tpls/request-password-reset-content-tpl.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("actionbar-top-tpls/request-password-reset-content-tpl.html", '<div class="navbar-header">\n  <span class="navbar-brand"><b>Request Password Reset</b></span>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -50280,7 +49749,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/garment-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two" id="save-garment-parent">\n      <a class="save-garments" href="#"><i class="fa fa-save"></i>Save<span class="badge" ng-show="garmentScannedLen">{{ garmentScannedLen }}</span></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("garment-barcode-scan-page.html", '<div class="row" id="garment-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="row" id="invoice-barcode">\n      <div class="col-xs-12 text-center">\n        <canvas id="invoice-barcode-pic"></canvas>\n      </div>\n    </div>\n    <form>\n      <new-garment-scan-dir></new-garment-scan-dir>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two" id="save-garment-parent">\n      <a class="garment-quantity-dir" href="#"><i class="fa fa-database"></i><span class="badge" ng-show="garmentQuantity">{{ garmentQuantity }}</span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -50301,35 +49770,42 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/garment-scan-tpls/new-garment-scan-tpl.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("garment-scan-tpls/new-garment-scan-tpl.html", '<div class="row">\n  <div class="col-xs-12 delete-garment-parent">\n    <label>Item No. $</label><span class="pull-right"><a class="delete-scanned-garment hidden" href="#" tabindex="-1"><i class="fa fa-trash"></i></a></span>\n  </div>\n  <div class="col-xs-12">\n    <input class="garment-barcode-number" type="text" />\n  </div>\n</div>')
+  $templateCache.put("garment-scan-tpls/new-garment-scan-tpl.html", '<div class="row">\n  <div class="col-xs-12 delete-garment-parent">\n    <label>Item No. $</label><span class="pull-right"><a class="delete-scanned-garment-dir hidden" href="#" tabindex="-1"><i class="fa fa-trash"></i></a></span>\n  </div>\n  <div class="col-xs-12">\n    <input class="garment-barcode-dir" type="text" />\n  </div>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/history-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("history-invoice-collection-page.html", '<div class="row" id="history-invoice-collection">\n  <div class="collection-panel">\n    <div class="blank-msg" ng-hide="invoices.length">\n      <h3 class="text-center">\n        <i class="fa fa-hand-o-right"></i>&nbsp;History is Empty...\n      </h3>\n    </div>\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice no. {{ invoice.invoice_number }}<span class="pull-right total-garments">{{ getGarmentsTotal($index) }}&nbsp;{{ pluralize( getGarmentsTotal($index) )}}</span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <small>Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("history-invoice-collection-page.html", '<div class="row" id="history-invoice-collection">\n  <div class="collection-panel">\n    <div class="blank-msg" ng-show="invoices==0">\n      <h3 class="text-center">\n        <i class="fa fa-hand-o-right"></i>&nbsp;History is Empty...\n      </h3>\n    </div>\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_barcode }}" onclick="return false"><span>{{ $index + 1 + \'.\' }}&nbsp;{{ invoice.invoice_barcode }}&nbsp;&ndash;&nbsp;</span><span class="qty"><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;<span class="unit">{{ pluralize( getGarmentsTotal($index) ) }}</span></span><span am-time-ago="invoice.date_scanned" class="date-scanned"></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_barcode }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/invoice-barcode-scan-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-number" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a ui-sref="history-invoice-collection-page"><i class="fa fa-history"></i>History<span class="badge" ng-show="sizeHistoryInvoiceCollection">{{ sizeHistoryInvoiceCollection }}</span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-show="sizeRecentInvoiceCollection">{{ sizeRecentInvoiceCollection }}</span></a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("invoice-barcode-scan-page.html", '<div class="row" id="invoice-barcode-scan">\n  <div class="hidden" id="notif-center"></div>\n  <div class="barcode-panel">\n    <div class="col-xs-12 text-center">\n      <h2 class="scan-msg">\n        Enter Invoice Barcode\n      </h2>\n    </div>\n    <div class="col-xs-12 text-center">\n      <input class="invoice-barcode-dir" type="text" />\n    </div>\n    <div class="col-xs-12 text-center hidden" id="spinner">\n      <h3>\n        <i class="fa fa-spinner fa-pulse fa-lg"></i>\n      </h3>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="collection-history-dir" href="#"><i class="fa fa-history"></i>History<span class="badge" ng-bind="sizeHistoryCollection" ng-show="sizeHistoryCollection"></span></a>\n    </li>\n    <li class="two">\n      <a class="recent-collection-dir" href="#"><i class="fa fa-th"></i>Collection<span class="badge" ng-bind="sizeRecentCollection" ng-show="sizeRecentCollection"></span></a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/login-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("login-page.html", '<div class="row" id="login-form">\n  <div class="hidden" id="notif-center"></div>\n  <div class="col-xs-12">\n    <div id="form-panel">\n      <form>\n        <div class="row">\n          <input ng-model="model.account_name" placeholder="account or email" type="text" />\n        </div>\n        <div class="row">\n          <input ng-model="model.password" placeholder="password" type="password" />\n        </div>\n        <div class="row">\n          <button class="login-btn">Login</button>\n        </div>\n        <div class="row text-center" id="or-signup">\n          <div class="col-xs-12">\n            <a ui-sref="signup-page">Or create an account.</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<div class="row" id="company-label">\n  <div class="col-xs-12 label-panel">\n    <small><a href="http://tuku-singapore.com" target="_blank">visit&nbsp;<b>TUKU Singapore PTE. LTD.</b></a></small>\n  </div>\n</div>')
+  $templateCache.put("login-page.html", '<div class="row" id="login-form">\n  <div class="hidden" id="notif-center"></div>\n  <div class="col-xs-12">\n    <div id="form-panel">\n      <form>\n        <div class="row">\n          <input ng-model="model.account_name" placeholder="account or email" type="text" />\n        </div>\n        <div class="row">\n          <input ng-model="model.password" placeholder="password" type="password" />\n        </div>\n        <div class="row">\n          <button class="login-btn">Login</button>\n        </div>\n        <div class="row text-center" id="or-signup">\n          <div class="col-xs-12">\n            <a ui-sref="request-password-reset-page">Forgot your password?</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n<div class="row" id="company-label">\n  <div class="col-xs-12 label-panel">\n    <small><a href="http://tuku-singapore.com" target="_blank">visit&nbsp;<b>TUKU Singapore PTE. LTD.</b></a></small>\n  </div>\n</div>')
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/password-reset-page.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("password-reset-page.html", '<div class="row" id="password-reset-form">\n  <div class="hidden" id="notif-center"></div>\n  <div id="form-panel">\n    <form>\n      <h4>\n        <i class="fa fa-key"></i>&nbsp;Enter your new password\n      </h4>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.password" placeholder="password" type="password" />\n      </div>\n      <div class="form-group">\n        <input class="acct-data" ng-model="model.password_confirmation" placeholder="re-enter password" type="password" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="password-reset-dir" href="#"><i class="fa fa-check"></i>Reset</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
 // source: app/assets/templates/recent-invoice-collection-page.html.slim
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_number }}" onclick="return false">Invoice No. {{ invoice.invoice_number }}<span class="qty pull-right"><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;<span class="unit">{{ pluralize( getGarmentsTotal($index) ) }}</span></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_number }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span class="add-garment-parent"><a class="add-garment" data-invoice-number="{{ invoice.invoice_number }}" href="#"><i class="fa fa-plus"></i></a></span><small class="pull-right">Today</small>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="sync" href="#"></a>\n    </li>\n    <li class="two">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
+  $templateCache.put("recent-invoice-collection-page.html", '<div class="row" id="recent-invoice-collection">\n  <div class="collection-panel">\n    <div class="blank-msg" ng-show="invoices==0">\n      <h3 class="text-center">\n        All Synced&nbsp;<i class="fa fa-check"></i>\n      </h3>\n    </div>\n    <div class="panel-group" id="accordion" ng-repeat="invoice in invoices">\n      <div class="panel panel-default">\n        <div class="panel-heading" id="headingOne" role="tab">\n          <h4 class="panel-title">\n            <a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="{{ &#39;#&#39; + invoice.invoice_barcode }}" onclick="return false"><span>{{ $index + 1 + \'.\' }}&nbsp;{{ invoice.invoice_barcode }}&nbsp;&ndash;&nbsp;</span><span class="qty"><span class="total-garments">{{ getGarmentsTotal($index) }}</span>&nbsp;<span class="unit">{{ pluralize( getGarmentsTotal($index) ) }}</span></span><span am-time-ago="invoice.date_scanned" class="date-scanned"></span></a>\n          </h4>\n        </div>\n        <div aria-labelledby="headingOne" class="panel-collapse collapse" id="{{ invoice.invoice_barcode }}" role="tabpanel">\n          <table class="table">\n            <tbody>\n              <tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index">\n                <td class="invoice-garment-number">\n                  {{ garment_barcode }}\n                </td>\n                <td class="delete-garment-parent">\n                  <a class="delete-garment-dir" data-garment-number="{{ garment_barcode }}" data-invoice-number="{{ invoice.invoice_barcode }}" href="#"><i class="fa fa-trash-o"></i></a>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class="panel-footer">\n            <span class="add-garment-parent"><a class="add-garment-dir" data-invoice-number="{{ invoice.invoice_barcode }}" href="#"><i class="fa fa-plus"></i></a></span><span class="delete-invoice-wrap"><a class="delete-invoice-dir" data-invoice-number="{{ invoice.invoice_barcode }}" href="">Delete Invoice</a></span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a class="sync" href="#"></a>\n    </li>\n    <li class="two">\n      <a ui-sref="invoice-barcode-scan-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -50337,6 +49813,13 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
   $templateCache.put("recent-invoice-collection-tpls/confirm-msg-tpl.html", '<span id="confirm-msg">Confirm</span><span>..&nbsp;</span><span class="cancel-timer">6</span>')
+}]);
+
+// Angular Rails Template
+// source: app/assets/templates/request-password-reset-page.html.slim
+
+angular.module("templates").run(["$templateCache", function($templateCache) {
+  $templateCache.put("request-password-reset-page.html", '<div class="row" id="request-password-reset-form">\n  <div class="hidden" id="notif-center"></div>\n  <div id="form-panel">\n    <form>\n      <h4>\n        <i class="fa fa-envelope"></i>&nbsp;&nbsp;Enter Contact Person Email Address\n      </h4>\n      <div class="form-group">\n        <input ng-model="model.contact_person_email" placeholder="email address" type="text" />\n      </div>\n    </form>\n  </div>\n</div>\n<div id="actionbar-bottom">\n  <ul class="nav navbar-nav">\n    <li class="first">\n      <a id="or-login" ui-sref="login-page"><i class="fa fa-chevron-left"></i>Back</a>\n    </li>\n    <li class="two">\n      <a class="request-password-reset-dir" href="#"><i class="fa fa-paper-plane"></i>Send Request</a>\n    </li>\n  </ul>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -50369,21 +49852,22 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 
 'use strict';
 
-var App = angular
-						.module('GarmentScanner', [
-							'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
-						]);
+//
+// variables
+//
+var App = angular.module('GarmentScanner', [
+	'ngResource', 'ngCookies', 'ui.router', 'templates', 'angularMoment'
+]);
 
-App.config(
- function ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
-
-	$compileProvider
-
-		.aHrefSanitizationWhitelist(/^\s*(https?|zxing):/);
-
-
+//
+// callbacks
+//
+function configCallback($stateProvider, $urlRouterProvider, $locationProvider) {
 	$stateProvider
-
+		.state('test-page', {
+			url: '/test',
+			controller: 'TestCtrl'
+		})
 		.state('signup-page', {
 			url  				: '/signup',
 			templateUrl : 'signup-page.html',
@@ -50394,10 +49878,21 @@ App.config(
 			templateUrl : 'login-page.html',
 			controller  :  'LoginCtrl'
 		})
+		/**
+		.state('request-password-reset-page', {
+			url  				: '/password_reset',
+			templateUrl : 'request-password-reset-page.html',
+			controller  : 'RequestPasswordResetCtrl'
+		})
+		.state('password-reset-page', {
+			url  				: '/password-reset/:id',
+			templateUrl : 'password-reset-page.html'
+		})
+		**/
 		.state('invoice-barcode-scan-page', {
 			url  				: '/invoice-barcode-scan',
 			templateUrl : 'invoice-barcode-scan-page.html',
-			controller  : 'InvoiceScanCtrl'
+			controller  : 'InvoiceScanCtrl',
 		})
 		.state('garment-barcode-scan-page', {
 			url  				: '/garment-barcode-scan',
@@ -50415,14 +49910,14 @@ App.config(
       controller  : 'HistoryInvoiceCollection'
     });
 
-	// default fall back route.
-	$urlRouterProvider.otherwise('/login');
+	//$urlRouterProvider.otherwise('/login');			// default fall back route.
+	$locationProvider.html5Mode(true);					// remove hash on the url.
+}
 
-	// remove hash on the url.
-	$locationProvider.html5Mode(true);
-
-})
-.run( ['DaemonSvc', function ( DaemonSvc ) {
+//
+// configs
+//
+App.config(configCallback).run(['DaemonSvc', function (DaemonSvc) {
 	// initiate daemon service by injecting on run()
 }]);
 'use strict';
@@ -50448,62 +49943,66 @@ App.service('GlobalDataSvc', function () {
 App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
 
   //
-  // variables
+  // aliases
   //
-
-  var $hs = HelperSvc;
-
-  //
-  // methods
-  //
-
-  function verifyUserAccess() {
-    if ($state.current.name === 'login-page' || $state.current.name === 'signup-page')
-      return;
-    // don't render login
-    // on users already
-    // logged in.
-    $.ajax({
-      url: Routes.user_access_path(),
-      type: 'get'
-    })
-    .done(function (authorized) {
-      if (authorized === true && $state.current.name === 'login-page')
-        $window.location.pathname = '/invoice-barcode-scan';
-
-      if (authorized === false) {
-        if ($state.current.name !== 'login-page' && $state.current.name !== 'signup-page')
-          $window.location.pathname = '/login';
-      }
-    })
-  }
+  var $helper = HelperSvc;
 
   //
   // events
   //
-
   $rootScope.$on('$stateChangeSuccess', function () {
     // clear global invoice variable
     switch ( $state.current.name ) {
       case 'invoice-barcode-scan-page':
       case 'recent-invoice-collection-page':
-        $hs.clearInvoiceNumber();
-        break;
+            $helper.clearInvoiceBarcode();
+            break;
     }
+  })
 
-    // inspect user status if already logged in.
-    verifyUserAccess();
+  // inspect user status if already logged in.
+  var protectedStates = ['login-page', 'signup-page']; //, 'request-password-reset-page', 'password-reset-page'];
 
-    // log invoice collections
-    console.log( 'state: ', $state.current.name );
-    console.log( 'invoice: ', $hs.getInvoiceNumber() );
-    console.log( 'coll: ', JSON.stringify( $hs.getRecentInvoiceCollection() ) );
-    console.log( 'hist: ', JSON.stringify( $hs.getHistoryInvoiceCollection() ) );
+  $rootScope.$on('$stateChangeStart', function(event, toState) {
+    if (protectedStates.indexOf(toState.name) > -1) {
+      $.ajax({
+        url: Routes.user_access_path(),
+        type: 'get'
+      })
+      .done(function (authorized) {
+        if (authorized === true) $state.go('invoice-barcode-scan-page');
+      })
+
+    } else {
+      $.ajax({
+        url: Routes.user_access_path(),
+        type: 'get'
+      })
+      .done(function (authorized) {
+        if (authorized !== true) $window.location.pathname = '/login';
+      })
+    }
   })
 
   $(window).on('focus', function () {
-    // inspect user status if already logged in.
-    verifyUserAccess();
+    if (protectedStates.indexOf($state.current.name) > -1) {
+      $.ajax({
+        url: Routes.user_access_path(),
+        type: 'get'
+      })
+      .done(function (authorized) {
+        if (authorized === true) $state.go('invoice-barcode-scan-page');
+      })
+
+    } else {
+      $.ajax({
+        url: Routes.user_access_path(),
+        type: 'get'
+      })
+      .done(function (authorized) {
+        if (authorized !== true) $window.location.pathname = '/login';
+      })
+    }
   })
 
 })
@@ -50517,11 +50016,49 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
 
   //--
-  // methods
+  // helpers
   //--
 
+  this.isOnline = function() {
+    $.ajax({
+     type: "GET",
+     url: "keepalive.php",
+     success: function(msg){
+       alert("Connection active!")
+     },
+     error: function(XMLHttpRequest, textStatus, errorThrown) {
+         if(textStatus == 'timeout') {
+             alert('Connection seems dead!');
+         }
+     }
+   });
+  }
+
+  this.findBarcode = function(barcode) {
+    if (!self.isOnline()) return;
+
+    function find(callback) {
+      $.ajax({
+        url: Routes.find_barcode_path(barcode),
+        type: 'get'
+      })
+      .done(function (data) {
+        callback(data);
+      })
+      .fail(function() {
+        self.notify('Server Error Encountered');
+      })
+    }
+
+    var res = find(function(data) {
+      return data || 'fuck';
+    });
+
+    return res;
+  }
+
   this.getAuthToken = function () {
-    return { authenticity_token: $cookies.get('xsrf_token') }
+    return { authenticity_token: $cookies.get('xsrf_token') };
   }
 
 
@@ -50530,19 +50067,19 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
   }
 
 
-  this.setInvoiceNumber = function (number) {
+  this.setInvoiceBarcode = function (number) {
     // set invoice
     GlobalDataSvc.currentInvoiceNumber = number.toUpperCase();
   }
 
 
-  this.clearInvoiceNumber = function () {
+  this.clearInvoiceBarcode = function () {
     // clear invoice
     GlobalDataSvc.currentInvoiceNumber = null;
   }
 
 
-  this.getInvoiceNumber = function () {
+  this.getInvoiceBarcode = function () {
     return GlobalDataSvc.currentInvoiceNumber;
   }
 
@@ -50657,6 +50194,9 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
 
   this.addGarmentCollection = function (object) {
+    $.ajax({
+      url: Routes.invoice_index_path()
+    })
     // save invoice to collection
     GlobalDataSvc.recentInvoiceCollection.push(object);
     return true;
@@ -50681,7 +50221,7 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
   this.notify = function (msg) {
     var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
-    var notifyCenter = jQuery('#notif-center')
+    var notifyCenter = $('#notif-center')
                        .html($templateCache.get(tplPath));
 
     // place msg and display warning
@@ -50692,7 +50232,7 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
   this.removeNotify = function () {
     var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
-    var notifyCenter = jQuery('#notif-center')
+    var notifyCenter = $('#notif-center')
                        .html($templateCache.get(tplPath));
 
     // hide and remove warning
@@ -50767,9 +50307,9 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
     var tpl = $templateCache.get('shared-tpls/processing-tpl.html');
 
     // cache original template for late reset
-    self.originalHtml = jQuery(element).html();
+    self.originalHtml = $(element).html();
 
-    jQuery(element).html(tpl);
+    $(element).html(tpl);
 
     return true;
   }
@@ -50777,7 +50317,7 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
   this.stopIndicateProcessing = function (element) {
     // reset element html
-    jQuery(element).html(self.originalHtml);
+    $(element).html(self.originalHtml);
     return true;
   }
 
@@ -50785,145 +50325,100 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 ;
 'use strict';
 
-App.controller('ActionbarTopCtrl',
-function ($scope, $state, $templateCache, HelperSvc) {
-
-  //--
-  // variables
-  //--
-  var $hs = HelperSvc;
-
-  $scope.entryTitle = $hs.getInvoiceNumber(); // topbar title
+App.controller('ActionbarTopCtrl', function ($scope, HelperSvc) {
+  //
+  // aliases
+  //
+  var $helper = HelperSvc;
 
 })
 ;
 'use strict';
 
 App.controller('GarmentScanCtrl',
-function ($scope, $state, $compile, $templateCache, HelperSvc) {
+function ($scope, $state, $compile, $templateCache, $http, HelperSvc) {
+
+  //
+  // aliases
+  //
+  var $helper = HelperSvc;
 
   //
   // variables
   //
+  $scope.invoiceBarcode = $helper.getInvoiceBarcode();
+  $scope.garmentQuantity = null; // bound to badge
 
-  var $hs = HelperSvc;
-
-  $scope.model = {
-    invoice_number: $hs.getInvoiceNumber(),
-    garment_barcodes: []
-  };
-
-  $scope.garmentScannedLen = 0; // bound to badge
-
-  // invoice number is required,
-  // so if not present, goto invoice scan page
-  if (!$scope.model.invoice_number) {
+  // invoice barcode is required,
+  // if not present, goto invoice scan page.
+  if (!$scope.invoiceBarcode) {
     $state.go('invoice-barcode-scan-page');
     return;
   }
 
-
-  // indicate invoice number
-  setTimeout(function () {
-    var text;
-    if ($hs.findInvoiceRecentCollection())
-      text = 'UPDATE : ' + $scope.model.invoice_number;
-    else text = 'NEW : ' + $scope.model.invoice_number;
-    // apply text
-    jQuery('.navbar-brand').text(text);
-  },500);
-
-
-  // holds the ordering
-  // of the gament number
-  // label on the page.
-  $scope.tempLastOrder;
-
+  // indicate invoice barcode on topbar
+  $http.get(Routes.find_barcode_path($scope.invoiceBarcode))
+  .then(function(res) {
+    var _text = (res.data === true ? 'UPDATE: ' : 'NEW: ') + $scope.invoiceBarcode;
+    $('.navbar-brand').text(_text);
+  })
 
   // create barcode img using the number scanned.
   // display barcode canvas element on page.
-  jQuery('#invoice-barcode-pic')
-  .JsBarcode($scope.model.invoice_number, {
+  $('#invoice-barcode-pic').JsBarcode($scope.invoiceBarcode, {
     width: 2,
     height: 60,
     lineColor: '#eee'
   });
 
 
-  //--
-  // methods
-  //--
-
   // create a new tpl for asking new entry
   // of garment barcode.
-  $scope.newGarmentScanTemplate = function (prevOrder) {
-        // template
-        var tpl = $templateCache.get('garment-scan-tpls/new-garment-scan-tpl.html');
-        // set the number label of the next garment
-        tpl = tpl.replace('$', prevOrder + 1);
-        // add to page
-        angular.element('new-garment-scan-dir').append(function () {
-          return $compile(tpl)($scope);
-        })
+  $scope.newTemplate = function () {
+    var _template = $templateCache.get('garment-scan-tpls/new-garment-scan-tpl.html');
 
-        // scroll to page bottom and
-        // give focus to newly added input text
-        $('html, body').animate({
-          scrollTop: $(document).height()
-        },500);
-        $('input:last').focus();
+    $http.get(Routes.quantity_garments_path($scope.invoiceBarcode))
+    .then(function(res) {
+
+      _template = _template.replace('$', res.data + 1);
+
+      $('new-garment-scan-dir').append(function() {
+        return $compile(_template)($scope);
+      })
+
+      // scroll to the new element created
+      $('html, body').animate({ scrollTop: $(document).height() }, 500);
+      $('input:last').focus();
+    })
   }
 
-
-  // holds the number order of the next
-  // garment barcode to be scanned.
-  var initialOrder = null;
-
-
-  if ($hs.getSizeGarmentCollection()) {
-      // this is an update transaction of the existing invoice.
-      initialOrder = $hs.getSizeGarmentCollection();
-  } else {
-      // meaning this is a new invoice entry
-      // so we have to get size on the model
-      initialOrder = $scope.model.garment_barcodes.length;
+  // update the badge invoice quantity
+  $scope.getQuantity = function() {
+    $http.get(Routes.quantity_garments_path($scope.invoiceBarcode))
+    .then(function(res) {
+      $scope.garmentQuantity = res.data;
+    })
   }
-
 
   // initialize template
-  $scope.newGarmentScanTemplate(initialOrder);
-
-
-  // save function garment
-  $scope.pushGarment = function (number, order) {
-        // append
-        $scope.model.garment_barcodes.push(number);
-        $scope.$apply();
-        //log
-        console.log('garment number ', number, ' pushed.')
-  }
-
-
-  //
-  // events
-  //
-
-  // update the badge count.
-  $scope.$watch('model', function (model) {
-         $scope.garmentScannedLen = model.garment_barcodes.length;
-         console.log('model', JSON.stringify(model));
-  },true);
+  $scope.newTemplate();
 
 });
 'use strict';
 
-App.controller('HistoryInvoiceCollection', function ( $scope, HelperSvc ) {
+App.controller('HistoryInvoiceCollection', function ($scope, $http) {
 
-  // inherit
-  var $hs = HelperSvc;
+  //
+  // variables
+  //
+  $scope.invoices = null;
 
-  // invoice collection
-  $scope.invoices = $hs.getHistoryInvoiceCollection();
+  // fill invoices scope with
+  // recent collection (updatable)
+  $http.get(Routes.history_invoices_path())
+  .then(function(res) {
+    $scope.invoices = res.data;
+  })
 
   // get the total garments of the invoice
   // and display it to panel footer.
@@ -50938,54 +50433,53 @@ App.controller('HistoryInvoiceCollection', function ( $scope, HelperSvc ) {
 });
 'use strict';
 
-App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSvc ) {
-
-  var $hs = HelperSvc;
-  var $host = $(location).attr('host');
-
+App.controller( 'InvoiceScanCtrl', function ($scope, $http) {
 
   // indicate number of recent invoices
-  $scope.sizeRecentInvoiceCollection = $hs.getSizeRecentInvoiceCollection();
-
+  $scope.sizeRecentCollection = null;
   // indicate number of recent invoices
-  $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
+  $scope.sizeHistoryCollection = null;
 
-  //--
-  // events
-  //--
+
+  // get the total of recent collection
+  $http.get(Routes.recent_size_invoices_path())
+  .then(function(res) {
+    if (typeof res.data === 'number') $scope.sizeRecentCollection = res.data;
+  })
+
+  // get the total of collection history
+  $http.get(Routes.history_size_invoices_path())
+  .then(function(res) {
+    if (typeof res.data === 'number') $scope.sizeHistoryCollection = res.data;
+  })
 
 });
 'use strict';
 
-App.controller('LoginCtrl', function ($scope, $state, HelperSvc) {
+App.controller('LoginCtrl', function ($scope) {
 
-  //--
+  //
   // variables
-  //--
-  var $hs = HelperSvc;
-
-  $scope.model = {
-    account_name: null,
-    password: null
-  }
-
-
-  //--
-  // events
-  //--
-
+  //
+  $scope.model = { account_name: null, password: null };
 
 })
 ;
 'use strict';
 
-App.controller('RecentInvoiceCollection', function ( $scope, HelperSvc ) {
+App.controller('RecentInvoiceCollection', function ($scope, $http) {
 
-  // inherit
-  var $hs = HelperSvc;
+  //
+  // variables
+  //
+  $scope.invoices = null;
 
-  // invoice collection
-  $scope.invoices = $hs.getRecentInvoiceCollection();
+  // fill invoices scope with
+  // recent collection (updatable)
+  $http.get(Routes.recent_invoices_path())
+  .then(function(res) {
+    $scope.invoices = res.data;
+  })
 
   // get the total garments of the invoice
   // and display it to panel footer.
@@ -50998,6 +50492,15 @@ App.controller('RecentInvoiceCollection', function ( $scope, HelperSvc ) {
     return total > 1 ? 'Items' : 'Item';
   }
 });
+'use strict';
+
+App.controller('RequestPasswordResetCtrl', function ($scope, $http, HelperSvc) {
+
+  $scope.model = {
+    contact_person_email: 'charliepandacan@gmail.com'
+  };
+})
+;
 'use strict';
 
 App.controller('ScanResultCtrl', function($window, $stateParams, $cookies) {
@@ -51097,24 +50600,29 @@ App.controller('SignupCtrl', function ($scope, $state, $templateCache, $compile,
 ;
 'use strict';
 
-App.controller('TestCtrl', function ($scope) {
+App.controller('TestCtrl', function ($scope, $http) {
 
-  $scope.model = {
-    //company_name: 'aaa',
-    branch_name: 'aaa',
-    contact_person_first_name: 'aaa',
-    contact_person_last_name: 'aaa',
-    contact_person_mobile: 'aaa',
-    contact_person_email: 'aaa',
-    account_name: 'aaa',
-    password: 'aaa',
-    confirm_password: 'aaa'
-  };
+  function find(callback) {
+    $http.get(Routes.find_barcode_path('sdfsdf'))
+    .then(function (response) {
+      return response.data;
+    })
+    $.ajax({
+      url: Routes.find_barcode_path('sdfsdf'),
+      type: 'get'
+    })
+    .done(function (data) {
+      callback(data);
+    })
+    .fail(function() {
+      alert();//self.notify('Server Error Encountered');
+    })
+  }
 
-  console.log(Routes.signup_index_path());
-  $.post(Routes.signup_index_path(), $scope.model, function (data) {
-    console.log(data);
-  });
+  find(function(data) {
+    alert(data);
+  })
+
 
 })
 ;
@@ -51140,6 +50648,18 @@ App.directive('actionbarTopContent', function ($rootScope, $state, $compile, $te
         case 'signup-page':
           element.html(function () {
             return $compile($templateCache.get('actionbar-top-tpls/signup-content-tpl.html'))(scope);
+          })
+          break;
+
+        case 'password-reset-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/password-reset-content-tpl.html'))(scope);
+          })
+          break;
+
+        case 'request-password-reset-page':
+          element.html(function () {
+            return $compile($templateCache.get('actionbar-top-tpls/request-password-reset-content-tpl.html'))(scope);
           })
           break;
 
@@ -51250,37 +50770,55 @@ App.directive('logoutUser', function ($compile, HelperSvc) {
 ;
 'use strict';
 
-App.directive('deleteScannedGarment',
-function ( $compile, $templateCache, HelperSvc ) {
+App.directive('deleteScannedGarmentDir', function ($templateCache, $http, HelperSvc) {
 
   function linker (scope, element) {
+    //
+    // aliases
+    //
+    var $helper = HelperSvc;
 
-    function processDelete () {
+    //
+    // methods
+    //
+    function deleteGarment () {
+      var $elemParent = element.closest('.row'),
+          _garmentBarcode = $elemParent.find('.garment-barcode-dir')
+                                       .val()
+                                       .trim()
+                                       .toUpperCase();
 
-      var $elemParent = element.closest('.row');
-      var $garmentNumber = $elemParent.find('.garment-barcode-number')
-                          .val()
-                          .trim()
-                          .toUpperCase();
-
-      // deleting garment scanned
-      scope.model.garment_barcodes.forEach( function ( item, index, object ) {
-        // compare
-        if ( item.toUpperCase() === $garmentNumber ) {
-          object.splice( index, 1 );
-          scope.$apply();
-
+      $http.delete(Routes.garment_path(_garmentBarcode), {
+        params: $helper.getAuthToken()
+      })
+      .then(function(res) {
+        // delete successfull
+        if (res.data === true) {
           // animate remove element for emphasis
           $elemParent.addClass('animated');
           $elemParent.addClass('fadeOut');
 
           setTimeout( function () { $elemParent.remove(); }, 1000 );
+
+          // update quantity in
+          // the badge.
+          scope.getQuantity();
         }
       })
     }
 
+    //
+    // event handlers
+    //
+    function clickEventHandler() {
+      deleteGarment();
+    }
 
-    element.on('click', function () { processDelete(); });
+    //
+    // events
+    //
+    element.on('click', clickEventHandler);
+
   }
 
   return {
@@ -51290,55 +50828,56 @@ function ( $compile, $templateCache, HelperSvc ) {
 });
 'use strict';
 
-App.directive('garmentBarcodeNumber',
-function ($compile, $templateCache, HelperSvc) {
+App.directive('garmentBarcodeDir', function ($compile, $templateCache, $http, HelperSvc) {
 
   function linker (scope, element) {
 
-    // inherit
-    var $hs = HelperSvc;
+    // aliases
+    var $helper = HelperSvc;
 
+    //
+    // methods
+    //
+    function saveGarment () {
+      var _garmentBarcode = element.val().toUpperCase(),
+          _payload = $helper.injectAuthToken({
+            invoice_barcode: scope.invoiceBarcode,
+            garment_barcode: _garmentBarcode
+          });
 
-    function processGarment () {
-      // check if not empty
-      if (element.attr('disabled') || !element.val() || element.val().length <= 5) return;
+      // prevent double call. to be fixed!
+      if (element.attr('disabled')) return;
 
-      // check duplicate barcode
-      var duplicated = $hs.findBarcodeDuplicate(element.val(), scope.model.garment_barcodes);
+      $http.post(Routes.garments_path(), _payload)
+      .then(function(res) {
+        // garment barcode saved.
+        if (res.data === true) {
+          // remove error notify.
+          $helper.removeNotify();
 
-      if (duplicated) {
-        element.select().focus();
-        return;
-      }
+          element.parents('.row')
+                 .find('.delete-scanned-garment-dir')
+                 .removeClass('hidden');
 
-      // assign a value to temp key
-      if (!scope.tempLastOrder) {
-        // previous size of garments
-        var previousSize = $hs.getSizeGarmentCollection() || 0;
-        // cache the size.
-        scope.tempLastOrder = previousSize; scope.$apply();
-      }
+          element.prop('disabled', true);
 
-      // increment temp key to maintain ordering.
-      scope.tempLastOrder += 1; scope.$apply();
-      // push garment to model
-      scope.pushGarment(element.val());
-      // allow user to delete the garment entry.
-      element.parents('.row').find('.delete-scanned-garment').removeClass('hidden');
-      // locked this to prevent adding new tpl
-      element.prop('disabled', true);
-      // remove events
-      element.off('keyup input');
+          // create new template with a temp key number label.
+          scope.newTemplate();
 
-      // create new template with a temp key number label.
-      scope.newGarmentScanTemplate(scope.tempLastOrder);
+          // scroll newly added input text.
+          $("html, body").animate({ scrollTop: $(document).height() }, 500);
+          $('input:last').focus();
 
-      // scroll to page bottom and
-      // give focus to newly added input text
-      $("html, body").animate({ scrollTop: $(document).height() }, 500);
-      $('input:last').focus();
+          // update the badge
+          // garments quantity
+          scope.getQuantity();
+
+        }
+
+        // got error response.
+        if (typeof res.data === 'object') $helper.notify(res.data[1]);
+      })
     }
-
 
     var typingTimer;          // holds timeout object
     var typeInterval = 2000;  // interval ajax request
@@ -51349,34 +50888,57 @@ function ($compile, $templateCache, HelperSvc) {
       element.trigger(e)
     }
 
-
     //
-    // callbacks
+    // event handlers
     //
-
-    function callbackEnter(event) {
-      if (event.which !== 13) return;
-      processGarment();
-    }
-
-    function callbackInput() {
+    function inputEventHandler() {
       clearTimeout(typingTimer);
       typingTimer = setTimeout(doneTypingCallBack, typeInterval);
     }
-
+    function enterEventHandler(event) {
+      if (event.which !== 13) return;
+      saveGarment();
+    }
 
     //
     // events
     //
-
-    element.on('input', callbackInput);
-    element.on('keyup', callbackEnter);
+    element.on('input', inputEventHandler);
+    element.on('keyup', enterEventHandler);
   }
 
   return {
     restrict: 'C',
     link: linker
   }
+});
+'use strict';
+
+App.directive('garmentQuantityDir', function ($templateCache, $state, HelperSvc) {
+
+  function linker (scope, element) {
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
+      event.preventDefault();
+
+      if ($('input[disabled]').length)
+        // todo: please put param here to redirect
+        // specifically on the invoice.
+        $state.go('recent-invoice-collection-page');
+    }
+
+    //
+    // events
+    //
+    element.on('click', clickEventHandler);
+  }
+
+  return {
+    restrict: 'C',
+    link: linker
+  };
 });
 'use strict';
 
@@ -51420,97 +50982,85 @@ App.directive('xxnewGarmentScanDir', function ($compile, $templateCache, SharedV
 });
 'use strict';
 
-App.directive( 'saveGarments',
-function ( $compile, $templateCache, $state, HelperSvc ) {
+App.directive('collectionHistoryDir', function ($state) {
 
-  function linker ( scope, element ) {
-
-    // inherit
-    var $hs = HelperSvc;
-
-
-    function processSave () {
-      // show processing
-      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
-
-      // signal either saved or upated
-      var update = $hs.saveInvoice( scope.model );
-
-      if ( update ) {
-        // see invoice in recent for changes
-        setTimeout(
-        function () {
-          $state.go( 'recent-invoice-collection-page' );
-        },
-        2000);
-
-      } else {
-        // ready to accept new invoice again
-        setTimeout(
-        function () {
-          $state.go( 'invoice-barcode-scan-page' );
-        },
-        2000);
-      }
+  function linker (scope, element) {
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
+      event.preventDefault();
+      $state.go('history-invoice-collection-page');
     }
 
-
-    // event click save
-    element.on('click', function (event) {
-      event.preventDefault();
-
-      // check if garment barcodes not empty
-      if ( !scope.model.garment_barcodes.length ) return;
-
-      // ignore when already saving
-      if ( element.find('.fa-spinner').length ) return;
-
-      // save invoice
-      processSave();
-    });
+    //
+    // events
+    //
+    element.on('click', clickEventHandler)
   }
 
   return {
     restrict: 'C',
     link: linker
   };
-});
+})
+;
 'use strict';
 
-App.directive( 'invoiceBarcodeNumber',
-function ( $compile, $templateCache, $state, HelperSvc ) {
+App.directive('invoiceBarcodeDir', function ($state, $http, HelperSvc) {
 
-  function linker (scope, element) {
+  function linker(scope, element) {
+    //
+    // alias
+    //
+    var $helper = HelperSvc;
 
-    var $hs = HelperSvc;
+    //
+    // methods
+    //
+    function saveInvoice() {
+      var _spin = {
+        show: function() {
+          $('#spinner').removeClass('hidden');
+        },
+        hide: function() {
+          $('#spinner').addClass('hidden');
+        }
+      };
 
+      var _invoiceBarcode = element.val().toUpperCase();
+      var _payload = $helper.injectAuthToken({ invoice_barcode: _invoiceBarcode });
 
-    function processInvoice () {
-      // when empty value
-      if ( element.attr('disabled') || !element.val() || element.val().length <= 5 ) return;
-      // check duplicate
-      if ( $hs.findBarcodeDuplicate( element.val(), [] ) ) {
-        element.select().focus();
-        return;
-      }
-      // locked this to prevent another input
-      element.prop('disabled', true);
-      // indicate processing
-      jQuery('#spinner').removeClass('hidden');
-      // set current invoice number
-      $hs.setInvoiceNumber( element.val() );
+      // prevent double call. to be fixed!
+      if (element.attr('disabled')) return;
 
-      // redirect to garment scanning page with timeout.
-      setTimeout( function () {
-        $state.go('garment-barcode-scan-page');
-      },
-      2000);
+      // indicate processing.
+      _spin.show();
+
+      // validate invoice barcode
+      $http.post(Routes.invoices_path(), _payload)
+      .then(function(res) {
+        // invoice barcode saved.
+        if (res.data === true) {
+          element.prop('disabled', true);
+          $helper.setInvoiceBarcode(_invoiceBarcode);
+
+          $state.go('garment-barcode-scan-page');
+        }
+
+        // got error response.
+        if (typeof res.data === 'object') {
+          _spin.hide();
+          element.removeAttr('disabled');
+          $helper.notify(res.data[1]);
+        }
+      })
     }
 
-
-    // auto enter after scanned
-    var typingTimer; // hols timeout object
-    var typeInterval = 2000; // interval ajax request
+    //
+    // handlers, callbacks
+    //
+    var typingTimer, typeInterval = 2500;
 
     function doneTypingCallBack() {
       var e = $.Event('keyup');
@@ -51518,24 +51068,21 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
       element.trigger(e)
     }
 
-    function callbackInput() {
+    function inputEventHandler() {
       clearTimeout(typingTimer);
       typingTimer = setTimeout(doneTypingCallBack, typeInterval);
     }
 
-    function callbackEnter(event) {
+    function enterEventHandler(event) {
       if ( event.which !== 13 ) return;
-      processInvoice();
+      saveInvoice();
     }
-
 
     //--
     // events
     //--
-
-    element.on('input', callbackInput);
-    element.on('keyup', callbackEnter);
-
+    element.on('input', inputEventHandler);
+    element.on('keyup', enterEventHandler);
 
   }
 
@@ -51546,18 +51093,21 @@ function ( $compile, $templateCache, $state, HelperSvc ) {
 });
 'use strict';
 
-App.directive('recentCollection', function ($compile, $templateCache, $state) {
+App.directive('recentCollectionDir', function ($state) {
 
   function linker (scope, element) {
-
-    element.on('click', function (event) {
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
       event.preventDefault();
-
-      // do not proceed when no scanned garments.
-      if ( !scope.sizeRecentInvoiceCollection ) return;
-
       $state.go('recent-invoice-collection-page');
-    })
+    }
+
+    //
+    // events
+    //
+    element.on('click', clickEventHandler)
   }
 
   return {
@@ -51572,17 +51122,16 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
 
-    //--
+    //
     // variables
-    //--
-    var $hs = HelperSvc;
+    //
+    var $helper = HelperSvc;
 
-
-    //--
+    //
     // methods
-    //--
+    //
     function showProcessing() {
-      $hs.indicateProcessing(element);
+      $helper.indicateProcessing(element);
     }
 
 
@@ -51590,53 +51139,49 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
       $.ajax({
         url: Routes.login_path(),
         type: 'post',
-        data: $hs.injectAuthToken(scope.model),
+        data: $helper.injectAuthToken(scope.model),
         dataType: 'json',
         beforeSend: showProcessing()
       })
       .done(function () {
-        $hs.removeNotify();
+        $helper.removeNotify();
         location.pathname = '/invoice-barcode-scan';
       })
       .fail(function (jqXHR) {
         // stop spinner
-        $hs.stopIndicateProcessing(element);
+        $helper.stopIndicateProcessing(element);
 
         // display message / notify
         var pendingMsg = !jqXHR.responseJSON ? null : jqXHR.responseJSON.msg;
 
         if (pendingMsg) {
-          $hs.notify(pendingMsg);
+          $helper.notify(pendingMsg);
           return;
         }
 
         if (jqXHR.status === 422 || jqXHR.status === 500) {
-          $hs.notify('Server Error Encountered.')
+          $helper.notify('Server Error Encountered.')
           return;
         }
 
         // default notif. message
-        $hs.notify('Invalid Account Name or Password.');
+        $helper.notify('Invalid Account Name or Password.');
 
       })
     }
 
-
-    //--
-    // callbacks
-    //--
-    function callbackClick() {
-      // ignore click when processing
+    //
+    // event handlers
+    //
+    function clickEventHandler() {
       if (element.find('.fa-spinner').length) return;
-
       processLogin();
     }
 
-
-    //--
+    //
     // events
-    //--
-    element.on('click', callbackClick)
+    //
+    element.on('click', clickEventHandler)
   }
 
   return {
@@ -51647,34 +51192,41 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
 ;
 'use strict';
 
-App.directive('addGarment',
-function ( $state, $templateCache, HelperSvc ) {
+App.directive('addGarmentDir', function ($state, $templateCache, HelperSvc) {
 
-  function linker ( scope, element ) {
+  function linker (scope, element) {
 
-    // inherit
-    var $hs = HelperSvc;
+    //
+    // aliases
+    //
+    var $helper = HelperSvc;
 
-
-    element.on('click', function (event) {
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
       event.preventDefault();
 
       // ignore event when processing
       if (element.find('.fa-spinner').length) return;
-
       // show processing
       element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
       // set current invoice to update
-      var invoiceNumber = element.attr('data-invoice-number')
-                          .trim()
-                          .toUpperCase();
-
+      var _invoiceBarcode = element.attr('data-invoice-number')
+                            .trim()
+                            .toUpperCase();
       // set an invoice to update
-      $hs.setInvoiceNumber( invoiceNumber );
+      $helper.setInvoiceBarcode(_invoiceBarcode);
       // redirect
-      setTimeout( function () { $state.go('garment-barcode-scan-page'); }, 1000);
-    });
+      setTimeout(function () { $state.go('garment-barcode-scan-page'); }, 1000);
+    }
+
+    //
+    // events
+    //
+    element.on('click', clickEventHandler);
+
   }
 
   return {
@@ -51684,13 +51236,13 @@ function ( $state, $templateCache, HelperSvc ) {
 });
 'use strict';
 
-App.directive('deleteGarment',
-function ( $compile, $templateCache, HelperSvc ) {
+App.directive('deleteGarmentDir', function ($compile, $templateCache, $http, HelperSvc) {
 
   function linker (scope, element) {
-
-    // inherit
-    var $hs = HelperSvc;
+    //
+    // aliases
+    //
+    var $helper = HelperSvc;
 
     // countdown to auto-cancel delete action.
     // defaults to 6s.
@@ -51719,51 +51271,57 @@ function ( $compile, $templateCache, HelperSvc ) {
     // confirm delete action. change it html
     // to confirm msg
     function confirmDelete () {
-      // replace text with confirm intent
-      element.html($templateCache.get('recent-invoice-collection-tpls/confirm-msg-tpl.html'));
-      // show timer cancel
-      countdown();
+      var _template = $templateCache.get('recent-invoice-collection-tpls/confirm-msg-tpl.html');
+      element.html(_template);
+      countdown(); // show timer confirm
     }
-
 
     // delete confirmed
-    function processDelete () {
+    function deleteGarment () {
       // params
-      var invoiceNumber = element.attr('data-invoice-number').trim().toUpperCase();
-      var garmentNumber = element.attr('data-garment-number').trim().toUpperCase();
+      var _invoiceBarcode = element.attr('data-invoice-number').trim().toUpperCase();
+      var _garmentBarcode = element.attr('data-garment-number').trim().toUpperCase();
 
-      // delete garment from the invoice
-      if ( $hs.deleteInvoiceGarment( invoiceNumber, garmentNumber ) ) {
-        // animate deletion
-        element.parents('tr').addClass('animated');
-        element.parents('tr').addClass('fadeOut');
 
-        // change total number of garments
-        setTimeout(
-        function () {
-          var elemParent = element.parents('.panel-default');
-          var elemTotal = elemParent.find('.total-garments');
-          var newTotal = parseInt( elemTotal.text() ) - 1;
-          var elemUnit = elemParent.find('.unit');
+      $http.delete(Routes.garment_path(_garmentBarcode), {
+        params: $helper.getAuthToken()
+      })
+      .then(function(res) {
+        // delete successfull
+        if (res.data === true) {
+          // animate deletion
+          element.parents('tr').addClass('animated');
+          element.parents('tr').addClass('fadeOut');
 
-          // update total garments
-          elemTotal.text( newTotal );
-          // singularize unit if less 2
-          if ( newTotal < 2 ) elemUnit.text('Item');
-          // delete tr element from table
-          element.closest('tr').remove();
-        },
-        1000)
-      }
+          // change total number of garments
+          setTimeout(
+          function () {
+            var elemParent = element.parents('.panel-default');
+            var elemTotal = elemParent.find('.total-garments');
+            var newTotal = parseInt(elemTotal.text()) - 1;
+            var elemUnit = elemParent.find('.unit');
+
+            // update total garments
+            elemTotal.text(newTotal);
+            // singularize unit if less 2
+            if (newTotal < 2) elemUnit.text('Item');
+            // delete tr element from table
+            element.closest('tr').remove();
+          },
+          1000)
+        }
+      })
     }
 
-
-    element.on('click', function (event) {
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
       event.preventDefault();
 
       // user confirms deletion
-      if ( element.find('#confirm-msg').length ) {
-        processDelete();
+      if (element.find('#confirm-msg').length) {
+        deleteGarment();
         return;
       }
 
@@ -51772,7 +51330,13 @@ function ( $compile, $templateCache, HelperSvc ) {
         confirmDelete();
         return
       }
-    })
+    }
+
+    //
+    // events
+    //
+    element.on('click', clickEventHandler)
+
   }
 
   return {
@@ -51782,18 +51346,13 @@ function ( $compile, $templateCache, HelperSvc ) {
 });
 'use strict';
 
-App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
-
-  // pass the scope tpl value
-  // to local, for template object.
-  var tpl = '<i class="fa fa-refresh"></i>Sync';
-
+App.directive('deleteInvoiceDir', function ($templateCache, $http, HelperSvc) {
 
   function linker (scope, element) {
-
-    //--
-    // variables
-    var $hs = HelperSvc;
+    //
+    // aliases
+    //
+    var $helper = HelperSvc;
 
     // countdown to auto-cancel delete action.
     // defaults to 6s.
@@ -51801,13 +51360,113 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
     var elTimer;
     var timeoutMyOswego;
 
-
-    //--
-    // methods
-    //--
+    // original template
+    var $origTemplate;
 
     function countdown() {
 
+      seconds = element.find('.cancel-timer').text();
+      seconds = parseInt(seconds, 10);
+
+      if (seconds == 1) {
+        elTimer = element.find('.cancel-timer');
+        // reset html content to default.
+        element.html($origTemplate);
+        return;
+      }
+
+      seconds--;
+      elTimer = element.find('.cancel-timer');
+      elTimer.html(seconds);
+      timeoutMyOswego = setTimeout(countdown, 1000);
+    }
+
+    // confirm delete action. change it html
+    // to confirm msg
+    function confirmDelete () {
+      var _template = $templateCache.get('recent-invoice-collection-tpls/confirm-msg-tpl.html');
+      $origTemplate = element.html(); // temp
+
+      element.html(_template);
+      countdown(); // show timer confirm
+    }
+
+    // delete confirmed
+    function deleteInvoice() {
+      // params
+      var _invoiceBarcode = element.attr('data-invoice-number').trim().toUpperCase();
+      // deleting garment scanned
+      var _param_invoice = { invoice_barcode: _invoiceBarcode };
+
+      $http.post(Routes.mark_delete_invoices_path(_param_invoice), $helper.getAuthToken())
+      .then(function(res) {
+        // delete successfull
+        if (res.data === true) {
+          // animate deletion
+          element.parents('.panel-group').addClass('animated');
+          element.parents('.panel-group').addClass('fadeOut');
+
+          setTimeout(function() {
+            element.parents('.panel-group').remove();
+          },2000)
+        }
+      })
+    }
+
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
+      event.preventDefault();
+
+      // user confirms deletion
+      if (element.find('#confirm-msg').length) {
+        deleteInvoice();
+        return;
+      }
+
+      // send confirmation
+      if (element.text() === 'Delete Invoice') {
+        confirmDelete();
+        return
+      }
+    }
+
+    //
+    // events
+    //
+    element.on('click', clickEventHandler)
+
+  }
+
+  return {
+    restrict: 'C',
+    link: linker
+  };
+});
+'use strict';
+
+App.directive('sync', function ($state, $templateCache, $http, HelperSvc) {
+  // processing indicator template.
+  // place it here for link template accessible.
+  var $template = '<i class="fa fa-refresh"></i>Sync';
+
+  function linker (scope, element) {
+    //
+    // aliases
+    //
+    var $helper = HelperSvc;
+
+    // countdown to auto-cancel delete action.
+    // defaults to 6s.
+    var seconds;
+    var elTimer;
+    var timeoutMyOswego;
+
+    //
+    // methods
+    //
+    function countdown() {
       if (element.find('.fa-spin').length) return;
 
       seconds = element.find('.cancel-timer').text();
@@ -51816,7 +51475,7 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
       if (seconds == 1) {
         elTimer = element.find('.cancel-timer');
         // reset html content to default.
-        element.html( tpl );
+        element.html($template);
         return;
       }
 
@@ -51830,40 +51489,29 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
     // to confirm msg
     function confirmSync () {
       // replace text with confirm intent
-      element.html($templateCache.get('recent-invoice-collection-tpls/confirm-msg-tpl.html'));
-      // show timer cancel
+      var _template = $templateCache.get('recent-invoice-collection-tpls/confirm-msg-tpl.html');
+      element.html(_template);
       countdown();
     }
 
-    //function Sync() {
-    //  $.post(Routes.)
-    //}
-
-    function makeHistory () {
+    function closeInvoice () {
       // show process syncing
-      element.html( '<i class="fa fa-refresh fa-spin"></i>' );
+      element.html('<i class="fa fa-refresh fa-spin"></i>');
 
-      // try to create history
-      if ( $hs.setHistory() ) {
-        setTimeout (
-        function () {
-          // redirect to new invoice entry page
-          $state.go('invoice-barcode-scan-page');
-        },
-        3000)
-      }
+      $http.post(Routes.close_recent_invoices_path(), $helper.getAuthToken())
+      .then(function(res) {
+        if (res.data === true) $state.go('invoice-barcode-scan-page');
+      })
     }
 
-
-    //--
-    // callbacks
-    //--
-
-    function callbackClick(event) {
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
       event.preventDefault();
 
       // if nothing to sync
-      if ( !jQuery('table tbody tr').length ) return;
+      if (!jQuery('table tbody tr').length) return;
 
       // ignore event when processing
       if (element.find('.fa-refresh.fa-spin').length) {
@@ -51878,22 +51526,61 @@ App.directive('sync', function ( $state, $templateCache, HelperSvc ) {
 
       // user confirms sync
       if (element.find('#confirm-msg').length) {
-        makeHistory();
+        closeInvoice();
         return;
       }
     }
 
-
-    //--
+    //
     // events
-    //--
-
-    element.on('click', callbackClick);
+    //
+    element.on('click', clickEventHandler);
   }
 
   return {
     restrict: 'C',
-    template: tpl,
+    template: $template,
+    link: linker
+  };
+});
+'use strict';
+
+App.directive('requestPasswordResetDir', function ($state, $templateCache, $http, HelperSvc) {
+
+  function linker (scope, element) {
+
+    //
+    // aliases
+    //
+    var $helper = HelperSvc;
+
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
+      event.preventDefault();
+
+      // ignore event when processing
+      if (element.find('.fa-spinner').length) return;
+      // show processing
+      element.html($templateCache.get('shared-tpls/processing-tpl.html'));
+
+      var _data = $helper.injectAuthToken(scope.model);
+
+      $http.post(Routes.password_resets_path(), _data).then(function (res) {
+        if (res.data === true) alert('Request password reset send. Please check you email.');
+      })
+    }
+
+    //
+    // events
+    //
+    element.on('click', clickEventHandler);
+
+  }
+
+  return {
+    restrict: 'C',
     link: linker
   };
 });
@@ -51936,19 +51623,17 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
 
-    //--
+    //
     // variables
-    //--
+    //
     var $hs = HelperSvc;
 
-
-    //--
+    //
     // methods
-    //--
+    //
     function showProcessing() {
       $hs.indicateProcessing(element);
     }
-
 
     function processSignup() {
       $.ajax({
@@ -51971,10 +51656,9 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
       })
     }
 
-
-    //--
+    //
     // callbacks
-    //--
+    //
     function callbackSignup(event) {
       event.preventDefault();
 
@@ -51986,10 +51670,9 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
       }, 1000)
     }
 
-
-    //--
+    //
     // events
-    //--
+    //
     element.on('click', callbackSignup);
 
   }
@@ -52000,10 +51683,6 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
   };
 
 });
-
-
-
-
 
 
 

@@ -12,7 +12,7 @@ class SignupController < ApplicationController
 
   def find_or_new_company
     # get existing company record
-    @company = Company.find_by_company_name(params[:company_name])
+    @company = Company.active.where(company_name: params[:company_name]).first
 
     return if @company
 

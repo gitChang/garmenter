@@ -1,22 +1,27 @@
 'use strict';
 
-App.controller('TestCtrl', function ($scope) {
+App.controller('TestCtrl', function ($scope, $http) {
 
-  $scope.model = {
-    //company_name: 'aaa',
-    branch_name: 'aaa',
-    contact_person_first_name: 'aaa',
-    contact_person_last_name: 'aaa',
-    contact_person_mobile: 'aaa',
-    contact_person_email: 'aaa',
-    account_name: 'aaa',
-    password: 'aaa',
-    confirm_password: 'aaa'
-  };
+  function find(callback) {
+    $http.get(Routes.find_barcode_path('sdfsdf'))
+    .then(function (response) {
+      return response.data;
+    })
+    $.ajax({
+      url: Routes.find_barcode_path('sdfsdf'),
+      type: 'get'
+    })
+    .done(function (data) {
+      callback(data);
+    })
+    .fail(function() {
+      alert();//self.notify('Server Error Encountered');
+    })
+  }
 
-  console.log(Routes.signup_index_path());
-  $.post(Routes.signup_index_path(), $scope.model, function (data) {
-    console.log(data);
-  });
+  find(function(data) {
+    alert(data);
+  })
+
 
 })

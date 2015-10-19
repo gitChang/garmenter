@@ -1,19 +1,23 @@
 'use strict';
 
-App.controller( 'InvoiceScanCtrl', function ( $scope, $state, $cookies, HelperSvc ) {
-
-  var $hs = HelperSvc;
-  var $host = $(location).attr('host');
-
+App.controller( 'InvoiceScanCtrl', function ($scope, $http) {
 
   // indicate number of recent invoices
-  $scope.sizeRecentInvoiceCollection = $hs.getSizeRecentInvoiceCollection();
-
+  $scope.sizeRecentCollection = null;
   // indicate number of recent invoices
-  $scope.sizeHistoryInvoiceCollection = $hs.getSizeHistoryInvoiceCollection();
+  $scope.sizeHistoryCollection = null;
 
-  //--
-  // events
-  //--
+
+  // get the total of recent collection
+  $http.get(Routes.recent_size_invoices_path())
+  .then(function(res) {
+    if (typeof res.data === 'number') $scope.sizeRecentCollection = res.data;
+  })
+
+  // get the total of collection history
+  $http.get(Routes.history_size_invoices_path())
+  .then(function(res) {
+    if (typeof res.data === 'number') $scope.sizeHistoryCollection = res.data;
+  })
 
 });

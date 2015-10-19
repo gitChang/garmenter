@@ -1,33 +1,40 @@
 'use strict';
 
-App.directive('addGarment',
-function ( $state, $templateCache, HelperSvc ) {
+App.directive('addGarmentDir', function ($state, $templateCache, HelperSvc) {
 
-  function linker ( scope, element ) {
+  function linker (scope, element) {
 
-    // inherit
-    var $hs = HelperSvc;
+    //
+    // aliases
+    //
+    var $helper = HelperSvc;
 
-
-    element.on('click', function (event) {
+    //
+    // event handlers
+    //
+    function clickEventHandler(event) {
       event.preventDefault();
 
       // ignore event when processing
       if (element.find('.fa-spinner').length) return;
-
       // show processing
       element.html($templateCache.get('shared-tpls/processing-tpl.html'));
 
       // set current invoice to update
-      var invoiceNumber = element.attr('data-invoice-number')
-                          .trim()
-                          .toUpperCase();
-
+      var _invoiceBarcode = element.attr('data-invoice-number')
+                            .trim()
+                            .toUpperCase();
       // set an invoice to update
-      $hs.setInvoiceNumber( invoiceNumber );
+      $helper.setInvoiceBarcode(_invoiceBarcode);
       // redirect
-      setTimeout( function () { $state.go('garment-barcode-scan-page'); }, 1000);
-    });
+      setTimeout(function () { $state.go('garment-barcode-scan-page'); }, 1000);
+    }
+
+    //
+    // events
+    //
+    element.on('click', clickEventHandler);
+
   }
 
   return {

@@ -1,7 +1,6 @@
 #history-invoice-collection {
   margin-top: 20px;
   margin-bottom: 90px;
-  font-size: 19px;
 
   .collection-panel {
     @extend .col-xs-12;
@@ -17,8 +16,6 @@
 
     .panel-group {
       margin-bottom: 15px;
-      max-height: 500px;
-      transition: max-height 1s ease-in-out;
     }
 
     .table tr td {
@@ -34,6 +31,8 @@
         width: 100%;
         outline: none;
         text-decoration: none;
+
+        .date-scanned { @extend .pull-right; }
       }
     }
 

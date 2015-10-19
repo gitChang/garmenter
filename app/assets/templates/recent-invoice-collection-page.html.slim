@@ -1,6 +1,12 @@
 .row#recent-invoice-collection
   .collection-panel
 
+    .blank-msg ng-show="invoices==0"
+      h3.text-center
+        | All Synced
+        | &nbsp;
+        i.fa.fa-check
+
     #accordion.panel-group ng-repeat="invoice in invoices"
       .panel.panel-default
 
@@ -11,19 +17,26 @@
               aria-expanded="true"
               data-parent="#accordion"
               data-toggle="collapse"
-              href=("{{ '#' + invoice.invoice_number }}")
+              href=("{{ '#' + invoice.invoice_barcode }}")
               onclick=("return false")
             ]
-              | Invoice No. {{ invoice.invoice_number }}
-              span.qty.pull-right
+              span
+                | {{ $index + 1 + '.' }}
+                | &nbsp;
+                | {{ invoice.invoice_barcode }}
+                | &nbsp;&ndash;&nbsp;
+
+              span.qty
                 span.total-garments
                   | {{ getGarmentsTotal($index) }}
                 | &nbsp;
                 span.unit {{ pluralize( getGarmentsTotal($index) ) }}
 
+              span.date-scanned am-time-ago="invoice.date_scanned"
+
 
         div.panel-collapse.collapse [
-          id=("{{ invoice.invoice_number }}")
+          id=("{{ invoice.invoice_barcode }}")
           aria-labelledby="headingOne"
           role="tabpanel"
         ]
@@ -32,19 +45,20 @@
               tr ng-repeat="garment_barcode in invoice.garment_barcodes track by $index"
                 td.invoice-garment-number {{ garment_barcode }}
                 td.delete-garment-parent
-                  a.delete-garment [
+                  a.delete-garment-dir [
                     href="#"
                     data-garment-number=("{{ garment_barcode }}")
-                    data-invoice-number=("{{ invoice.invoice_number }}")
+                    data-invoice-number=("{{ invoice.invoice_barcode }}")
                   ]
                     i.fa.fa-trash-o
 
 
           .panel-footer
             span.add-garment-parent
-              a.add-garment href="#" data-invoice-number=("{{ invoice.invoice_number }}")
+              a.add-garment-dir href="#" data-invoice-number=("{{ invoice.invoice_barcode }}")
                 i.fa.fa-plus
-            small.pull-right Today
+            span.delete-invoice-wrap
+              a.delete-invoice-dir href="" data-invoice-number="{{ invoice.invoice_barcode }}" Delete Invoice
 
 
 // actionbar

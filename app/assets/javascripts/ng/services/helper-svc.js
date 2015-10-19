@@ -7,11 +7,49 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
 
   //--
-  // methods
+  // helpers
   //--
 
+  this.isOnline = function() {
+    $.ajax({
+     type: "GET",
+     url: "keepalive.php",
+     success: function(msg){
+       alert("Connection active!")
+     },
+     error: function(XMLHttpRequest, textStatus, errorThrown) {
+         if(textStatus == 'timeout') {
+             alert('Connection seems dead!');
+         }
+     }
+   });
+  }
+
+  this.findBarcode = function(barcode) {
+    if (!self.isOnline()) return;
+
+    function find(callback) {
+      $.ajax({
+        url: Routes.find_barcode_path(barcode),
+        type: 'get'
+      })
+      .done(function (data) {
+        callback(data);
+      })
+      .fail(function() {
+        self.notify('Server Error Encountered');
+      })
+    }
+
+    var res = find(function(data) {
+      return data || 'fuck';
+    });
+
+    return res;
+  }
+
   this.getAuthToken = function () {
-    return { authenticity_token: $cookies.get('xsrf_token') }
+    return { authenticity_token: $cookies.get('xsrf_token') };
   }
 
 
@@ -20,19 +58,19 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
   }
 
 
-  this.setInvoiceNumber = function (number) {
+  this.setInvoiceBarcode = function (number) {
     // set invoice
     GlobalDataSvc.currentInvoiceNumber = number.toUpperCase();
   }
 
 
-  this.clearInvoiceNumber = function () {
+  this.clearInvoiceBarcode = function () {
     // clear invoice
     GlobalDataSvc.currentInvoiceNumber = null;
   }
 
 
-  this.getInvoiceNumber = function () {
+  this.getInvoiceBarcode = function () {
     return GlobalDataSvc.currentInvoiceNumber;
   }
 
@@ -147,6 +185,9 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
 
   this.addGarmentCollection = function (object) {
+    $.ajax({
+      url: Routes.invoice_index_path()
+    })
     // save invoice to collection
     GlobalDataSvc.recentInvoiceCollection.push(object);
     return true;
@@ -171,7 +212,7 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
   this.notify = function (msg) {
     var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
-    var notifyCenter = jQuery('#notif-center')
+    var notifyCenter = $('#notif-center')
                        .html($templateCache.get(tplPath));
 
     // place msg and display warning
@@ -182,7 +223,7 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
   this.removeNotify = function () {
     var tplPath = 'shared-tpls/duplicate-msg-tpl.html';
-    var notifyCenter = jQuery('#notif-center')
+    var notifyCenter = $('#notif-center')
                        .html($templateCache.get(tplPath));
 
     // hide and remove warning
@@ -257,9 +298,9 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
     var tpl = $templateCache.get('shared-tpls/processing-tpl.html');
 
     // cache original template for late reset
-    self.originalHtml = jQuery(element).html();
+    self.originalHtml = $(element).html();
 
-    jQuery(element).html(tpl);
+    $(element).html(tpl);
 
     return true;
   }
@@ -267,7 +308,7 @@ App.service('HelperSvc', function ($templateCache, $cookies, GlobalDataSvc) {
 
   this.stopIndicateProcessing = function (element) {
     // reset element html
-    jQuery(element).html(self.originalHtml);
+    $(element).html(self.originalHtml);
     return true;
   }
 

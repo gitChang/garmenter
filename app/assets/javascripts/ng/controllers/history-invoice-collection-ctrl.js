@@ -1,12 +1,18 @@
 'use strict';
 
-App.controller('HistoryInvoiceCollection', function ( $scope, HelperSvc ) {
+App.controller('HistoryInvoiceCollection', function ($scope, $http) {
 
-  // inherit
-  var $hs = HelperSvc;
+  //
+  // variables
+  //
+  $scope.invoices = null;
 
-  // invoice collection
-  $scope.invoices = $hs.getHistoryInvoiceCollection();
+  // fill invoices scope with
+  // recent collection (updatable)
+  $http.get(Routes.history_invoices_path())
+  .then(function(res) {
+    $scope.invoices = res.data;
+  })
 
   // get the total garments of the invoice
   // and display it to panel footer.

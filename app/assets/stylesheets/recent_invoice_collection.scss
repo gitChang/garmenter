@@ -1,7 +1,6 @@
 #recent-invoice-collection {
   margin-top: 20px;
   margin-bottom: 90px;
-  font-size: 19px;
 
   .collection-panel {
     @extend .col-xs-12;
@@ -9,6 +8,11 @@
     @extend .col-sm-offset-1;
     @extend .col-md-6;
     @extend .col-md-offset-3;
+
+    .blank-msg {
+      margin-top: 40px;
+      color: $brand-primary;
+    }
 
     .panel-group {
       margin-bottom: 15px;
@@ -19,16 +23,25 @@
     .table tr td {
       color: $gray-dark;
     }
-    .panel-footer {
-      color: $brand-primary;
-    }
 
-    h4.panel-title {
+    .panel-title {
+      font-weight: normal;
+
       a {
         display: inline-block;
         width: 100%;
         outline: none;
         text-decoration: none;
+
+        .date-scanned { @extend .pull-right; }
+      }
+    }
+
+    .panel-footer {
+      color: $brand-primary;
+
+      .delete-invoice-wrap {
+        @extend .pull-right
       }
     }
 
@@ -51,9 +64,9 @@
           border-radius: 20px;
           background-color: $gray-lighter;
         }
-
-        i.fa { @extend .fa-lg; }
       }
+
+      .fa-trash-o { @extend .fa-lg; }
     }
 
     .add-garment {

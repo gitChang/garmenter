@@ -6,7 +6,7 @@
       h2.scan-msg Enter Invoice Barcode
 
     .col-xs-12.text-center
-      input.invoice-barcode-number type="text"
+      input.invoice-barcode-dir type="text"
 
     #spinner.col-xs-12.text-center.hidden
       h3
@@ -16,14 +16,12 @@
 #actionbar-bottom
   ul.nav.navbar-nav
     li.first
-      a ui-sref="history-invoice-collection-page"
+      a.collection-history-dir href="#"
         i.fa.fa-history
         | History
-        span.badge ng-show="sizeHistoryInvoiceCollection"
-          | {{ sizeHistoryInvoiceCollection }}
+        span.badge ng-show="sizeHistoryCollection" ng-bind="sizeHistoryCollection"
     li.two
-      a.recent-collection href="#"
+      a.recent-collection-dir href="#"
         i.fa.fa-th
         | Collection
-        span.badge ng-show="sizeRecentInvoiceCollection"
-          | {{ sizeRecentInvoiceCollection }}
+        span.badge ng-show="sizeRecentCollection" ng-bind="sizeRecentCollection"

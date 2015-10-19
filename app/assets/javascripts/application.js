@@ -1,8 +1,4 @@
 //= require jquery
-
-//= require webcodecamjs
-
-
 //= require bootstrap-sprockets
 
 //= require js-routes

@@ -2,7 +2,8 @@ class CreateCompanies < ActiveRecord::Migration
 
   def up
     create_table :companies do |t|
-      t.string :company_name, null: false
+      t.string :company_name, unique: true, null: false
+      t.boolean :deleted, default: false
 
       t.timestamps null: false
     end

@@ -3,62 +3,66 @@
 App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
 
   //
-  // variables
+  // aliases
   //
-
-  var $hs = HelperSvc;
-
-  //
-  // methods
-  //
-
-  function verifyUserAccess() {
-    if ($state.current.name === 'login-page' || $state.current.name === 'signup-page')
-      return;
-    // don't render login
-    // on users already
-    // logged in.
-    $.ajax({
-      url: Routes.user_access_path(),
-      type: 'get'
-    })
-    .done(function (authorized) {
-      if (authorized === true && $state.current.name === 'login-page')
-        $window.location.pathname = '/invoice-barcode-scan';
-
-      if (authorized === false) {
-        if ($state.current.name !== 'login-page' && $state.current.name !== 'signup-page')
-          $window.location.pathname = '/login';
-      }
-    })
-  }
+  var $helper = HelperSvc;
 
   //
   // events
   //
-
   $rootScope.$on('$stateChangeSuccess', function () {
     // clear global invoice variable
     switch ( $state.current.name ) {
       case 'invoice-barcode-scan-page':
       case 'recent-invoice-collection-page':
-        $hs.clearInvoiceNumber();
-        break;
+            $helper.clearInvoiceBarcode();
+            break;
     }
+  })
 
-    // inspect user status if already logged in.
-    verifyUserAccess();
+  // inspect user status if already logged in.
+  var protectedStates = ['login-page', 'signup-page']; //, 'request-password-reset-page', 'password-reset-page'];
 
-    // log invoice collections
-    console.log( 'state: ', $state.current.name );
-    console.log( 'invoice: ', $hs.getInvoiceNumber() );
-    console.log( 'coll: ', JSON.stringify( $hs.getRecentInvoiceCollection() ) );
-    console.log( 'hist: ', JSON.stringify( $hs.getHistoryInvoiceCollection() ) );
+  $rootScope.$on('$stateChangeStart', function(event, toState) {
+    if (protectedStates.indexOf(toState.name) > -1) {
+      $.ajax({
+        url: Routes.user_access_path(),
+        type: 'get'
+      })
+      .done(function (authorized) {
+        if (authorized === true) $state.go('invoice-barcode-scan-page');
+      })
+
+    } else {
+      $.ajax({
+        url: Routes.user_access_path(),
+        type: 'get'
+      })
+      .done(function (authorized) {
+        if (authorized !== true) $window.location.pathname = '/login';
+      })
+    }
   })
 
   $(window).on('focus', function () {
-    // inspect user status if already logged in.
-    verifyUserAccess();
+    if (protectedStates.indexOf($state.current.name) > -1) {
+      $.ajax({
+        url: Routes.user_access_path(),
+        type: 'get'
+      })
+      .done(function (authorized) {
+        if (authorized === true) $state.go('invoice-barcode-scan-page');
+      })
+
+    } else {
+      $.ajax({
+        url: Routes.user_access_path(),
+        type: 'get'
+      })
+      .done(function (authorized) {
+        if (authorized !== true) $window.location.pathname = '/login';
+      })
+    }
   })
 
 })
