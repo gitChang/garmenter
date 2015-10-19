@@ -58,7 +58,7 @@ function configCallback($stateProvider, $urlRouterProvider, $locationProvider) {
       controller  : 'HistoryInvoiceCollection'
     });
 
-	//$urlRouterProvider.otherwise('/login');			// default fall back route.
+	$urlRouterProvider.otherwise('/login');			// default fall back route.
 	$locationProvider.html5Mode(true);					// remove hash on the url.
 }
 
