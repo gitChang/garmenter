@@ -3,9 +3,8 @@
 App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
-
     //
-    // variables
+    // aliases
     //
     var $helper = HelperSvc;
 
@@ -15,7 +14,6 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
     function showProcessing() {
       $helper.indicateProcessing(element);
     }
-
 
     function processLogin() {
       $.ajax({

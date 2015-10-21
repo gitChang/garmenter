@@ -47,6 +47,9 @@ App.directive('invoiceBarcodeDir', function ($state, $http, HelperSvc) {
           element.removeAttr('disabled');
           $helper.notify(res.data[1]);
         }
+      }, function() {
+        _spin.hide();
+        $helper.notify('Could not connect to Server.');
       })
     }
 

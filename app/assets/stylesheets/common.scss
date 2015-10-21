@@ -18,7 +18,7 @@ body {
 }
 
 
-@media(max-width: 767px) {
+@media(max-width: $screen-xs) {
   body, .container-fluid { font-size: 11 px; }
 
   h1 { font-size: 1.9em; }

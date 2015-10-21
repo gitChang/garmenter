@@ -40,7 +40,7 @@ function configCallback($stateProvider, $urlRouterProvider, $locationProvider) {
 		.state('invoice-barcode-scan-page', {
 			url  				: '/invoice-barcode-scan',
 			templateUrl : 'invoice-barcode-scan-page.html',
-			controller  : 'InvoiceScanCtrl',
+			controller  : 'InvoiceScanCtrl'
 		})
 		.state('garment-barcode-scan-page', {
 			url  				: '/garment-barcode-scan',

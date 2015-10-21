@@ -49892,7 +49892,7 @@ function configCallback($stateProvider, $urlRouterProvider, $locationProvider) {
 		.state('invoice-barcode-scan-page', {
 			url  				: '/invoice-barcode-scan',
 			templateUrl : 'invoice-barcode-scan-page.html',
-			controller  : 'InvoiceScanCtrl',
+			controller  : 'InvoiceScanCtrl'
 		})
 		.state('garment-barcode-scan-page', {
 			url  				: '/garment-barcode-scan',
@@ -49979,7 +49979,12 @@ App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
         type: 'get'
       })
       .done(function (authorized) {
-        if (authorized !== true) $window.location.pathname = '/login';
+        if (authorized !== true) {
+          $state.go('login-page');
+          setTimeout(function() {
+            $helper.notify('You have been logged out. Please login again.');
+          }, 1000);
+        }
       })
     }
   })
@@ -51054,6 +51059,9 @@ App.directive('invoiceBarcodeDir', function ($state, $http, HelperSvc) {
           element.removeAttr('disabled');
           $helper.notify(res.data[1]);
         }
+      }, function() {
+        _spin.hide();
+        $helper.notify('Could not connect to Server.');
       })
     }
 
@@ -51121,9 +51129,8 @@ App.directive('recentCollectionDir', function ($state) {
 App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
-
     //
-    // variables
+    // aliases
     //
     var $helper = HelperSvc;
 
@@ -51133,7 +51140,6 @@ App.directive('loginBtn', function ($state, $templateCache, HelperSvc) {
     function showProcessing() {
       $helper.indicateProcessing(element);
     }
-
 
     function processLogin() {
       $.ajax({

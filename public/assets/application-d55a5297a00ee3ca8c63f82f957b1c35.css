@@ -15686,7 +15686,7 @@ body {
   background-color: #000;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 480px) {
   /* line 22, /Users/Charlie/Sites/GarmentScannerX/app/assets/stylesheets/common.scss */
   body, .container-fluid {
     font-size: 11 px;
