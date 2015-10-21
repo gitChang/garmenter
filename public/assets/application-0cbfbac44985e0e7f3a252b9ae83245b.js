@@ -50005,7 +50005,12 @@ App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
         type: 'get'
       })
       .done(function (authorized) {
-        if (authorized !== true) $window.location.pathname = '/login';
+        if (authorized !== true) {
+          $state.go('login-page');
+          setTimeout(function() {
+            $helper.notify('You have been logged out. Please login again.');
+          }, 1000);
+        }
       })
     }
   })
