@@ -51625,7 +51625,7 @@ App.directive('acctData', function($state) {
 });
 'use strict';
 
-App.directive('signup', function ($state, $templateCache, HelperSvc) {
+App.directive('signup', function ($state, $window, $templateCache, HelperSvc) {
 
   function linker (scope, element) {
 
@@ -51650,7 +51650,7 @@ App.directive('signup', function ($state, $templateCache, HelperSvc) {
         beforeSend: showProcessing()
       })
       .done(function () {
-        $state.go('login-page');
+        $window.location.pathname = '/login';
       })
       .fail(function (error) {
         var key = error.responseJSON[0], msg = error.responseJSON[1];
