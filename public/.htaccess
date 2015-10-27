@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+
+ServerName laundry.tuku-singapore.com
+
+DocumentRoot /home3/tukusing/laundry/public/
+
+<Directory /home3/tukusing/laundry/public/>
+
+AllowOverride allOptions -MultiViews
+
+</Directory>
+
+</VirtualHost>

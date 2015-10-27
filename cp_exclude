@@ -1,0 +1,11 @@
+.DS_Store
+.git
+.gitignore
+.idea
+Procfile
+broadcast.sh
+deploy-heroku.sh
+diagnostic.txt
+log
+cp_exclude
+rsync_to_bluehost.sh

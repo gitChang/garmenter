@@ -21,39 +21,26 @@ class Invoice < ActiveRecord::Base
 
 
   def self.invoice_garments(current_user, updatable_flag=true)
-    # collect all either
-    # updatable or closed
-    # invoices.
+    # collect all either updatable or closed invoices.
     if updatable_flag
       array_invoices = Invoice.updatable.where(user: current_user).to_a
     else
       array_invoices = Invoice.closed.where(user: current_user).to_a
     end
-    # collect all garments
-    # unders these invoices.
-    json_garments = Garment.active.where(invoice: array_invoices).as_json
 
-    # since join is slow,
-    # will make key insertion here.
+    # since join is slow, will make key insertion here.
     json_invoices = array_invoices.collect do |invoice|
-                      {
-                        'id' => invoice.id,
-                        'invoice_barcode' => invoice.invoice_barcode,
-                        'garment_barcodes' => [],
-                        'date_scanned' => invoice.created_at
-                      }
+                      item = { id: nil, invoice_barcode: nil, garment_barcodes: nil }
+
+                      item[:id] = invoice.id
+                      item[:invoice_barcode] = invoice.invoice_barcode
+                      item[:garment_barcodes] = invoice.garments.collect { |g| g.garment_barcode }
+                      item[:date_scanned] = invoice.created_at
+
+                      item
                     end
-    # fill garment barcode
-    # collection here.
-    json_invoices.each do |invoice|
-      json_garments.each do |garment|
-        if garment['invoice_id'] == invoice['id']
-          invoice['garment_barcodes'] << garment['garment_barcode']
-        end
-      end
-    end
-    return json_invoices
   end
+
 
   # mark as only deleted.
   # prevent actual deletion.

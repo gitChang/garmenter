@@ -13039,12 +13039,9 @@ return jQuery;
 // mark_delete_invoices => /ajax/invoices/delete/:invoice_barcode(.:format)
   // function(invoice_barcode, options)
   mark_delete_invoices_path: Utils.route(["invoice_barcode"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"invoices",false],[2,[7,"/",false],[2,[6,"delete",false],[2,[7,"/",false],[2,[3,"invoice_barcode",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
-// password_reset => /ajax/password_resets/:id(.:format)
-  // function(id, options)
-  password_reset_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"password_resets",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], arguments),
-// password_resets => /ajax/password_resets(.:format)
-  // function(options)
-  password_resets_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"password_resets",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], arguments),
+// next_slot_generator_index => /api/slot_generator/next-garment-slot/:garment_barcode(.:format)
+  // function(garment_barcode, options)
+  next_slot_generator_index_path: Utils.route(["garment_barcode"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"slot_generator",false],[2,[7,"/",false],[2,[6,"next-garment-slot",false],[2,[7,"/",false],[2,[3,"garment_barcode",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
 // quantity_garments => /ajax/garments/:invoice_barcode/quantity(.:format)
   // function(invoice_barcode, options)
   quantity_garments_path: Utils.route(["invoice_barcode"], ["format"], [2,[7,"/",false],[2,[6,"ajax",false],[2,[7,"/",false],[2,[6,"garments",false],[2,[7,"/",false],[2,[3,"invoice_barcode",false],[2,[7,"/",false],[2,[6,"quantity",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]], arguments),
@@ -49940,7 +49937,7 @@ App.service('GlobalDataSvc', function () {
 });
 'use strict';
 
-App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
+App.service('DaemonSvc', function ( $rootScope, $state, $window, $http, $q, HelperSvc ) {
 
   //
   // aliases
@@ -49959,6 +49956,18 @@ App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
             break;
     }
   })
+
+  function inspectAccess() {
+    var deferred = $q.defer();
+    $http.get(Routes.user_access_path()).then(function(res) {
+      deferred.resolve(res.data);
+    })
+    return deferred.promise;
+  }
+
+  console.log(inspectAccess().then(function(d) {
+    return d;
+  }));
 
   // inspect user status if already logged in.
   var protectedStates = ['login-page', 'signup-page']; //, 'request-password-reset-page', 'password-reset-page'];

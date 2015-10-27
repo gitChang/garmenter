@@ -7,7 +7,7 @@ gem 'rails', '4.2.1'
 # authentication
 gem 'sorcery'
 
-
+gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'

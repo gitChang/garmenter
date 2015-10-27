@@ -1,6 +1,6 @@
 'use strict';
 
-App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
+App.service('DaemonSvc', function ( $rootScope, $state, $window, $http, $q, HelperSvc ) {
 
   //
   // aliases
@@ -19,6 +19,18 @@ App.service('DaemonSvc', function ( $rootScope, $state, $window, HelperSvc ) {
             break;
     }
   })
+
+  function inspectAccess() {
+    var deferred = $q.defer();
+    $http.get(Routes.user_access_path()).then(function(res) {
+      deferred.resolve(res.data);
+    })
+    return deferred.promise;
+  }
+
+  console.log(inspectAccess().then(function(d) {
+    return d;
+  }));
 
   // inspect user status if already logged in.
   var protectedStates = ['login-page', 'signup-page']; //, 'request-password-reset-page', 'password-reset-page'];

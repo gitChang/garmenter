@@ -32,8 +32,15 @@ Rails.application.routes.draw do
         get ':invoice_barcode/quantity' => 'garments#quantity', as: :quantity
       end
     end
+    # resources :password_resets, only: [:create, :update]
+  end
 
-    resources :password_resets, only: [:create, :update]
+  scope 'api', defaults: { format: 'json' } do
+    resources :slot_generator, only: [] do
+      collection do
+        get 'next-garment-slot/:garment_barcode' => 'slot_generator#next_garment_slot', as: :next
+      end
+    end
   end
 
   # must be declared after api to prevent
