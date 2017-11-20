@@ -1,6 +1,6 @@
-class SlotGeneratorController < ApplicationController
+class InvoiceGarmentController < ApplicationController
 
-  def next_garment_slot
+  def get_invoice
     @garment = Garment.active.where(garment_barcode: params[:garment_barcode]).first
     render json: invoice_payload
   end
@@ -8,7 +8,7 @@ class SlotGeneratorController < ApplicationController
   private
 
   def invoice_payload
-    invoice = @garment ? @garment.invoice : nil
+    invoice = @garment && @garment.invoice.user_id == current_user.id ? @garment.invoice : nil
 
     if !invoice || !invoice.closed
       return { error: 'Invoice not found or needs to be synced first.' }

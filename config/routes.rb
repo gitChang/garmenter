@@ -36,9 +36,9 @@ Rails.application.routes.draw do
   end
 
   scope 'api', defaults: { format: 'json' } do
-    resources :slot_generator, only: [] do
+    resources :invoice_garment, only: [] do
       collection do
-        get 'next-garment-slot/:garment_barcode' => 'slot_generator#next_garment_slot', as: :next
+        get '/:garment_barcode' => 'invoice_garment#get_invoice', as: :api_get_invoice
       end
     end
   end
